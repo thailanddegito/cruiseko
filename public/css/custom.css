@@ -8,6 +8,9 @@
 .form-control.select {
   padding-left: 36px;
 }
+input[type=file].form-control {
+  padding: 6px 10px;
+}
 .bs-wizard.step {
   margin: 24px 0;
 }
