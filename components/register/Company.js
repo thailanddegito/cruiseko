@@ -11,6 +11,11 @@ const Company = (props) => {
     setShow(2);
   }
 
+  const optionCompanyType = [{val : '1', name : 'Agents'}, {val : '2', name : 'Hotels'}];
+  const optionProvince = [{val : '10', name : 'กรุงเทพมหานคร'}];
+  const optionAmphoe = [{val : 'คลองสาน', name : 'คลองสาน'}];
+  const optionDistrict = [{val : 'คลองต้นไทร', name : 'คลองต้นไทร'}];
+
   return (
     <>
       <div className={`${show ? 'd-block' : 'd-none'}`}>
@@ -22,7 +27,7 @@ const Company = (props) => {
               <div className="row mx-0">
                 <div className="col-12">
                   <SelectLabel inputProps={{ className:'form-control select', name : 'company_type'}} 
-                  labelName="Company Type" iconProps={{className : 'icon_lock_alt'}}  />
+                  labelName="Company Type" iconProps={{className : 'icon_lock_alt'}} options={optionCompanyType} />
                 </div>
               </div>
               <div className="row mx-0">
@@ -60,15 +65,15 @@ const Company = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'province'}} 
-              labelName="จังหวัด" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="จังหวัด" iconProps={{className : 'icon_lock_alt'}} options={optionProvince}  />
             </div>
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'amphoe'}} 
-              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}} options={optionAmphoe}  />
             </div>
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'district'}} 
-              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}} options={optionDistrict}  />
             </div>
             <div className="col-lg-3 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode'}} 
