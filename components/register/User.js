@@ -1,7 +1,8 @@
 
 import React from 'react';
 import InputLabel from '../widget/InputLabel'
-  
+import SelectLabel from '../widget/SelectLabel'
+
 const User = (props) => {
   const {show, setShow} = props;
 
@@ -25,7 +26,7 @@ const User = (props) => {
 
         <div className="row justify-content-center">
           <div className="col-lg-6 col-12">
-            <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'position'}} 
+            <SelectLabel inputProps={{ className:'form-control select', name : 'position'}} 
             labelName="Position : ตำแหน่ง" iconProps={{className : 'icon_lock_alt'}}  />
           </div>
           <div className="col-lg-6 col-12">
