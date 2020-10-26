@@ -5,6 +5,9 @@
   background-color: #fff;
   margin: 0 auto;
 }
+.form-control.select {
+  padding-left: 36px;
+}
 #register aside.main-content {
   width: auto;
 }

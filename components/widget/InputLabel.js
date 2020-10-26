@@ -1,7 +1,7 @@
 
 import React from 'react';
   
-const Input = (props) => {
+const InputLabel = (props) => {
   const {labelName,labelProps={},inputProps={} , iconProps={}} = props;
   return (
 
@@ -13,4 +13,4 @@ const Input = (props) => {
 
   )
 }
-export default Input
+export default InputLabel
