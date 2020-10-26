@@ -1,3 +1,6 @@
+.main-layout {
+  height: 100vh;
+}
 ul.buttons.manage {
   list-style: none;
   margin: 0;
@@ -18,4 +21,49 @@ ul.buttons.manage {
 }
 .card-body-icon.img {
   opacity: 1;
+}
+#login aside, #register aside {
+  width: 430px;
+  padding: 45px 60px 60px 60px;
+  position: relative;
+  background-color: #fff;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+a.btn_1, .btn_1 {
+  border: none;
+  color: #fff;
+  background: #fc5b62;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px 30px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+a.btn_1.rounded, .btn_1.rounded {
+  -webkit-border-radius: 25px !important;
+  -moz-border-radius: 25px !important;
+  -ms-border-radius: 25px !important;
+  border-radius: 25px !important;
+}
+
+a.btn_1.full-width, .btn_1.full-width {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
 }

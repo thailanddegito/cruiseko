@@ -47,7 +47,16 @@ const Layout = (props) => {
         
       </Head>
       
-      {!!isLogin && <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />}
+      {
+        isLogin ? (
+          <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />
+        ) : (
+          <div className='main-layout'>
+            {children}
+          </div>
+        )
+       
+      }
       
     </>
   )
