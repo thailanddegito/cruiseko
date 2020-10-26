@@ -73,7 +73,7 @@ const Company = (props) => {
             </div>
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'district'}} 
-              labelName="อำเภอ" iconProps={{className : 'fa icon icon-home'}} options={optionDistrict}  />
+              labelName="ตำบล" iconProps={{className : 'fa icon icon-home'}} options={optionDistrict}  />
             </div>
             <div className="col-lg-3 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode'}} 
