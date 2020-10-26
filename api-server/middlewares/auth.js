@@ -22,12 +22,14 @@ exports.jwt = (user_type) =>{
         case 'user':
             return exjwt({
                 secret: process.env.USER_SECRET_KEY,
-                getToken: tokenUserFromHeader
+                getToken: tokenUserFromHeader,
+                algorithms: ['HS256']
             });
         case 'admin':
             return exjwt({
                 secret: process.env.ADMIN_SECRET_KEY,
-                getToken: tokenUserFromHeader
+                getToken: tokenUserFromHeader,
+                algorithms: ['HS256']
             });
     
         default:

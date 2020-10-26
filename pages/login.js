@@ -1,12 +1,15 @@
 import Router from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import Layout from '../components/frontend/layout/Layout';
 import api from '../utils/api'
 import AuthService from '../utils/AuthService'
+import UserContext from '../contexts/UserContext';
 
 const Login = ({ t }) => {
   const [loading, setLodding] = useState(false);
   const [error,setError] = useState()
+  const { fetchUser } = useContext(UserContext)
+
   useEffect(() => {
     
   },[]);
@@ -20,6 +23,7 @@ const Login = ({ t }) => {
       console.log(res.data)
       AuthService.setToken(res.data.token)
       AuthService.setProfile({user_id : res.data.user_id})
+      fetchUser()
       Router.push('/')
     })
     .catch(err => {

@@ -37,6 +37,6 @@ export default {
   //Payment
    baseUrl : BASE,
    login : (data) => service.post(`/users/login`,data),
-   
+   getProfile : () => service.get(`/users/profile`),
 
 }

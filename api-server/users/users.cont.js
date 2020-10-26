@@ -97,6 +97,21 @@ exports.register = async(req,res,next)=>{
     }
 }
 
+// bcrypt.hash('123456', saltRounds).then(result => console.log(result))
+
+
+
+exports.profile = async(req,res,next)=>{
+    const user = req.user;
+    try{
+        const _user = await User.findOne({where : { id : user.id},attributes: {exclude: ['password']} })
+        res.json(_user)
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 
 
 exports.update = async(req,res,next)=>{
@@ -142,7 +157,7 @@ async function checkEmail (email){
 
 function generateToken(user){
     // console.log('generating token user  :'+user.id);
-    return jwt.sign({ id: user.id, email: user.email,user_type : user.user_type,type:'user'}, process.env.USER_SECRET_KEY);
+    return jwt.sign({ id: user.id, email: user.email,user_type : user.user_type,type:'user'}, process.env.USER_SECRET_KEY );
     //return token = jwt.sign({ id: user.id, email: user.email}, config.SECRET_KEY, { expiresIn: config.token_expire });
 }
 
