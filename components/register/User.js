@@ -10,6 +10,8 @@ const User = (props) => {
     setShow(3);
   }
 
+  const optionDistrict = [{val : 'คลองต้นไทร', name : 'คลองต้นไทร'}];
+
   return (
     <>
       <div className={`${show ? 'd-block' : 'd-none'}`}>
