@@ -27,19 +27,19 @@ const Company = (props) => {
               <div className="row mx-0">
                 <div className="col-12">
                   <SelectLabel inputProps={{ className:'form-control select', name : 'company_type'}} 
-                  labelName="Company Type" iconProps={{className : 'icon_lock_alt'}} options={optionCompanyType} />
+                  labelName="Company Type" iconProps={{className : 'fa icon icon-home'}} options={optionCompanyType} />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en'}} 
-                  labelName="Company Name Eng : ชื่อธุรกิจนำเที่ยวภาษาอังกฤษ" iconProps={{className : 'icon_lock_alt'}}  />
+                  labelName="Company Name Eng : ชื่อธุรกิจนำเที่ยวภาษาอังกฤษ" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_th'}} 
-                  labelName="Company Name Thai : ชื่อธุรกิจนำเที่ยวภาษาไทย" iconProps={{className : 'icon_lock_alt'}}  />
+                  labelName="Company Name Thai : ชื่อธุรกิจนำเที่ยวภาษาไทย" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
             </div>
@@ -48,47 +48,47 @@ const Company = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'license_no'}} 
-              labelName="License No : ใบอนุญาตเลขที่" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="License No : ใบอนุญาตเลขที่" iconProps={{className : 'fa icon icon-newspaper'}}  />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'file',name : 'image_license'}} 
-              labelName="License Pic : ภาพใบอนุญาต" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="License Pic : ภาพใบอนุญาต" iconProps={{className : 'fa icon icon-newspaper '}}  />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'address'}} 
-              labelName="Address : ที่อยู่" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="Address : ที่อยู่" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'province'}} 
-              labelName="จังหวัด" iconProps={{className : 'icon_lock_alt'}} options={optionProvince}  />
+              labelName="จังหวัด" iconProps={{className : 'fa icon icon-home'}} options={optionProvince}  />
             </div>
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'amphoe'}} 
-              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}} options={optionAmphoe}  />
+              labelName="อำเภอ" iconProps={{className : 'fa icon icon-home'}} options={optionAmphoe}  />
             </div>
             <div className="col-lg-3 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'district'}} 
-              labelName="อำเภอ" iconProps={{className : 'icon_lock_alt'}} options={optionDistrict}  />
+              labelName="อำเภอ" iconProps={{className : 'fa icon icon-home'}} options={optionDistrict}  />
             </div>
             <div className="col-lg-3 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode'}} 
-              labelName="รหัสไปรษณีย์" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="รหัสไปรษณีย์" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_phone'}} 
-              labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_email'}} 
-              labelName="Email : อีเมล์" iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 

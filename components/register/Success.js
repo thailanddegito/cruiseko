@@ -15,26 +15,26 @@ const Success = (props) => {
         <div className="row justify-content-start">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true}} 
-              labelName="Account ID : " iconProps={{className : 'icon_lock_alt'}}  />
+              labelName="Account ID : " iconProps={{className : 'fa icon icon-user'}}  />
           </div>
         </div>
 
         <div className="row justify-content-start">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'username'}} 
-            labelName="Username : " iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
           </div>
         </div>
         <div className="row justify-content-start">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'password'}} 
-            labelName="Password : " iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
           </div>
         </div>
         <div className="row justify-content-start">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text'}} 
-            labelName="Re - Password : " iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Re - Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
           </div>
         </div>
         

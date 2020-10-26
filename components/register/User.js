@@ -21,33 +21,33 @@ const User = (props) => {
         <div className="row justify-content-center">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'firstname'}} 
-            labelName="Name : ชื่อ" iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Name : ชื่อ" iconProps={{className : 'fa icon icon-user'}}  />
           </div>
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'lastname'}} 
-            labelName="Last Name : นามสกุล" iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Last Name : นามสกุล" iconProps={{className : 'fa icon icon-user'}}  />
           </div>
         </div>
 
         <div className="row justify-content-center">
           <div className="col-lg-6 col-12">
             <SelectLabel inputProps={{ className:'form-control select', name : 'position'}} 
-            labelName="Position : ตำแหน่ง" iconProps={{className : 'icon_lock_alt'}} options={optionPosition} />
+            labelName="Position : ตำแหน่ง" iconProps={{className : 'fa icon icon-user'}} options={optionPosition} />
           </div>
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'phone'}} 
-            labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
           </div>
         </div>
 
         <div className="row justify-content-center">
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'email'}} 
-            labelName="Email : อีเมล์" iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
           </div>
           <div className="col-lg-6 col-12">
             <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'line_id'}} 
-            labelName="Line ID (ไม่จำเป็นต้องระบุ)" iconProps={{className : 'icon_lock_alt'}}  />
+            labelName="Line ID (ไม่จำเป็นต้องระบุ)" iconProps={{className : 'fa icon icon-email'}}  />
           </div>
         </div>
 

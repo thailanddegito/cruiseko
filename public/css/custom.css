@@ -14,6 +14,19 @@
 #register aside.main-content {
   width: auto;
 }
+.icon.fa {
+  font-family: ElegantIcons;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon.fa::before {
+  margin-left: 0;
+}
 .img-box {
   width: 120px;
   height: 120px;
