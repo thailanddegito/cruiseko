@@ -41,7 +41,7 @@ const Login = ({ t }) => {
             </div>
             <div className="form-group">
               <label>Password</label>
-              <input type="password" className="form-control" name="password" id="password" pattern="[0-9]*" title="six or more characters" required />
+              <input type="password" className="form-control" name="password" id="password" pattern=".{6,}" title="six or more characters" required />
               <i className="icon_lock_alt"></i>
             </div>
 
