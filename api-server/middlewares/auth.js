@@ -1,7 +1,7 @@
 const exjwt = require('express-jwt');
 
-function tokenAdminFromUser (req) {
-    return req.headers.token_u
+function tokenUserFromHeader (req) {
+    // return req.headers.token_u
     if (req.headers.authorization && (req.headers.authorization.split(' ')[0] === 'Bearer' ||req.headers.authorization.split(' ')[0] === 'bearer' )) {
         return req.headers.authorization.split(' ')[1];
     } else if (req.query && req.query.token) {
@@ -22,12 +22,12 @@ exports.jwt = (user_type) =>{
         case 'user':
             return exjwt({
                 secret: process.env.USER_SECRET_KEY,
-                getToken: tokenAdminFromUser
+                getToken: tokenUserFromHeader
             });
         case 'admin':
             return exjwt({
                 secret: process.env.ADMIN_SECRET_KEY,
-                getToken: tokenAdminFromHeader
+                getToken: tokenUserFromHeader
             });
     
         default:

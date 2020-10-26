@@ -14,7 +14,7 @@ app.prepare().then(() => {
     const server = express()
     
     // server.use(nextI18NextMiddleware(nextI18next))
-    server.use(express.static('static-server'))
+    server.use('/storage',express.static('static-server'))
 
     server.use('/api',apiServer)
 

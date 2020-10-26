@@ -1,5 +1,8 @@
 const fs = require('fs')
 
+const base_domain = process.env.HOST
+
+
 module.exports = {
     moveFileWithPath : (file,path)=>{
         return new Promise((resolve,reject)=>{
@@ -22,5 +25,8 @@ module.exports = {
               }
             })
         })
+    },
+    genFileUrl : (fileName,path)=>{
+        return fileName ? `${base_domain}/storage/${path}/${fileName}` : null
     },
 }

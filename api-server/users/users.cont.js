@@ -5,6 +5,7 @@ const {User} = db
 const bcrypt = require('bcrypt');
 const saltRounds = 11;
 const errors = require('../errors')
+const tools = require('../helper/tools')
 const {DefaultError} = errors
 exports.index = async(req,res,next)=>{
     var {page,limit} = req.query;
@@ -35,7 +36,7 @@ exports.login = async(req,res,next)=>{
             throw new DefaultError(errors.INVALID_PASSWORD);
         }
         const token = generateToken(user)
-        res.json({success :true , token })
+        res.json({success :true , token ,user_id : user.id})
 
     }
     catch(err){
@@ -48,22 +49,29 @@ exports.login = async(req,res,next)=>{
 exports.register = async(req,res,next)=>{
     var data = req.body;
     var {username,password,company_type,user_type} = data;
-    
+    var files = req.files || {}
     try{
-
+        
+        if(files.image && files.image.name){
+            //console.log(req.files);
+            fileName = await tools.moveFileWithPath(files.image,'images')
+        }
+        
         const hash = await bcrypt.hash(password, saltRounds)
     }
     catch(err){
-
+        next(err);
     }
 }
+
+
 
 exports.update = async(req,res,next)=>{
     try{
 
     }
     catch(err){
-
+        next(err);
     }
 }
 
@@ -72,10 +80,25 @@ exports.delete = async(req,res,next)=>{
 
     }
     catch(err){
-
+        next(err);
     }
 }
 
+exports.checkEmail = async(req,res,next)=>{
+    const {email} = req.body;
+    try{
+        if(!email){
+            throw new DefaultError(errors.FILEDS_INCOMPLETE);
+        }
+
+        const user = await User.findOne({where : {email },attributes : ['email']})
+
+        res.json({duplicated : !!user })
+    }
+    catch(err){
+        next(err);
+    }
+}
 
 
 function generateToken(user){
