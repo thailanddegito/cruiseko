@@ -14,34 +14,34 @@ const Success = (props) => {
       <div className={`${show ? 'd-block' : 'd-none'}`}>
         <div className="container">
 
-          <div className="row justify-content-center">
-            <div className="col-6">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id'}} 
-                labelName="Account ID : " />
+          <div className="row justify-content-start">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true}} 
+                labelName="Account ID : " iconProps={{className : 'icon_lock_alt'}}  />
             </div>
           </div>
 
-          <div className="row justify-content-center">
-            <div className="col-6">
+          <div className="row justify-content-start">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'username'}} 
-              labelName="Username : " />
+              labelName="Username : " iconProps={{className : 'icon_lock_alt'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-6">
+          <div className="row justify-content-start">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'password'}} 
-              labelName="Password : " />
+              labelName="Password : " iconProps={{className : 'icon_lock_alt'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-6">
+          <div className="row justify-content-start">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text'}} 
-              labelName="Re - Password : " />
+              labelName="Re - Password : " iconProps={{className : 'icon_lock_alt'}}  />
             </div>
           </div>
           
-          <div className="row justify-content-center">
-            <div className="col-6">
+          <div className="row justify-content-start">
+            <div className="col-12">
               <div className="form-group">
                <button type="button" className="btn btn-primary" onClick={() => saveStep3()}>บันทึก</button>
               </div>

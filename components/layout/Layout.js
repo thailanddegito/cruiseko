@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
+import Header from '../layout/Header'
 // import Footer from '../layout/Footer'
-// import Header from '../layout/Header'
 // import Loading from '../Loading'
 
 const Layout = (props) => {
@@ -22,13 +22,14 @@ const Layout = (props) => {
         <link href="template/css/bootstrap.min.css" rel="stylesheet" />
         <link href="template/css/style.css" rel="stylesheet" />
         <link href="template/css/vendors.css" rel="stylesheet" />
+        <link href="css/custom.css" rel="stylesheet" />
 
         <script src="template/js/common_scripts.js"></script>
         <script src="template/js/main.js"></script>
         <script src="template/JS/validate.js"></script>
       </Head>
       
-      {/* <Header /> */}
+      <Header />
       <div className='main-layout'>
         {/* {loading && <Loading />} */}
         {children}

@@ -1,0 +1,15 @@
+.main-layout {
+  margin: 78px 0;
+}
+.container .main-content {
+  background-color: #fff;
+  margin: 0 auto;
+}
+#register aside.main-content {
+  width: auto;
+}
+@media (max-width: 767px) {
+  .main-layout {
+    margin: 52px 0;
+  }
+}

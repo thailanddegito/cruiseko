@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthService from './AdminAuthService'
 const BASE = `${process.env.HOST}/api`; 
-const service = axios.create()
+const service = axios.create({baseURL :BASE })
 
 // axios.interceptors.response.use((response) => {
 //     if(response.status === 401) {
@@ -35,7 +35,7 @@ service.interceptors.request.use(function (config) {
 export default {
   //Payment
    baseUrl : BASE,
-   getUsers : (params) => service.get(`${BASE}/users`,{params}),
+   getUsers : (params) => service.get(`/users`,{params}),
    
 
 }

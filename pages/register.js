@@ -7,7 +7,7 @@ import User from '../components/register/User';
 import Success from '../components/register/Success';
 
 const Register = ({ t }) => {
-  const [loading, setLodding] = useState(true);
+  const [loading, setLodding] = useState(false);
   const [show, setShow] = useState(1);
 
   useEffect(() => {
@@ -29,9 +29,15 @@ const Register = ({ t }) => {
           </div>
         </div>
 
-        <Company setShow={setShow} show={show == 1} />
-        <User setShow={setShow} show={show == 2} />
-        <Success setShow={setShow} show={show == 3} />
+        <div className="container" id="register">
+          <aside className="main-content">
+            <form>
+              <Company setShow={setShow} show={show == 1} />
+              <User setShow={setShow} show={show == 2} />
+              <Success setShow={setShow} show={show == 3} />
+            </form>
+          </aside>
+        </div>
       </main>
     </Layout>
   )
