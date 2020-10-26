@@ -1,5 +1,5 @@
 .main-layout {
-  margin: 78px 0;
+  margin: 94px 0;
 }
 .container .main-content {
   background-color: #fff;
@@ -91,6 +91,9 @@ input[type=file].form-control {
 }
 @media (max-width: 767px) {
   .main-layout {
-    margin: 52px 0;
+    margin: 66px 0;
+  }
+  .container, .container-sm {
+    max-width: 100%;
   }
 }
