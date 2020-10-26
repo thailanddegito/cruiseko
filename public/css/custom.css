@@ -36,6 +36,12 @@
   color: #fff;
   font-size: 24px;
 }
+.box-img .fas.fa-plus-square {
+  position: relative;
+  font-size: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .dropbox {
   display: none;
 }

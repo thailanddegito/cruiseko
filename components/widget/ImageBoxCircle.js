@@ -50,7 +50,9 @@ const ImageBoxCircle = (props) => {
       {
         !img ? (
           <div className="box-img text-center">
-            <label htmlFor={_id} className={classNames("img-box mb-0", chkImg && 'img-required')}></label>
+            <label htmlFor={_id} className={classNames("img-box mb-0", chkImg && 'img-required')}>
+              <i className="fas fa-plus-square"></i>
+            </label>
             <p className={classNames(chkImg && 'text-required')}>{_text} {_text == "ภาพปก"||required  ? <span className="text-danger">*</span> : ''}</p>
             <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/* ${accept_video ? ',video/*' : ''}`} />
           </div>
