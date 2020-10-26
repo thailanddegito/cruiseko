@@ -9,6 +9,8 @@ import Success from '../components/register/Success';
 const Register = ({ t }) => {
   const [loading, setLodding] = useState(false);
   const [show, setShow] = useState(1);
+  const [chkImg, setChkimg]  = useState(false);
+  const [index, setIndex] = useState([]);
 
   useEffect(() => {
     
