@@ -29,7 +29,7 @@ const Layout = (props) => {
         <script src="template/JS/validate.js"></script>
       </Head>
       
-      <Header />
+      <Header loading={loading} />
       <div className='main-layout'>
         {/* {loading && <Loading />} */}
         {children}

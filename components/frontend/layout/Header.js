@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
   
 const Header = (props) => {
-
+  const {loading} = props;
   return (
     <>
       <header className="header menu_fixed">

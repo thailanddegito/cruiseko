@@ -7,7 +7,7 @@ const ImageBoxCircle = (props) => {
   const [img, setImg] = useState(_img || null);
 
 
-  const [type, setType] = useState(dataType || null);
+  const [type, setType] = useState(null);
   const [fileType, setFiletype] = useState(null);
   
 
