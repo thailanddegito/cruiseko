@@ -1,7 +1,7 @@
 
 import React from 'react';
-import InputLabel from '../widget/InputLabel'
-import SelectLabel from '../widget/SelectLabel'
+import InputLabel from '../../widget/InputLabel'
+import SelectLabel from '../../widget/SelectLabel'
 
 const User = (props) => {
   const {show, setShow} = props;

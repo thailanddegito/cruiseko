@@ -1,8 +1,8 @@
 
 import React from 'react';
-import InputLabel from '../widget/InputLabel'
-import SelectLabel from '../widget/SelectLabel'
-import ImageBoxCircle from '../widget/ImageBoxCircle';
+import InputLabel from '../../widget/InputLabel'
+import SelectLabel from '../../widget/SelectLabel'
+import ImageBoxCircle from '../../widget/ImageBoxCircle';
 
 const Company = (props) => {
   const {show, setShow, chkImg, setChkimg, index, setIndex} = props;

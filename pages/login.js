@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/frontend/layout/Layout';
 import api from '../utils/api'
 import AuthService from '../utils/AuthService'
 
