@@ -1,6 +1,6 @@
 
 import React from 'react';
-import InputLabel from '../../widget/InputLabel'
+import InputLabel from '../../widget/InputLabel';
   
 const FormLogin = (props) => {
   const {error} = props;

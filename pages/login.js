@@ -1,11 +1,10 @@
 import Router from 'next/router';
-import React, { useEffect, useState ,useContext} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/frontend/layout/Layout';
-import api from '../utils/api'
-import AuthService from '../utils/AuthService'
+import FormLogin from '../components/frontend/login/FormLogin';
 import UserContext from '../contexts/UserContext';
-import InputLabel from '../components/widget/InputLabel'
-import FormLogin from '../components/frontend/login/FormLogin'
+import api from '../utils/api';
+import AuthService from '../utils/AuthService';
 
 const Login = ({ t }) => {
   const [loading, setLodding] = useState(false);

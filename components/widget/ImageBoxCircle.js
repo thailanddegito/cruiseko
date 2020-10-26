@@ -2,20 +2,14 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
   
 const ImageBoxCircle = (props) => {
-  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required, accept_video, mimeType} = props
+  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required, accept_video} = props
   const {onDelete} = props
   const [img, setImg] = useState(_img || null);
 
-  var dataType = '';
-  if(mimeType) {
-    let file_type = mimeType.split('/');
-    dataType = file_type[0];
-  }
 
   const [type, setType] = useState(dataType || null);
-  const [fileType, setFiletype] = useState(mimeType || null);
+  const [fileType, setFiletype] = useState(null);
   
-  console.log('mimeType', mimeType);
 
   const handleChange = (event) => {
     if(!event.target.files[0]) {

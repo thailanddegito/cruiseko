@@ -1,10 +1,9 @@
-import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/frontend/layout/Layout';
-import Step from '../components/widget/Step';
 import Company from '../components/frontend/register/Company';
-import User from '../components/frontend/register/User';
 import Success from '../components/frontend/register/Success';
+import User from '../components/frontend/register/User';
+import Step from '../components/widget/Step';
 
 const Register = ({ t }) => {
   const [loading, setLodding] = useState(false);
