@@ -11,8 +11,8 @@ const Header = (props) => {
         <div id="logo">
           <Link href="/">
             <a>
-              <img src="icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
-              <img src="icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
+              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
             </a>
           </Link>
         </div>

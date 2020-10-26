@@ -1,0 +1,21 @@
+ul.buttons.manage {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: auto;
+  right: auto;
+  display: flex;
+  justify-content: center;
+}
+.font-14 {
+  font-size: 14px;
+}
+.approve-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.card-body-icon.img {
+  opacity: 1;
+}
