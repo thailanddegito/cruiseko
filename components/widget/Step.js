@@ -3,6 +3,8 @@ import React from 'react';
   
 const Step = (props) => {
   const {active, name} = props;
+
+  
   return (
     <>
       <div className={`bs-wizard-step ${active ? 'active' : 'disabled'}`}>
@@ -10,7 +12,7 @@ const Step = (props) => {
         <div className="progress">
           <div className="progress-bar"></div>
         </div>
-        <a href="#0" className="bs-wizard-dot"></a>
+        <a className="bs-wizard-dot"></a>
       </div>
     </>
   )

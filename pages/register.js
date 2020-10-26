@@ -15,7 +15,7 @@ const Register = ({ t }) => {
   useEffect(() => {
     
   },[]);
-  
+
   return (
     <Layout loading={loading} title="Register">
       <main>
