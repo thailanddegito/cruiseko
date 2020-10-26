@@ -8,6 +8,9 @@
 .form-control.select {
   padding-left: 36px;
 }
+.bs-wizard.step {
+  margin: 24px 0;
+}
 #register aside.main-content {
   width: auto;
 }

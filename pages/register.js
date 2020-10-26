@@ -22,7 +22,7 @@ const Register = ({ t }) => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div className="bs-wizard clearfix">
+              <div className="bs-wizard step clearfix">
                 <Step active={show == 1} name="ข้อมูลบริษัท" />
                 <Step active={show == 2} name="ข้อมูลผู้ใช้งาน" />
                 <Step active={show == 3} name="ข้อมูลการเข้าระบบ" />
