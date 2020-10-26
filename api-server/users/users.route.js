@@ -6,6 +6,7 @@ const cont  = require('./users.cont')
 
 // router.post('/register',user.register)
 
+router.post('/check-email',cont.checkEmail)
 router.post('/login',cont.login)
 router.post('/register',cont.register)
 router.put('/:id',cont.update)

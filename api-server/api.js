@@ -24,7 +24,7 @@ app.get('*',(req,res)=>{
 
 
 
-app.use((err,req,res) => {
+app.use(function (err, req, res, next) {
     console.log(err);
     if(err.name)
         res.status(400).json({ success : false , error : err.name})

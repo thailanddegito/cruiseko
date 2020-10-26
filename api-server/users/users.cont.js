@@ -8,10 +8,21 @@ const errors = require('../errors')
 const tools = require('../helper/tools')
 const {DefaultError} = errors
 exports.index = async(req,res,next)=>{
-    var {page,limit} = req.query;
+    var {page=1,limit=30} = req.query;
     try{
         // console.log(req.cookies)
-        res.json([{id : 1}])
+        var options = {}
+        if(!isNaN(page) && page !=0){
+            if(parseInt(page) > 1)
+                options.offset = (page-1)*limit;
+            
+            options.limit = limit;
+        }
+        if(!isNaN(limit)){
+            options.limit = parseInt(limit);
+        }
+        const users = await User.findAndCountAll(options )
+        res.json(users)
     }
     catch(err){
         next(err);
@@ -50,14 +61,36 @@ exports.register = async(req,res,next)=>{
     var data = req.body;
     var {username,password,company_type,user_type} = data;
     var files = req.files || {}
+    // var image_logo,image_license;
     try{
         
-        if(files.image && files.image.name){
+        if(files.image_logo && files.image_logo.name){
             //console.log(req.files);
-            fileName = await tools.moveFileWithPath(files.image,'images')
+            let file = files.image_logo;
+            let fileName = await tools.moveFileWithPath(file,'images')
+            data.image_logo = tools.genFileUrl(fileName,'images')
         }
+        if(files.image_license && files.image_license.name){
+            let file = files.image_license;
+            let fileName = await tools.moveFileWithPath(file,'images')
+            data.image_license = tools.genFileUrl(fileName,'images')
+        }
+
+        if(!username || !password || !user_type ){
+            throw new DefaultError(errors.FILEDS_INCOMPLETE);
+        }
+
+        if(await checkEmail(username)){
+            throw new DefaultError(errors.DUPLICATED_EMAIL);
+        }
+
+
         
         const hash = await bcrypt.hash(password, saltRounds)
+
+        data.password = hash
+
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -91,13 +124,19 @@ exports.checkEmail = async(req,res,next)=>{
             throw new DefaultError(errors.FILEDS_INCOMPLETE);
         }
 
-        const user = await User.findOne({where : {email },attributes : ['email']})
+        const found = await checkEmail(email)
 
-        res.json({duplicated : !!user })
+        res.json({duplicated : !!found })
     }
     catch(err){
         next(err);
     }
+}
+
+
+async function checkEmail (email){
+    const user = await User.findOne({where : {email },attributes : ['email']})
+    return !!user
 }
 
 
@@ -106,3 +145,4 @@ function generateToken(user){
     return jwt.sign({ id: user.id, email: user.email,user_type : user.user_type,type:'user'}, process.env.USER_SECRET_KEY);
     //return token = jwt.sign({ id: user.id, email: user.email}, config.SECRET_KEY, { expiresIn: config.token_expire });
 }
+
