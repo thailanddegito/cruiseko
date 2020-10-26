@@ -1,10 +1,11 @@
 
 import React from 'react';
 import InputLabel from '../widget/InputLabel'
-  
-const Company = (props) => {
-  const {show, setShow} = props;
+import ImageBoxCircle from '../widget/ImageBoxCircle';
 
+const Company = (props) => {
+  const {show, setShow, chkImg, setChkimg, index, setIndex} = props;
+ 
   const saveStep1 = () => {
     setShow(2);
   }
@@ -12,10 +13,9 @@ const Company = (props) => {
   return (
     <>
       <div className={`${show ? 'd-block' : 'd-none'}`}>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'file' ,name : 'image_logo'}} 
-              labelName="Logo : รูปภาพบริษัท" iconProps={{className : 'icon_lock_alt'}} />
+              <ImageBoxCircle _text="Logo : รูปภาพบริษัท" _name="image_logo" _id="image_logo" chkImg={chkImg} />
             </div>
             <div className="col-lg-6 col-12 px-0">
               <div className="row mx-0">

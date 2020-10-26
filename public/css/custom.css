@@ -8,6 +8,59 @@
 #register aside.main-content {
   width: auto;
 }
+.img-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px dashed #eee;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.img-box.show img, .img-box.show video {
+  max-height: 100%;
+  max-width: 100%;
+}
+.middle {
+  position: relative;
+}
+.middle, .middle-absolute {
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.img-box:hover .middle-absolute {
+  display: block;
+  z-index: 3;
+  color: #fff;
+  font-size: 24px;
+}
+.dropbox {
+  display: none;
+}
+.box-img.circle .img-box:hover .dropbox, .img-box:hover .dropbox {
+  display: block;
+  width: 96px;
+  height: 96px;
+  position: absolute;
+  z-index: 2;
+  background-color: #000;
+  opacity: .5;
+}
+.img-box:hover .dropbox {
+  border-radius: 50%;
+  margin-top: 0;
+}
+.img-box .middle-absolute {
+  display: none;
+}
+.middle-absolute {
+  position: absolute;
+}
+.box-img input[type=file] {
+  display: none;
+}
 @media (max-width: 767px) {
   .main-layout {
     margin: 52px 0;
