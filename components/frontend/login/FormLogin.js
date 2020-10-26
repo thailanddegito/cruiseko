@@ -26,7 +26,7 @@ const FormLogin = (props) => {
       }
 
       <div className="clearfix add_bottom_30">
-        <div className="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
+        <div className="float-right mt-1"><a id="forgot">Forgot Password?</a></div>
       </div>
 
       <div>
@@ -34,9 +34,9 @@ const FormLogin = (props) => {
       </div>
 
       <div className="divider"><span>Or</span></div>
-      
+
       <div className="access_social">
-        <a href="#0" className="social_bt facebook">Login with Facebook</a>
+        <a className="social_bt facebook">Login with Facebook</a>
       </div>
     </>
   )

@@ -1,16 +1,13 @@
-import Head from 'next/head'
-import api from '../utils/api'
+import React, { useEffect, useState } from 'react';
+import Layout from '../components/frontend/layout/Layout';
 
-export default function Home() {
+const Home = (props) => {
+  const [loading, setLodding] = useState(false);
+
   return (
-    <div >
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div>
-        
-      </div>
-    </div>
+    <Layout loading={loading} title="Home">
+    </Layout>
   )
 }
+export default Home
+
