@@ -7,7 +7,7 @@ import Sidenav from './Sidenav';
 // import Loading from '../Loading'
 
 const Layout = (props) => {
-  const {title, loading, children, page_name, sub_page} = props;
+  const {title, loading, children, page_name, sub_page, isLogin} = props;
 
   return (
     <>
@@ -47,7 +47,8 @@ const Layout = (props) => {
         
       </Head>
       
-      <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />
+      {!!isLogin && <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />}
+      
     </>
   )
 }

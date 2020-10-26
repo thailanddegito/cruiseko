@@ -11,7 +11,7 @@ const Index = ({ t }) => {
 
   return (
     <>
-      <Layout title="Users" page_name="Users">
+      <Layout title="Users" page_name="Users" isLogin={true}>
         <div class="row">
           <UserCard name={`Tiger Nixon`} />
         </div>

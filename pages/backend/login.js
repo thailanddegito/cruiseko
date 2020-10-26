@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Layout from '../../components/backend/layout/Layout';
 import Sidenav from '../../components/backend/layout/Sidenav';
 
-const Index = ({ t }) => {
+const Login = ({ t }) => {
 
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Index = ({ t }) => {
 
   return (
     <>
-      <Layout title="Dashboard" page_name="Dashboard" isLogin={true}>
+      <Layout title="Login" page_name="Login" isLogin={false}>
 
       </Layout>
     </>
@@ -19,4 +19,4 @@ const Index = ({ t }) => {
 }
 
 
-export default Index
+export default Login

@@ -1,6 +1,7 @@
 
 import React, {useEffect, useState} from 'react';
 import Link from 'next/link'
+import Router from 'next/router';
   
 const Sidenav = (props) => {
   const {loading, children, page_name, sub_page} = props;
@@ -17,6 +18,10 @@ const Sidenav = (props) => {
     }
     
   }, [toggle])
+
+  const handleLogout = () => {
+    Router.push('/backend/login');
+  }
 
   return (
     <>
@@ -71,7 +76,7 @@ const Sidenav = (props) => {
             <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div className="modal-footer">
               <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a className="btn btn-primary" href="login.html">Logout</a>
+              <a href="javascript:void(0)" className="btn btn-primary" onClick={() => handleLogout()}>Logout</a>
             </div>
           </div>
         </div>
