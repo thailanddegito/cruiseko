@@ -6,22 +6,22 @@ const Header = (props) => {
 
   return (
     <>
-      <header class="header menu_fixed">
+      <header className="header menu_fixed">
         <div id="preloader"><div data-loader="circle-side"></div></div>
         <div id="logo">
           <a href="index.html">
-            <img src="icon/logo.svg" width="150" height="36" alt="" class="logo_normal" />
-            <img src="icon/logo.svg" width="150" height="36" alt="" class="logo_sticky" />
+            <img src="icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+            <img src="icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
           </a>
         </div>
-        <a href="#menu" class="btn_mobile">
-          <div class="hamburger hamburger--spin" id="hamburger">
-            <div class="hamburger-box">
-              <div class="hamburger-inner"></div>
+        <a href="#menu" className="btn_mobile">
+          <div className="hamburger hamburger--spin" id="hamburger">
+            <div className="hamburger-box">
+              <div className="hamburger-inner"></div>
             </div>
           </div>
         </a>
-        <nav id="menu" class="main-menu">
+        <nav id="menu" className="main-menu">
           <ul>
             <li><span><Link href="/login"><a>Login</a></Link></span></li>
             <li><span><Link href="/register"><a>Register</a></Link></span></li>
