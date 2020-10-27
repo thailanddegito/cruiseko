@@ -132,6 +132,8 @@ exports.delete = async(req,res,next)=>{
     }
 }
 
+
+
 exports.checkEmail = async(req,res,next)=>{
     const {email} = req.body;
     try{

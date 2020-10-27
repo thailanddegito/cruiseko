@@ -11,9 +11,34 @@ const Register = ({ t }) => {
   const [chkImg, setChkimg]  = useState(false);
   const [index, setIndex] = useState([]);
 
+  const [inputData,setInputData] = useState({
+    email : '',
+    company_type : 'agent'
+  })
+
+  const handleChange = (e) =>{
+    var {name,value} = e.target
+    setInputData({...inputData,[name] : value})
+  }
+
   useEffect(() => {
     
   },[]);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    var form_company = new FormData(document.getElementById('form-company'))
+    var form_user = new FormData(document.getElementById('form-user'))
+    var form_success = new FormData(e.target)
+
+    for (let [key, value] of form_company.entries()) {
+      form_success.append(key,value)
+    }
+    for (let [key, value] of form_user.entries()) {
+      form_success.append(key,value)
+    }
+
+  }
 
   return (
     <Layout loading={loading} title="Register">
@@ -33,9 +58,13 @@ const Register = ({ t }) => {
         <div className="container" id="register">
           <aside className="main-content">
 
-              <Company setShow={setShow} show={show == 1} />
-              <User setShow={setShow} show={show == 2} />
-              <Success setShow={setShow} show={show == 3} isPartner={true} user_type="parner"  />
+              <Company setShow={setShow} show={show == 1} inputData={inputData} handleChange={handleChange} />
+              <User setShow={setShow} show={show == 2} inputData={inputData} handleChange={handleChange} />
+              <Success setShow={setShow} show={show == 3} 
+              handleChange={handleChange}
+              onSubmit={onSubmit}  isPartner={true} 
+              inputData={inputData}
+              user_type="parner"  />
   
           </aside>
         </div>
