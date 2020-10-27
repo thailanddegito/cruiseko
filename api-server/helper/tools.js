@@ -23,7 +23,7 @@ module.exports = {
         }
         else{
             var max = await DB.User.max('id',{where : {company_type : type }})
-            if(!max) start_fit
+            if(!max) return start_fit
             
             max = max.toString()
             let prefix = max.subString(0,3)

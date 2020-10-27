@@ -4,10 +4,12 @@ import Company from '../../components/frontend/register/Company';
 import Success from '../../components/frontend/register/Success';
 import User from '../../components/frontend/register/User';
 import Step from '../../components/widget/Step';
+import api from '../../utils/api';
+import Router from 'next/router'
 
 const Register = ({ t }) => {
   const [loading, setLodding] = useState(false);
-  const [show, setShow] = useState(2);
+  const [show, setShow] = useState(1);
   const [chkImg, setChkimg]  = useState(false);
   const [index, setIndex] = useState([]);
 
@@ -46,6 +48,16 @@ const Register = ({ t }) => {
       form_success.append(key,value)
     }
 
+    api.register(form_success).then(res => {
+      alert('Success')
+      Router.push('/partner/register-success')
+      
+    })
+    .catch(err => {
+      console.log(err.response)
+      alert('Error!')
+    })
+
   }
 
   return (
@@ -75,8 +87,9 @@ const Register = ({ t }) => {
               
               <Success setShow={setShow} show={show == 3} 
               handleChange={handleChange}
-              onSubmit={onSubmit}  isPartner={true} 
+              onSubmit={onSubmit}  
               inputData={inputData}
+              isPartner={true} 
               user_type="parner"  />
   
           </aside>
