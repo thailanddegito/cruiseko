@@ -21,7 +21,7 @@ const Card = (props) => {
                 <div className="mr-5"><h5>{`เลขที่ใบอนุญาต`}</h5></div>
 
               </div>
-              <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/1`}>
+              <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${users.id}`}>
                 <a className="card-footer text-white clearfix small z-1">
                   <span className="float-left">View Details</span>
                   <span className="float-right">

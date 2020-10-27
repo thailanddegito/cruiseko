@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
 import { useRouter } from 'next/router';
+import api from '../../../../utils/api-admin'
 
 const UserManage = ({query}) => {
 
@@ -28,14 +29,14 @@ const UserManage = ({query}) => {
 
   return (
     <>
-      <Layout title="Users" page_name="Users" sub_page="Manage" isLogin={true}>
+      <Layout title="Manage Users" page_name="Users" sub_page="Manage" isLogin={true}>
         
       </Layout>
     </>
   )
 }
 
-Order.getInitialProps = ({query}) => {
+UserManage.getInitialProps = ({query}) => {
   return {query}; //has to be like an object
 }
 export default UserManage
