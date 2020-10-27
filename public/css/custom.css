@@ -3,7 +3,7 @@
 }
 .btn, .btn.btn_1.rounded {
   min-width: 140px !important;
-  border-radius: 8px !important;
+  border-radius: 25px !important;
 }
 .menu-one {
   background-color: #262626;
