@@ -3,13 +3,32 @@ import React from 'react';
 import InputLabel from '../../widget/InputLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
-
+import api from '../../../utils/api'
 const User = (props) => {
-  const {show, setShow,inputData,handleChange} = props;
+  const {show, setShow,inputData={},handleChange,setInputData} = props;
 
   const saveStep2 = (event) => {
     event.preventDefault();
-    setShow(3);
+    console.log(inputData)
+    if(inputData.company_type === 'agent' || inputData.company_type === 'hotel'){
+      api.genUserId({type : inputData.company_type })
+      .then(res => {
+        console.log(res.data)
+        if(res.data.id){
+          setInputData && setInputData({...inputData,id :res.data.id })
+          setShow(3);
+        }
+      })
+      .catch(err => {
+        console.log(err.response)
+        alert('Error !')
+      })
+    }
+    else{
+      setShow(3);
+    }
+
+    
   }
 
   const optionPosition = [

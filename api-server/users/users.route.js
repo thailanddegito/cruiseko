@@ -10,6 +10,7 @@ const mw = require('../middlewares/auth')
 router.post('/check-email',cont.checkEmail)
 router.post('/login',cont.login)
 router.post('/register',cont.register)
+router.post('/gen-id',cont.genUserId)
 
 
 router.get('/profile',mw.jwt('user'),cont.profile)

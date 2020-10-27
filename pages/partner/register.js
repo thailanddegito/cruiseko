@@ -13,7 +13,9 @@ const Register = ({ t }) => {
 
   const [inputData,setInputData] = useState({
     email : '',
-    company_type : 'agent'
+    company_type : 'agent',
+    password : '',
+    confirm_password : ''
   })
 
   const handleChange = (e) =>{
@@ -27,9 +29,15 @@ const Register = ({ t }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+
+    if(inputData.password !== inputData.confirm_password){
+      return alert('Password not mactch')
+    }
+
     var form_company = new FormData(document.getElementById('form-company'))
     var form_user = new FormData(document.getElementById('form-user'))
-    var form_success = new FormData(e.target)
+    var form_success = new FormData(event.target)
 
     for (let [key, value] of form_company.entries()) {
       form_success.append(key,value)
@@ -59,7 +67,12 @@ const Register = ({ t }) => {
           <aside className="main-content">
 
               <Company setShow={setShow} show={show == 1} inputData={inputData} handleChange={handleChange} />
-              <User setShow={setShow} show={show == 2} inputData={inputData} handleChange={handleChange} />
+              
+              <User setShow={setShow} show={show == 2} 
+              setInputData={setInputData}
+              inputData={inputData} 
+              handleChange={handleChange} />
+              
               <Success setShow={setShow} show={show == 3} 
               handleChange={handleChange}
               onSubmit={onSubmit}  isPartner={true} 
