@@ -1,6 +1,10 @@
 .main-layout {
   margin: 130px 0;
 }
+.btn, .btn.btn_1.rounded {
+  min-width: 140px !important;
+  border-radius: 8px !important;
+}
 .menu-one {
   background-color: #262626;
   width: 100%;

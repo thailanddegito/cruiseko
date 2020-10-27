@@ -2,6 +2,7 @@
 import React from 'react';
 import InputLabel from '../../widget/InputLabel';
 import Link from 'next/link';
+import Button from '../../widget/Button';
 
 const FormLogin = (props) => {
   const {error, isPartner} = props;
@@ -36,14 +37,14 @@ const FormLogin = (props) => {
       </div>
 
       <div>
-        <button type="submit"  className="btn_1 rounded full-width">Login</button>
+        <Button _type="submit" _name="Login" _class="btn_1 rounded full-width" />
       </div>
       {
         !isPartner && (
           <>
             <div className="divider"><span>Or</span></div>
             <div className="access_social">
-              <a className="social_bt facebook">Login with Facebook</a>
+              <a className="btn social_bt facebook">Login with Facebook</a>
             </div>
           </>
         )
