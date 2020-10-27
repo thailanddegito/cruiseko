@@ -18,27 +18,7 @@ const Register = ({ t }) => {
   return (
     <Layout loading={loading} title="Register">
       <main>
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="bs-wizard step clearfix">
-                <Step active={show == 1} name="ข้อมูลบริษัท" />
-                <Step active={show == 2} name="ข้อมูลผู้ใช้งาน" />
-                <Step active={show == 3} name="ข้อมูลการเข้าระบบ" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="container" id="register">
-          <aside className="main-content">
-
-              <Company setShow={setShow} show={show == 1} />
-              <User setShow={setShow} show={show == 2} />
-              <Success setShow={setShow} show={show == 3} />
-  
-          </aside>
-        </div>
+        
       </main>
     </Layout>
   )

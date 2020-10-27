@@ -3,7 +3,7 @@ import React from 'react';
 import InputLabel from '../../widget/InputLabel';
   
 const FormLogin = (props) => {
-  const {error} = props;
+  const {error, isPartner} = props;
 
  
 
@@ -32,12 +32,17 @@ const FormLogin = (props) => {
       <div>
         <button type="submit"  className="btn_1 rounded full-width">Login</button>
       </div>
-
-      <div className="divider"><span>Or</span></div>
-
-      <div className="access_social">
-        <a className="social_bt facebook">Login with Facebook</a>
-      </div>
+      {
+        !isPartner && (
+          <>
+            <div className="divider"><span>Or</span></div>
+            <div className="access_social">
+              <a className="social_bt facebook">Login with Facebook</a>
+            </div>
+          </>
+        )
+      }
+      
     </>
   )
 }
