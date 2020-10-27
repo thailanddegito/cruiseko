@@ -5,6 +5,7 @@ import InputLabel from '../../widget/InputLabel';
 import InputFileLabel from '../../widget/InputFileLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
+import SelectAddress from '../../widget/SelectAddress';
 
 const Company = (props) => {
   const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange} = props;
@@ -15,9 +16,6 @@ const Company = (props) => {
   }
 
   const optionCompanyType = [{val : 'agent', name : 'Agents'}, {val : 'hotel', name : 'Hotels'}];
-  const optionProvince = [{val : '10', name : 'กรุงเทพมหานคร'}];
-  const optionAmphoe = [{val : 'คลองสาน', name : 'คลองสาน'}];
-  const optionDistrict = [{val : 'คลองต้นไทร', name : 'คลองต้นไทร'}];
 
   return (
     <>
@@ -76,24 +74,9 @@ const Company = (props) => {
               labelName="Address : ที่อยู่" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'province', required : true}} 
-              labelName="จังหวัด" iconProps={{className : 'fa icon icon-home'}} options={optionProvince}  />
-            </div>
-            <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'amphoe', required : true}} 
-              labelName="อำเภอ" iconProps={{className : 'fa icon icon-home'}} options={optionAmphoe}  />
-            </div>
-            <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'district', required : true}} 
-              labelName="ตำบล" iconProps={{className : 'fa icon icon-home'}} options={optionDistrict}  />
-            </div>
-            <div className="col-lg-3 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode', required : true}} 
-              labelName="รหัสไปรษณีย์" iconProps={{className : 'fa icon icon-home'}}  />
-            </div>
-          </div>
+
+          <SelectAddress />
+          
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
