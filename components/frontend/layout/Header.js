@@ -3,10 +3,17 @@ import Link from 'next/link';
 import React, {useContext} from 'react';
 import Loading from '../../widget/Loading' 
 import UserContext from '../../../contexts/UserContext';
+import AuthService from '../../../utils/AuthService';
+
 
 const Header = (props) => {
   const {loading} = props;
   const { user, fetchUser } = useContext(UserContext);
+
+  const handleLogout = () => {
+    AuthService.logout();
+    window.location = "/";
+  }
 
   console.log(user);
   return (
@@ -60,7 +67,7 @@ const Header = (props) => {
                       user ? (
                         <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
                           <ul>
-                            <li><a href="about.html">Logout</a></li>
+                            <li><a href="javascript:void(0)" onClick={() => handleLogout()}>Logout</a></li>
                           </ul>
                         </li>
                         // <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
