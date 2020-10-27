@@ -14,7 +14,7 @@ const mw = require('../middlewares/auth')
 
 
 // router.get('/profile',mw.jwt('admin'),cont.profile)
-
+router.post('/admin/login',admin.login)
 router.use('/admin*',mw.jwt('admin'))
 router.get('/admin',admin.getAll)
 router.post('/admin',admin.create)

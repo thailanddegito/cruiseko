@@ -55,6 +55,33 @@ exports.getOne = async(req,res,next)=>{
 }
 
 
+exports.login = async(req,res,next)=>{
+    var data = req.body;
+    var {username,password} = data;
+    try{
+        if(!username || !password){
+            throw new DefaultError(errors.FILEDS_INCOMPLETE);
+        }
+
+        const admin = await Admin.findOne({where : { username}})
+
+        if(!admin){
+            throw new DefaultError(errors.INVALID_EMAIL);
+        }
+        const match = await bcrypt.compare(password, admin.password);
+        if(!match){
+            throw new DefaultError(errors.INVALID_PASSWORD);
+        }
+        const token = generateToken(user)
+        res.json({success :true , token ,admin_id : admin.id})
+
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+
 exports.create = async(req,res,next)=>{
     var data = req.body;
     var {username,email,password} = data;
@@ -118,6 +145,8 @@ exports.delete = async(req,res,next)=>{
         next(err);
     }
 }
+
+
 
 
 // exports.getAll = async(req,res,next)=>{
@@ -257,6 +286,14 @@ exports.delPermission = async(req,res,next)=>{
         next(err);
     }
 }
+
+function generateToken(user){
+    // console.log('generating token user  :'+user.id);
+    return jwt.sign({ id: user.id, email: user.email,username : user.username,type:'admin'}, process.env.ADMIN_SECRET_KEY );
+    //return token = jwt.sign({ id: user.id, email: user.email}, config.SECRET_KEY, { expiresIn: config.token_expire });
+}
+
+
 
 
 async function checkEmail (email){
