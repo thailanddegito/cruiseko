@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthService from './AdminAuthService'
 const BASE = `${process.env.HOST}/api`; 
-const service = axios.create({baseURL :BASE })
+const service = axios.create({baseURL : '/api' })
 
 // axios.interceptors.response.use((response) => {
 //     if(response.status === 401) {
@@ -16,7 +16,7 @@ const service = axios.create({baseURL :BASE })
 // });
 
 service.interceptors.request.use(function (config) {
-    console.log('call api url2' ,config.url)
+    // console.log('call api url2' ,config.url)
     if(typeof window == 'undefined'){
         // console.log('asda')
         return config;
@@ -36,6 +36,6 @@ export default {
   //Payment
    baseUrl : BASE,
    getUsers : (params) => service.get(`/users`,{params}),
-   
+   getUsersOne : (id) => service.get(`/users/${id}`),
 
 }

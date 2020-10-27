@@ -38,5 +38,8 @@ export default {
    baseUrl : BASE,
    login : (data) => service.post(`/users/login`,data),
    getProfile : () => service.get(`/users/profile`),
+   genUserId : (data) => service.post(`/users/gen-id`,data),
+   checkEmail : (data) => service.post(`/users/check-email`,data),
+   register : (data) => service.post(`/users/register`,data),
 
 }

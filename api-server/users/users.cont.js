@@ -8,10 +8,14 @@ const errors = require('../errors')
 const tools = require('../helper/tools')
 const {DefaultError} = errors
 exports.index = async(req,res,next)=>{
-    var {page=1,limit=30} = req.query;
+    var {page=1,limit=30,user_type,accept_status} = req.query;
+    // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
-        var options = {}
+        var where ={}
+        if(user_type) where.user_type = user_type;
+        if(accept_status) where.accept_status = accept_status;
+        var options = {where,attributes: {exclude: ['password']}}
         if(!isNaN(page) && page !=0){
             if(parseInt(page) > 1)
                 options.offset = (page-1)*limit;
@@ -23,6 +27,18 @@ exports.index = async(req,res,next)=>{
         }
         const users = await User.findAndCountAll(options )
         res.json(users)
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+exports.getOne = async(req,res,next)=>{
+    var id = req.params.id
+    try{
+        // var options = {attributes: {exclude: ['password']}}
+        const user = await User.findOne({where :{id},attributes: {exclude: ['password']} })
+        res.json(user)
     }
     catch(err){
         next(err);
@@ -84,11 +100,18 @@ exports.register = async(req,res,next)=>{
             throw new DefaultError(errors.DUPLICATED_EMAIL);
         }
 
+        if(user_type === 'fit'){
+            data.id = await tools.genUserId(user_type)
+            data.accept_status = 1;
+        }
+
 
         
         const hash = await bcrypt.hash(password, saltRounds)
 
         data.password = hash
+
+        const user = await User.create(data)
 
         res.json({success:true})
     }
@@ -132,6 +155,8 @@ exports.delete = async(req,res,next)=>{
     }
 }
 
+
+
 exports.checkEmail = async(req,res,next)=>{
     const {email} = req.body;
     try{
@@ -142,6 +167,24 @@ exports.checkEmail = async(req,res,next)=>{
         const found = await checkEmail(email)
 
         res.json({duplicated : !!found })
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+exports.genUserId = async(req,res,next)=>{
+    var {type} = req.body;
+    console.log(req.body)
+    try{
+        if(!type){
+            throw new DefaultError(errors.FILEDS_INCOMPLETE);
+        }
+        
+
+        const id = await tools.genUserId(type)
+
+        res.json({id  })
     }
     catch(err){
         next(err);
