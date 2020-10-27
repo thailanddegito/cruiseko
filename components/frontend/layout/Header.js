@@ -28,9 +28,7 @@ const Header = (props) => {
         <nav id="menu" className="main-menu">
           <ul>
             <li><span><Link href="/login"><a>Login</a></Link></span></li>
-            <li><span><Link href="/register"><a>Register</a></Link></span></li>
             <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
-            <li><span><Link href="/partner/register"><a>Patner Register</a></Link></span></li>
           </ul>
         </nav>
       </header>

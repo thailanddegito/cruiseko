@@ -1,7 +1,8 @@
 
 import React from 'react';
 import InputLabel from '../../widget/InputLabel';
-  
+import Link from 'next/link';
+
 const FormLogin = (props) => {
   const {error, isPartner} = props;
 
@@ -26,6 +27,11 @@ const FormLogin = (props) => {
       }
 
       <div className="clearfix add_bottom_30">
+        <div className="float-left mt-1">
+          <Link href={isPartner ? "/partner/register" : 'register'}>
+            <a id="forgot">Register?</a>
+          </Link>
+        </div>
         <div className="float-right mt-1"><a id="forgot">Forgot Password?</a></div>
       </div>
 
