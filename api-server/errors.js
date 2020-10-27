@@ -14,6 +14,7 @@ module.exports = {
     DefaultError,
     INVALID_EMAIL : 'InvalidEmailError',
     DUPLICATED_EMAIL : 'DuplicatedEmailError',
+    DUPLICATED_USERNAME : 'DuplicatedUsernameError',
     INVALID_PASSWORD : 'InvalidPasswordError',
     FILEDS_INCOMPLETE : 'FieldsIncompleteError'
 }

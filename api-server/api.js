@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const db = require('./db')
+// const db = require('./db')
 const fileUpload = require('express-fileupload')
 
 app.use(cookieParser());
@@ -15,6 +15,7 @@ app.use(fileUpload({
 }));
 
 app.use('/users',require('./users/users.route'))
+app.use('/backend',require('./backend/backend.route'))
 
 app.get('/test',(req,res) => res.send('test'))
 

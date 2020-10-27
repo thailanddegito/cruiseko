@@ -12,7 +12,12 @@ exports.index = async(req,res,next)=>{
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
-        var where ={}
+        var where ={[Op.or] : []}
+
+        if(search){
+            where[Op.or].push({username : {[Op.like] : '%'+search+'%' } })
+            // where[Op.or].push({email : {[Op.like] : '%'+search+'%' } })
+        }
         if(user_type) where.user_type = user_type;
         if(accept_status) where.accept_status = accept_status;
         var options = {where,attributes: {exclude: ['password']}}
