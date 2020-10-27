@@ -7,7 +7,7 @@ import Step from '../../components/widget/Step';
 
 const Register = ({ t }) => {
   const [loading, setLodding] = useState(false);
-  const [show, setShow] = useState(1);
+  const [show, setShow] = useState(2);
   const [chkImg, setChkimg]  = useState(false);
   const [index, setIndex] = useState([]);
 
