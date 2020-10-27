@@ -5,7 +5,7 @@ import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
 
 const User = (props) => {
-  const {show, setShow} = props;
+  const {show, setShow,inputData,handleChange} = props;
 
   const saveStep2 = (event) => {
     event.preventDefault();
@@ -20,7 +20,7 @@ const User = (props) => {
   return (
     <>
       <div className={`${show ? 'd-block' : 'd-none'}`}>
-        <form onSubmit={saveStep2}>
+        <form onSubmit={saveStep2} id="form-user" >
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'firstname', required : true}} 
@@ -45,7 +45,11 @@ const User = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'email',name : 'email', required : true}} 
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'email',
+                name : 'email', required : true,
+                value:inputData.email,onChange:handleChange
+              }} 
               labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
             <div className="col-lg-6 col-12">

@@ -6,14 +6,14 @@ import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
 
 const Company = (props) => {
-  const {show, setShow, chkImg, setChkimg, index, setIndex} = props;
+  const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange} = props;
  
   const saveStep1 = (event) => {
     event.preventDefault();
     setShow(2);
   }
 
-  const optionCompanyType = [{val : '1', name : 'Agents'}, {val : '2', name : 'Hotels'}];
+  const optionCompanyType = [{val : 'agent', name : 'Agents'}, {val : 'hotel', name : 'Hotels'}];
   const optionProvince = [{val : '10', name : 'กรุงเทพมหานคร'}];
   const optionAmphoe = [{val : 'คลองสาน', name : 'คลองสาน'}];
   const optionDistrict = [{val : 'คลองต้นไทร', name : 'คลองต้นไทร'}];
@@ -22,7 +22,7 @@ const Company = (props) => {
     <>
      
       <div className={`${show ? 'd-block' : 'd-none'}`}>
-        <form onSubmit={saveStep1}>
+        <form onSubmit={saveStep1} id="form-company" >
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-12">
               <ImageBoxCircle _text="Logo : รูปภาพบริษัท" _name="image_logo" _id="image_logo" chkImg={chkImg} required={true} />
@@ -30,7 +30,13 @@ const Company = (props) => {
             <div className="col-lg-6 col-12 px-0">
               <div className="row mx-0">
                 <div className="col-12">
-                  <SelectLabel inputProps={{ className:'form-control select', name : 'company_type', required : true}} 
+                  <SelectLabel 
+                  inputProps={{ 
+                    className:'form-control select', 
+                    name : 'company_type', required : true,
+                    value :inputData.company_type ,
+                    onChange:handleChange
+                  }} 
                   labelName="Company Type" iconProps={{className : 'fa icon icon-home'}} options={optionCompanyType} />
                 </div>
               </div>

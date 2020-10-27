@@ -5,17 +5,13 @@ import Input from '../../widget/Input';
 import Button from '../../widget/Button';
 
 const Success = (props) => {
-  const {show, setShow, isPartner, user_type} = props;
+  const {show, setShow, isPartner, user_type,onSubmit,inputData} = props;
 
-  const saveStep3 = (event) => {
-    event.preventDefault();
-    alert('success');
-  }
 
   return (
     <>
       <div className={`${show ? 'd-block' : 'd-none'}`}>
-        <form onSubmit={saveStep3}>
+        <form onSubmit={onSubmit} id="form-success" >
           
           <Input inputProps={{ className:'form-control', type : 'hidden', name : 'user_type', defaultValue : user_type, readOnly : true}}/>
             
@@ -31,7 +27,10 @@ const Success = (props) => {
           }
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'username', required : true}} 
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',name : 'username', required : true,readOnly:true,
+                value:inputData.email
+              }} 
               labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
           </div>
