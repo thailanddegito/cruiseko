@@ -5,7 +5,7 @@ import Input from '../../widget/Input';
 import Button from '../../widget/Button';
 
 const Success = (props) => {
-  const {show, setShow, isPartner, user_type,onSubmit,inputData} = props;
+  const {show, setShow, isPartner, user_type,onSubmit,inputData,handleChange} = props;
 
 
   return (
@@ -19,7 +19,7 @@ const Success = (props) => {
             !!isPartner && (
               <div className="row justify-content-start">
                 <div className="col-lg-6 col-12">
-                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true}} 
+                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true ,value:inputData.id}} 
                     labelName="Account ID : " iconProps={{className : 'fa icon icon-user'}}  />
                 </div>
               </div>
@@ -28,7 +28,8 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',name : 'username', required : true,readOnly:true,
+                className:'form-control', type : 'text',
+                name : 'username', required : true,readOnly:true,
                 value:inputData.email
               }} 
               labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
@@ -36,15 +37,21 @@ const Success = (props) => {
           </div>
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'password', 
-              pattern : ".{6,}", required : true}} 
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',name : 'password', 
+                value:inputData.password , onChange : handleChange,
+                pattern : ".{6,}", required : true
+              }} 
               labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
           </div>
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text', 
-               pattern : ".{6,}", required : true}} 
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text', name : 'confirm_password',
+                value:inputData.confirm_password , onChange : handleChange,
+                pattern : ".{6,}", required : true
+              }} 
               labelName="Re - Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
           </div>

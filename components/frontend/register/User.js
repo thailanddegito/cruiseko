@@ -1,15 +1,40 @@
 
-import React from 'react';
+import React,{useState} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
-
+import api from '../../../utils/api'
 const User = (props) => {
-  const {show, setShow,inputData,handleChange} = props;
-
-  const saveStep2 = (event) => {
+  const {show, setShow,inputData={},handleChange,setInputData} = props;
+  const [emailError,setEmailError] = useState()
+  const saveStep2 = async (event) => {
     event.preventDefault();
-    setShow(3);
+    // console.log(inputData)
+    try{
+      var res = await api.checkEmail({email : inputData.email})
+      if(res.data.duplicated){
+        setEmailError('This email is already exists')
+        return
+      }
+
+      if(inputData.company_type === 'agent' || inputData.company_type === 'hotel'){
+        res = await api.genUserId({type : inputData.company_type })
+        if(res.data.id){
+          setInputData && setInputData({...inputData,id :res.data.id })
+          setShow(3);
+        }
+      }
+      else{
+        setShow(3);
+      }
+
+    }
+    catch(err){
+      console.log(err.response)
+      alert('Error !')
+    }
+
+    
   }
 
   const optionPosition = [
@@ -51,6 +76,8 @@ const User = (props) => {
                 value:inputData.email,onChange:handleChange
               }} 
               labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
+
+              {emailError && <div className="text-danger">{emailError} </div>}
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'line_id'}} 

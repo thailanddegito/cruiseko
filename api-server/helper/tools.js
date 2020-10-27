@@ -1,9 +1,38 @@
 const fs = require('fs')
-
+const DB = require('../db')
 const base_domain = process.env.HOST
 
 
 module.exports = {
+
+    genUserId : async (type) => {
+        var start_agent = 'AGTH001'
+        var start_hotel = 'HTTH001'
+        var start_fit = 'FIT00001'
+
+        if(type === 'agent' || type === 'hotel'){
+            var max = await DB.User.max('id', {where : {company_type : type },logging:console.log})
+            if(!max) return type === 'agent' ? start_agent : start_hotel
+
+            max = max.toString()
+            let prefix = max.subString(0,4)
+            let num = parseInt(max.subString(4)) +1
+
+            return prefix+num.toString().padStart(3,'0')
+
+        }
+        else{
+            var max = await DB.User.max('id',{where : {company_type : type }})
+            if(!max) start_fit
+            
+            max = max.toString()
+            let prefix = max.subString(0,3)
+            let num = parseInt(max.subString(3)) + 1
+
+            return prefix+num.toString().padStart(5,'0')
+        }
+    },
+
     moveFileWithPath : (file,path)=>{
         return new Promise((resolve,reject)=>{
             const dir = __dirname + `/../../static-server/${path}/`;

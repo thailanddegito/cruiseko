@@ -150,6 +150,24 @@ exports.checkEmail = async(req,res,next)=>{
     }
 }
 
+exports.genUserId = async(req,res,next)=>{
+    var {type} = req.body;
+    console.log(req.body)
+    try{
+        if(!type){
+            throw new DefaultError(errors.FILEDS_INCOMPLETE);
+        }
+        
+
+        const id = await tools.genUserId(type)
+
+        res.json({id  })
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 
 async function checkEmail (email){
     const user = await User.findOne({where : {email },attributes : ['email']})
