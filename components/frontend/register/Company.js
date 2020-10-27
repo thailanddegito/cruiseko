@@ -91,7 +91,7 @@ const Company = (props) => {
               labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_email', required : true}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'email',name : 'company_email', required : true}} 
               labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
