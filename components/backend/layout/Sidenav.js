@@ -42,7 +42,7 @@ const Sidenav = (props) => {
               <Link href="/backend/users">
                 <a className="nav-link">
                   <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Users</span>
+                  <span className="nav-link-text">Users Agents/Hotels</span>
                 </a>
               </Link>
             </li>
