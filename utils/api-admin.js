@@ -36,6 +36,6 @@ export default {
   //Payment
    baseUrl : BASE,
    getUsers : (params) => service.get(`/users`,{params}),
-   
+   getUsersOne : (id) => service.get(`/users/${id}`),
 
 }
