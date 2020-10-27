@@ -90,7 +90,7 @@ const Register = ({ t }) => {
               onSubmit={onSubmit}  
               inputData={inputData}
               isPartner={true} 
-              user_type="parner"  />
+              user_type="partner"  />
   
           </aside>
         </div>
