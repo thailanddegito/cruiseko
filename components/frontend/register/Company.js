@@ -2,6 +2,7 @@
 import React from 'react';
 import ImageBoxCircle from '../../widget/ImageBoxCircle';
 import InputLabel from '../../widget/InputLabel';
+import InputFileLabel from '../../widget/InputFileLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
 
@@ -61,8 +62,11 @@ const Company = (props) => {
               labelName="License No : ใบอนุญาตเลขที่" iconProps={{className : 'fa icon icon-newspaper'}}  />
             </div>
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'file',name : 'image_license', required : true}} 
-              labelName="License Pic : ภาพใบอนุญาต" iconProps={{className : 'fa icon icon-newspaper '}}  />
+              <InputFileLabel 
+              inputProps={{ className:'form-control', type : 'text',name : 'image_license_text', required : true, readOnly : true}} 
+              fileProps={{ className:'form-control', type : 'file',name : 'image_license', required : true, accept : "image/*"}} 
+              labelName="License Pic : ภาพใบอนุญาต"
+              file_id={'upload'}  />
             </div>
           </div>
 
