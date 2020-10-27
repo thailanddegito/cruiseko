@@ -9,29 +9,51 @@ const Header = (props) => {
     <>
       <header className="header menu_fixed">
         {loading && <Loading loading={loading} />}
-        <div id="logo">
-          <Link href="/">
-            <a>
-              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
-              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
-            </a>
-          </Link>
-        </div>
-        <Link href="#menu">
-          <a className="btn_mobile">
-            <div className="hamburger hamburger--spin" id="hamburger">
-              <div className="hamburger-box">
-                <div className="hamburger-inner"></div>
+        <div className="menu-one">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="float-right">
+                  <nav id="menu" className="main-menu">
+                    <ul>
+                      <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
-          </a>
-        </Link>
-        <nav id="menu" className="main-menu">
-          <ul>
-            <li><span><Link href="/login"><a>Login</a></Link></span></li>
-            <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
-          </ul>
-        </nav>
+          </div>
+        </div>
+        <div className="menu-two">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div id="logo">
+                  <Link href="/">
+                    <a>
+                      <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+                      <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
+                    </a>
+                  </Link>
+                </div>
+                <Link href="#menu">
+                  <a className="btn_mobile">
+                    <div className="hamburger hamburger--spin" id="hamburger">
+                      <div className="hamburger-box">
+                        <div className="hamburger-inner"></div>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+                <nav id="menu" className="main-menu">
+                  <ul>
+                    <li><span><Link href="/login"><a>Login</a></Link></span></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
     </>
   )
