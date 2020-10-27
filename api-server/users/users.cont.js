@@ -84,11 +84,17 @@ exports.register = async(req,res,next)=>{
             throw new DefaultError(errors.DUPLICATED_EMAIL);
         }
 
+        if(user_type === 'fit'){
+            data.id = await tools.genUserId(user_type)
+        }
+
 
         
         const hash = await bcrypt.hash(password, saltRounds)
 
         data.password = hash
+
+        const user = await User.create(data)
 
         res.json({success:true})
     }

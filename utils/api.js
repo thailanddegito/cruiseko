@@ -40,5 +40,6 @@ export default {
    getProfile : () => service.get(`/users/profile`),
    genUserId : (data) => service.post(`/users/gen-id`,data),
    checkEmail : (data) => service.post(`/users/check-email`,data),
+   register : (data) => service.post(`/users/register`,data),
 
 }
