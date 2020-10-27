@@ -1,13 +1,14 @@
 
 import Link from 'next/link';
 import React from 'react';
-  
+import Loading from '../../widget/Loading' 
+
 const Header = (props) => {
   const {loading} = props;
   return (
     <>
       <header className="header menu_fixed">
-        {/* <div id="preloader"><div data-loader="circle-side"></div></div> */}
+        {loading && <Loading loading={loading} />}
         <div id="logo">
           <Link href="/">
             <a>
