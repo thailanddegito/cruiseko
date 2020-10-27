@@ -6,7 +6,8 @@
     "dev": "node app.js",
     "server:dev": "nodemon app.js",
     "build": "next build",
-    "start": "set NODE_ENV=production & node app.js"
+    "start": "set NODE_ENV=production & node app.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.0",
