@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import TableUser from '../../../components/backend/user/Table';
+import TableUser from '../../../components/backend/User/Table';
 import Link from 'next/link'
 
 const Index = (props) => {

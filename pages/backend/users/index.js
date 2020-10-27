@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import TableUser from '../../../components/backend/user/Table';
+import TableUser from '../../../components/backend/User/Table';
 import UserCard from '../../../components/backend/User/UserCard';
 
 const Index = (props) => {
