@@ -9,12 +9,13 @@ const tools = require('../helper/tools')
 const {DefaultError} = errors
 exports.index = async(req,res,next)=>{
     var {page=1,limit=30,user_type,accept_status} = req.query;
+    // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
         var where ={}
         if(user_type) where.user_type = user_type;
         if(accept_status) where.accept_status = accept_status;
-        var options = {attributes: {exclude: ['password']}}
+        var options = {where,attributes: {exclude: ['password']}}
         if(!isNaN(page) && page !=0){
             if(parseInt(page) > 1)
                 options.offset = (page-1)*limit;
