@@ -32,11 +32,11 @@ const Register = ({ t }) => {
 
         <div className="container" id="register">
           <aside className="main-content">
-            <form>
+
               <Company setShow={setShow} show={show == 1} />
               <User setShow={setShow} show={show == 2} />
               <Success setShow={setShow} show={show == 3} />
-            </form>
+  
           </aside>
         </div>
       </main>

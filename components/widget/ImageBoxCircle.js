@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
   
 const ImageBoxCircle = (props) => {
-  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required, accept_video} = props
+  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required} = props
   const {onDelete} = props
   const [img, setImg] = useState(_img || null);
 
@@ -47,8 +47,8 @@ const ImageBoxCircle = (props) => {
             <label htmlFor={_id} className={classNames("img-box mb-0", chkImg && 'img-required')}>
               <i className="fas fa-plus-square"></i>
             </label>
-            <p className={classNames(chkImg && 'text-required')}>{_text} {_text == "ภาพปก"||required  ? <span className="text-danger">*</span> : ''}</p>
-            <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/* ${accept_video ? ',video/*' : ''}`} />
+            <p className={classNames(chkImg && 'text-required')}>{_text}</p>
+            <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/*`} className="input-require" required={required} />
           </div>
         ) : (
           <div className="box-img text-center">
@@ -60,7 +60,7 @@ const ImageBoxCircle = (props) => {
               <div className="middle-absolute"><i className="fas fa-pen-square"></i></div>
             </label>
             <p>{_text}</p>
-            <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/* ${accept_video ? ',video/*' : ''}`} />
+            <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/*`} />
           </div>
         )
       }

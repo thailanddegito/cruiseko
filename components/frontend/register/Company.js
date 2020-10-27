@@ -3,11 +3,13 @@ import React from 'react';
 import ImageBoxCircle from '../../widget/ImageBoxCircle';
 import InputLabel from '../../widget/InputLabel';
 import SelectLabel from '../../widget/SelectLabel';
+import Button from '../../widget/Button';
 
 const Company = (props) => {
   const {show, setShow, chkImg, setChkimg, index, setIndex} = props;
  
-  const saveStep1 = () => {
+  const saveStep1 = (event) => {
+    event.preventDefault();
     setShow(2);
   }
 
@@ -18,27 +20,29 @@ const Company = (props) => {
 
   return (
     <>
+     
       <div className={`${show ? 'd-block' : 'd-none'}`}>
+        <form onSubmit={saveStep1}>
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-12">
-              <ImageBoxCircle _text="Logo : รูปภาพบริษัท" _name="image_logo" _id="image_logo" chkImg={chkImg} />
+              <ImageBoxCircle _text="Logo : รูปภาพบริษัท" _name="image_logo" _id="image_logo" chkImg={chkImg} required={true} />
             </div>
             <div className="col-lg-6 col-12 px-0">
               <div className="row mx-0">
                 <div className="col-12">
-                  <SelectLabel inputProps={{ className:'form-control select', name : 'company_type'}} 
+                  <SelectLabel inputProps={{ className:'form-control select', name : 'company_type', required : true}} 
                   labelName="Company Type" iconProps={{className : 'fa icon icon-home'}} options={optionCompanyType} />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
-                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en'}} 
+                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en', required : true}} 
                   labelName="Company Name Eng : ชื่อธุรกิจนำเที่ยวภาษาอังกฤษ" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
-                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_th'}} 
+                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_th', required : true}} 
                   labelName="Company Name Thai : ชื่อธุรกิจนำเที่ยวภาษาไทย" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
@@ -47,47 +51,47 @@ const Company = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'license_no'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'license_no', required : true}} 
               labelName="License No : ใบอนุญาตเลขที่" iconProps={{className : 'fa icon icon-newspaper'}}  />
             </div>
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'file',name : 'image_license'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'file',name : 'image_license', required : true}} 
               labelName="License Pic : ภาพใบอนุญาต" iconProps={{className : 'fa icon icon-newspaper '}}  />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'address'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'address', required : true}} 
               labelName="Address : ที่อยู่" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'province'}} 
+              <SelectLabel inputProps={{ className:'form-control select', name : 'province', required : true}} 
               labelName="จังหวัด" iconProps={{className : 'fa icon icon-home'}} options={optionProvince}  />
             </div>
             <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'amphoe'}} 
+              <SelectLabel inputProps={{ className:'form-control select', name : 'amphoe', required : true}} 
               labelName="อำเภอ" iconProps={{className : 'fa icon icon-home'}} options={optionAmphoe}  />
             </div>
             <div className="col-lg-3 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'district'}} 
+              <SelectLabel inputProps={{ className:'form-control select', name : 'district', required : true}} 
               labelName="ตำบล" iconProps={{className : 'fa icon icon-home'}} options={optionDistrict}  />
             </div>
             <div className="col-lg-3 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'zipcode', required : true}} 
               labelName="รหัสไปรษณีย์" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_phone'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_phone', required : true}} 
               labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_email'}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_email', required : true}} 
               labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
@@ -95,14 +99,13 @@ const Company = (props) => {
           <div className="row justify-content-start">
             <div className="col-12">
               <div className="form-group">
-               <button type="button" className="btn btn-primary" onClick={() => saveStep1()}>ขั้นตอนถัดไป</button>
+                <Button _type="submit" _name="ขั้นตอนถัดไป" _class="btn-primary" />
               </div>
             </div>
           </div>
-
-
-      
+        </form>
       </div>
+     
     </>
   )
 }

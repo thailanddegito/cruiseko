@@ -86,8 +86,21 @@ input[type=file].form-control {
 .middle-absolute {
   position: absolute;
 }
+.box-img {
+  position: relative;
+}
 .box-img input[type=file] {
   display: none;
+}
+.box-img .input-require {
+  display: block !important;
+  position: absolute;
+  width: 120px;
+  height: 32px;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
 }
 @media (max-width: 767px) {
   .main-layout {
