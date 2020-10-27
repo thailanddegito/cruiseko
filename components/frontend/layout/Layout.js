@@ -2,7 +2,6 @@ import Head from 'next/head';
 import React from 'react';
 import Header from './Header';
 // import Footer from '../layout/Footer'
-// import Loading from '../Loading'
 
 const Layout = (props) => {
   const {title, loading, children} = props;

@@ -45,7 +45,7 @@ const User = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'email', required : true}} 
+              <InputLabel inputProps={{ className:'form-control', type : 'email',name : 'email', required : true}} 
               labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
             <div className="col-lg-6 col-12">
