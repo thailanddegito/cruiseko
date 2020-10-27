@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link'
 
 const Card = (props) => {
-  const {name} = props;
+  const {users} = props;
   return (
     <>
       <div className="col-xl-4 col-sm-6 mb-3">
@@ -12,7 +12,7 @@ const Card = (props) => {
             <div className="card-body-icon img">
               <img src="/template/img/no-picture.png" className="approve-logo" />
             </div>
-            <div className="mr-5"><h5>{`ชื่อธุรกิจนำเที่ยวภาษาไทย`}</h5></div>
+            <div className="mr-5"><h5>{users.company_type}</h5></div>
             <div className="mr-5"><p className="mb-0">{`ชื่อธุรกิจนำเที่ยวภาษาอังกฤษ`}</p></div>
             <div className="mr-5"><p className="mb-0 font-14">{`ประเภทธุรกิจ`}</p></div>
             <div className="mr-5"><h5>{`เลขที่ใบอนุญาต`}</h5></div>

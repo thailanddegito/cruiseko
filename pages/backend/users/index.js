@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import TableUser from '../../../components/backend/user/Table';
-import UserCard from '../../../components/backend/user/Card';
+import UserCard from '../../../components/backend/User/UserCard';
 
-const Index = ({ t }) => {
-
-  useEffect(() => {
-    
-  },[]);
+const Index = (props) => {
 
   return (
     <>
       <Layout title="Users" page_name="Users" isLogin={true}>
-        <div class="row">
-          <UserCard name={`Tiger Nixon`} />
+        <div>
+          <UserCard />
         </div>
         <div>
           <TableUser />

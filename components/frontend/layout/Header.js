@@ -15,7 +15,7 @@ const Header = (props) => {
     window.location = "/";
   }
 
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <header className="header menu_fixed">
