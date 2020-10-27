@@ -1,13 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import TableUser from '../../../../components/backend/user/Table';
-import UserCard from '../../../../components/backend/user/Card';
+import { useRouter } from 'next/router';
 
-const Index = ({ t }) => {
+const UserManage = ({query}) => {
+
+  const [users, setUsers] = useState(false);
+  const router = useRouter();
+  const id = router.query.id;
+
+  const fecthUsers = () => {
+    api.getUsersOne(id)
+    .then(res=>{
+      const data = res.data;
+      setUsers(data);
+      console.log(data);
+    })
+    .catch(err => {
+      console.log(err);
+      console.log(err.response);
+    })
+  }
 
   useEffect(() => {
-    
-  },[]);
+    if(!id) return;
+    fecthUsers();
+  },[id]);
 
   return (
     <>
@@ -18,5 +35,7 @@ const Index = ({ t }) => {
   )
 }
 
-
-export default Index
+Order.getInitialProps = ({query}) => {
+  return {query}; //has to be like an object
+}
+export default UserManage
