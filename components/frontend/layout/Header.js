@@ -8,6 +8,7 @@ const Header = (props) => {
   const {loading} = props;
   const { user, fetchUser } = useContext(UserContext);
 
+  console.log(user);
   return (
     <>
       <header className="header menu_fixed">
@@ -19,10 +20,9 @@ const Header = (props) => {
                 <div className="float-right">
                   <nav id="menu" className="main-menu">
                     <ul>
+                      <li><span><Link href="/"><a>Help</a></Link></span></li>
                       {
-                        user ? (
-                          <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
-                        ): (
+                        !!!user && (
                           <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
                         ) 
                       }
@@ -58,7 +58,12 @@ const Header = (props) => {
                   <ul>
                     {
                       user ? (
-                        <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
+                        <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
+                          <ul>
+                            <li><a href="about.html">Logout</a></li>
+                          </ul>
+                        </li>
+                        // <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
                       ): (
                         <li><span><Link href="/login"><a>Login</a></Link></span></li>
                       ) 
