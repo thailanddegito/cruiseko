@@ -1,10 +1,13 @@
 
 import Link from 'next/link';
-import React from 'react';
+import React, {useContext} from 'react';
 import Loading from '../../widget/Loading' 
+import UserContext from '../../../contexts/UserContext';
 
 const Header = (props) => {
   const {loading} = props;
+  const { user, fetchUser } = useContext(UserContext);
+
   return (
     <>
       <header className="header menu_fixed">
@@ -16,7 +19,13 @@ const Header = (props) => {
                 <div className="float-right">
                   <nav id="menu" className="main-menu">
                     <ul>
-                      <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
+                      {
+                        user ? (
+                          <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
+                        ): (
+                          <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
+                        ) 
+                      }
                     </ul>
                   </nav>
                 </div>
@@ -47,7 +56,13 @@ const Header = (props) => {
                 </Link>
                 <nav id="menu" className="main-menu">
                   <ul>
-                    <li><span><Link href="/login"><a>Login</a></Link></span></li>
+                    {
+                      user ? (
+                        <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
+                      ): (
+                        <li><span><Link href="/login"><a>Login</a></Link></span></li>
+                      ) 
+                    }
                   </ul>
                 </nav>
               </div>
