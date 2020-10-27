@@ -7,7 +7,8 @@ import Button from '../../widget/Button';
 const User = (props) => {
   const {show, setShow} = props;
 
-  const saveStep2 = () => {
+  const saveStep2 = (event) => {
+    event.preventDefault();
     setShow(3);
   }
 

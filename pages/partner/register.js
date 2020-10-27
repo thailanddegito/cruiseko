@@ -35,7 +35,7 @@ const Register = ({ t }) => {
 
               <Company setShow={setShow} show={show == 1} />
               <User setShow={setShow} show={show == 2} />
-              <Success setShow={setShow} show={show == 3} />
+              <Success setShow={setShow} show={show == 3} user_type="parner"  />
   
           </aside>
         </div>
