@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import api from '../../../utils/api-admin'
+import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TableRole = (props) => {
+  const [modalConfirm, setModalConfirm] = useState(false);
   const [roles, setRole] = useState();
 
   const fechRole = () => {
@@ -20,7 +22,24 @@ const TableRole = (props) => {
     fechRole();
   },[]);
   
-  // console.log(roles);
+  const [ref_id, setrefID] = useState();
+  const delData = (id) => {
+    setrefID(id);
+    setModalConfirm(true);
+  }
+
+  const onConfirm = ()=>{
+    if(!ref_id) return;
+    api.delRole(ref_id)
+    .then(res=>{
+      const data = res.data;
+      fechRole();
+      setModalConfirm(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
 
   return (
     <>
@@ -50,6 +69,9 @@ const TableRole = (props) => {
                           <a><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
                         </Link>
                       </li>
+                      <li>
+                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>ลบ</span></a>
+                      </li>
                     </ul>
                   </td>
                 </tr>
@@ -59,6 +81,14 @@ const TableRole = (props) => {
           </tbody>
         </table>
       </div>
+      
+      <ModalConfirmDialog show={modalConfirm}
+          text={`ยืนยันการลบข้อมูลนี้ หรือไม่?`}
+          size="md" 
+          cancel_btn={true}
+          onConfirm={() => onConfirm()}
+          ref_id={ref_id}
+          onHide={() => setModalConfirm(false)} />
     </>
   )
 }

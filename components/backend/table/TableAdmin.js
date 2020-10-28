@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import api from '../../../utils/api-admin'
+import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TableAdmin = (props) => {
+  const [modalConfirm, setModalConfirm] = useState(false);
   const [users, setUsers] = useState();
   const [roles, setRole] = useState();
  
@@ -35,6 +37,25 @@ const TableAdmin = (props) => {
     fechRole();
   },[]);
 
+
+  const [ref_id, setrefID] = useState();
+  const delData = (id) => {
+    setrefID(id);
+    setModalConfirm(true);
+  }
+
+  const onConfirm = ()=>{
+    if(!ref_id) return;
+    api.delAdminUsers(ref_id)
+    .then(res=>{
+      const data = res.data;
+      fechUsers();
+      setModalConfirm(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
   // console.log(users);
 
   return (
@@ -53,7 +74,7 @@ const TableAdmin = (props) => {
           </thead>
           <tbody>
             {
-              (users && users.length) ? users.rows.map((val, index) => (
+              users ? users.rows.map((val, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.name}</td>
@@ -76,6 +97,9 @@ const TableAdmin = (props) => {
                           <a><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
                         </Link>
                       </li>
+                      <li>
+                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>ลบ</span></a>
+                      </li>
                     </ul>
                   </td>
                 </tr>
@@ -85,6 +109,13 @@ const TableAdmin = (props) => {
           </tbody>
         </table>
       </div>
+      <ModalConfirmDialog show={modalConfirm}
+          text={`ยืนยันการลบข้อมูลนี้ หรือไม่?`}
+          size="md" 
+          cancel_btn={true}
+          onConfirm={() => onConfirm()}
+          ref_id={ref_id}
+          onHide={() => setModalConfirm(false)} />
     </>
   )
 }
