@@ -67,7 +67,11 @@ const Sidenav = (props) => {
                     <i className="fa fa-fw fa-user"></i>
                     <span className="nav-link-text">ข้อมูลสมาชิก</span>
                   </div>
-                  <span className="badge badge-pill badge-danger">6 New</span>
+                  {
+                    counts && counts.partner_pending ? (
+                      <span className="nav-link-text badge badge-pill badge-danger">{counts.partner_pending} New</span>
+                    ) : null
+                  }
                 </a>
               </Link>
             </li>
