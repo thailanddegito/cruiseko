@@ -182,7 +182,9 @@ custom-checkbox .custom-control-label::before {
 .custom-control-input:focus~.custom-control-label::before {
   box-shadow: none;
 }
-
+span.nav-link-text {
+  padding-left: 8px;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;

@@ -52,7 +52,7 @@ const Sidenav = (props) => {
             </li>
             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
               <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
-                <i className="fa fa-fw fa-user"></i>
+                <i className="fa fa-fw fa-users"></i>
                 <span className="nav-link-text">ข้อมูลผู้ใช้งานระบบ</span>
               </a>
               <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
