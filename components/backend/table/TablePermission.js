@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import api from '../../../utils/api-admin'
+import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TablePermission = (props) => {
   const [permissions, setPermissions] = useState(false);
+  const [modalConfirm, setModalConfirm] = useState(false);
 
   const fecthPermissions = () => {
     api.getPermission()
@@ -20,6 +22,25 @@ const TablePermission = (props) => {
   useEffect(() => {
     fecthPermissions();
   },[]);
+
+  const [ref_id, setrefID] = useState();
+  const delData = (id) => {
+    setrefID(id);
+    setModalConfirm(true);
+  }
+
+  const onConfirm = ()=>{
+    if(!ref_id) return;
+    api.delPermission(ref_id)
+    .then(res=>{
+      const data = res.data;
+      fecthPermissions();
+      setModalConfirm(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
 
   return (
     <>
@@ -44,8 +65,11 @@ const TablePermission = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/permission/edit/[id]" as={`/backend/permission/edit/${val.id}`}>
-                          <a><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
                         </Link>
+                      </li>
+                      <li>
+                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>ลบ</span></a>
                       </li>
                     </ul>
                   </td>
@@ -56,6 +80,14 @@ const TablePermission = (props) => {
           </tbody>
         </table>
       </div>
+
+      <ModalConfirmDialog show={modalConfirm}
+          text={`ยืนยันการลบข้อมูลนี้ หรือไม่?`}
+          size="md" 
+          cancel_btn={true}
+          onConfirm={() => onConfirm()}
+          ref_id={ref_id}
+          onHide={() => setModalConfirm(false)} />
     </>
   )
 }
