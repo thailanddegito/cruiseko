@@ -49,10 +49,15 @@ const UserManage = ({query}) => {
           !!users ? (
             <>
               <div className="collapse-new">
-                <div className="d-flex" id="main" style={toggle ? {marginRight : "25%"} : {marginRight : "0"}}>
+                <div className={`d-flex text ${toggle ? 'toggle' : ''}`} id="main">
                   <div className="content w-100">
                     <div className="container">
                       <UserDetail users={users} />
+                      <div className="mobile-display">
+                        <div className="mt-4">
+                          <img src={users.image_license} className="w-100" />
+                        </div>
+                      </div>
                       <div className="row justify-content-center">
                         <div className="col-12 mt-4">
                           <div className="text-center">
@@ -62,10 +67,11 @@ const UserManage = ({query}) => {
                         </div>
                       </div>
                     </div>
+                    
                   </div>
-                  <div className={`nav-toggle ${toggle ? 'open' : 'close'}`} onClick={onToggle}></div>
+                  <div className={`labtop-display nav-toggle ${toggle ? 'open' : 'close'}`} onClick={onToggle}></div>
                 </div>
-                <div id="mySidebar" className="sidebar" style={toggle ? {width : "25%"} : {width : "0"}}>
+                <div id="mySidebar" className={`sidebar labtop-display ${toggle ? 'toggle' : ''}`}>
                   <div>
                     <LicenseImage users={users} />
                   </div>

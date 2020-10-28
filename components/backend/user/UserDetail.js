@@ -16,12 +16,12 @@ const UserDetail = (props) => {
   return (
     <>
       <div className="row align-items-center">
-        <div className="col-md-2 col-12">
+        <div className="col-lg-2 col-md-4 col-12">
           <div className="box-approve">
             <img src={users.image_logo ? users.image_logo : "/template/img/no-picture.png"} className="approve-logo" />
           </div>
         </div>
-        <div className="col-md-10 col-12">
+        <div className="col-lg-10 col-md-8 col-12">
           <div><h5>{users.company_name_en}</h5></div>
           <div><p className="mb-0">{users.company_name_th}</p></div>
         </div>
