@@ -83,12 +83,12 @@ const Sidenav = (props) => {
               <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
                 <li>
                   <Link href="/backend/admin">
-                    <a href="charts.html">Admins</a>
+                    <a>Admins</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/backend/roles">
-                    <a href="tables.html">Admin roles</a>
+                    <a>Admin roles</a>
                   </Link>
                 </li>
               </ul>

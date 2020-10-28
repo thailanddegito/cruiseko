@@ -25,7 +25,7 @@ const Header = (props) => {
             <div className="row">
               <div className="col-12">
                 <div className="float-right">
-                  <nav id="menu" className="main-menu">
+                  <nav className="main-menu">
                     <ul>
                       <li><span><Link href="/"><a>Help</a></Link></span></li>
                       {
