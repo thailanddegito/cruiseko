@@ -59,6 +59,7 @@ module.exports = (sequelize, type) => {
         approve_by : type.STRING,
         problem_note : type.TEXT,
         problem_by : type.STRING,
+        problem_date : type.DATE,
         updated_by_admin : type.STRING,
         updated_by_admin_date : type.DATE,
 

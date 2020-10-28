@@ -4,7 +4,11 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    timezone: '+07:00'
+    dialectOptions: {
+        
+    },
+    logging: false,
+    // timezone: 'Asia/Bangkok'
 });
 
 
@@ -35,6 +39,7 @@ for (var key of Object.keys(models)) {
 // console.log('models',sequelize.models)
 // models.User.sync({force : true})
 // sequelize.sync({alter:true})
+// .then(() => console.log('Sync db success') )
 
 
 //Create super admin

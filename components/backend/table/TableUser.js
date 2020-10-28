@@ -45,7 +45,7 @@ const TableUser = (props) => {
                     {val.approve_status == 1 && <span className="a-manage success">Approve</span>}
                     {val.approve_status == 2 && <span className="a-manage danger">Problem</span>}
                   </td>
-                  <td>{val.createdAt}</td>
+                  <td>{new Date(val.createdAt).toLocaleString() }</td>
                   <td className="text-center">
                     <ul className="buttons manage">
                       <li>

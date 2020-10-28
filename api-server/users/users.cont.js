@@ -169,6 +169,7 @@ exports.updateProfile = async(req,res,next) => {
 exports.update = async(req,res,next)=>{
     var data= req.body;
     const actor = req.user
+    console.log('data',data)
     var id = req.params.id
     try{
         data.id = id;
@@ -232,7 +233,7 @@ exports.genUserId = async(req,res,next)=>{
 
 
 async function updateUser  (actor,data){
-    var {id,password,approve_status} = data;
+    var {id,password,approve_status,license_expired_date} = data;
 
     if(!id){
         throw new DefaultError(errors.FILEDS_INCOMPLETE);
@@ -265,11 +266,19 @@ async function updateUser  (actor,data){
         }
     }
     else if(approve_status == 2){
+        data.problem_date = now;
         data.problem_by = actor.username || actor.id;
     }
+
+
+
     //Check user can't update other users
     if(actor.type === 'user' && user.id !== actor.id){
         throw new DefaultError(errors.PERMISSION_ERROR);
+    }
+
+    if(license_expired_date){
+        data.license_expired_date = new Date(license_expired_date)
     }
 
     if(actor.type === 'admin'){
@@ -287,7 +296,6 @@ async function checkEmail (email){
     const user = await User.findOne({where : {email },attributes : ['email']})
     return !!user
 }
-
 
 function generateToken(user){
     // console.log('generating token user  :'+user.id);
