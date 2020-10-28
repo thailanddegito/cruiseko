@@ -77,7 +77,7 @@ const Table = (props) => {
                       <td className="text-center">
                         <ul className="buttons manage">
                           <li>
-                            <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/1`}>
+                            <Link href="/backend/admin/edit/[id]" as={`/backend/admin/edit/${val.id}`}>
                               <a className="btn_1 gray manage"><i className="fa fa-fw fa-check-circle-o"></i> Manage</a>
                             </Link>
                           </li>

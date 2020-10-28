@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps }) {
     if(AdminAuthService.isLoggin() && regex_backend.test(pathname) ){
       // alert('aa')
       fetchAdmin()
+      if(/backend\/login/.test(pathname)) Router.push('/backend')
       // window.location= '/login'
     }
     else if(!/backend\/login/.test(pathname)){

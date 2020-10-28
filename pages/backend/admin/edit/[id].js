@@ -5,6 +5,7 @@ import InputLabel from '../../../../components/widget/InputLabel'
 import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import api from '../../../../utils/api-admin';
+import SelectLabel from '../../../../components/widget/SelectLabel';
 
 const EditAdmin = ({query}) => {
   const [users, setUsers] = useState();
@@ -17,8 +18,8 @@ const EditAdmin = ({query}) => {
     api.getRole()
     .then(res=>{
       const data = res.data;
-      
-      setRole(data);
+      var temp = data.map(val => ({...val,val : val.id})  )
+      setRole(temp);
     })
     .catch(err => {
       console.log(err.response);
@@ -69,12 +70,16 @@ const EditAdmin = ({query}) => {
           </div>
         </div>
         <div className="divider"></div>
-        <form onSubmit={handleSave}>
+
+        { 
+        !!users ? (
+          <form onSubmit={handleSave}>
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'name',
-                name : 'name', required : true
+                name : 'name', required : true,
+                defaultValue : users.name
               }} 
               labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
@@ -83,7 +88,8 @@ const EditAdmin = ({query}) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'email',
-                name : 'email', required : true
+                name : 'email', required : true,
+                defaultValue : users.email
               }} 
               labelName="Email : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
@@ -92,7 +98,8 @@ const EditAdmin = ({query}) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'username', required : true
+                name : 'username', required : true,
+                defaultValue : users.username
               }} 
               labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
@@ -101,7 +108,7 @@ const EditAdmin = ({query}) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',name : 'password', 
-                pattern : ".{6,}", required : true
+                pattern : ".{6,}"
               }} 
               labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
@@ -112,7 +119,7 @@ const EditAdmin = ({query}) => {
               <SelectLabel 
               inputProps={{ 
                 className:'form-control select', 
-                name : 'role_id', required : true,
+                name : 'role_id', required : true, defaultValue : users.role_id
               }} 
               labelName="สิทธิ์ผู้ใช้งานระบบ" iconProps={{className : 'fa icon icon-home'}} options={roles} />
             </div>
@@ -132,6 +139,9 @@ const EditAdmin = ({query}) => {
             </div>
           </div>
         </form>
+        ) : null
+      }
+        
       </Layout>
     </>
   )

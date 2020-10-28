@@ -103,7 +103,7 @@ const EditRole = ({query}) => {
               <SelectLabel 
               inputProps={{ 
                 className:'form-control select', 
-                name : 'level', required : true,
+                name : 'level', required : true,defaultValue : roles ? roles.level : 1
               }} 
               labelName="ระดับการเข้าถึง" iconProps={{className : 'fa icon icon-home'}} options={levels} />
             </div>

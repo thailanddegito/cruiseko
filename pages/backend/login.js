@@ -25,8 +25,9 @@ const Login = ({ t }) => {
       console.log(res.data)
       AuthService.setToken(res.data.token)
       AuthService.setProfile({id : res.data.admin_id})
-      fetchAdmin()
-      Router.push('/backend')
+      window.location = '/backend'
+      // fetchAdmin()
+      // Router.push('/backend')
     })
     .catch(err => {
       if(!err.response) return;
@@ -37,7 +38,7 @@ const Login = ({ t }) => {
 
   return (
     <>
-      <Layout title="Login" page_name="Login" isLogin={false}>
+      <Layout title="Login" page_name="Login" >
         <div className="container h-100" id="login">
           <aside className="main-content">
             <form id="login-form" onSubmit={login}>

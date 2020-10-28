@@ -15,11 +15,13 @@ exports.getAll = async(req,res,next)=>{
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
-        var where ={[Op.or] : [],role_id : {[Op.ne] : 0}}
+        var where ={role_id : {[Op.ne] : 0}}
 
         if(search){
-            where[Op.or].push({username : {[Op.like] : '%'+search+'%' } })
-            where[Op.or].push({email : {[Op.like] : '%'+search+'%' } })
+            var or = []
+            or.push({username : {[Op.like] : '%'+search+'%' } })
+            or.push({email : {[Op.like] : '%'+search+'%' } })
+            where[Op.or] = or
         }
         // if(user_type) where.user_type = user_type;
         // if(accept_status) where.accept_status = accept_status;
@@ -199,11 +201,11 @@ exports.getRole = async(req,res,next)=>{
   }
   
   exports.createRole = async(req,res,next)=>{
-    const {name,permission} = req.body;
+    const {name,permission,level} = req.body;
     // console.log(permission);
     try{
 
-        const roles = await Role.create({name});
+        const roles = await Role.create({name,level});
         const {id} = roles
         let role_id = id
         for (const item of permission) {
@@ -222,7 +224,7 @@ exports.updateRole = async(req,res,next)=>{
     // let task=[]
     try{
         // console.log('id', id)
-        await Role.update({name},{where:{id}})
+        await Role.update({name,level},{where:{id}})
         // task.push(roles)
         await RoleHasPermission.destroy({where:{role_id:id}})
         // task.push(rolesPermission)

@@ -14,10 +14,12 @@ const Create = (props) => {
     api.getRole()
     .then(res=>{
       const data = res.data;
-      
-      setRole(data);
+      // console.log(data)
+      var temp = data.map(val => ({...val,val : val.id})  )
+      setRole(temp);
     })
     .catch(err => {
+      console.log(err)
       console.log(err.response);
     })
   }

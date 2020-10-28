@@ -10,14 +10,16 @@ const {DefaultError} = errors
 const {Op} = require('sequelize');
 
 exports.index = async(req,res,next)=>{
-    var {page=1,limit=30,user_type,accept_status} = req.query;
+    var {page=1,limit=30,user_type,accept_status,search} = req.query;
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
-        var where ={[Op.or] : []}
+        var where ={}
 
         if(search){
-            where[Op.or].push({username : {[Op.like] : '%'+search+'%' } })
+            var or = []
+            or.push({username : {[Op.like] : '%'+search+'%' } })
+            where[Op.or] = or
             // where[Op.or].push({email : {[Op.like] : '%'+search+'%' } })
         }
         if(user_type) where.user_type = user_type;
