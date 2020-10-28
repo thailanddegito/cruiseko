@@ -6,8 +6,8 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Role" page_name="Role" isLogin={true}>
-        <Link href="/backend/roles/create"><a className="btn btn-primary">Create</a></Link>
+      <Layout title="Permission" page_name="Permission" isLogin={true}>
+        <Link href="/backend/permission/create"><a className="btn btn-primary">Create</a></Link>
       </Layout>
     </>
   )
