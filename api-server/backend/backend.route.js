@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const admin  = require('../admins/admins.cont')
+const backend = require('./backend.cont')
 const mw = require('../middlewares/auth')
 
 // const meb = require('../utils/meb')
@@ -36,5 +37,7 @@ router.get('/permission/:id',admin.getPermissionOne)
 router.post('/permission',admin.createPermission)
 router.post('/permission/update',admin.updatePermission)
 router.delete('/permission/:id',admin.delPermission)
+
+router.get('/count',backend.countBackend)
 
 module.exports = router;
