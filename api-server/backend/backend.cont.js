@@ -3,10 +3,10 @@ const {User} = require('../db')
 
 exports.countBackend = async(req,res,next)=>{
   try{
-      const [fit_pending] = await Promise.all([
+      const [partner_pending] = await Promise.all([
           User.count({where : { approve_status : 0,user_type : 'partner'}})
       ])
-      res.json({fit_pending})
+      res.json({partner_pending})
   }
   catch(err){
       next(err);
