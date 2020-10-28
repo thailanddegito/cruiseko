@@ -7,6 +7,8 @@ const saltRounds = 11;
 const errors = require('../errors')
 const tools = require('../helper/tools')
 const {DefaultError} = errors
+const {Op} = require('sequelize');
+
 exports.index = async(req,res,next)=>{
     var {page=1,limit=30,user_type,accept_status} = req.query;
     // console.log(req.query.user_type)

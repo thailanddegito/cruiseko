@@ -46,11 +46,29 @@ exports.getOne = async(req,res,next)=>{
     var id = req.params.id
     try{
         // var options = {attributes: {exclude: ['password']}}
-        const admin = await Admin.findOne({where :{id},attributes: {exclude: ['password']} })
+        const attributes = {exclude : ['password']}
+        const include = [{model : Role , include: [RoleHasPermission]}]
+        const admin = await Admin.findOne({where :{id},attributes,include })
         res.json(admin)
     }
     catch(err){
         next(err);
+    }
+}
+
+exports.profile = async(req,res,next)=>{
+    const user = req.user;
+    //console.log(user);
+    try{
+        // console.log('aa')
+        const attributes = {exclude : ['password','createdAt','updatedAt','username']}
+        const include = [{model : Role , include: [RoleHasPermission]}]
+        const _user = await Admin.findOne({where : {id:user.id},include,attributes })
+        // console.log(_user)
+        res.json(_user);
+    }
+    catch(err){
+
     }
 }
 
@@ -72,7 +90,7 @@ exports.login = async(req,res,next)=>{
         if(!match){
             throw new DefaultError(errors.INVALID_PASSWORD);
         }
-        const token = generateToken(user)
+        const token = generateToken(admin)
         res.json({success :true , token ,admin_id : admin.id})
 
     }

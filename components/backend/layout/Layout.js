@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import React from 'react';
+import React,{useContext} from 'react';
 import Sidenav from './Sidenav';
+import UserContext from '../../../contexts/UserContext';
 
 // import Header from './Header';
 // import Footer from '../layout/Footer'
@@ -8,7 +9,9 @@ import Sidenav from './Sidenav';
 
 const Layout = (props) => {
   const {title, loading, children, page_name, sub_page, isLogin} = props;
+  const { admin } = useContext(UserContext)
 
+  console.log('admin',admin)
   return (
     <>
       <Head>
@@ -48,7 +51,7 @@ const Layout = (props) => {
       </Head>
       
       {
-        isLogin ? (
+        admin.isLogin ? (
           <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />
         ) : (
           <div className='main-layout'>

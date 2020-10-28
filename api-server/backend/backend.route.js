@@ -18,6 +18,7 @@ router.post('/admin/login',admin.login)
 router.use('/admin*',mw.jwt('admin'))
 router.get('/admin',admin.getAll)
 router.post('/admin',admin.create)
+router.get('/admin/profile',admin.profile)
 router.get('/admin/:id',admin.getOne)
 
 router.put('/admin/:id',admin.update)
