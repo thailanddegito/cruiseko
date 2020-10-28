@@ -29,8 +29,8 @@ const Create = (props) => {
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    if(!data.get('กรุณาเลือกอย่างน้อย 1 สิทธิ์')){
-      alert('test')
+    if(!data.get('permission')){
+      alert('กรุณาเลือกอย่างน้อย 1 สิทธิ์')
       return false
     }
     api.insertRole(data)
