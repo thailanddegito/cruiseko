@@ -1,9 +1,14 @@
 const { Sequelize } = require('sequelize');
 
+
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    timezone: '+07:00'
+    dialectOptions: {
+        
+    },
+    logging: false,
+    // timezone: 'Asia/Bangkok'
 });
 
 
@@ -32,7 +37,25 @@ for (var key of Object.keys(models)) {
 
 // console.log(Admin.associate)
 // console.log('models',sequelize.models)
+// models.User.sync({force : true})
 // sequelize.sync({alter:true})
+// .then(() => console.log('Sync db success') )
+
+
+//Create super admin
+// (async ()=>{
+//     const bcrypt = require('bcrypt');
+//     var data = {
+//         username : 'superadmin',
+//         name : 'Superadmin',
+//         email : 'superadmin@cruiseko.app',
+//         password : 'secret1234',
+//         role_id : 0
+//     }
+//     data.password = await bcrypt.hash(data.password, 11)
+//     await models.Admin.create(data)
+//     console.log('Create superadmin successfully!')
+// } )()
 
 module.exports = {
     sequelize,

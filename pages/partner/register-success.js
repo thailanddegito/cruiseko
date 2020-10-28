@@ -6,6 +6,15 @@ const RegisterSuccess = (props) => {
 
   return (
     <Layout loading={loading} title="Home">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="text-center">
+              <h4>Register Success</h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
   )
 }

@@ -44,12 +44,25 @@ module.exports = (sequelize, type) => {
         line_id : type.STRING,
 
         image_license : type.STRING,
-        accept_status : {
+        approve_status : {
             type : type.INTEGER,
             allowNull : false,
             defaultValue : 0
-        }
-        
+        },
+        status : {
+            type : type.INTEGER,
+            allowNull : false,
+            defaultValue : 1
+        },
+        license_expired_date : type.DATE,
+        approve_date : type.DATE,
+        approve_by : type.STRING,
+        problem_note : type.TEXT,
+        problem_by : type.STRING,
+        problem_date : type.DATE,
+        updated_by_admin : type.STRING,
+        updated_by_admin_date : type.DATE,
+
     },
     {
         freezeTableName: true,

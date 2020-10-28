@@ -12,8 +12,13 @@ class DefaultError extends Error{
 
 module.exports = {
     DefaultError,
+    NOT_FOUND : 'NotFoundError',
     INVALID_EMAIL : 'InvalidEmailError',
     DUPLICATED_EMAIL : 'DuplicatedEmailError',
+    DUPLICATED_USERNAME : 'DuplicatedUsernameError',
     INVALID_PASSWORD : 'InvalidPasswordError',
-    FILEDS_INCOMPLETE : 'FieldsIncompleteError'
+    FILEDS_INCOMPLETE : 'FieldsIncompleteError',
+    PERMISSION_ERROR : 'PermissionError',
+    PENDING_APPROVE : 'PendingApproveError',
+    NOT_APPROVE : 'NotApproveError',
 }

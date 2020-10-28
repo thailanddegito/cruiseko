@@ -7,14 +7,23 @@ const saltRounds = 11;
 const errors = require('../errors')
 const tools = require('../helper/tools')
 const {DefaultError} = errors
+const {Op} = require('sequelize');
+
 exports.index = async(req,res,next)=>{
-    var {page=1,limit=30,user_type,accept_status} = req.query;
+    var {page=1,limit=30,user_type,approve_status,search} = req.query;
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
         var where ={}
+
+        if(search){
+            var or = []
+            or.push({username : {[Op.like] : '%'+search+'%' } })
+            where[Op.or] = or
+            // where[Op.or].push({email : {[Op.like] : '%'+search+'%' } })
+        }
         if(user_type) where.user_type = user_type;
-        if(accept_status) where.accept_status = accept_status;
+        if(approve_status) where.approve_status = approve_status;
         var options = {where,attributes: {exclude: ['password']}}
         if(!isNaN(page) && page !=0){
             if(parseInt(page) > 1)
@@ -62,6 +71,13 @@ exports.login = async(req,res,next)=>{
         if(!match){
             throw new DefaultError(errors.INVALID_PASSWORD);
         }
+        if(user.approve_status == 0){
+            throw new DefaultError(errors.PENDING_APPROVE);
+        }
+        if(user.approve_status == 2){
+            throw new DefaultError(errors.NOT_APPROVE);
+        }
+
         const token = generateToken(user)
         res.json({success :true , token ,user_id : user.id})
 
@@ -135,11 +151,30 @@ exports.profile = async(req,res,next)=>{
     }
 }
 
+exports.updateProfile = async(req,res,next) => {
+    var data= req.body;
+    const actor = req.user
+    data.id = actor.id
+    try{
+        await updateUser(actor,data)
+        res.json({success:true})
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 
 
 exports.update = async(req,res,next)=>{
+    var data= req.body;
+    const actor = req.user
+    console.log('data',data)
+    var id = req.params.id
     try{
-
+        data.id = id;
+        await updateUser(actor,data)
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -147,13 +182,17 @@ exports.update = async(req,res,next)=>{
 }
 
 exports.delete = async(req,res,next)=>{
+    var id = req.params.id
     try{
-
+        await User.destroy({where :{ id}})
+        res.json({success:true})
     }
     catch(err){
         next(err);
     }
 }
+
+
 
 
 
@@ -192,11 +231,71 @@ exports.genUserId = async(req,res,next)=>{
 }
 
 
+
+async function updateUser  (actor,data){
+    var {id,password,approve_status,license_expired_date} = data;
+
+    if(!id){
+        throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+
+    delete data.id;
+    delete data.username
+
+    if(password){
+        data.password = await bcrypt.hash(password, saltRounds)
+    }
+    else{
+        delete data.password
+    }
+    const user = await User.findOne({where : {id}})
+
+    if(!user){
+        throw new DefaultError(errors.NOT_FOUND);
+    }
+
+    const now = new Date();
+    if(approve_status == 1){
+        if(actor.type === 'admin'){
+            data.approve_date = now;
+            data.approve_by = actor.username || actor.id
+        }
+        else {
+            //if users try to approve themself
+            throw new DefaultError(errors.PERMISSION_ERROR);
+        }
+    }
+    else if(approve_status == 2){
+        data.problem_date = now;
+        data.problem_by = actor.username || actor.id;
+    }
+
+
+
+    //Check user can't update other users
+    if(actor.type === 'user' && user.id !== actor.id){
+        throw new DefaultError(errors.PERMISSION_ERROR);
+    }
+
+    if(license_expired_date){
+        data.license_expired_date = new Date(license_expired_date)
+    }
+
+    if(actor.type === 'admin'){
+        data.updated_by_admin_date = now;
+        data.updated_by_admin = actor.username || actor.id
+        
+    }
+
+
+    await User.update(data,{where : { id}});
+}
+
+
 async function checkEmail (email){
     const user = await User.findOne({where : {email },attributes : ['email']})
     return !!user
 }
-
 
 function generateToken(user){
     // console.log('generating token user  :'+user.id);

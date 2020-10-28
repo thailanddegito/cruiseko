@@ -65,7 +65,7 @@ const SelectAddress = (props) => {
      <div className="row justify-content-center">
         <div className="col-lg-3 col-12">
           <div className="form-group">
-            <label>จังหวัด</label>
+            <label>Province</label>
             <select className="form-control" name={`province`} onChange={onChangeProv}>
               {
                 province ? Object.keys(province).map((prov,index)=>(
@@ -77,7 +77,7 @@ const SelectAddress = (props) => {
         </div>
         <div className="col-lg-3 col-12">
           <div className="form-group">
-            <label>อำเภอ</label>
+            <label>Amphoe</label>
             <select className="form-control" name={`amphoe`} onChange={onChangeAmphoe}>
               {
                 amphoe ? Object.keys(amphoe).map((amp,index)=>(
@@ -89,7 +89,7 @@ const SelectAddress = (props) => {
         </div>
         <div className="col-lg-3 col-12">
           <div className="form-group">
-            <label>ตำบล</label>
+            <label>District</label>
             <select className="form-control" name={`district`} onChange={onChangeDistrict}>
               {
                 district ? Object.keys(district).map((dis,index)=>(
@@ -101,7 +101,7 @@ const SelectAddress = (props) => {
         </div>
         <div className="col-lg-3 col-12">
           <div className="form-group">
-            <label>รหัสไปรษณีย์</label>
+            <label>Zipcode</label>
             <select className="form-control" name={`zipcode`} onChange={onChangeDistrict}>
               {
                 zipcode ? Object.keys(zipcode).map((zip)=>(

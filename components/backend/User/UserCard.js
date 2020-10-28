@@ -7,7 +7,7 @@ const UserCard = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner', accept_status : 0})
+    api.getUsers({user_type : 'partner', approve_status : 0, limit : 4})
     .then(res=>{
       const data = res.data;
       setUsers(data);
@@ -21,14 +21,26 @@ const UserCard = (props) => {
   useEffect(() => {
     fecthUsers();
   },[]);
+  
+  if(!users) {
+    return null;
+  }
+  if(!users.count) {
+    return null;
+  }
 
   return (
     <>
-      <div className="row">
+      <div className="row justify-content-start mb-3">
+        <div className="col-6">
+          <h4>Pending users</h4>
+        </div>
+      </div>
+      <div className="row mb-4">
         {
-          users ? users.rows.map((val, index) => (
+          users.rows.map((val, index) => (
             <Card key={index} users={val} />
-          )) : null
+          ))
         }
       </div>
     </>

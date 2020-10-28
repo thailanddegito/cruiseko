@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from 'react';
+import Layout from '../../../components/backend/layout/Layout';
+import InputLabel from '../../../components/widget/InputLabel'
+import Button from '../../../components/widget/Button';
+import Link from 'next/link';
+import api from '../../../utils/api-admin';
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+
+const Create = (props) => {
+  const [modalSuccess, setModalSuccess] = useState(false);
+
+  const handleSave = (event) => {
+    event.preventDefault()
+    const data = new FormData(event.target)
+    api.insertPermission(data)
+    .then(res=>{
+      const data = res.data;
+      setModalSuccess(true);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  return (
+    <>
+      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create">
+        <div className="row justify-content-start">
+          <div className="col-12">
+            <h4>Create admin roles</h4>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <form onSubmit={handleSave} >
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'name',
+                name : 'name', required : true
+              }} 
+              labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
+            </div>
+          </div>
+          <div className="row justify-content-center mt-4">
+            <div className="col-6">
+              <div className="text-center">
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
+                <Link href="/backend/permission">
+                  <a>
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <SuccessDialog show={modalSuccess}
+          text="Successfully saved data !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/permission"} />
+
+      </Layout>
+    </>
+  )
+}
+
+
+export default Create

@@ -2,13 +2,17 @@
 import React, {useEffect, useState} from 'react';
 import Link from 'next/link'
 import Router from 'next/router';
-  
+import Topnav from './Topnav'
+import Modal from '../../widget/Modal'
+import AdminAuthService from '../../../utils/AdminAuthService';
+import api from '../../../utils/api-admin';
+
 const Sidenav = (props) => {
-  const {loading, children, page_name, sub_page} = props;
+  const {children, page_name, sub_page, main_link, no_class} = props;
   const [toggle, setToggle] = useState(false);
+  const [counts, setCounts] = useState(false);
 
   useEffect(() => {
-    // var body = document.body;
     if(toggle) {
       $('body').removeClass('fixed-nav sticky-footer');
       $('body').addClass('fixed-nav sticky-footer sidenav-toggled');
@@ -16,12 +20,30 @@ const Sidenav = (props) => {
       $('body').removeClass('fixed-nav sticky-footer sidenav-toggled');
       $('body').addClass('fixed-nav sticky-footer');
     }
-    
-  }, [toggle])
+  }, [toggle]);
 
-  const handleLogout = () => {
-    Router.push('/backend/login');
+  const fechCount = () => {
+    api.getCountUsers()
+    .then(res=>{
+      const data = res.data;
+      setCounts(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
+  
+  useEffect(() => {
+    fechCount();
+  },[]);
+
+  
+  const handleLogout = () => {
+    AdminAuthService.logout();
+    window.location = '/backend/login';
+  }
+
+  console.log('counts', counts);
 
   return (
     <>
@@ -40,19 +62,36 @@ const Sidenav = (props) => {
           <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
               <Link href="/backend/users">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Users Agents/Hotels</span>
+                <a className="nav-link d-flex justify-content-between align-items-center">
+                  <div>
+                    <i className="fa fa-fw fa-user"></i>
+                    <span className="nav-link-text">Users</span>
+                  </div>
+                  {
+                    counts && counts.partner_pending ? (
+                      <span className="nav-link-text badge badge-pill badge-danger">{counts.partner_pending} New</span>
+                    ) : null
+                  }
                 </a>
               </Link>
             </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/admin">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Admin Uers</span>
-                </a>
-              </Link>
+            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
+              <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                <i className="fa fa-fw fa-users"></i>
+                <span className="nav-link-text">Admins</span>
+              </a>
+              <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
+                <li>
+                  <Link href="/backend/admin">
+                    <a href="charts.html">Admins</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/backend/roles">
+                    <a href="tables.html">Admin roles</a>
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
           <ul className="navbar-nav sidenav-toggler">
@@ -71,49 +110,9 @@ const Sidenav = (props) => {
         </div>
       </nav>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a href="javascript:void(0)" className="btn btn-primary" onClick={() => handleLogout()}>Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} />
 
-      <div className="content-wrapper">
-        <div className="container-fluid">
-          <ol className="breadcrumb">
-            {(page_name) && (
-              <li className={`breadcrumb-item ${!sub_page && 'active'}`}>
-                {
-                  sub_page ? (
-                    <Link href="/backend/users">
-                      <a>{page_name}</a>
-                    </Link>
-                  ) : <a>{page_name}</a>
-                }
-                
-              </li>
-            )}
-            {sub_page && (
-              <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
-            )}
-          </ol>
-          <div>
-            {children}
-          </div>
-        </div>
-      </div>
+      <Modal handleClick={() => handleLogout()} />
 
     </>
   )

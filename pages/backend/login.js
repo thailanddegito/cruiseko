@@ -3,14 +3,14 @@ import Layout from '../../components/backend/layout/Layout';
 import Router from 'next/router';
 import FormLogin from '../../components/backend/login/FormLogin';
 import UserContext from '../../contexts/UserContext';
-import api from '../../utils/api';
-import AuthService from '../../utils/AuthService';
+import api from '../../utils/api-admin';
+import AuthService from '../../utils/AdminAuthService';
 const Login = ({ t }) => {
 
 
   const [loading, setLodding] = useState(false);
   const [error,setError] = useState()
-  const { fetchUser } = useContext(UserContext)
+  const { fetchAdmin } = useContext(UserContext)
 
   useEffect(() => {
     
@@ -24,9 +24,10 @@ const Login = ({ t }) => {
     .then(res => {
       console.log(res.data)
       AuthService.setToken(res.data.token)
-      AuthService.setProfile({user_id : res.data.user_id})
-      fetchUser()
-      Router.push('/')
+      AuthService.setProfile({id : res.data.admin_id})
+      window.location = '/backend'
+      // fetchAdmin()
+      // Router.push('/backend')
     })
     .catch(err => {
       if(!err.response) return;
@@ -37,7 +38,7 @@ const Login = ({ t }) => {
 
   return (
     <>
-      <Layout title="Login" page_name="Login" isLogin={false}>
+      <Layout title="Login" page_name="Login" >
         <div className="container h-100" id="login">
           <aside className="main-content">
             <form id="login-form" onSubmit={login}>

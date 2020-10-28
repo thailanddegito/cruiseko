@@ -1,8 +1,10 @@
 import {useState,useEffect} from 'react'
 import '../styles/globals.css'
+import Router from 'next/router'
 import UserAuthService from '../utils/AuthService'
 import AdminAuthService from '../utils/AdminAuthService'
 import api from '../utils/api'
+import apiAdmin from '../utils/api-admin'
 import { UserProvider } from '../contexts/UserContext';
 
 function MyApp({ Component, pageProps }) {
@@ -10,19 +12,38 @@ function MyApp({ Component, pageProps }) {
     user : null
   })
 
+  const [admin,setAdmin] = useState( {data : null,fetching : false,isLogin:false});
+
   useEffect(()=>{
     // var user , admin;
-    if(UserAuthService.isLoggin()){
+    var pathname = Router.pathname
+    const regex_backend = /backend/
+    if(!regex_backend.test(pathname) && UserAuthService.isLoggin()){
       fetchUser()
     }
     // if(user || admin) setState({...state,user,admin})
-
+    
+    // const regex2 = /forgot-password|change-password/
+      
+    if(regex_backend.test(pathname) ){
+      if(AdminAuthService.isLoggin()){
+        fetchAdmin()
+        if(/backend\/login/.test(pathname)) Router.push('/backend')
+      }
+      else{
+        Router.push('/backend/login')
+      }
+      // alert('aa')
+      
+      // window.location= '/login'
+    }
+    
 
   },[])
 
-  const fetchUser = () =>{
+  const fetchUser = async () =>{
     var user;
-    api.getProfile().then(res => {
+    return api.getProfile().then(res => {
       user = res.data;
       setState({...state,user})
     })
@@ -32,9 +53,23 @@ function MyApp({ Component, pageProps }) {
     })
   }
 
+  const fetchAdmin = async ()=>{
+    var user;
+    setAdmin({fetching : true,...admin})
+    return apiAdmin.getAdminProfile().then(res => {
+      user = res.data;
+      setAdmin({fetching: false,data : user,isLogin:true})
+    })
+    .catch(err => {
+      setAdmin({...admin,fetching: false})
+      console.log(err)
+      console.log(err.response)
+    })
+  }
+
 
   return (
-    <UserProvider value={{...state,fetchUser}} >
+    <UserProvider value={{...state,admin,fetchUser,fetchAdmin}} >
       <Component {...pageProps} />
     </UserProvider>
     

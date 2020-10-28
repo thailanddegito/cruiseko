@@ -1,14 +1,13 @@
 import Head from 'next/head';
-import React from 'react';
+import React,{useContext} from 'react';
 import Sidenav from './Sidenav';
-
-// import Header from './Header';
-// import Footer from '../layout/Footer'
-// import Loading from '../Loading'
+import UserContext from '../../../contexts/UserContext';
 
 const Layout = (props) => {
-  const {title, loading, children, page_name, sub_page, isLogin} = props;
+  const {title, loading, children, page_name, sub_page, main_link, no_class} = props;
+  const { admin } = useContext(UserContext)
 
+  console.log('admin',admin)
   return (
     <>
       <Head>
@@ -27,9 +26,11 @@ const Layout = (props) => {
         <link href="/backend_css/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
         <link href="/backend_css/vendor/dropzone.css" rel="stylesheet" />
         <link href="/backend_css/css/date_picker.css" rel="stylesheet" />
+        <link href="/backend_css/css/datetime.css" rel="stylesheet" />
         <link rel="stylesheet" href="/backend_css/js/editor/summernote-bs4.css" />
 
         <link href="/backend_css/css/custom.css" rel="stylesheet" />
+        <link href="/backend_css/css/collapse.css" rel="stylesheet" />
 
       
         <script src="/backend_css/vendor/jquery/jquery.min.js"></script>
@@ -44,12 +45,12 @@ const Layout = (props) => {
         <script src="/backend_css/js/admin.js"></script>
         <script src="/backend_css/js/admin-datatables.js"></script>
 
-        
+
       </Head>
       
       {
-        isLogin ? (
-          <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} />
+        admin.isLogin ? (
+          <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} />
         ) : (
           <div className='main-layout'>
             {children}

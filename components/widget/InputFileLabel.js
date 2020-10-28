@@ -20,7 +20,7 @@ const InputFileLabel = (props) => {
         <div className="input-group">
           <input value={fileName} {...inputProps} />
             <label htmlFor={file_id} className="custom-file-upload mb-0">
-              แทรก
+              Insert
             </label>
           <input {...fileProps} id={file_id} onChange={handleChange} />
         </div>
