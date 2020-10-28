@@ -43,6 +43,9 @@ export default {
    getUsers : (params) => service.get(`/users`,{params}),
    getUsersOne : (id) => service.get(`/users/${id}`),
 
+   //All Count
+   getCountUsers : () => service.get(`/backend/count`),
+
    //Admin Users
    getAdminProfile : () => service.get(`/backend/admin/profile`),
    getAdminUsers : () => service.get(`/backend/admin`),

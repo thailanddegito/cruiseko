@@ -5,13 +5,14 @@ import Router from 'next/router';
 import Topnav from './Topnav'
 import Modal from '../../widget/Modal'
 import AdminAuthService from '../../../utils/AdminAuthService';
+import api from '../../../utils/api-admin';
 
 const Sidenav = (props) => {
   const {children, page_name, sub_page, main_link, no_class} = props;
   const [toggle, setToggle] = useState(false);
+  const [counts, setCounts] = useState(false);
 
   useEffect(() => {
-    // var body = document.body;
     if(toggle) {
       $('body').removeClass('fixed-nav sticky-footer');
       $('body').addClass('fixed-nav sticky-footer sidenav-toggled');
@@ -19,13 +20,30 @@ const Sidenav = (props) => {
       $('body').removeClass('fixed-nav sticky-footer sidenav-toggled');
       $('body').addClass('fixed-nav sticky-footer');
     }
-    
-  }, [toggle])
+  }, [toggle]);
 
+  const fechCount = () => {
+    api.getCountUsers()
+    .then(res=>{
+      const data = res.data;
+      setCounts(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  
+  useEffect(() => {
+    fechCount();
+  },[]);
+
+  
   const handleLogout = () => {
     AdminAuthService.logout();
     window.location = '/backend/login';
   }
+
+  console.log('counts', counts);
 
   return (
     <>
@@ -44,9 +62,12 @@ const Sidenav = (props) => {
           <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
               <Link href="/backend/users">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">ข้อมูลสมาชิก</span>
+                <a className="nav-link d-flex justify-content-between align-items-center">
+                  <div>
+                    <i className="fa fa-fw fa-user"></i>
+                    <span className="nav-link-text">ข้อมูลสมาชิก</span>
+                  </div>
+                  <span className="badge badge-pill badge-danger">6 New</span>
                 </a>
               </Link>
             </li>

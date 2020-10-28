@@ -4,8 +4,8 @@ import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TablePermission = (props) => {
-  const [permissions, setPermissions] = useState(false);
   const [modalConfirm, setModalConfirm] = useState(false);
+  const [permissions, setPermissions] = useState(false);
 
   const fecthPermissions = () => {
     api.getPermission()

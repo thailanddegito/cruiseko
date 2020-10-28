@@ -199,6 +199,10 @@ span.nav-link-text {
   background-color: #dc3545;
   color: #FFF !important;
 }
+.badge.badge-pill.badge-danger {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
