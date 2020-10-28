@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import Link from 'next/link'
-import TablePermission from '../../../components/backend/permission/Table';
+import TablePermission from '../../../components/backend/table/TablePermission';
 
 const Index = (props) => {
 
   return (
     <>
-      <Layout title="Permission" page_name="Permission" isLogin={true}>
+      <Layout title="สิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ">
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>สิทธิ์การใช้งานเมนูหน้าเว็บ</h4>
@@ -15,7 +15,7 @@ const Index = (props) => {
           <div className="col-6">
             <div className="text-right">
               <Link href="/backend/permission/create">
-                <a className="btn btn-primary">Create</a>
+                <a className="btn btn-primary">เพิ่ม</a>
               </Link>
             </div>
           </div>

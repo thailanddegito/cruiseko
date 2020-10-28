@@ -49,7 +49,7 @@ const EditPermission = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit Permission" page_name="Permission" sub_page="Edit" isLogin={true}>
+      <Layout title="แก้ไขสิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ" sub_page="แก้ไข" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>แก้ไขสิทธิ์การใช้งานเมนูหน้าเว็บ</h4>
@@ -68,7 +68,7 @@ const EditPermission = ({query}) => {
               labelName="ชื่อเมนู : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mt-4">
             <div className="col-4">
               <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />

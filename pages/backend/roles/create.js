@@ -51,10 +51,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create Role" page_name="Role" sub_page="Create" isLogin={true}>
+      <Layout title="สร้างสิทธิ์เข้าใช้งานระบบ" page_name="สิทธิ์เข้าใช้งานระบบ" sub_page="สร้าง">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>สร้างสิทธิ์ผู้ใช้งานระบบ</h4>
+            <h4>สร้างสิทธิ์เข้าใช้งานระบบ</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -103,7 +103,7 @@ const Create = (props) => {
             )) : ''
           }
 
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mt-4 mt-4">
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />

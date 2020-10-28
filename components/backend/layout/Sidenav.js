@@ -2,9 +2,12 @@
 import React, {useEffect, useState} from 'react';
 import Link from 'next/link'
 import Router from 'next/router';
-  
+import Topnav from './Topnav'
+import Modal from '../../widget/Modal'
+import AdminAuthService from '../../../utils/AdminAuthService';
+
 const Sidenav = (props) => {
-  const {loading, children, page_name, sub_page} = props;
+  const {children, page_name, sub_page, main_link} = props;
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -20,7 +23,8 @@ const Sidenav = (props) => {
   }, [toggle])
 
   const handleLogout = () => {
-    Router.push('/backend/login');
+    AdminAuthService.logout();
+    window.location = '/backend/login';
   }
 
   return (
@@ -42,33 +46,27 @@ const Sidenav = (props) => {
               <Link href="/backend/users">
                 <a className="nav-link">
                   <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Users Agents/Hotels</span>
+                  <span className="nav-link-text">ข้อมูลสมาชิก</span>
                 </a>
               </Link>
             </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/admin">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Admin Users</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/roles">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Admin Role</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/permission">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Permission</span>
-                </a>
-              </Link>
+            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
+              <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                <i className="fa fa-fw fa-users"></i>
+                <span className="nav-link-text">ข้อมูลผู้ใช้งานระบบ</span>
+              </a>
+              <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
+                <li>
+                  <Link href="/backend/admin">
+                    <a href="charts.html">ผู้ใช้งานระบบ</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/backend/roles">
+                    <a href="tables.html">สิทธิ์เข้าใช้งานระบบ</a>
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
           <ul className="navbar-nav sidenav-toggler">
@@ -87,49 +85,9 @@ const Sidenav = (props) => {
         </div>
       </nav>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a href="javascript:void(0)" className="btn btn-primary" onClick={() => handleLogout()}>Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} />
 
-      <div className="content-wrapper">
-        <div className="container-fluid">
-          <ol className="breadcrumb">
-            {(page_name) && (
-              <li className={`breadcrumb-item ${!sub_page && 'active'}`}>
-                {
-                  sub_page ? (
-                    <Link href="/backend/users">
-                      <a>{page_name}</a>
-                    </Link>
-                  ) : <a>{page_name}</a>
-                }
-                
-              </li>
-            )}
-            {sub_page && (
-              <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
-            )}
-          </ol>
-          <div className="content">
-            {children}
-          </div>
-        </div>
-      </div>
+      <Modal handleClick={() => handleLogout()} />
 
     </>
   )

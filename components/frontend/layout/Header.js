@@ -67,10 +67,9 @@ const Header = (props) => {
                       user ? (
                         <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
                           <ul>
-                            <li><a href="javascript:void(0)" onClick={() => handleLogout()}>Logout</a></li>
+                            <li><a href="#" onClick={() => handleLogout()}>Logout</a></li>
                           </ul>
                         </li>
-                        // <li><span><Link href="/"><a>เรียบร้อย</a></Link></span></li>               
                       ): (
                         <li><span><Link href="/login"><a>Login</a></Link></span></li>
                       ) 

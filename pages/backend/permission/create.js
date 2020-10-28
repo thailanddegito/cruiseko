@@ -25,7 +25,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create Permission" page_name="Permission" sub_page="Create" isLogin={true}>
+      <Layout title="สร้างสิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ" sub_page="สร้าง">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>สร้างสิทธิ์การใช้งานเมนูหน้าเว็บ</h4>
@@ -42,7 +42,7 @@ const Create = (props) => {
               labelName="ชื่อเมนู : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mt-4">
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />
