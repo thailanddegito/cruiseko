@@ -14,6 +14,7 @@ router.post('/gen-id',cont.genUserId)
 
 
 router.get('/profile',mw.jwt('user'),cont.profile)
+router.post('/profile',mw.jwt('user'),cont.updateProfile)
 
 router.get('/',cont.index)
 router.get('/:id',cont.getOne)

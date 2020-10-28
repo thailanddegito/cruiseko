@@ -57,8 +57,6 @@ module.exports = (sequelize, type) => {
         license_expired_date : type.DATE,
         approve_date : type.DATE,
         approve_by : type.STRING,
-        approve_date : type.DATE,
-        approve_date : type.DATE,
         problem_note : type.TEXT,
         problem_by : type.STRING,
         updated_by_admin : type.STRING,

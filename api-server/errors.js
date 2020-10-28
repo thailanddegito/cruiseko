@@ -17,5 +17,6 @@ module.exports = {
     DUPLICATED_EMAIL : 'DuplicatedEmailError',
     DUPLICATED_USERNAME : 'DuplicatedUsernameError',
     INVALID_PASSWORD : 'InvalidPasswordError',
-    FILEDS_INCOMPLETE : 'FieldsIncompleteError'
+    FILEDS_INCOMPLETE : 'FieldsIncompleteError',
+    PERMISSION_ERROR : 'PermissionError',
 }
