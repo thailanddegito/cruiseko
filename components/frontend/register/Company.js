@@ -24,7 +24,7 @@ const Company = (props) => {
         <form onSubmit={saveStep1} id="form-company" >
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-6 col-12">
-              <ImageBoxCircle _text="Logo : รูปภาพบริษัท" _name="image_logo" _id="image_logo" chkImg={chkImg} required={true} />
+              <ImageBoxCircle _text="Logo : Company logo" _name="image_logo" _id="image_logo" chkImg={chkImg} required={true} />
             </div>
             <div className="col-lg-6 col-12 px-0">
               <div className="row mx-0">
@@ -42,13 +42,13 @@ const Company = (props) => {
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en', required : true}} 
-                  labelName="Company Name Eng : ชื่อธุรกิจนำเที่ยวภาษาอังกฤษ" iconProps={{className : 'fa icon icon-home'}}  />
+                  labelName="Company Name English" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_th', required : true}} 
-                  labelName="Company Name Thai : ชื่อธุรกิจนำเที่ยวภาษาไทย" iconProps={{className : 'fa icon icon-home'}}  />
+                  labelName="Company Name Thai" iconProps={{className : 'fa icon icon-home'}}  />
                 </div>
               </div>
             </div>
@@ -57,13 +57,13 @@ const Company = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'license_no', required : true}} 
-              labelName="License No : ใบอนุญาตเลขที่" iconProps={{className : 'fa icon icon-newspaper'}}  />
+              labelName="License No" iconProps={{className : 'fa icon icon-newspaper'}}  />
             </div>
             <div className="col-lg-6 col-12">
               <InputFileLabel 
               inputProps={{ className:'form-control', type : 'text',name : 'image_license_text', required : true, readOnly : true}} 
               fileProps={{ className:'form-control', type : 'file',name : 'image_license', required : true, accept : "image/*"}} 
-              labelName="License Pic : ภาพใบอนุญาต"
+              labelName="License Pic"
               file_id={'upload'}  />
             </div>
           </div>
@@ -71,7 +71,7 @@ const Company = (props) => {
           <div className="row justify-content-center">
             <div className="col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'address', required : true}} 
-              labelName="Address : ที่อยู่" iconProps={{className : 'fa icon icon-home'}}  />
+              labelName="Address" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
 
@@ -81,18 +81,18 @@ const Company = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_phone', required : true}} 
-              labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
+              labelName="Tel " iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'email',name : 'company_email', required : true}} 
-              labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
           <div className="row justify-content-start">
             <div className="col-12">
               <div className="form-group">
-                <Button _type="submit" _name="ขั้นตอนถัดไป" _class="btn-primary" />
+                <Button _type="submit" _name="Next" _class="btn-primary" />
               </div>
             </div>
           </div>

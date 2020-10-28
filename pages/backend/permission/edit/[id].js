@@ -46,10 +46,10 @@ const EditPermission = ({query}) => {
 
   return (
     <>
-      <Layout title="แก้ไขสิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ" sub_page="แก้ไข" main_link="permission">
+      <Layout title="Edit admin permission" page_name="Edit admin permission" sub_page="edit" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>แก้ไขสิทธิ์การใช้งานเมนูหน้าเว็บ</h4>
+            <h4>Edit admin permission</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -62,16 +62,16 @@ const EditPermission = ({query}) => {
                 defaultValue : permission ? permission.name: '',
                 name : 'name', required : true
               }} 
-              labelName="ชื่อเมนู : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center mt-4">
             <div className="col-4">
               <div className="text-center">
-                <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
                 <Link href="/backend/permission">
                   <a>
-                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
                 </Link>
               </div>
@@ -80,7 +80,7 @@ const EditPermission = ({query}) => {
         </form>
 
         <SuccessDialog show={modalSuccess}
-          text="บันทึกข้อมูลสำเร็จ !!!"
+          text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
           route={"/backend/permission"} />
           

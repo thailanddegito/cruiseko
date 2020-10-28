@@ -65,7 +65,7 @@ const Sidenav = (props) => {
                 <a className="nav-link d-flex justify-content-between align-items-center">
                   <div>
                     <i className="fa fa-fw fa-user"></i>
-                    <span className="nav-link-text">ข้อมูลสมาชิก</span>
+                    <span className="nav-link-text">Users</span>
                   </div>
                   {
                     counts && counts.partner_pending ? (
@@ -78,17 +78,17 @@ const Sidenav = (props) => {
             <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
               <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
                 <i className="fa fa-fw fa-users"></i>
-                <span className="nav-link-text">ข้อมูลผู้ใช้งานระบบ</span>
+                <span className="nav-link-text">Admins</span>
               </a>
               <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
                 <li>
                   <Link href="/backend/admin">
-                    <a href="charts.html">ผู้ใช้งานระบบ</a>
+                    <a href="charts.html">Admins</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/backend/roles">
-                    <a href="tables.html">สิทธิ์เข้าใช้งานระบบ</a>
+                    <a href="tables.html">Admin roles</a>
                   </Link>
                 </li>
               </ul>

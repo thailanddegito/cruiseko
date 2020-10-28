@@ -54,10 +54,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="สร้างสิทธิ์เข้าใช้งานระบบ" page_name="สิทธิ์เข้าใช้งานระบบ" sub_page="สร้าง">
+      <Layout title="Create admin role" page_name="Admin role" sub_page="create">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>สร้างสิทธิ์เข้าใช้งานระบบ</h4>
+            <h4>Create admin role</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -68,7 +68,7 @@ const Create = (props) => {
                 className:'form-control', type : 'name',
                 name : 'name', required : true
               }} 
-              labelName="ชื่อสิทธิ์ผู้ใช้งานระบบ : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Role name : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
@@ -79,13 +79,13 @@ const Create = (props) => {
                 className:'form-control select', 
                 name : 'level', required : true,
               }} 
-              labelName="ระดับการเข้าถึง" iconProps={{className : 'fa icon icon-home'}} options={levels} />
+              labelName="Access level" iconProps={{className : 'fa icon icon-home'}} options={levels} />
             </div>
           </div>
 
           <div className="row justify-content-center mb-4">
             <div className="col-lg-6 col-12">
-              <p className="mb-0">เมนูหน้าเว็บ</p>
+              <p className="mb-0">Website menu</p>
             </div>    
           </div>    
 
@@ -109,10 +109,10 @@ const Create = (props) => {
           <div className="row justify-content-center mt-4 mt-4">
             <div className="col-6">
               <div className="text-center">
-                <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
                 <Link href="/backend/roles">
                   <a>
-                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
                 </Link>
               </div>
@@ -121,12 +121,12 @@ const Create = (props) => {
         </form>
 
         <SuccessDialog show={modalSuccess}
-          text="บันทึกข้อมูลสำเร็จ !!!"
+          text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
           route={"/backend/roles"} />
 
         <WarningDialog show={modalWarning}
-          text="กรุณาเลือกอย่างน้อย 1 สิทธิ์ !!!"
+          text="Please select at least 1 permission !!!"
           size="md" onHide={() => setModalWarning(false)} />  
       </Layout>
     </>

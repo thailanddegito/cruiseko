@@ -59,7 +59,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-12">
               <div className="form-group">
-                <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
               </div>
             </div>
           </div>

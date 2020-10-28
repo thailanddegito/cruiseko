@@ -25,7 +25,7 @@ const Dialog = (props) => {
             </div>
             <div className="col-12 mb-4">
               <div className="text-center">
-                <button type="button" className="btn btn-primary" onClick={redirectPage}>ตกลง</button>
+                <button type="button" className="btn btn-primary" onClick={redirectPage}>OK</button>
               </div>
             </div>
           </div>

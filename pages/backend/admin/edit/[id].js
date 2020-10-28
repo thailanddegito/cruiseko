@@ -63,10 +63,10 @@ const EditAdmin = ({query}) => {
 
   return (
     <>
-      <Layout title="แก้ไขผู้ใช้งานระบบ" page_name="ผู้ใช้งานระบบ" sub_page="แก้ไข" main_link="admin">
+      <Layout title="Editing admin" page_name="admin" sub_page="edit" main_link="admin">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>แก้ไขผู้ใช้งานระบบ</h4>
+            <h4>Edit admin</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -121,7 +121,7 @@ const EditAdmin = ({query}) => {
                 className:'form-control select', 
                 name : 'role_id', required : true, defaultValue : users.role_id
               }} 
-              labelName="สิทธิ์ผู้ใช้งานระบบ" iconProps={{className : 'fa icon icon-home'}} options={roles} />
+              labelName="Admin roles" iconProps={{className : 'fa icon icon-home'}} options={roles} />
             </div>
           </div>
           
@@ -129,10 +129,10 @@ const EditAdmin = ({query}) => {
           <div className="row justify-content-center mt-4">
             <div className="col-6">
               <div className="text-center">
-                <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
                 <Link href="/backend/admin">
                   <a>
-                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
                 </Link>
               </div>
@@ -143,7 +143,7 @@ const EditAdmin = ({query}) => {
       }
         
         <SuccessDialog show={modalSuccess}
-          text="บันทึกข้อมูลสำเร็จ !!!"
+          text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
           route={"/backend/admin"} />
       </Layout>

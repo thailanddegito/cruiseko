@@ -33,7 +33,7 @@ const UserCard = (props) => {
     <>
       <div className="row justify-content-start mb-3">
         <div className="col-6">
-          <h4>รายการรออนุมัติข้อมูลสมาชิก</h4>
+          <h4>Pending users</h4>
         </div>
       </div>
       <div className="row mb-4">

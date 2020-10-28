@@ -65,11 +65,11 @@ const TableAdmin = (props) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>ชื่อ</th>
-              <th>อีเมล์</th>
-              <th>สิทธิ์</th>
-              <th>วันที่สร้าง</th>
-              <th className="text-center">จัดการ</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Created date</th>
+              <th className="text-center">Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -93,11 +93,11 @@ const TableAdmin = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/admin/edit/[id]" as={`/backend/admin/edit/${val.id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
                         </Link>
                       </li>
                       <li>
-                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>ลบ</span></a>
+                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
                       </li>
                     </ul>
                   </td>
@@ -109,7 +109,7 @@ const TableAdmin = (props) => {
         </table>
       </div>
       <ModalConfirmDialog show={modalConfirm}
-          text={`ยืนยันการลบข้อมูลนี้ หรือไม่?`}
+          text={`Do you confirm to delete this ?`}
           size="md" 
           cancel_btn={true}
           onConfirm={() => onConfirm()}

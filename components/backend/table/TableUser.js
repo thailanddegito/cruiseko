@@ -28,9 +28,9 @@ const TableUser = (props) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>ชื่อ - สกุล</th>
-              <th>วันที่สร้าง</th>
-              <th className="text-center">จัดการ</th>
+              <th>Full name</th>
+              <th>Created date</th>
+              <th className="text-center">Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +44,7 @@ const TableUser = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${val.id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>อนุมัติ</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>Approve</span></a>
                         </Link>
                       </li>
                     </ul>
