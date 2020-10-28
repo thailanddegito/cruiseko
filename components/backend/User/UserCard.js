@@ -25,6 +25,9 @@ const UserCard = (props) => {
   if(!users) {
     return null;
   }
+  if(!users.count) {
+    return null;
+  }
 
   return (
     <>
