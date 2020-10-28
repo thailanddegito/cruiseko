@@ -50,10 +50,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="สร้างผู้ใช้งานระบบ" page_name="ผู้ใช้งานระบบ" sub_page="สร้าง">
+      <Layout title="Create admin" page_name="Admin" sub_page="Create">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>สร้างผู้ใช้งานระบบ</h4>
+            <h4>Create admin</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -102,7 +102,7 @@ const Create = (props) => {
                 className:'form-control select', 
                 name : 'role_id', required : true,
               }} 
-              labelName="สิทธิ์ผู้ใช้งานระบบ" iconProps={{className : 'fa icon icon-home'}} options={roles} />
+              labelName="Admin roles" iconProps={{className : 'fa icon icon-home'}} options={roles} />
             </div>
           </div>
           
@@ -110,10 +110,10 @@ const Create = (props) => {
           <div className="row justify-content-center mt-4">
             <div className="col-6">
               <div className="text-center">
-                <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Button _type="submit" _name="Submit" _class="btn-primary" />
                 <Link href="/backend/admin">
                   <a>
-                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
                 </Link>
               </div>
@@ -121,7 +121,7 @@ const Create = (props) => {
           </div>
         </form>
         <SuccessDialog show={modalSuccess}
-          text="บันทึกข้อมูลสำเร็จ !!!"
+          text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
           route={"/backend/admin"} />
       </Layout>

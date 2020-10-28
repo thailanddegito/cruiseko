@@ -49,22 +49,22 @@ const User = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'firstname', required : true}} 
-              labelName="Name : ชื่อ" iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Firstname" iconProps={{className : 'fa icon icon-user'}}  />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'lastname', required : true}} 
-              labelName="Last Name : นามสกุล" iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Lastname " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <SelectLabel inputProps={{ className:'form-control select', name : 'position', required : true}} 
-              labelName="Position : ตำแหน่ง" iconProps={{className : 'fa icon icon-user'}} options={optionPosition} />
+              labelName="Position" iconProps={{className : 'fa icon icon-user'}} options={optionPosition} />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'phone'}} 
-              labelName="Tel : เบอร์โทรศัพท์" iconProps={{className : 'fa icon icon-phone'}}  />
+              labelName="Tel " iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
           </div>
 
@@ -75,20 +75,20 @@ const User = (props) => {
                 name : 'email', required : true,
                 value:inputData.email,onChange:handleChange
               }} 
-              labelName="Email : อีเมล์" iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
 
               {emailError && <div className="text-danger">{emailError} </div>}
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'line_id'}} 
-              labelName="Line ID (ไม่จำเป็นต้องระบุ)" iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Line ID (Not required)" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
           <div className="row justify-content-start">
             <div className="col-12">
               <div className="form-group">
-                <Button _type="submit" _name="ขั้นตอนถัดไป" _class="btn-primary" />
+                <Button _type="submit" _name="Next" _class="btn-primary" />
               </div>
             </div>
           </div>

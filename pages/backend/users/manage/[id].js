@@ -45,7 +45,7 @@ const UserManage = ({query}) => {
 
   return (
     <>
-      <Layout title="จัดการข้อมูลสมาชิก" page_name="ข้อมูลสมาชิก" sub_page="จัดการ" main_link="users" no_class={true}>
+      <Layout title="Manage user" page_name="Users" sub_page="manage" main_link="users" no_class={true}>
         <div className="collapse-new">
           <div className="d-flex" id="main">
             <div className="content">

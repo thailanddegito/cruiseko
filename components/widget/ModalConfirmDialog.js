@@ -31,10 +31,10 @@ const Dialog = ({show, onHide, size, text, cancel_btn, ref_id, onConfirm}) => {
               <div className="text-center">
                 {
                   cancel_btn && (
-                     <button type="button" className="btn btn-outline-primary mr-4" onClick={onHide}>ยกเลิก</button>
+                     <button type="button" className="btn btn-outline-primary mr-4" onClick={onHide}>Cancel</button>
                   )
                 }
-                <button type="button" className="btn btn-primary" onClick={handleConfirm}>ยืนยัน</button>
+                <button type="button" className="btn btn-primary" onClick={handleConfirm}>Confirm</button>
               </div>
             </div>
           </div>

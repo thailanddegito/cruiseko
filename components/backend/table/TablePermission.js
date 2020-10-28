@@ -49,9 +49,9 @@ const TablePermission = (props) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>ชื่อเมนู</th>
-              <th>วันที่สร้าง</th>
-              <th className="text-center" style={{width: "25%"}}>จัดการ</th>
+              <th>Menu name</th>
+              <th>Created date</th>
+              <th className="text-center" style={{width: "25%"}}>Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -65,11 +65,11 @@ const TablePermission = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/permission/edit/[id]" as={`/backend/permission/edit/${val.id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
                         </Link>
                       </li>
                       <li>
-                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>ลบ</span></a>
+                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
                       </li>
                     </ul>
                   </td>
@@ -82,7 +82,7 @@ const TablePermission = (props) => {
       </div>
 
       <ModalConfirmDialog show={modalConfirm}
-          text={`ยืนยันการลบข้อมูลนี้ หรือไม่?`}
+          text={`Do you confirm to delete this ?`}
           size="md" 
           cancel_btn={true}
           onConfirm={() => onConfirm()}

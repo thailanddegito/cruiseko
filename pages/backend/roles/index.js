@@ -7,15 +7,15 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="สิทธิ์เข้าใช้งานระบบ" page_name="สิทธิ์เข้าใช้งานระบบ">
+      <Layout title="Admin role" page_name="Admin role">
       <div className="row justify-content-start">
           <div className="col-6">
-            <h4>สิทธิ์เข้าใช้งานระบบ</h4>
+            <h4>Admin role</h4>
           </div>
           <div className="col-6">
             <div className="text-right">
               <Link href="/backend/roles/create">
-                <a className="btn btn-primary">เพิ่ม</a>
+                <a className="btn btn-primary">Create</a>
               </Link>
             </div>
           </div>

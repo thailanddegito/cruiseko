@@ -7,14 +7,14 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="ข้อมูลสมาชิก" page_name="ข้อมูลสมาชิก">
+      <Layout title="Users" page_name="Users">
         
         <div>
           <UserCard />
         </div>
         <div className="row justify-content-start">
           <div className="col-6">
-            <h4>ข้อมูลสมาชิก</h4>
+            <h4>Users</h4>
           </div>
         </div>
         <div className="divider"></div>
