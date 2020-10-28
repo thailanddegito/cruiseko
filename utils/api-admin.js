@@ -36,12 +36,14 @@ export default {
   //Payment
    baseUrl : BASE,
 
+   //Login
+   login : (data) => service.post(`/backend/admin/login`,data),
+
    //Users Front End
    getUsers : (params) => service.get(`/users`,{params}),
    getUsersOne : (id) => service.get(`/users/${id}`),
 
    //Admin Users
-   login : (data) => service.post(`/backend/admin/login`,data),
    getAdminProfile : () => service.get(`/backend/admin/profile`),
    getAdminUsers : () => service.get(`/backend/admin`),
    getAdminUsersOne : (id) => service.get(`/backend/admin/${id}`),
