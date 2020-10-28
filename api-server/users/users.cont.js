@@ -162,7 +162,9 @@ exports.updateProfile = async(req,res,next) => {
 exports.update = async(req,res,next)=>{
     var data= req.body;
     const actor = req.user
+    var id = req.params.id
     try{
+        data.id = id;
         await updateUser(actor,data)
         res.json({success:true})
     }
@@ -172,13 +174,17 @@ exports.update = async(req,res,next)=>{
 }
 
 exports.delete = async(req,res,next)=>{
+    var id = req.params.id
     try{
-
+        await User.destroy({where :{ id}})
+        res.json({success:true})
     }
     catch(err){
         next(err);
     }
 }
+
+
 
 
 
