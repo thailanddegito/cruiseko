@@ -21,14 +21,23 @@ const UserCard = (props) => {
   useEffect(() => {
     fecthUsers();
   },[]);
+  
+  if(!users) {
+    return null;
+  }
 
   return (
     <>
-      <div className="row">
+      <div className="row justify-content-start mb-3">
+        <div className="col-6">
+          <h4>รายการรออนุมัติข้อมูลสมาชิก</h4>
+        </div>
+      </div>
+      <div className="row mb-4">
         {
-          users ? users.rows.map((val, index) => (
+          users.rows.map((val, index) => (
             <Card key={index} users={val} />
-          )) : null
+          ))
         }
       </div>
     </>

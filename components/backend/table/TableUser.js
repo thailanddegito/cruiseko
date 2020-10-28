@@ -44,7 +44,7 @@ const TableUser = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${val.id}`}>
-                          <a><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>อนุมัติ</span></a>
                         </Link>
                       </li>
                     </ul>

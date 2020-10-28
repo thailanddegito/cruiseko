@@ -66,7 +66,7 @@ const TableRole = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/roles/edit/[id]" as={`/backend/roles/edit/${val.id}`}>
-                          <a><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>แก้ไข</span></a>
                         </Link>
                       </li>
                       <li>
