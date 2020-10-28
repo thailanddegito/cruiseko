@@ -103,7 +103,7 @@ const Create = (props) => {
             )) : ''
           }
 
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mt-4 mt-4">
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />

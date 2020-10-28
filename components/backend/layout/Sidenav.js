@@ -2,7 +2,10 @@
 import React, {useEffect, useState} from 'react';
 import Link from 'next/link'
 import Router from 'next/router';
-  
+import Topnav from './Topnav'
+import Modal from '../../widget/Modal'
+import AdminAuthService from '../../../utils/AdminAuthService';
+
 const Sidenav = (props) => {
   const {loading, children, page_name, sub_page} = props;
   const [toggle, setToggle] = useState(false);
@@ -20,7 +23,8 @@ const Sidenav = (props) => {
   }, [toggle])
 
   const handleLogout = () => {
-    Router.push('/backend/login');
+    AdminAuthService.logout();
+    window.location = '/backend/login';
   }
 
   return (
@@ -87,49 +91,9 @@ const Sidenav = (props) => {
         </div>
       </nav>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a href="javascript:void(0)" className="btn btn-primary" onClick={() => handleLogout()}>Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Topnav page_name={page_name} sub_page={sub_page} children={children} />
 
-      <div className="content-wrapper">
-        <div className="container-fluid">
-          <ol className="breadcrumb">
-            {(page_name) && (
-              <li className={`breadcrumb-item ${!sub_page && 'active'}`}>
-                {
-                  sub_page ? (
-                    <Link href="/backend/users">
-                      <a>{page_name}</a>
-                    </Link>
-                  ) : <a>{page_name}</a>
-                }
-                
-              </li>
-            )}
-            {sub_page && (
-              <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
-            )}
-          </ol>
-          <div className="content">
-            {children}
-          </div>
-        </div>
-      </div>
+      <Modal handleClick={() => handleLogout()} />
 
     </>
   )

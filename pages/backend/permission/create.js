@@ -42,7 +42,7 @@ const Create = (props) => {
               labelName="ชื่อเมนู : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center mt-4">
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />
