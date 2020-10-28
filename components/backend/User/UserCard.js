@@ -7,7 +7,7 @@ const UserCard = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner', accept_status : 0})
+    api.getUsers({user_type : 'partner', approve_status : 0})
     .then(res=>{
       const data = res.data;
       setUsers(data);

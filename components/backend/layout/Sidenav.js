@@ -7,7 +7,7 @@ import Modal from '../../widget/Modal'
 import AdminAuthService from '../../../utils/AdminAuthService';
 
 const Sidenav = (props) => {
-  const {children, page_name, sub_page, main_link} = props;
+  const {children, page_name, sub_page, main_link, no_class} = props;
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Sidenav = (props) => {
         </div>
       </nav>
 
-      <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} />
+      <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} />
 
       <Modal handleClick={() => handleLogout()} />
 

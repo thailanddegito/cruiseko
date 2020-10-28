@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link'
 
 const Topnav = (props) => {
-  const {children, page_name, sub_page, main_link } = props;
+  const {children, page_name, sub_page, main_link, no_class } = props;
 
   return (
     <>
@@ -26,7 +26,7 @@ const Topnav = (props) => {
               <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
             )}
           </ol>
-          <div className="content">
+          <div className={`${!no_class ? 'content' : ''}`}>
             {children}
           </div>
         </div>
