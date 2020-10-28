@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import TableUser from '../../../components/backend/user/Table';
-import UserCard from '../../../components/backend/User/UserCard';
+import UserCard from '../../../components/backend/user/UserCard';
 
 const Index = (props) => {
 

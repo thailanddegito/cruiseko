@@ -125,7 +125,7 @@ const Sidenav = (props) => {
               <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
             )}
           </ol>
-          <div>
+          <div className="content">
             {children}
           </div>
         </div>
