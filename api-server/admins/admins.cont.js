@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 11;
 const errors = require('../errors')
 const tools = require('../helper/tools');
-const { Op } = require('sequelize/types');
+const { Op } = require('sequelize');
 const {DefaultError} = errors
 
 
