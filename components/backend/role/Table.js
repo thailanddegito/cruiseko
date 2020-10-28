@@ -3,22 +3,21 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 
 const Table = (props) => {
-  const [permissions, setPermissions] = useState(false);
+  const [roles, setRole] = useState();
 
-  const fecthPermissions = () => {
-    api.getPermission()
+  const fechRole = () => {
+    api.getRole()
     .then(res=>{
       const data = res.data;
-      setPermissions(data);
+      setRole(data);
     })
     .catch(err => {
-      console.log(err);
       console.log(err.response);
     })
   }
-
+  
   useEffect(() => {
-    fecthPermissions();
+    fechRole();
   },[]);
 
   return (
@@ -40,7 +39,7 @@ const Table = (props) => {
               </thead>
               <tbody>
                 {
-                  permissions ? permissions.map((val, index) => (
+                  roles ? roles.map((val, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{val.name}</td>
@@ -48,7 +47,7 @@ const Table = (props) => {
                       <td className="text-center">
                         <ul className="buttons manage">
                           <li>
-                            <Link href="/backend/permission/edit/[id]" as={`/backend/permission/edit/${val.id}`}>
+                            <Link href="/backend/roles/edit/[id]" as={`/backend/roles/edit/${val.id}`}>
                               <a className="btn_1 gray manage"><i className="fa fa-fw fa-check-circle-o"></i> Manage</a>
                             </Link>
                           </li>

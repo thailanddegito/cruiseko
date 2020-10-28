@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import TableUser from '../../../components/backend/user/Table';
+import TableAdmin from '../../../components/backend/admin/Table';
 import Link from 'next/link'
 
 const Index = (props) => {
@@ -8,7 +8,22 @@ const Index = (props) => {
   return (
     <>
       <Layout title="Admin" page_name="Admin" isLogin={true}>
-        <Link href="/backend/admin/create"><a className="btn btn-primary">Create</a></Link>
+        <div className="row justify-content-start">
+          <div className="col-6">
+            <h4>ผู้ใช้งานระบบ (ผู้ดูแลระบบ)</h4>
+          </div>
+          <div className="col-6">
+            <div className="text-right">
+              <Link href="/backend/admin/create">
+                <a className="btn btn-primary">Create</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <div>
+          <TableAdmin />
+        </div>
       </Layout>
     </>
   )

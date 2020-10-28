@@ -5,22 +5,21 @@ import Button from '../../../components/widget/Button';
 import Router from 'next/router';
 import Link from 'next/link';
 import api from '../../../utils/api-admin';
+import SelectLabel from '../../../components/widget/SelectLabel';
 
 const Create = (props) => {
   const [roles, setRole] = useState();
-  const [valid1, setValid1] = useState(false);
-  const [valid2, setValid2] = useState(false);
 
   const fechRole = () => {
-    // api.getRole()
-    // .then(res=>{
-    //   const data = res.data;
+    api.getRole()
+    .then(res=>{
+      const data = res.data;
       
-    //   setRole(data);
-    // })
-    // .catch(err => {
-    //   console.log(err.response);
-    // })
+      setRole(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
 
   useEffect(() => {
@@ -33,19 +32,10 @@ const Create = (props) => {
     api.insertAdminUsers(data)
     .then(res=>{
       const data = res.data;
-      alert('Success');
+      alert('เพิ่มข้อมูลสำเร็จ');
       Router.push('/backend/admin');
     })
     .catch(err => {
-     
-      // if(err.response.data.code == 1005){
-      //   setValid1(true);
-      //   setValid2(false);
-      // }
-      // if(err.response.data.code == 1022){
-      //   setValid2(true);
-      //   setValid1(false);
-      // }
       console.log(err);
       console.log(err.response);
     })
@@ -58,9 +48,15 @@ const Create = (props) => {
   return (
     <>
       <Layout title="Create Admin" page_name="Admin" sub_page="Create" isLogin={true}>
+        <div className="row justify-content-start">
+          <div className="col-12">
+            <h4>สร้างผู้ใช้งานระบบ (ผู้ดูแลระบบ)</h4>
+          </div>
+        </div>
+        <div className="divider"></div>
         <form onSubmit={handleSave}>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'name',
                 name : 'name', required : true
@@ -69,43 +65,25 @@ const Create = (props) => {
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'email',
                 name : 'email', required : true
               }} 
               labelName="Email : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
-            {
-              valid1 && (
-                <div className="col-12 px-0">
-                  <div className="form-group blues">
-                    <span className="text-danger">อีเมลไม่ถูกต้อง หรือ มีอีเมลนี้ในระบบแล้ว</span>
-                  </div>
-                </div>
-              )
-            }
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'username', required : true
               }} 
               labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
-            {
-              valid2 && (
-                <div className="col-12 px-0">
-                  <div className="form-group blues">
-                    <span className="text-danger">ชื่อผู้ใช้งานระบบไม่ถูกต้อง หรือ มีชื่อผู้ใช้งานระบบนี้ในระบบแล้ว</span>
-                  </div>
-                </div>
-              )
-            }
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',name : 'password', 
                 pattern : ".{6,}", required : true
@@ -113,12 +91,28 @@ const Create = (props) => {
               labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
           </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <SelectLabel 
+              inputProps={{ 
+                className:'form-control select', 
+                name : 'company_type', required : true,
+              }} 
+              labelName="สิทธิ์ผู้ใช้งานระบบ" iconProps={{className : 'fa icon icon-home'}} options={roles} />
+            </div>
+          </div>
           
           
           <div className="row justify-content-center">
-            <div className="col-4">
-              <div className="form-group">
+            <div className="col-6">
+              <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Link href="/backend/admin">
+                  <a>
+                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

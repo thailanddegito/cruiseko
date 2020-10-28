@@ -35,12 +35,30 @@ service.interceptors.request.use(function (config) {
 export default {
   //Payment
    baseUrl : BASE,
+
+   //Users Front End
    getUsers : (params) => service.get(`/users`,{params}),
    getUsersOne : (id) => service.get(`/users/${id}`),
 
+   //Admin Users
    getAdminUsers : () => service.get(`/backend/admin`),
    getAdminUsersOne : (id) => service.get(`/backend/admin/${id}`),
    insertAdminUsers : (data) => service.post('/backend/admin',data) ,
    updateAdminUsers : (id, data) => service.put(`/backend/admin/${id}`,data) ,
    delAdminUsers : (id) => service.delete(`/backend/admin/${id}`),
+
+   //Permission
+   getPermission : () => service.get(`/backend/permission`),
+   getPermissioneOne : (id) => service.get(`/backend/permission/${id}`),
+   insertPermission : (data) => service.post(`/backend/permission`,data),
+   updatePermission : (data) => service.post(`/backend/permission/update`,data),
+   delPermission : (id) => service.delete(`/backend/permission/${id}`),
+
+    //Role
+    getRole : () => service.get(`backend/roles`),
+    getRoleOne : (id) => service.get(`/backend/roles/${id}`),
+    insertRole : (data) => service.post(`/backend/roles`,data),
+    updateRole : (data) => service.post(`/backend/roles/update`,data),
+    delRole : (id) => service.delete(`/backend/roles/${id}`),
+ 
 }

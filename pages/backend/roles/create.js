@@ -7,72 +7,94 @@ import Link from 'next/link';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {
+  const [permission, setPermission] = useState();
+
+  const fechPermission = () => {
+    api.getPermission()
+    .then(res=>{
+      const data = res.data;
+      setPermission(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  useEffect(() => {
+    fechPermission();
+  },[]);
+
  
+  const handleSave = (event) => {
+    event.preventDefault()
+    const data = new FormData(event.target)
+    if(!data.get('กรุณาเลือกอย่างน้อย 1 สิทธิ์')){
+      alert('test')
+      return false
+    }
+    api.insertRole(data)
+    .then(res=>{
+      const data = res.data;
+      alert('เพิ่มข้อมูลสำเร็จ');
+      Router.push('/backend/roles');
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
 
   return (
     <>
       <Layout title="Create Role" page_name="Role" sub_page="Create" isLogin={true}>
-        <form>
+        <div className="row justify-content-start">
+          <div className="col-12">
+            <h4>สร้างสิทธิ์ผู้ใช้งานระบบ</h4>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <form onSubmit={handleSave} >
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'name',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="ชื่อสิทธิ์ผู้ใช้งานระบบ : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'email',
-                name : 'email', required : true
-              }} 
-              labelName="Email : " iconProps={{className : 'fa icon icon-email'}}  />
-            </div>
-            {
-              valid1 && (
-                <div className="col-12 px-0">
-                  <div className="form-group blues">
-                    <span className="text-danger">อีเมลไม่ถูกต้อง หรือ มีอีเมลนี้ในระบบแล้ว</span>
+
+          <div className="row justify-content-center mb-4">
+            <div className="col-lg-6 col-12">
+              <p className="mb-0">เมนูหน้าเว็บ</p>
+            </div>    
+          </div>    
+
+          {
+            permission ? permission.map((val, index) => (
+              <div className="row justify-content-center" key={index}>
+                <div className="col-lg-6 col-12">
+                  <div className="form-group blues mb-0">
+                    <div className="custom-control custom-checkbox">
+                      <input type="checkbox" className="custom-control-input" id={val.id} name="permission" value={val.id} />
+                      <label className="custom-control-label" htmlFor={val.id}>
+                        <p>{val.name}</p>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              )
-            }
-          </div>
+              </div>
+            )) : ''
+          }
+
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'username', required : true
-              }} 
-              labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
-            </div>
-            {
-              valid2 && (
-                <div className="col-12 px-0">
-                  <div className="form-group blues">
-                    <span className="text-danger">ชื่อผู้ใช้งานระบบไม่ถูกต้อง หรือ มีชื่อผู้ใช้งานระบบนี้ในระบบแล้ว</span>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',name : 'password', 
-                pattern : ".{6,}", required : true
-              }} 
-              labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
-            </div>
-          </div>
-          
-          
-          <div className="row justify-content-center">
-            <div className="col-4">
-              <div className="form-group">
+            <div className="col-6">
+              <div className="text-center">
                 <Button _type="submit" _name="บันทึก" _class="btn-primary" />
+                <Link href="/backend/roles">
+                  <a>
+                    <Button _type="button" _name="ยกเลิก" _class="btn-outline-primary ml-4" />
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

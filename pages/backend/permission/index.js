@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import Link from 'next/link'
-import TableUser from '../../../components/backend/permission/Table';
+import TablePermission from '../../../components/backend/permission/Table';
 
 const Index = (props) => {
 
@@ -22,7 +22,7 @@ const Index = (props) => {
         </div>
         <div className="divider"></div>
         <div>
-          <TableUser />
+          <TablePermission />
         </div>
       </Layout>
     </>
