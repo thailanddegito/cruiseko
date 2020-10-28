@@ -35,7 +35,7 @@ const Table = (props) => {
     fechRole();
   },[]);
 
-  console.log(users);
+  // console.log(users);
 
   return (
     <>

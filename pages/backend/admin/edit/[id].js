@@ -112,7 +112,7 @@ const EditAdmin = ({query}) => {
               <SelectLabel 
               inputProps={{ 
                 className:'form-control select', 
-                name : 'company_type', required : true,
+                name : 'role_id', required : true,
               }} 
               labelName="สิทธิ์ผู้ใช้งานระบบ" iconProps={{className : 'fa icon icon-home'}} options={roles} />
             </div>
