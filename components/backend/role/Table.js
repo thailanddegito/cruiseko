@@ -19,6 +19,8 @@ const Table = (props) => {
   useEffect(() => {
     fechRole();
   },[]);
+  
+  console.log(roles);
 
   return (
     <>
@@ -33,6 +35,7 @@ const Table = (props) => {
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Level</th>
                   <th>Created date</th>
                   <th className="text-center" style={{width: "25%"}}>Manage</th>
                 </tr>
@@ -43,6 +46,7 @@ const Table = (props) => {
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{val.name}</td>
+                      <td>{val.level}</td>
                       <td>{val.createdAt}</td>
                       <td className="text-center">
                         <ul className="buttons manage">

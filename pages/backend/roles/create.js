@@ -5,6 +5,7 @@ import Button from '../../../components/widget/Button';
 import Router from 'next/router';
 import Link from 'next/link';
 import api from '../../../utils/api-admin';
+import SelectLabel from '../../../components/widget/SelectLabel';
 
 const Create = (props) => {
   const [permission, setPermission] = useState();
@@ -42,6 +43,11 @@ const Create = (props) => {
       console.log(err.response);
     })
   }
+  
+  const levels = [
+    {val : '1', name : '1'},{val : '2', name : '2'},{val : '3', name : '3'},
+    {val : '4', name : '4'},{val : '5', name : '5'}
+  ];
 
   return (
     <>
@@ -60,6 +66,17 @@ const Create = (props) => {
                 name : 'name', required : true
               }} 
               labelName="ชื่อสิทธิ์ผู้ใช้งานระบบ : " iconProps={{className : 'fa icon icon-email'}}  />
+            </div>
+          </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <SelectLabel 
+              inputProps={{ 
+                className:'form-control select', 
+                name : 'level', required : true,
+              }} 
+              labelName="ระดับการเข้าถึง" iconProps={{className : 'fa icon icon-home'}} options={levels} />
             </div>
           </div>
 
