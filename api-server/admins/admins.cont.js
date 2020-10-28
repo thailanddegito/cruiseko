@@ -223,7 +223,7 @@ exports.getRole = async(req,res,next)=>{
   
   
 exports.updateRole = async(req,res,next)=>{
-    const {id,name,permission} = req.body;
+    const {id,name,permission,level} = req.body;
     // let task=[]
     try{
         // console.log('id', id)
