@@ -13,7 +13,7 @@ const Card = (props) => {
             <div className="card dashboard text-white bg-primary o-hidden h-100">
               <div className="card-body">
                 <div className="card-body-icon img">
-                  <img src="/template/img/no-picture.png" className="approve-logo" />
+                  <img src={users.image_logo ? users.image_logo : "/template/img/no-picture.png"} className="approve-logo" />
                 </div>
                 <div className="mr-5"><h5>{users.company_name_en}</h5></div>
                 <div className="mr-5"><p className="mb-0">{users.company_name_th}</p></div>
