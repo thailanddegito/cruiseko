@@ -23,4 +23,17 @@ router.get('/admin/:id',admin.getOne)
 router.put('/admin/:id',admin.update)
 router.delete('/admin/:id',admin.delete)
 
+
+router.get('/roles',admin.getRole)
+router.get('/roles/:id',admin.getRoleOne)
+router.post('/roles',admin.createRole)
+router.post('/roles/update',admin.updateRole)
+router.delete('/roles/:id',admin.delRole)
+
+router.get('/permission',admin.getPermission)
+router.get('/permission/:id',admin.getPermissionOne)
+router.post('/permission',admin.createPermission)
+router.post('/permission/update',admin.updatePermission)
+router.delete('/permission/:id',admin.delPermission)
+
 module.exports = router;
