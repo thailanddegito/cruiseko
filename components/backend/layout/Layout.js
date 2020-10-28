@@ -26,6 +26,7 @@ const Layout = (props) => {
         <link href="/backend_css/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
         <link href="/backend_css/vendor/dropzone.css" rel="stylesheet" />
         <link href="/backend_css/css/date_picker.css" rel="stylesheet" />
+        <link href="/backend_css/css/datetime.css" rel="stylesheet" />
         <link rel="stylesheet" href="/backend_css/js/editor/summernote-bs4.css" />
 
         <link href="/backend_css/css/custom.css" rel="stylesheet" />
@@ -44,7 +45,7 @@ const Layout = (props) => {
         <script src="/backend_css/js/admin.js"></script>
         <script src="/backend_css/js/admin-datatables.js"></script>
 
-        
+
       </Head>
       
       {

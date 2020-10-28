@@ -42,6 +42,7 @@ export default {
    //Users Front End
    getUsers : (params) => service.get(`/users`,{params}),
    getUsersOne : (id) => service.get(`/users/${id}`),
+   updateUsers : (id, data) => service.put(`/users/${id}`,data) ,
 
    //All Count
    getCountUsers : () => service.get(`/backend/count`),
