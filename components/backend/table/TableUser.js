@@ -27,6 +27,7 @@ const TableUser = (props) => {
         <table className="table table-bordered" width="100%" cellSpacing="0">
           <thead>
             <tr>
+              <th>#</th>
               <th>ชื่อ - สกุล</th>
               <th>วันที่สร้าง</th>
               <th className="text-center">จัดการ</th>
@@ -36,6 +37,7 @@ const TableUser = (props) => {
             {
               users ? users.rows.map((val, index) => (
                 <tr key={index}>
+                  <td>{index + 1}</td>
                   <td>{val.firstname} {val.lastname}</td>
                   <td>{val.createdAt}</td>
                   <td className="text-center">
