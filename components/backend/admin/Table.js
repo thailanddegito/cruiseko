@@ -19,10 +19,9 @@ const Table = (props) => {
   }
 
   const fechUsers = () => {
-    api.getUsers()
+    api.getAdminUsers()
     .then(res=>{
       const data = res.data;
-      
       setUsers(data);
     })
     .catch(err => {
@@ -35,6 +34,8 @@ const Table = (props) => {
     fechUsers();
     fechRole();
   },[]);
+
+  console.log(users);
 
   return (
     <>
@@ -57,7 +58,7 @@ const Table = (props) => {
               </thead>
               <tbody>
                 {
-                  users ? users.map((val, index) => (
+                  users ? users.rows.map((val, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{val.name}</td>
