@@ -10,7 +10,7 @@ const Dialog = ({show, onHide, size, user_id}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     var data = new FormData(event.target)
-    data.append('status', 1);
+    data.append('approve_status', 1);
     api.updateUsers(user_id, data)
     .then(res=>{
       const data = res.data;
