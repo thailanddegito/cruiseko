@@ -6,6 +6,7 @@ import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import ModalApprove from '../../../../components/backend/user/ModalApprove';
 import ModalProblem from '../../../../components/backend/user/ModalProblem';
+import UserDetail from '../../../../components/backend/user/UserDetail';
 import LicenseImage from '../../../../components/backend/user/LicenseImage';
 
 const UserManage = ({query}) => {
@@ -50,6 +51,7 @@ const UserManage = ({query}) => {
               <div className="collapse-new">
                 <div className="d-flex" id="main" style={toggle ? {marginRight : "25%"} : {marginRight : "0"}}>
                   <div className="content w-100">
+                    <UserDetail users={users} />
                     <Button _type="button" _name="อนุมัติ" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
                     <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
                   </div>
@@ -57,7 +59,7 @@ const UserManage = ({query}) => {
                 </div>
                 <div id="mySidebar" className="sidebar" style={toggle ? {width : "25%"} : {width : "0"}}>
                   <div>
-                    <LicenseImage />
+                    <LicenseImage users={users} />
                   </div>
                 </div>
               </div>
