@@ -71,6 +71,13 @@ exports.login = async(req,res,next)=>{
         if(!match){
             throw new DefaultError(errors.INVALID_PASSWORD);
         }
+        if(user.approve_status == 0){
+            throw new DefaultError(errors.PENDING_APPROVE);
+        }
+        if(user.approve_status == 2){
+            throw new DefaultError(errors.NOT_APPROVE);
+        }
+
         const token = generateToken(user)
         res.json({success :true , token ,user_id : user.id})
 
