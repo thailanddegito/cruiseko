@@ -38,4 +38,9 @@ export default {
    getUsers : (params) => service.get(`/users`,{params}),
    getUsersOne : (id) => service.get(`/users/${id}`),
 
+   getAdminUsers : () => service.get(`/backend/admin`),
+   getAdminUsersOne : (id) => service.get(`/backend/admin/${id}`),
+   insertAdminUsers : (data) => service.post('/backend/admin',data) ,
+   updateAdminUsers : (id, data) => service.put(`/backend/admin/${id}`,data) ,
+   delAdminUsers : (id) => service.delete(`/backend/admin/${id}`),
 }

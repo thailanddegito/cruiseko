@@ -54,6 +54,14 @@ const Sidenav = (props) => {
                 </a>
               </Link>
             </li>
+            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+              <Link href="/backend/roles">
+                <a className="nav-link">
+                  <i className="fa fa-fw fa-user"></i>
+                  <span className="nav-link-text">Admin Role</span>
+                </a>
+              </Link>
+            </li>
           </ul>
           <ul className="navbar-nav sidenav-toggler">
             <li className="nav-item">

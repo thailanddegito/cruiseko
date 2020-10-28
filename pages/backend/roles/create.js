@@ -7,58 +7,12 @@ import Link from 'next/link';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {
-  const [roles, setRole] = useState();
-  const [valid1, setValid1] = useState(false);
-  const [valid2, setValid2] = useState(false);
-
-  const fechRole = () => {
-    // api.getRole()
-    // .then(res=>{
-    //   const data = res.data;
-      
-    //   setRole(data);
-    // })
-    // .catch(err => {
-    //   console.log(err.response);
-    // })
-  }
-
-  useEffect(() => {
-    fechRole();
-  },[]);
-
-  const handleSave = () => {
-    const data = new FormData(event.target)
-    event.preventDefault()
-    api.insertAdminUsers(data)
-    .then(res=>{
-      const data = res.data;
-      alert('Success');
-      Router.push('/backend/admin');
-    })
-    .catch(err => {
-     
-      // if(err.response.data.code == 1005){
-      //   setValid1(true);
-      //   setValid2(false);
-      // }
-      // if(err.response.data.code == 1022){
-      //   setValid2(true);
-      //   setValid1(false);
-      // }
-      console.log(err);
-      console.log(err.response);
-    })
-  }
-
-  const handleError = (error) => {
-    console.log( error);
-  }
+ 
 
   return (
     <>
-      <Layout title="Create Admin" page_name="Admin" sub_page="Create" isLogin={true}>
-        <form onSubmit={handleSave}>
+      <Layout title="Create Role" page_name="Role" sub_page="Create" isLogin={true}>
+        <form>
           <div className="row justify-content-center">
             <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
