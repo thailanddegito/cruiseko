@@ -87,7 +87,6 @@ const TableAdmin = (props) => {
                         ) : ''
                       )) : ''
                     }
-                    
                   </td>
                   <td>{val.createdAt}</td>
                   <td className="text-center">
