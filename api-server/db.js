@@ -33,6 +33,7 @@ for (var key of Object.keys(models)) {
 
 // console.log(Admin.associate)
 // console.log('models',sequelize.models)
+// models.User.sync({force : true})
 // sequelize.sync({alter:true})
 
 
@@ -41,7 +42,7 @@ for (var key of Object.keys(models)) {
 //     const bcrypt = require('bcrypt');
 //     var data = {
 //         username : 'superadmin',
-//         username : 'Superadmin',
+//         name : 'Superadmin',
 //         email : 'superadmin@cruiseko.app',
 //         password : 'secret1234',
 //         role_id : 0
