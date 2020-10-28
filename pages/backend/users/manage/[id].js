@@ -6,6 +6,7 @@ import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import ModalApprove from '../../../../components/backend/user/ModalApprove';
 import ModalProblem from '../../../../components/backend/user/ModalProblem';
+import LicenseImage from '../../../../components/backend/user/LicenseImage';
 
 const UserManage = ({query}) => {
   const [modalApprove, setModalApprove] = useState(false);
@@ -50,13 +51,13 @@ const UserManage = ({query}) => {
                 <div className="d-flex" id="main" style={toggle ? {marginRight : "25%"} : {marginRight : "0"}}>
                   <div className="content w-100">
                     <Button _type="button" _name="อนุมัติ" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
-                    <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalApprove(true)} />
+                    <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
                   </div>
                   <div className="nav-toggle" onClick={onToggle}></div>
                 </div>
                 <div id="mySidebar" className="sidebar" style={toggle ? {width : "25%"} : {width : "0"}}>
                   <div>
-                    
+                    <LicenseImage />
                   </div>
                 </div>
               </div>

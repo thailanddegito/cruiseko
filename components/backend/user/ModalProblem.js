@@ -27,7 +27,9 @@ const Dialog = ({show, onHide, size, user_id}) => {
         <form onSubmit={handleSubmit}>
           <div className="row mt-4 justify-content-center">
             <div className="col-12">
-              
+              <div className="form-group">
+                <textarea className="form-control" name="problem_note"></textarea>
+              </div>
             </div>
             <div className="col-12 mb-4">
               <div className="text-center">
