@@ -41,6 +41,7 @@ for (var key of Object.keys(models)) {
 //     const bcrypt = require('bcrypt');
 //     var data = {
 //         username : 'superadmin',
+//         username : 'Superadmin',
 //         email : 'superadmin@cruiseko.app',
 //         password : 'secret1234',
 //         role_id : 0
