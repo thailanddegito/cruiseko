@@ -6,9 +6,12 @@ import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import api from '../../../../utils/api-admin';
 import SelectLabel from '../../../../components/widget/SelectLabel';
+import WarningDialog from '../../../../components/widget/ModalWarningDialog';
+import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 
 const EditRole = ({query}) => {
-
+  const [modalWarning, setModalWarning] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState();
   const [roles, setRole] = useState();
 
@@ -48,14 +51,13 @@ const EditRole = ({query}) => {
     event.preventDefault()
     const data = new FormData(event.target)
     if(!data.get('permission')){
-      alert('กรุณาเลือกอย่างน้อย 1 สิทธิ์')
+      setModalWarning(true);
       return false
     }
     api.updateRole(data)
     .then(res=>{
       const data = res.data;
-      alert('แก้ไขข้อมูลสำเร็จ');
-      Router.push('/backend/roles');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err.response);
@@ -145,6 +147,15 @@ const EditRole = ({query}) => {
             </div>
           </div>
         </form>
+
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/roles"} />
+        
+        <WarningDialog show={modalWarning}
+          text="กรุณาเลือกอย่างน้อย 1 สิทธิ์ !!!"
+          size="md" onHide={() => setModalWarning(false)} />
       </Layout>
     </>
   )

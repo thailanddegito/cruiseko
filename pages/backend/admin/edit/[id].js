@@ -6,8 +6,10 @@ import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import api from '../../../../utils/api-admin';
 import SelectLabel from '../../../../components/widget/SelectLabel';
+import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 
 const EditAdmin = ({query}) => {
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [users, setUsers] = useState();
   const [roles, setRole] = useState();
 
@@ -51,9 +53,7 @@ const EditAdmin = ({query}) => {
     api.updateAdminUsers(user_id, data)
     .then(res=>{
       const data = res.data;
-      
-      alert('แก้ไขข้อมูลสำเร็จ');
-      Router.push('/backend/admin');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err);
@@ -142,6 +142,10 @@ const EditAdmin = ({query}) => {
         ) : null
       }
         
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/admin"} />
       </Layout>
     </>
   )

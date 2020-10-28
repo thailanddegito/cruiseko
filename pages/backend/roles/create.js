@@ -6,8 +6,12 @@ import Router from 'next/router';
 import Link from 'next/link';
 import api from '../../../utils/api-admin';
 import SelectLabel from '../../../components/widget/SelectLabel';
+import WarningDialog from '../../../components/widget/ModalWarningDialog';
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 
-const Create = (props) => {
+const Create = (props) => {  
+  const [modalWarning, setModalWarning] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState();
 
   const fechPermission = () => {
@@ -30,14 +34,13 @@ const Create = (props) => {
     event.preventDefault()
     const data = new FormData(event.target)
     if(!data.get('permission')){
-      alert('กรุณาเลือกอย่างน้อย 1 สิทธิ์')
+      setModalWarning(true);
       return false
     }
     api.insertRole(data)
     .then(res=>{
       const data = res.data;
-      alert('เพิ่มข้อมูลสำเร็จ');
-      Router.push('/backend/roles');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err.response);
@@ -116,6 +119,15 @@ const Create = (props) => {
             </div>
           </div>
         </form>
+
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/roles"} />
+
+        <WarningDialog show={modalWarning}
+          text="กรุณาเลือกอย่างน้อย 1 สิทธิ์ !!!"
+          size="md" onHide={() => setModalWarning(false)} />  
       </Layout>
     </>
   )

@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import InputLabel from '../../../components/widget/InputLabel'
 import Button from '../../../components/widget/Button';
-import Router from 'next/router';
 import Link from 'next/link';
 import api from '../../../utils/api-admin';
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 
 const Create = (props) => {
- 
+  const [modalSuccess, setModalSuccess] = useState(false);
+
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
     api.insertPermission(data)
     .then(res=>{
       const data = res.data;
-      
-      alert('เพิ่มข้อมูลสำเร็จ');
-      Router.push('/backend/permission');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err.response);
@@ -55,6 +54,12 @@ const Create = (props) => {
             </div>
           </div>
         </form>
+
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/permission"} />
+
       </Layout>
     </>
   )

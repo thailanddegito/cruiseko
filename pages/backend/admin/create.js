@@ -6,8 +6,10 @@ import Router from 'next/router';
 import Link from 'next/link';
 import api from '../../../utils/api-admin';
 import SelectLabel from '../../../components/widget/SelectLabel';
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 
 const Create = (props) => {
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [roles, setRole] = useState();
 
   const fechRole = () => {
@@ -34,8 +36,7 @@ const Create = (props) => {
     api.insertAdminUsers(data)
     .then(res=>{
       const data = res.data;
-      alert('เพิ่มข้อมูลสำเร็จ');
-      Router.push('/backend/admin');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err);
@@ -119,6 +120,10 @@ const Create = (props) => {
             </div>
           </div>
         </form>
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/admin"} />
       </Layout>
     </>
   )

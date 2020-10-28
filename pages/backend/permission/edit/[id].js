@@ -5,9 +5,10 @@ import InputLabel from '../../../../components/widget/InputLabel'
 import Button from '../../../../components/widget/Button';
 import Link from 'next/link';
 import api from '../../../../utils/api-admin';
+import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 
 const EditPermission = ({query}) => {
-
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState()
   const router = useRouter();
   const id = router.query.id
@@ -16,7 +17,6 @@ const EditPermission = ({query}) => {
     api.getPermissioneOne(id)
     .then(res=>{
       const data = res.data;
-      
       setPermission(data);
     })
     .catch(err => {
@@ -34,17 +34,14 @@ const EditPermission = ({query}) => {
     api.updatePermission(data)
     .then(res=>{
       const data = res.data;
-      
-      alert('แก้ไขข้อมูลสำเร็จ');
-
-      Router.push('/backend/permission');
+      setModalSuccess(true);
     })
     .catch(err => {
       console.log(err.response);
     })
   }
 
-  console.log(permission);
+  // console.log(permission);
 
 
   return (
@@ -81,6 +78,12 @@ const EditPermission = ({query}) => {
             </div>
           </div>
         </form>
+
+        <SuccessDialog show={modalSuccess}
+          text="บันทึกข้อมูลสำเร็จ !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/permission"} />
+          
       </Layout>
     </>
   )
