@@ -19,4 +19,6 @@ module.exports = {
     INVALID_PASSWORD : 'InvalidPasswordError',
     FILEDS_INCOMPLETE : 'FieldsIncompleteError',
     PERMISSION_ERROR : 'PermissionError',
+    PENDING_APPROVE : 'PendingApproveError',
+    NOT_APPROVE : 'NotApproveError',
 }
