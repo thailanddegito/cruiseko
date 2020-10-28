@@ -15,7 +15,7 @@ exports.getAll = async(req,res,next)=>{
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
-        var where ={[Op.or] : []}
+        var where ={[Op.or] : [],role_id : {[Op.ne] : 0}}
 
         if(search){
             where[Op.or].push({username : {[Op.like] : '%'+search+'%' } })
