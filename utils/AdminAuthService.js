@@ -8,16 +8,16 @@ export default class AuthService{
         return !!token 
     }
 
-    // static setProfile = profile =>{
-    //     // Saves profile data to localStorage
-    //     localStorage.setItem('profile', JSON.stringify(profile))
-    // }
+    static setProfile = profile =>{
+        // Saves profile data to localStorage
+        localStorage.setItem('admin_profile', JSON.stringify(profile))
+    }
     
-    // static getProfile = ()=>{
-    //     // Retrieves the profile data from localStorage
-    //     const profile = localStorage.getItem('profile')
-    //     return profile ? JSON.parse(profile) : null
-    // }
+    static getProfile = ()=>{
+        // Retrieves the profile data from localStorage
+        const profile = localStorage.getItem('admin_profile')
+        return profile ? JSON.parse(profile) : null
+    }
     
     static setToken =token =>{
         // Saves user token to localStorage

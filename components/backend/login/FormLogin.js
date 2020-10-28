@@ -10,10 +10,10 @@ const FormLogin = (props) => {
   return (
     <>
       <InputLabel inputProps={{ 
-        className:'form-control', type : 'email',name : 'username', id : "email",
-        pattern : "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", title :"Invalid email", required : true
+        className:'form-control', type : 'text',name : 'username', id : "email",
+        /* pattern : "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", title :"Invalid email", */ required : true
       }} 
-      labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
+      labelName="Username" iconProps={{className : 'fa icon icon-email'}}  />
       <InputLabel inputProps={{ 
         className:'form-control', type : 'password',name : 'password', id : "password",
         pattern : ".{6,}", title :"six or more characters", required : true
