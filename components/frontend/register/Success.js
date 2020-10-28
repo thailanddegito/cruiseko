@@ -38,7 +38,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',name : 'password', 
+                className:'form-control', type : 'password',name : 'password', 
                 value:inputData.password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 
@@ -48,7 +48,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text', name : 'confirm_password',
+                className:'form-control', type : 'password', name : 'confirm_password',
                 value:inputData.confirm_password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 

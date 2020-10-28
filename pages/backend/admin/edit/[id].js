@@ -107,7 +107,7 @@ const EditAdmin = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',name : 'password', 
+                className:'form-control', type : 'password',name : 'password', 
                 pattern : ".{6,}"
               }} 
               labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
