@@ -214,7 +214,7 @@ exports.getRole = async(req,res,next)=>{
         for (const item of permission) {
            await RoleHasPermission.create({role_id,permission_id:item})
         }
-        res.json({});
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -234,7 +234,7 @@ exports.updateRole = async(req,res,next)=>{
         for (const item of permission) {
             await RoleHasPermission.create({role_id:id,permission_id:item})
         }
-        res.json({});
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -245,7 +245,7 @@ exports.delRole = async(req,res,next)=>{
     const id = req.params.id;
     try{
         await Role.destroy({where:{id}})
-        request.ok(res);
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -303,7 +303,7 @@ exports.delPermission = async(req,res,next)=>{
     const id = req.params.id;
     try{
         await Permission.destroy({where:{id}})
-        request.ok(res);
+        res.json({success:true})
     }
     catch(err){
         next(err);
