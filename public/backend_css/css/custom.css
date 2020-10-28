@@ -202,6 +202,11 @@ span.nav-link-text {
   background-color: #dc3545;
   color: #FFF !important;
 }
+.a-manage.success {
+  border-color: #28a745;
+  background-color: #28a745;
+  color: #FFF !important;
+}
 .badge.badge-pill.badge-danger {
   padding-top: 4px;
   padding-bottom: 4px;

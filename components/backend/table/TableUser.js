@@ -29,6 +29,7 @@ const TableUser = (props) => {
             <tr>
               <th>#</th>
               <th>Full name</th>
+              <th>Status</th>
               <th>Created date</th>
               <th className="text-center">Manage</th>
             </tr>
@@ -39,6 +40,11 @@ const TableUser = (props) => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.firstname} {val.lastname}</td>
+                  <td>
+                    {val.approve_status == 0 && <span className="a-manage warning">Pending</span>}
+                    {val.approve_status == 1 && <span className="a-manage success">Approve</span>}
+                    {val.approve_status == 2 && <span className="a-manage danger">Problem</span>}
+                  </td>
                   <td>{val.createdAt}</td>
                   <td className="text-center">
                     <ul className="buttons manage">
