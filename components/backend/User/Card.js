@@ -17,7 +17,7 @@ const Card = (props) => {
                 </div>
                 <div className="mr-5"><h5>{users.company_name_en}</h5></div>
                 <div className="mr-5"><p className="mb-0">{users.company_name_th}</p></div>
-                <div className="mr-5"><p className="mb-0 font-14">{users.company_type}</p></div>
+                <div className="mr-5"><p className="mb-0 font-14">{users.company_type == "agent" ? "Agents" : "Hotels"}</p></div>
                 <div className="mr-5"><h5>{users.license_no}</h5></div>
 
               </div>

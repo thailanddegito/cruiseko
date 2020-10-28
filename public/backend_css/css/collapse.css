@@ -1,6 +1,7 @@
 .collapse-new {
   position: relative;
   background-color: #fff;
+  min-height: 100%;
 }
 
 .collapse-new .sidebar {
@@ -13,7 +14,7 @@
   background-color: #bebebe;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 0;
 }
 
 .collapse-new .sidebar a {
@@ -44,18 +45,25 @@
   position: relative;
 }
 .nav-toggle::after {
-  font-family: 'FontAwesome';
-  content: '\f105';
   color: #fff;
   padding: 0 4px;
   font-size: 18px;
   font-weight: bold;
   position: relative;
   float: left;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+}
+.nav-toggle.open::after {
+  font-family: 'FontAwesome';
+  content: '\f105';
+}
+.nav-toggle.close::after {
+  font-family: 'FontAwesome';
+  content: '\f104';
 }
 #main {
   transition: margin-left .5s;
-  height: 60vh;
+  height: 100%;
 }

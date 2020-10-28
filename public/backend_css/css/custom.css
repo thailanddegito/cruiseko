@@ -55,6 +55,15 @@ ul.buttons.manage {
   border-radius: 50%;
   opacity: 1;
 }
+.box-approve {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid #EEE;
+  text-align: center;
+  margin: 0 auto;
+}
 #login aside, #register aside {
   width: 430px;
   padding: 45px 60px 60px 60px;
@@ -210,6 +219,18 @@ span.nav-link-text {
 .badge.badge-pill.badge-danger {
   padding-top: 4px;
   padding-bottom: 4px;
+}
+.image-info {
+  width: 80%;
+  max-height: 100%;
+  padding: 32px;
+}
+.middle {
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {

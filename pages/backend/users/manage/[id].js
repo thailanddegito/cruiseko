@@ -51,11 +51,19 @@ const UserManage = ({query}) => {
               <div className="collapse-new">
                 <div className="d-flex" id="main" style={toggle ? {marginRight : "25%"} : {marginRight : "0"}}>
                   <div className="content w-100">
-                    <UserDetail users={users} />
-                    <Button _type="button" _name="อนุมัติ" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
-                    <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
+                    <div className="container">
+                      <UserDetail users={users} />
+                      <div className="row justify-content-center">
+                        <div className="col-12 mt-4">
+                          <div className="text-center">
+                            <Button _type="button" _name="อนุมัติ" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
+                            <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="nav-toggle" onClick={onToggle}></div>
+                  <div className={`nav-toggle ${toggle ? 'open' : 'close'}`} onClick={onToggle}></div>
                 </div>
                 <div id="mySidebar" className="sidebar" style={toggle ? {width : "25%"} : {width : "0"}}>
                   <div>
