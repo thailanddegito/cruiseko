@@ -12,6 +12,7 @@ class DefaultError extends Error{
 
 module.exports = {
     DefaultError,
+    NOT_FOUND : 'NotFoundError',
     INVALID_EMAIL : 'InvalidEmailError',
     DUPLICATED_EMAIL : 'DuplicatedEmailError',
     DUPLICATED_USERNAME : 'DuplicatedUsernameError',

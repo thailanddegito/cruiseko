@@ -142,6 +142,9 @@ exports.update = async(req,res,next)=>{
         if(password){
             data.password = await bcrypt.hash(password, saltRounds);
         }
+        else{
+            delete data.password
+        }
         
         delete data.email
         delete data.username

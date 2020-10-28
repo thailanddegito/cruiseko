@@ -25,15 +25,19 @@ function MyApp({ Component, pageProps }) {
     
     // const regex2 = /forgot-password|change-password/
       
-    if(AdminAuthService.isLoggin() && regex_backend.test(pathname) ){
+    if(regex_backend.test(pathname) ){
+      if(AdminAuthService.isLoggin()){
+        fetchAdmin()
+        if(/backend\/login/.test(pathname)) Router.push('/backend')
+      }
+      else{
+        Router.push('/backend/login')
+      }
       // alert('aa')
-      fetchAdmin()
-      if(/backend\/login/.test(pathname)) Router.push('/backend')
+      
       // window.location= '/login'
     }
-    else if(!/backend\/login/.test(pathname)){
-      Router.push('/backend/login')
-    }
+    
 
   },[])
 

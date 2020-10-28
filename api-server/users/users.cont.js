@@ -144,11 +144,27 @@ exports.profile = async(req,res,next)=>{
     }
 }
 
+exports.updateProfile = async(req,res,next) => {
+    var data= req.body;
+    const actor = req.user
+    data.id = actor.id
+    try{
+        await updateUser(actor,data)
+        res.json({success:true})
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 
 
 exports.update = async(req,res,next)=>{
+    var data= req.body;
+    const actor = req.user
     try{
-
+        await updateUser(actor,data)
+        res.json({success:true})
     }
     catch(err){
         next(err);
@@ -198,6 +214,38 @@ exports.genUserId = async(req,res,next)=>{
     catch(err){
         next(err);
     }
+}
+
+
+
+async function updateUser  (actor,data){
+    var {id,password,approve_status} = data;
+
+    if(!id){
+        throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+
+    delete data.id;
+    delete data.username
+
+    if(password){
+        data.password = await bcrypt.hash(password, saltRounds)
+    }
+    else{
+        delete data.password
+    }
+    const user = await User.findOne({where : {id}})
+
+    if(!user){
+        throw new DefaultError(errors.NOT_FOUND);
+    }
+
+    if(approve_status == 1){
+        
+    }
+
+
+    await User.update(data,{where : { id}});
 }
 
 
