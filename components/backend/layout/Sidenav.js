@@ -7,7 +7,7 @@ import Modal from '../../widget/Modal'
 import AdminAuthService from '../../../utils/AdminAuthService';
 
 const Sidenav = (props) => {
-  const {loading, children, page_name, sub_page} = props;
+  const {children, page_name, sub_page, main_link} = props;
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
@@ -46,33 +46,27 @@ const Sidenav = (props) => {
               <Link href="/backend/users">
                 <a className="nav-link">
                   <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Users Agents/Hotels</span>
+                  <span className="nav-link-text">ข้อมูลสมาชิก</span>
                 </a>
               </Link>
             </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/admin">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Admin Users</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/roles">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Admin Role</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-              <Link href="/backend/permission">
-                <a className="nav-link">
-                  <i className="fa fa-fw fa-user"></i>
-                  <span className="nav-link-text">Permission</span>
-                </a>
-              </Link>
+            <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
+              <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                <i className="fa fa-fw fa-user"></i>
+                <span className="nav-link-text">ข้อมูลผู้ใช้งานระบบ</span>
+              </a>
+              <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
+                <li>
+                  <Link href="/backend/admin">
+                    <a href="charts.html">ผู้ใช้งานระบบ</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/backend/roles">
+                    <a href="tables.html">สิทธิ์เข้าใช้งานระบบ</a>
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
           <ul className="navbar-nav sidenav-toggler">
@@ -91,7 +85,7 @@ const Sidenav = (props) => {
         </div>
       </nav>
 
-      <Topnav page_name={page_name} sub_page={sub_page} children={children} />
+      <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} />
 
       <Modal handleClick={() => handleLogout()} />
 

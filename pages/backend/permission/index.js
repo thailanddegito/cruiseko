@@ -7,7 +7,7 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Permission" page_name="Permission" isLogin={true}>
+      <Layout title="สิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ">
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>สิทธิ์การใช้งานเมนูหน้าเว็บ</h4>

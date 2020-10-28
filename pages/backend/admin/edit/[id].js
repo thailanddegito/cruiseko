@@ -63,10 +63,10 @@ const EditAdmin = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit Admin" page_name="Admin" sub_page="Edit" isLogin={true}>
-      <div className="row justify-content-start">
+      <Layout title="แก้ไขผู้ใช้งานระบบ" page_name="ผู้ใช้งานระบบ" sub_page="แก้ไข" main_link="admin">
+        <div className="row justify-content-start">
           <div className="col-12">
-            <h4>สร้างผู้ใช้งานระบบ (ผู้ดูแลระบบ)</h4>
+            <h4>แก้ไขผู้ใช้งานระบบ</h4>
           </div>
         </div>
         <div className="divider"></div>

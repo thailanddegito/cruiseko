@@ -49,10 +49,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create Admin" page_name="Admin" sub_page="Create" isLogin={true}>
+      <Layout title="สร้างผู้ใช้งานระบบ" page_name="ผู้ใช้งานระบบ" sub_page="สร้าง">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>สร้างผู้ใช้งานระบบ (ผู้ดูแลระบบ)</h4>
+            <h4>สร้างผู้ใช้งานระบบ</h4>
           </div>
         </div>
         <div className="divider"></div>

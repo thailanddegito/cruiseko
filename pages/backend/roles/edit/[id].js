@@ -78,10 +78,10 @@ const EditRole = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit Role" page_name="Role" sub_page="Edit" isLogin={true}>
+      <Layout title="แก้สิทธิ์เข้าใช้งานระบบ" page_name="สิทธิ์เข้าใช้งานระบบ" sub_page="แก้ไข" main_link="roles">
       <div className="row justify-content-start">
           <div className="col-12">
-            <h4>แก้สิทธิ์ผู้ใช้งานระบบ</h4>
+            <h4>แก้สิทธิ์เข้าใช้งานระบบ</h4>
           </div>
         </div>
         <div className="divider"></div>

@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link'
 
 const Topnav = (props) => {
-  const {page_name, sub_page, children} = props;
+  const {children, page_name, sub_page, main_link } = props;
 
   return (
     <>
@@ -14,7 +14,7 @@ const Topnav = (props) => {
               <li className={`breadcrumb-item ${!sub_page && 'active'}`}>
                 {
                   sub_page ? (
-                    <Link href="/backend/users">
+                    <Link href={`/backend/${main_link}`}>
                       <a>{page_name}</a>
                     </Link>
                   ) : <a>{page_name}</a>

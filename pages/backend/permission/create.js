@@ -25,7 +25,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create Permission" page_name="Permission" sub_page="Create" isLogin={true}>
+      <Layout title="สร้างสิทธิ์การใช้งานเมนูหน้าเว็บ" page_name="สิทธิ์การใช้งานเมนูหน้าเว็บ" sub_page="สร้าง">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>สร้างสิทธิ์การใช้งานเมนูหน้าเว็บ</h4>

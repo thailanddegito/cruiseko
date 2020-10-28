@@ -30,6 +30,10 @@ body {
 a:hover span {
   text-decoration: underline;
 }
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+  color: #868e96;
+  margin-top: 2px;
+}
 ul.buttons.manage {
   list-style: none;
   margin: 0;
@@ -181,7 +185,11 @@ custom-checkbox .custom-control-label::before {
 
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
-    padding: 8px;
+    padding: 10px;
     padding-left: 18px;
+  }
+  #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a, #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
+    padding: 10px;
+    padding-left: 2.75em;
   }
 }

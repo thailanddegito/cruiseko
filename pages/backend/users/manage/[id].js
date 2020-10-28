@@ -29,7 +29,7 @@ const UserManage = ({query}) => {
 
   return (
     <>
-      <Layout title="Manage Users" page_name="Users" sub_page="Manage" isLogin={true}>
+      <Layout title="จัดการข้อมูลสมาชิก" page_name="ข้อมูลสมาชิก" sub_page="จัดการ" main_link="users">
         
       </Layout>
     </>
