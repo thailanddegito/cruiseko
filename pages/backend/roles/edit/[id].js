@@ -10,6 +10,7 @@ import SelectLabel from '../../../../components/widget/SelectLabel';
 import api from '../../../../utils/api-admin';
 
 const EditRole = ({query}) => {
+  const page_key = "roles";
   const [modalWarning, setModalWarning] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState();
@@ -80,7 +81,7 @@ const EditRole = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit role" page_name="Edit role" sub_page="edit" main_link="roles" page_key={"roles"}>
+      <Layout title="Edit role" page_name="Edit role" sub_page="edit" main_link="roles">
       <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit role</h4>

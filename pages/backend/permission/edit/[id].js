@@ -8,6 +8,7 @@ import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 
 const EditPermission = ({query}) => {
+  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState()
   const router = useRouter();
@@ -46,7 +47,7 @@ const EditPermission = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit admin permission" page_name="Edit admin permission" sub_page="edit" main_link="permission" page_key={"permission"}>
+      <Layout title="Edit admin permission" page_name="Edit admin permission" sub_page="edit" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit admin permission</h4>

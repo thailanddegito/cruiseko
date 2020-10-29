@@ -4,10 +4,11 @@ import Layout from '../../../components/backend/layout/Layout';
 import TableAdmin from '../../../components/backend/table/TableAdmin';
 
 const Index = (props) => {
+  const page_key = "admin";
 
   return (
     <>
-      <Layout title="Admin" page_name="Admin" page_key={"admin"}>
+      <Layout title="Admin" page_name="Admin">
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>Admin</h4>

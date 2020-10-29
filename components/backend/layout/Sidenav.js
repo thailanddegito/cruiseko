@@ -8,7 +8,7 @@ import AdminAuthService from '../../../utils/AdminAuthService';
 import api from '../../../utils/api-admin';
 
 const Sidenav = (props) => {
-  const {children, page_name, sub_page, main_link, admin, page_key, no_class} = props;
+  const {children, page_name, sub_page, main_link, admin, no_class} = props;
   const [toggle, setToggle] = useState(false);
   const [counts, setCounts] = useState(false);
 

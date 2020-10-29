@@ -7,6 +7,7 @@ import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {
+  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const handleSave = (event) => {
@@ -24,7 +25,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create" page_key={"permission"}>
+      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Create admin roles</h4>

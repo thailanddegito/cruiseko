@@ -9,6 +9,7 @@ import Button from '../../../../components/widget/Button';
 import api from '../../../../utils/api-admin';
 
 const UserManage = ({query}) => {
+  const page_key = "users";
   const [modalApprove, setModalApprove] = useState(false);
   const [modalProblem, setModalProblem] = useState(false);
   const [toggle, setToggle] = useState(true);
@@ -43,7 +44,7 @@ const UserManage = ({query}) => {
 
   return (
     <>
-      <Layout title="Manage user" page_name="Users" sub_page="Manage" main_link="users" no_class={true} page_key={"users"}>
+      <Layout title="Manage user" page_name="Users" sub_page="Manage" main_link="users" no_class={true}>
         {
           !!users ? (
             <>
