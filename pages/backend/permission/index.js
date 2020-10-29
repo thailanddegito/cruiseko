@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import React from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import Link from 'next/link'
 import TablePermission from '../../../components/backend/table/TablePermission';
 
 const Index = (props) => {
 
   return (
     <>
-      <Layout title="Admin permission" page_name="Admin permission">
+      <Layout title="Admin permission" page_name="Admin permission" page_key={"permission"}>
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>Admin permission</h4>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Layout from '../../../components/backend/layout/Layout';
-import InputLabel from '../../../components/widget/InputLabel'
-import Button from '../../../components/widget/Button';
 import Link from 'next/link';
-import api from '../../../utils/api-admin';
+import React, { useState } from 'react';
+import Layout from '../../../components/backend/layout/Layout';
+import Button from '../../../components/widget/Button';
+import InputLabel from '../../../components/widget/InputLabel';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+import api from '../../../utils/api-admin';
 
 const Create = (props) => {
   const [modalSuccess, setModalSuccess] = useState(false);
@@ -24,7 +24,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create">
+      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create" page_key={"permission"}>
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Create admin roles</h4>
@@ -35,10 +35,19 @@ const Create = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
               labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',
+                name : 'permission_key', required : true
+              }} 
+              labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center mt-4">

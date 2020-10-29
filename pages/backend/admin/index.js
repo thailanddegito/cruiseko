@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import React from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import TableAdmin from '../../../components/backend/table/TableAdmin';
-import Link from 'next/link'
 
 const Index = (props) => {
 
   return (
     <>
-      <Layout title="Admin" page_name="Admin">
+      <Layout title="Admin" page_name="Admin" page_key={"admin"}>
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>Admin</h4>

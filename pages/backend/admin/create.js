@@ -1,12 +1,11 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import InputLabel from '../../../components/widget/InputLabel'
 import Button from '../../../components/widget/Button';
-import Router from 'next/router';
-import Link from 'next/link';
-import api from '../../../utils/api-admin';
-import SelectLabel from '../../../components/widget/SelectLabel';
+import InputLabel from '../../../components/widget/InputLabel';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+import SelectLabel from '../../../components/widget/SelectLabel';
+import api from '../../../utils/api-admin';
 
 const Create = (props) => {
   const [modalSuccess, setModalSuccess] = useState(false);
@@ -50,7 +49,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin" page_name="Admin" sub_page="Create">
+      <Layout title="Create admin" page_name="Admin" sub_page="Create" page_key={"admin"}>
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Create admin</h4>

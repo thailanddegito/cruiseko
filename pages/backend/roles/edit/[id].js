@@ -1,13 +1,13 @@
-import Router, { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import InputLabel from '../../../../components/widget/InputLabel'
 import Button from '../../../../components/widget/Button';
-import Link from 'next/link';
-import api from '../../../../utils/api-admin';
-import SelectLabel from '../../../../components/widget/SelectLabel';
-import WarningDialog from '../../../../components/widget/ModalWarningDialog';
+import InputLabel from '../../../../components/widget/InputLabel';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
+import WarningDialog from '../../../../components/widget/ModalWarningDialog';
+import SelectLabel from '../../../../components/widget/SelectLabel';
+import api from '../../../../utils/api-admin';
 
 const EditRole = ({query}) => {
   const [modalWarning, setModalWarning] = useState(false);
@@ -80,7 +80,7 @@ const EditRole = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit role" page_name="Edit role" sub_page="edit" main_link="roles">
+      <Layout title="Edit role" page_name="Edit role" sub_page="edit" main_link="roles" page_key={"roles"}>
       <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit role</h4>
