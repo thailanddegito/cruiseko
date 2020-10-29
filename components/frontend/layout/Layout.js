@@ -21,6 +21,7 @@ const Layout = (props) => {
         <link href="/template/css/bootstrap.min.css" rel="stylesheet" />
         <link href="/template/css/style.css" rel="stylesheet" />
         <link href="/template/css/vendors.css" rel="stylesheet" />
+        <link href="/css/sidenav.css" rel="stylesheet" />
         <link href="/css/custom.css" rel="stylesheet" />
 
         <script src="/template/js/common_scripts.js"></script>
