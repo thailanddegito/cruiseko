@@ -44,10 +44,33 @@ exports.index = async(req,res,next)=>{
 
 exports.getOne = async(req,res,next)=>{
     var id = req.params.id
+    var {with_around} = req.query;
     try{
         // var options = {attributes: {exclude: ['password']}}
         const user = await User.findOne({where :{id},attributes: {exclude: ['password']} })
-        res.json(user)
+
+        if(!user){
+            throw new DefaultError(errors.NOT_FOUND);
+        }
+
+        var data = {...user.toJSON()}
+
+        if(with_around == 1){
+            const [_prev,_next] = await Promise.all([
+                User.findOne({where : {approve_status : 0,user_type:'partner',createdAt : { [Op.lt] : user.createdAt} } ,
+                    order: [['createdAt','desc']] , attributes:['id']
+
+                }),
+                User.findOne({where : {approve_status : 0,user_type:'partner',createdAt : { [Op.gt] : user.createdAt} } ,
+                    order: [['createdAt','asc']] , attributes:['id']
+                }),
+            ])
+
+            if(_prev) data.prev_id = _prev.id
+            if(_next) data.next_id = _next.id
+        }
+
+        res.json(data)
     }
     catch(err){
         next(err);
