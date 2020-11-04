@@ -7,6 +7,22 @@ body {
   border-radius: 25px !important;
   cursor: pointer;
 }
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.btn-previous {
+  min-width: 80px !important;
+  border-radius: 8px !important;
+}
+.btn-next {
+  min-width: 80px !important;
+  border-radius: 8px !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
 .content-wrapper {
   background: #EEE;
   background-color: #EEE;

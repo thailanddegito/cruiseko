@@ -11,11 +11,17 @@ const Dialog = ({show, onHide, size, user_id}) => {
     event.preventDefault();
     var data = new FormData(event.target)
     data.append('approve_status', 1);
+    data.append('with_next', 1);
     api.updateUsers(user_id, data)
     .then(res=>{
       const data = res.data;
       onHide();
-      Router.push('/backend/users');
+      setStartDate(null);
+      if(data.next_id) {
+        Router.push('/backend/users/manage/[id]?id='+data.next_id, '/backend/users/manage/'+data.next_id);
+      }else{
+        Router.push('/backend/users');
+      }
     })
     .catch(err => {
       console.log(err);
@@ -36,15 +42,15 @@ const Dialog = ({show, onHide, size, user_id}) => {
         <form onSubmit={handleSubmit}>
           <div className="row mt-4 justify-content-center">
             <div className="col-12">
-              <div className="text-center">
-                <h5>Approve</h5>
+              <div className="text-left">
+                <h5>Confirm User Registration</h5>
+                <p className="mb-0">Please specify the license expiration date.</p>
               </div>
             </div>
           </div>
-          <div className="row mt-4 justify-content-center">
+          <div className="row mt-3 justify-content-center">
             <div className="col-12">
               <div className="form-group">
-                <label></label>
                 <Datetime 
                 dateFormat="YYYY-MM-DD" 
                 timeFormat={false}
@@ -55,8 +61,8 @@ const Dialog = ({show, onHide, size, user_id}) => {
             </div>
             <div className="col-12 my-4">
               <div className="text-center">
-                <button type="submit" className="btn btn-primary">ยืนยัน</button>
-                <button type="button" className="btn btn-outline-primary ml-4" onClick={onHide}>ยกเลิก</button>
+                <button type="submit" className="btn btn-primary">Confirm</button>
+                <button type="button" className="btn btn-outline-primary ml-4" onClick={onHide}>Close</button>
               </div>
             </div>
           </div>

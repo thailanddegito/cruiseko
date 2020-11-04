@@ -44,10 +44,33 @@ exports.index = async(req,res,next)=>{
 
 exports.getOne = async(req,res,next)=>{
     var id = req.params.id
+    var {with_around} = req.query;
     try{
         // var options = {attributes: {exclude: ['password']}}
         const user = await User.findOne({where :{id},attributes: {exclude: ['password']} })
-        res.json(user)
+
+        if(!user){
+            throw new DefaultError(errors.NOT_FOUND);
+        }
+
+        var data = {...user.toJSON()}
+
+        if(with_around == 1){
+            const [_prev,_next] = await Promise.all([
+                User.findOne({where : {approve_status : 0,user_type:'partner',createdAt : { [Op.lt] : user.createdAt} } ,
+                    order: [['createdAt','desc']] , attributes:['id']
+
+                }),
+                User.findOne({where : {approve_status : 0,user_type:'partner',createdAt : { [Op.gt] : user.createdAt} } ,
+                    order: [['createdAt','asc']] , attributes:['id']
+                }),
+            ])
+
+            data.prev_id = _prev ? _prev.id : null
+            data.next_id = _next ? _next.id : null
+        }
+
+        res.json(data)
     }
     catch(err){
         next(err);
@@ -173,8 +196,11 @@ exports.update = async(req,res,next)=>{
     var id = req.params.id
     try{
         data.id = id;
-        await updateUser(actor,data)
-        res.json({success:true})
+        const addt =  await updateUser(actor,data)
+
+        var response_data = {success:true}
+        if(addt) response_data = {...response_data,...addt}
+        res.json(response_data)
     }
     catch(err){
         next(err);
@@ -233,7 +259,7 @@ exports.genUserId = async(req,res,next)=>{
 
 
 async function updateUser  (actor,data){
-    var {id,password,approve_status,license_expired_date} = data;
+    var {id,password,approve_status,license_expired_date,with_next} = data;
 
     if(!id){
         throw new DefaultError(errors.FILEDS_INCOMPLETE);
@@ -288,7 +314,19 @@ async function updateUser  (actor,data){
     }
 
 
+    var addt = {next_id : null};
+    if(with_next == 1){
+        const next_user = await User.findOne({where : { 
+            approve_status : 0,user_type:'partner',id : {[Op.ne] : user.id}
+        }
+        ,attributes:['id']})
+
+        if(next_user) addt = {next_id : next_user.id}
+    }
+
+
     await User.update(data,{where : { id}});
+    return addt
 }
 
 

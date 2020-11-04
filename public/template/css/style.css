@@ -877,6 +877,8 @@ ul#top_menu li:last-child {
   ul#top_menu li:first-child {
     display: none;
   }
+}
+@media (max-width: 520px) {
   .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
     top: 56px !important;
   } 

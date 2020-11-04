@@ -29,6 +29,8 @@ const UserCard = (props) => {
     return null;
   }
 
+  console.log();
+
   return (
     <>
       <div className="row justify-content-start mb-3">

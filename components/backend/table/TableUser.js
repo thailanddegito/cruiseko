@@ -6,7 +6,7 @@ const TableUser = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner'})
+    api.getUsers({user_type : 'partner', approve_status : 1})
     .then(res=>{
       const data = res.data;
       setUsers(data);
@@ -50,7 +50,7 @@ const TableUser = (props) => {
                     <ul className="buttons manage">
                       <li>
                         <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${val.id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>Approve</span></a>
+                          <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>Manage</span></a>
                         </Link>
                       </li>
                     </ul>
