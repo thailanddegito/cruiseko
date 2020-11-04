@@ -64,14 +64,18 @@ const UserManage = ({query}) => {
                 <div className={`d-flex text ${toggle ? 'toggle' : ''}`} id="main">
                   <div className="content w-100">
                     <div className="container">
-                      <div className="row mb-md-0 mb-4">
-                        <div className="col-12">
-                          <div className="text-right">
-                            <Button _type="button" _name="Previous" _class="btn-previous" _click={() => handleClick(users.prev_id)} _disabled={!users.prev_id} />
-                            <Button _type="button" _name="Next" _class="btn-next ml-2" _click={() => handleClick(users.next_id)} _disabled={!users.next_id} />
+                      {
+                        users.approve_status != 0 ? null : (
+                          <div className="row mb-md-0 mb-4">
+                            <div className="col-12">
+                              <div className="text-right">
+                                <Button _type="button" _name="Previous" _class="btn-previous" _click={() => handleClick(users.prev_id)} _disabled={!users.prev_id} />
+                                <Button _type="button" _name="Next" _class="btn-next ml-2" _click={() => handleClick(users.next_id)} _disabled={!users.next_id} />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        )
+                      }
                       <UserDetail users={users} closeLightbox={closeLightbox}/>
                       <div className="mobile-display">
                         <div className="mt-4">
@@ -80,10 +84,14 @@ const UserManage = ({query}) => {
                       </div>
                       <div className="row justify-content-center">
                         <div className="col-12 mt-4">
-                          <div className="text-center">
-                            <Button _type="button" _name="Approve" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
-                            <Button _type="button" _name="Problem" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
-                          </div>
+                          {
+                            users.approve_status != 0 ? null : (
+                              <div className="text-center">
+                                <Button _type="button" _name="Approve" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
+                                <Button _type="button" _name="Problem" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
+                              </div>
+                            )
+                          }
                         </div>
                       </div>
                     </div>
