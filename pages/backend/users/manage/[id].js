@@ -61,8 +61,8 @@ const UserManage = ({query}) => {
                       <div className="row justify-content-center">
                         <div className="col-12 mt-4">
                           <div className="text-center">
-                            <Button _type="button" _name="อนุมัติ" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
-                            <Button _type="button" _name="พบปัญหา" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
+                            <Button _type="button" _name="Approve" _class="btn-primary ml-4" _click={() => setModalApprove(true)} />
+                            <Button _type="button" _name="Problem" _class="btn-outline-primary ml-4" _click={() => setModalProblem(true)} />
                           </div>
                         </div>
                       </div>

@@ -6,7 +6,7 @@ const TableUser = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner'})
+    api.getUsers({user_type : 'partner', approve_status : 1})
     .then(res=>{
       const data = res.data;
       setUsers(data);

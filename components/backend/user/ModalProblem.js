@@ -27,12 +27,13 @@ const Dialog = ({show, onHide, size, user_id}) => {
         <form onSubmit={handleSubmit}>
           <div className="row mt-4 justify-content-center">
             <div className="col-12">
-              <div className="text-center">
-                <h5>Problem</h5>
+              <div className="text-left">
+                <h5>There was a Problem Registration</h5>
+                <p className="mb-0">Additional Note</p>
               </div>
             </div>
           </div>
-          <div className="row mt-4 justify-content-center">
+          <div className="row mt-3 justify-content-center">
             <div className="col-12">
               <div className="form-group">
                 <textarea className="form-control" name="problem_note"></textarea>
@@ -40,8 +41,8 @@ const Dialog = ({show, onHide, size, user_id}) => {
             </div>
             <div className="col-12 my-4">
               <div className="text-center">
-                <button type="submit" className="btn btn-primary">ยืนยัน</button>
-                <button type="button" className="btn btn-outline-primary ml-4" onClick={onHide}>ยกเลิก</button>
+                <button type="submit" className="btn btn-primary">Confirm</button>
+                <button type="button" className="btn btn-outline-primary ml-4" onClick={onHide}>Close</button>
               </div>
             </div>
           </div>

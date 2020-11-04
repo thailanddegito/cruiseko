@@ -7,6 +7,14 @@ body {
   border-radius: 25px !important;
   cursor: pointer;
 }
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.btn-outline-primary {
+
+}
 .content-wrapper {
   background: #EEE;
   background-color: #EEE;
