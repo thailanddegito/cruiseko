@@ -61,7 +61,7 @@ const TableAdmin = (props) => {
   return (
     <>
       <div className="table-responsive">
-        <table className="table table-bordered" width="100%" cellSpacing="0">
+        <table class="table table-bordered" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>#</th>
