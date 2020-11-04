@@ -14,7 +14,7 @@ module.exports = {
             var max = await DB.User.max('id', {where : {company_type : type },logging:console.log})
             if(!max) return type === 'agent' ? start_agent : start_hotel
 
-            max = max.toString()
+            max = max+''
             let prefix = max.subString(0,4)
             let num = parseInt(max.subString(4)) +1
 
@@ -25,7 +25,7 @@ module.exports = {
             var max = await DB.User.max('id',{where : {company_type : type }})
             if(!max) return start_fit
             
-            max = max.toString()
+            max = max+''
             let prefix = max.subString(0,3)
             let num = parseInt(max.subString(3)) + 1
 
