@@ -11,11 +11,17 @@ const Dialog = ({show, onHide, size, user_id}) => {
     event.preventDefault();
     var data = new FormData(event.target)
     data.append('approve_status', 1);
+    data.append('with_next', 1);
     api.updateUsers(user_id, data)
     .then(res=>{
       const data = res.data;
       onHide();
-      Router.push('/backend/users');
+      setStartDate(null);
+      if(data.next_id) {
+        Router.push('/backend/users/manage/[id]?id='+data.next_id, '/backend/users/manage/'+data.next_id);
+      }else{
+        Router.push('/backend/users');
+      }
     })
     .catch(err => {
       console.log(err);
