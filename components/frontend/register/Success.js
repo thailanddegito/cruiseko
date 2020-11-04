@@ -19,7 +19,7 @@ const Success = (props) => {
             !!isPartner && (
               <div className="row justify-content-start">
                 <div className="col-lg-6 col-12">
-                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true ,value:inputData.id}} 
+                  <InputLabel inputProps={{ className:'form-control icon', type : 'text',name : 'id', readOnly : true ,value:inputData.id}} 
                     labelName="Account ID : " iconProps={{className : 'fa icon icon-user'}}  />
                 </div>
               </div>
@@ -28,7 +28,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
+                className:'form-control icon', type : 'text',
                 name : 'username', required : true,readOnly:true,
                 value:inputData.email
               }} 
@@ -38,7 +38,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'password',name : 'password', 
+                className:'form-control icon', type : 'password',name : 'password', 
                 value:inputData.password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 
@@ -48,7 +48,7 @@ const Success = (props) => {
           <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'password', name : 'confirm_password',
+                className:'form-control icon', type : 'password', name : 'confirm_password',
                 value:inputData.confirm_password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 

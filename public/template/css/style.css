@@ -877,6 +877,9 @@ ul#top_menu li:last-child {
   ul#top_menu li:first-child {
     display: none;
   }
+  .bs-wizard > .bs-wizard-step > .bs-wizard-dot {
+    top: 56px !important;
+  } 
 }
 ul#top_menu li a {
   color: #fff;
@@ -4604,7 +4607,7 @@ ul.hotel_facilities li img {
   margin-bottom: 60px;
   display: block;
 }
-#login aside form .form-group input, #register aside form .form-group input {
+#login aside form .form-group input.icon, #register aside form .form-group input.icon {
   padding-left: 40px;
 }
 #login aside form .form-group i, #register aside form .form-group i {

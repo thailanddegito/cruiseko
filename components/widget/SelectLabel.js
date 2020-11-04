@@ -2,7 +2,7 @@
 import React from 'react';
   
 const SelectLabel = (props) => {
-  const {labelName,labelProps={},inputProps={} , iconProps={}, options=[]} = props;
+  const {labelName,labelProps={},inputProps={}, icon = true, iconProps={}, options=[]} = props;
   return (
 
       <div className="form-group">
@@ -14,7 +14,8 @@ const SelectLabel = (props) => {
             ))
           }
         </select>
-        <i {...iconProps}></i>
+        {icon && <i {...iconProps}></i>}
+        
       </div>
 
   )

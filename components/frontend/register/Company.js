@@ -31,24 +31,24 @@ const Company = (props) => {
                 <div className="col-12">
                   <SelectLabel 
                   inputProps={{ 
-                    className:'form-control select', 
+                    className:'form-control', 
                     name : 'company_type', required : true,
                     value :inputData.company_type ,
                     onChange:handleChange
                   }} 
-                  labelName="Company Type" iconProps={{className : 'fa icon icon-home'}} options={optionCompanyType} />
+                  labelName="Company Type" icon={false} options={optionCompanyType} />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en', required : true}} 
-                  labelName="Company Name English" iconProps={{className : 'fa icon icon-home'}}  />
+                  labelName="Company Name English" icon={false}  />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_th', required : true}} 
-                  labelName="Company Name Thai" iconProps={{className : 'fa icon icon-home'}}  />
+                  labelName="Company Name Thai"  icon={false}  />
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ const Company = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'license_no', required : true}} 
+              <InputLabel inputProps={{ className:'form-control icon', type : 'text',name : 'license_no', required : true}} 
               labelName="License No" iconProps={{className : 'fa icon icon-newspaper'}}  />
             </div>
             <div className="col-lg-6 col-12">
@@ -70,7 +70,7 @@ const Company = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'address', required : true}} 
+              <InputLabel inputProps={{ className:'form-control icon', type : 'text',name : 'address', required : true}} 
               labelName="Address" iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
@@ -80,11 +80,11 @@ const Company = (props) => {
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_phone', required : true}} 
+              <InputLabel inputProps={{ className:'form-control icon', type : 'text',name : 'company_phone', required : true}} 
               labelName="Tel " iconProps={{className : 'fa icon icon-phone'}}  />
             </div>
             <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ className:'form-control', type : 'email',name : 'company_email', required : true}} 
+              <InputLabel inputProps={{ className:'form-control icon', type : 'email',name : 'company_email', required : true}} 
               labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
