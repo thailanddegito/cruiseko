@@ -314,7 +314,7 @@ async function updateUser  (actor,data){
     }
 
 
-    var addt;
+    var addt = {next_id : null};
     if(with_next == 1){
         const next_user = await User.findOne({where : { 
             approve_status : 0,user_type:'partner',id : {[Op.ne] : user.id}
