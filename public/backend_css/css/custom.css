@@ -20,9 +20,8 @@ body {
   min-width: 80px !important;
   border-radius: 8px !important;
 }
-
-.btn-outline-primary {
-
+.cursor-pointer {
+  cursor: pointer;
 }
 .content-wrapper {
   background: #EEE;
