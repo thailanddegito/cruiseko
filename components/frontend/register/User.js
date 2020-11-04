@@ -49,22 +49,22 @@ const User = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'firstname', required : true}} 
-              labelName="Firstname" iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Firstname" />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'lastname', required : true}} 
-              labelName="Lastname " iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Lastname " />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
-              <SelectLabel inputProps={{ className:'form-control select', name : 'position', required : true}} 
-              labelName="Position" iconProps={{className : 'fa icon icon-user'}} options={optionPosition} />
+              <SelectLabel inputProps={{ className:'form-control', name : 'position', required : true}} 
+              labelName="Position" options={optionPosition} />
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'phone'}} 
-              labelName="Tel " iconProps={{className : 'fa icon icon-phone'}}  />
+              labelName="Tel " />
             </div>
           </div>
 
@@ -75,13 +75,13 @@ const User = (props) => {
                 name : 'email', required : true,
                 value:inputData.email,onChange:handleChange
               }} 
-              labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Email"  />
 
               {emailError && <div className="text-danger">{emailError} </div>}
             </div>
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'line_id'}} 
-              labelName="Line ID (Not required)" iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Line ID (Not required)"  />
             </div>
           </div>
 

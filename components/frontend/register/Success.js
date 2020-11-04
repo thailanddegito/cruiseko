@@ -20,7 +20,7 @@ const Success = (props) => {
               <div className="row justify-content-start">
                 <div className="col-lg-6 col-12">
                   <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'id', readOnly : true ,value:inputData.id}} 
-                    labelName="Account ID : " iconProps={{className : 'fa icon icon-user'}}  />
+                    labelName="Account ID : "  />
                 </div>
               </div>
             )
@@ -32,7 +32,7 @@ const Success = (props) => {
                 name : 'username', required : true,readOnly:true,
                 value:inputData.email
               }} 
-              labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Username : "  />
             </div>
           </div>
           <div className="row justify-content-start">
@@ -42,7 +42,7 @@ const Success = (props) => {
                 value:inputData.password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 
-              labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
+              labelName="Password : "  />
             </div>
           </div>
           <div className="row justify-content-start">
@@ -52,7 +52,7 @@ const Success = (props) => {
                 value:inputData.confirm_password , onChange : handleChange,
                 pattern : ".{6,}", required : true
               }} 
-              labelName="Re - Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
+              labelName="Re - Password : "  />
             </div>
           </div>
           

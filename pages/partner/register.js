@@ -67,9 +67,9 @@ const Register = ({ t }) => {
           <div className="row">
             <div className="col-12">
               <div className="bs-wizard step clearfix">
-                <Step active={show == 1} name="Company infomation" />
-                <Step active={show == 2} name="User infomation" />
-                <Step active={show == 3} name="Login infomation" />
+                <Step active={show == 1} name="Company information" />
+                <Step active={show == 2} name="User information" />
+                <Step active={show == 3} name="Login information" />
               </div>
             </div>
           </div>

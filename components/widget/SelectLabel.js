@@ -14,7 +14,10 @@ const SelectLabel = (props) => {
             ))
           }
         </select>
-        <i {...iconProps}></i>
+        {
+          iconProps && <i {...iconProps}></i>
+        }
+        
       </div>
 
   )
