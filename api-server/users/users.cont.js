@@ -196,8 +196,11 @@ exports.update = async(req,res,next)=>{
     var id = req.params.id
     try{
         data.id = id;
-        await updateUser(actor,data)
-        res.json({success:true})
+        const addt =  await updateUser(actor,data)
+
+        var response_data = {success:true}
+        if(addt) response_data = {...response_data,...addt}
+        res.json(response_data)
     }
     catch(err){
         next(err);
@@ -256,7 +259,7 @@ exports.genUserId = async(req,res,next)=>{
 
 
 async function updateUser  (actor,data){
-    var {id,password,approve_status,license_expired_date} = data;
+    var {id,password,approve_status,license_expired_date,with_next} = data;
 
     if(!id){
         throw new DefaultError(errors.FILEDS_INCOMPLETE);
@@ -311,7 +314,19 @@ async function updateUser  (actor,data){
     }
 
 
+    var addt;
+    if(with_next == 1){
+        const next_user = await User.findOne({where : { 
+            approve_status : 0,user_type:'partner',id : {[Op.ne] : user.id}
+        }
+        ,attributes:['id']})
+
+        if(next_user) addt = {next_id : next_user.id}
+    }
+
+
     await User.update(data,{where : { id}});
+    return addt
 }
 
 
