@@ -56,6 +56,6 @@ module.exports = {
         })
     },
     genFileUrl : (fileName,path)=>{
-        return fileName ? `${base_domain}/storage/${path}/${fileName}` : null
+        return fileName ? `/storage/${path}/${fileName}` : null
     },
 }
