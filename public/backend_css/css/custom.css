@@ -8,9 +8,8 @@ body {
   cursor: pointer;
 }
 .btn-primary {
-  color: #FFF;
+  color: #fff;
   background-color: #007bff;
-  background-image: none;
   border-color: #007bff;
 }
 .btn-outline-primary {
