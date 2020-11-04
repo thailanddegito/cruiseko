@@ -66,8 +66,8 @@ exports.getOne = async(req,res,next)=>{
                 }),
             ])
 
-            if(_prev) data.prev_id = _prev.id
-            if(_next) data.next_id = _next.id
+            data.prev_id = _prev ? _prev.id : null
+            data.next_id = _next ? _next.id : null
         }
 
         res.json(data)
