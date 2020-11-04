@@ -4607,8 +4607,8 @@ ul.hotel_facilities li img {
   margin-bottom: 60px;
   display: block;
 }
-#login aside form .form-group input, #register aside form .form-group input {
-  /* padding-left: 40px; */
+#login aside form .form-group input.icon, #register aside form .form-group input.icon {
+  padding-left: 40px;
 }
 #login aside form .form-group i, #register aside form .form-group i {
   font-size: 21px;
