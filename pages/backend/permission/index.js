@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import React from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import Link from 'next/link'
 import TablePermission from '../../../components/backend/table/TablePermission';
 
 const Index = (props) => {
+  const page_key = "permission";
 
   return (
     <>

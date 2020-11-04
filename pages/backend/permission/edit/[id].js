@@ -1,13 +1,14 @@
-import Router, { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import InputLabel from '../../../../components/widget/InputLabel'
 import Button from '../../../../components/widget/Button';
-import Link from 'next/link';
-import api from '../../../../utils/api-admin';
+import InputLabel from '../../../../components/widget/InputLabel';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
+import api from '../../../../utils/api-admin';
 
 const EditPermission = ({query}) => {
+  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState()
   const router = useRouter();
@@ -58,11 +59,21 @@ const EditPermission = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 defaultValue : permission ? permission.name: '',
                 name : 'name', required : true
               }} 
               labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',
+                defaultValue : permission ? permission.permission_key: '',
+                name : 'permission_key', required : true
+              }} 
+              labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center mt-4">

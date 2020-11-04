@@ -1,14 +1,15 @@
-import Router, { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import InputLabel from '../../../../components/widget/InputLabel'
 import Button from '../../../../components/widget/Button';
-import Link from 'next/link';
-import api from '../../../../utils/api-admin';
-import SelectLabel from '../../../../components/widget/SelectLabel';
+import InputLabel from '../../../../components/widget/InputLabel';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
+import SelectLabel from '../../../../components/widget/SelectLabel';
+import api from '../../../../utils/api-admin';
 
 const EditAdmin = ({query}) => {
+  const page_key = "admin";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [users, setUsers] = useState();
   const [roles, setRole] = useState();

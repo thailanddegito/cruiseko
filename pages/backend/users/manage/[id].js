@@ -1,15 +1,15 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
-import { useRouter } from 'next/router';
-import api from '../../../../utils/api-admin'
-import Button from '../../../../components/widget/Button';
-import Link from 'next/link';
+import LicenseImage from '../../../../components/backend/user/LicenseImage';
 import ModalApprove from '../../../../components/backend/user/ModalApprove';
 import ModalProblem from '../../../../components/backend/user/ModalProblem';
 import UserDetail from '../../../../components/backend/user/UserDetail';
-import LicenseImage from '../../../../components/backend/user/LicenseImage';
+import Button from '../../../../components/widget/Button';
+import api from '../../../../utils/api-admin';
 
 const UserManage = ({query}) => {
+  const page_key = "users";
   const [modalApprove, setModalApprove] = useState(false);
   const [modalProblem, setModalProblem] = useState(false);
   const [toggle, setToggle] = useState(true);
@@ -18,7 +18,7 @@ const UserManage = ({query}) => {
   const id = router.query.id;
 
   const fecthUsers = () => {
-    api.getUsersOne(id)
+    api.getUsersOne(id, {withOther : 1})
     .then(res=>{
       const data = res.data;
       setUsers(data);
