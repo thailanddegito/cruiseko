@@ -20,7 +20,7 @@ const Sidenav = (props) => {
       $('body').removeClass('fixed-nav sticky-footer sidenav-toggled');
       $('body').addClass('fixed-nav sticky-footer');
     }
-  }, [toggle]);
+  }, [admin, toggle]);
 
   const fechCount = () => {
     api.getCountUsers()
