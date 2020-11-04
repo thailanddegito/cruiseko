@@ -3,6 +3,11 @@ import Layout from '../../components/backend/layout/Layout';
 import TableTest from '../../components/backend/table/TableTest';
 
 const Index = ({ t }) => {
+
+  useEffect(() => {
+    $('#dataTable').DataTable();
+    console.log('sss')
+  },[])
  
   return (
     <>
