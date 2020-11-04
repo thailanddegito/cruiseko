@@ -15,19 +15,19 @@ module.exports = {
             if(!max) return type === 'agent' ? start_agent : start_hotel
 
             max = max+''
-            let prefix = max.subString(0,4)
-            let num = parseInt(max.subString(4)) +1
+            let prefix = max.substring(0,4)
+            let num = parseInt(max.substring(4)) +1
 
             return prefix+num.toString().padStart(3,'0')
-
+            
         }
         else{
             var max = await DB.User.max('id',{where : {company_type : type }})
             if(!max) return start_fit
             
             max = max+''
-            let prefix = max.subString(0,3)
-            let num = parseInt(max.subString(3)) + 1
+            let prefix = max.substring(0,3)
+            let num = parseInt(max.substring(3)) + 1
 
             return prefix+num.toString().padStart(5,'0')
         }

@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import Router, {useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
 import LicenseImage from '../../../../components/backend/user/LicenseImage';
@@ -18,7 +18,7 @@ const UserManage = ({query}) => {
   const id = router.query.id;
 
   const fecthUsers = () => {
-    api.getUsersOne(id, {withOther : 1})
+    api.getUsersOne(id, {with_around : 1})
     .then(res=>{
       const data = res.data;
       setUsers(data);
@@ -40,6 +40,11 @@ const UserManage = ({query}) => {
     setToggle(!toggle);
   }
 
+  const handleClick = (id) => {
+    Router.push('/backend/users/manage/[id]?id='+id, '/backend/users/manage/'+id);
+  }
+
+  console.log(users);
 
 
   return (
@@ -51,6 +56,10 @@ const UserManage = ({query}) => {
               <div className="collapse-new">
                 <div className={`d-flex text ${toggle ? 'toggle' : ''}`} id="main">
                   <div className="content w-100">
+                    <div className="float-right">
+                      <Button _type="button" _name="Previous" _class="btn-previous" _click={() => handleClick(users.prev_id)} _disabled={!users.prev_id} />
+                      <Button _type="button" _name="Next" _class="btn-next ml-2" _click={() => handleClick(users.next_id)} _disabled={!users.next_id} />
+                    </div>
                     <div className="container">
                       <UserDetail users={users} />
                       <div className="mobile-display">
