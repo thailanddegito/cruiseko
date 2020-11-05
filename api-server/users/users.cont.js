@@ -10,7 +10,7 @@ const {DefaultError} = errors
 const {Op} = require('sequelize');
 
 exports.index = async(req,res,next)=>{
-    var {page=1,limit=30,user_type,approve_status,search} = req.query;
+    var {page,limit,user_type,approve_status,search} = req.query;
     // console.log(req.query.user_type)
     try{
         // console.log(req.cookies)
@@ -24,16 +24,24 @@ exports.index = async(req,res,next)=>{
         }
         if(user_type) where.user_type = user_type;
         if(approve_status) where.approve_status = approve_status;
-        var options = {where,attributes: {exclude: ['password']}}
-        if(!isNaN(page) && page !=0){
-            if(parseInt(page) > 1)
-                options.offset = (page-1)*limit;
+
+
+        var order = [['license_expired_date','asc']]
+
+
+        var options = {where,attributes: {exclude: ['password']},order}
+
+        if(!isNaN(page) && page > 1){
+            options.offset = (page-1)*limit;
             
             options.limit = limit;
         }
         if(!isNaN(limit)){
             options.limit = parseInt(limit);
         }
+
+        
+
         const users = await User.findAndCountAll(options )
         res.json(users)
     }
