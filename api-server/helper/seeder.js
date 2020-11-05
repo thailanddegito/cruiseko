@@ -30,10 +30,10 @@ exports.initAdmin = async () => {
 exports.initPermission = async() =>{
   try{
     const data = [
-      {name : 'A1' , key : 'A1' },
-      {name : 'A2' , key : 'A2'},
-      {name : 'A3' , key : 'A3'},
-      {name : 'A4' , key : 'A4'}
+      {name : 'Users' , key : 'users' },
+      {name : 'Company Type' , key : 'company_type'},
+      {name : 'Admin' , key : 'admin'},
+      {name : 'Admin Role' , key : 'admin_role'}
     ]
 
     await Permission.sync({force : true})

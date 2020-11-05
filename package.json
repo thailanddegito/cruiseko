@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "set NODE_ENV=production & node app.js",
     "heroku-postbuild": "next build",
-    "seeder" : "node api-server/helper/seeder"
+    "seeder": "node api-server/helper/seeder"
   },
   "dependencies": {
     "axios": "^0.21.0",
