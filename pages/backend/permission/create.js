@@ -46,7 +46,7 @@ const Create = (props) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'permission_key', required : true
+                name : 'key', required : true
               }} 
               labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>

@@ -38,6 +38,7 @@ for (var key of Object.keys(models)) {
 
 // console.log(Admin.associate)
 // console.log('models',sequelize.models)
+// models.Admin.sync({force : true})
 // models.Permission.sync({force : true})
 // models.User.sync({force : true})
 // sequelize.sync({alter:true})

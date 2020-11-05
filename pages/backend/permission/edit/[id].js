@@ -70,8 +70,8 @@ const EditPermission = ({query}) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                defaultValue : permission ? permission.permission_key: '',
-                name : 'permission_key', required : true
+                defaultValue : permission ? permission.key: '',
+                name : 'key', required : true
               }} 
               labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>

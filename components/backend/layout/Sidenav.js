@@ -43,14 +43,27 @@ const Sidenav = (props) => {
     window.location = '/backend/login';
   }
 
-  const checkMenu = (key)=>{
+  const checkMainMenu = (con1, con2) => {
+    if(!admin && !admin.role) return
+    if(admin.role.role_has_permissions){
+      for(con1; con1 <= con2; con1++) {
+        const check = admin.role.role_has_permissions.filter((val)=> val.permission_id == con1)
+        // console.log('check', check)
+        if (check.length) {
+          return true
+        }
+      }
+    }
+  }
+
+  const checkMenu = (id)=>{
     if(!admin && !admin.role) return;
     if(admin.role.role_has_permissions){
       console.log('role_has_permissions', admin.role.role_has_permissions);
-      // const check = admin.role.role_has_permissions.filter((val)=> val.permission_key == key)
-      // if (check.length) {
-      //   return true
-      // }
+      const check = admin.role.role_has_permissions.filter((val)=> val.permission_id == id)
+      if (check.length) {
+        return true
+      }
     }
   }
   // console.log('counts', counts);
@@ -74,7 +87,7 @@ const Sidenav = (props) => {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
-                  (admin.role_id == 0 || checkMenu('users')) && (
+                  (admin.role_id == 0 || checkMenu(1)) && (
                     <>
                       <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
                         <Link href="/backend/users">
@@ -94,24 +107,36 @@ const Sidenav = (props) => {
                     </>
                   )
                 }
-                <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
-                  <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
-                    <i className="fa fa-fw fa-users"></i>
-                    <span className="nav-link-text">Admins</span>
-                  </a>
-                  <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
-                    <li>
-                      <Link href="/backend/admin">
-                        <a>Admins</a>
-                      </Link>
+                {
+                  (admin.role_id == 0 || checkMainMenu(2,3)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
+                      <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                        <i className="fa fa-fw fa-users"></i>
+                        <span className="nav-link-text">Admins</span>
+                      </a>
+                      <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
+                        {
+                          (admin.role_id == 0 || checkMenu(2)) && (
+                            <li>
+                              <Link href="/backend/admin">
+                                <a>Admins</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(3)) && (
+                            <li>
+                              <Link href="/backend/roles">
+                                <a>Admin roles</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
                     </li>
-                    <li>
-                      <Link href="/backend/roles">
-                        <a>Admin roles</a>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+                  )
+                }
               </ul>
               <ul className="navbar-nav sidenav-toggler">
                 <li className="nav-item">
