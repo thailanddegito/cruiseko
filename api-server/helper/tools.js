@@ -1,28 +1,32 @@
 const fs = require('fs')
 const DB = require('../db')
+const { Op } = require('sequelize');
 const base_domain = process.env.HOST
 
 
 module.exports = {
 
-    genUserId : async (type) => {
-        var start_agent = 'AGTH001'
-        var start_hotel = 'HTTH001'
+    genUserId : async (type,company_name) => {
+        var start_agent = 'AGTHX001'
+        var start_hotel = 'HTTHX001'
         var start_fit = 'FIT00001'
 
         if(type === 'agent' || type === 'hotel'){
-            var max = await DB.User.max('id', {where : {company_type : type },logging:console.log})
-            if(!max) return type === 'agent' ? start_agent : start_hotel
+            const company_type = await DB.CompanyType.findOne({where : {id : type },attributes : ['prefix'],raw:true})
+            var first_prefix =  company_type.prefix
+            var prefix = first_prefix + company_type.substring(0,1)
+            var max = await DB.User.max('id', {where : {id : {[Op.startsWith] :first_prefix } },logging:console.log})
+            if(!max) return prefix+'001'
 
-            max = max+''
-            let prefix = max.substring(0,4)
-            let num = parseInt(max.substring(4)) +1
+            max = max.toString()
+            // let prefix = max.substring(0,4)
+            let num = parseInt(max.substring(5)) +1
 
             return prefix+num.toString().padStart(3,'0')
             
         }
         else{
-            var max = await DB.User.max('id',{where : {company_type : type }})
+            var max = await DB.User.max('id',{where : {user_type : type }})
             if(!max) return start_fit
             
             max = max+''
