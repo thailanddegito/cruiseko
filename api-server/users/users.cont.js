@@ -114,7 +114,7 @@ exports.login = async(req,res,next)=>{
 
 exports.register = async(req,res,next)=>{
     var data = req.body;
-    var {username,password,company_type,user_type} = data;
+    var {username,password,company_type,user_type,company_name_en} = data;
     var files = req.files || {}
     // var image_logo,image_license;
     try{
@@ -140,7 +140,7 @@ exports.register = async(req,res,next)=>{
         }
 
         if(user_type === 'fit'){
-            data.id = await tools.genUserId(user_type)
+            data.id = await tools.genUserId(user_type,company_name_en)
             data.accept_status = 1;
         }
 
