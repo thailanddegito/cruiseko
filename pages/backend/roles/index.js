@@ -8,7 +8,7 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Admin role" page_name="Admin role">
+      <Layout title="Admin role" page_name="Admin Role">
       <div className="row justify-content-start">
           <div className="col-6">
             <h4>Admin role</h4>

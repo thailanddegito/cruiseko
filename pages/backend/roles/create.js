@@ -54,7 +54,7 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin role" page_name="Admin role" sub_page="create">
+      <Layout title="Create admin role" page_name="Admin Role" sub_page="Create">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Create admin role</h4>

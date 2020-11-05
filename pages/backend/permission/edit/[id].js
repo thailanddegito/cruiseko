@@ -47,7 +47,7 @@ const EditPermission = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit admin permission" page_name="Edit admin permission" sub_page="edit" main_link="permission">
+      <Layout title="Edit admin permission" page_name="Admin Permission" sub_page="Edit" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit admin permission</h4>

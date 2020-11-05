@@ -64,7 +64,7 @@ const EditAdmin = ({query}) => {
 
   return (
     <>
-      <Layout title="Editing admin" page_name="admin" sub_page="edit" main_link="admin">
+      <Layout title="Editing admin" page_name="Admin" sub_page="Edit" main_link="admin">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit admin</h4>

@@ -110,11 +110,11 @@ const Sidenav = (props) => {
                 {
                   (admin.role_id == 0 || checkMainMenu(2,3)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
-                      <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Admin" || page_name == "Admin Role") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-users"></i>
                         <span className="nav-link-text">Admins</span>
                       </a>
-                      <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Admin" || page_name == "Admin Role") ? 'show' : ''}`} id="collapseAdminUsers">
                         {
                           (admin.role_id == 0 || checkMenu(2)) && (
                             <li>
