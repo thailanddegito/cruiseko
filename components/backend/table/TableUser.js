@@ -16,7 +16,7 @@ const columns = [
           <img src={row.image_logo ? row.image_logo : "/template/img/no-picture.png"} className="approve-logo-table" />
         </div>
         <div className="ml-3">
-          <p className="mb-0">{row.company_name_en}</p>
+          <p className="mb-0 font-weight-bold">{row.company_name_en}</p>
           <p className="mb-0 font-14">{row.company_name_th}</p>
         </div>
       </div>
@@ -28,7 +28,7 @@ const columns = [
     sortable: true,
     cell : row => (
       <div>
-        <p className="mb-0">{row.license_no}</p>
+        <p className="mb-0 font-weight-bold">{row.license_no}</p>
         <p className="mb-0 font-14">Expired Date : {row.license_expired_date ? toDateISO(row.license_expired_date) : null}</p>
       </div>
     )
