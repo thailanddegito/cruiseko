@@ -5,7 +5,7 @@ const {DefaultError} = errors
 exports.getAll = async(req,res,next)=>{
   try{
       
-    var order = [['order'],'asc']
+    var order = [['order','asc']]
     const com_types = await CompanyType.findAll({order} )
     res.json(com_types)
   }
