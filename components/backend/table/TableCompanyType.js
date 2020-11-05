@@ -8,7 +8,7 @@ const TableCompanyType = (props) => {
   const [companies, setCompany] = useState();
 
   const fechCompany = () => {
-    api.getCompany({deleted : 0})
+    api.getCompany()
     .then(res=>{
       const data = res.data;
       setCompany(data);
@@ -52,7 +52,7 @@ const TableCompanyType = (props) => {
               <th>#</th>
               <th>Name</th>
               <th>Prefix</th>
-              <th>Commission Rate</th>
+              <th>Commission Rate (%)</th>
               <th>Created date</th>
               <th className="text-center" style={{width: "25%"}}>Manage</th>
             </tr>

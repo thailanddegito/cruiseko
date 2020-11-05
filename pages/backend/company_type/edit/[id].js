@@ -91,7 +91,7 @@ const EditRole = ({query}) => {
                 name : 'commission_rate', required : true,
                 pattern : "[0-9]*", maxLength : 3
               }} 
-              labelName="Commission Rate : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Commission Rate (%) : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
