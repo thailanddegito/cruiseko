@@ -55,6 +55,13 @@ export default {
    updateAdminUsers : (id, data) => service.put(`/backend/admin/${id}`,data) ,
    delAdminUsers : (id) => service.delete(`/backend/admin/${id}`),
 
+   //Company Type
+   getCompany : () => service.get(`/backend/company_type`),
+   getCompanyOne : (id) => service.get(`/backend/company_type/${id}`),
+   insertCompany : (data) => service.post('/backend/company_type',data) ,
+   updateCompany : (id, data) => service.put(`/backend/company_type/${id}`,data) ,
+   delCompany : (id) => service.delete(`/backend/company_type/${id}`),
+
    //Permission
    getPermission : () => service.get(`/backend/permission`),
    getPermissioneOne : (id) => service.get(`/backend/permission/${id}`),
