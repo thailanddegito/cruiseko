@@ -49,8 +49,10 @@ const columns = [
   {
     name: '',
     sortable: true,
+    maxWidth : '200px',
+    right : true,
     cell : row => (
-      <div>
+      <span>
         <ul className="buttons manage">
           <li>
             <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${row.id}`}>
@@ -58,7 +60,7 @@ const columns = [
             </Link>
           </li>
         </ul>
-      </div>
+      </span>
     )
   },
 ];
