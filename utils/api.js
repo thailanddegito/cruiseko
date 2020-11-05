@@ -42,4 +42,6 @@ export default {
    checkEmail : (data) => service.post(`/users/check-email`,data),
    register : (data) => service.post(`/users/register`,data),
 
+    //Company Type
+    getCompany : (params) => service.get(`/backend/company-type`, {params}),
 }

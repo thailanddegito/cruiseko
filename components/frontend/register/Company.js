@@ -1,14 +1,32 @@
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ImageBoxCircle from '../../widget/ImageBoxCircle';
 import InputLabel from '../../widget/InputLabel';
 import InputFileLabel from '../../widget/InputFileLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
 import SelectAddress from '../../widget/SelectAddress';
+import api from '../../../utils/api'
 
 const Company = (props) => {
   const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange} = props;
+  const [companies, setCompany] = useState();
+
+  const fechCompany = () => {
+    api.getCompany()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,val : val.id})  )
+      setCompany(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  useEffect(() => {
+    fechCompany();
+  },[]);
  
   const saveStep1 = (event) => {
     event.preventDefault();
@@ -36,7 +54,7 @@ const Company = (props) => {
                     value :inputData.company_type ,
                     onChange:handleChange
                   }} 
-                  labelName="Company Type" icon={false} options={optionCompanyType} />
+                  labelName="Company Type" icon={false} options={companies} />
                 </div>
               </div>
               <div className="row mx-0">
