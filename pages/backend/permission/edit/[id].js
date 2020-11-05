@@ -57,7 +57,7 @@ const EditPermission = ({query}) => {
         <form onSubmit={handleSave}>
           <input type="hidden" name="id" value={permission ?permission.id:''} />
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 defaultValue : permission ? permission.name: '',

@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import Card from './Card'
 import api from '../../../utils/api-admin'
+import Slick from "react-slick";
 
 const UserCard = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner', approve_status : 0, limit : 4})
+    api.getUsers({user_type : 'partner', approve_status : 0, limit : 30})
     .then(res=>{
       const data = res.data;
       setUsers(data);
@@ -29,7 +30,35 @@ const UserCard = (props) => {
     return null;
   }
 
-  console.log();
+
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      }
+    ]
+  };
+
 
   return (
     <>
@@ -38,12 +67,14 @@ const UserCard = (props) => {
           <h4>Pending users</h4>
         </div>
       </div>
-      <div className="row mb-4">
-        {
-          users.rows.map((val, index) => (
-            <Card key={index} users={val} />
-          ))
-        }
+      <div className="mb-4">
+        <Slick {...settings}>    
+          {
+            users.rows.map((val, index) => (
+              <Card key={index} users={val} />
+            ))
+          }
+        </Slick>
       </div>
     </>
   )
