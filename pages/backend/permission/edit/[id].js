@@ -8,7 +8,6 @@ import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 
 const EditPermission = ({query}) => {
-  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState()
   const router = useRouter();

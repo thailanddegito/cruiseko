@@ -4,7 +4,6 @@ import Layout from '../../../components/backend/layout/Layout';
 import TablePermission from '../../../components/backend/table/TablePermission';
 
 const Index = (props) => {
-  const page_key = "permission";
 
   return (
     <>

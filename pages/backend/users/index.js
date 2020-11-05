@@ -3,7 +3,6 @@ import Layout from '../../../components/backend/layout/Layout';
 import TableUser from '../../../components/backend/table/TableUser';
 import UserCard from '../../../components/backend/user/UserCard';
 const Index = (props) => {
-  const page_key = "users";
 
   return (
     <>

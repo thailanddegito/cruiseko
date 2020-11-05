@@ -9,7 +9,6 @@ import SelectLabel from '../../../components/widget/SelectLabel';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {  
-  const page_key = "roles";
   const [modalWarning, setModalWarning] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState();
@@ -54,10 +53,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin role" page_name="Admin Role" sub_page="Create">
+      <Layout title="Create Admin Role" page_name="Admin Role" sub_page="Create" main_link="roles">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Create admin role</h4>
+            <h4>Create Admin Role</h4>
           </div>
         </div>
         <div className="divider"></div>

@@ -1,18 +1,25 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import Button from '../../../components/widget/Button';
 import InputLabel from '../../../components/widget/InputLabel';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+import WarningDialog from '../../../components/widget/ModalWarningDialog';
+import SelectLabel from '../../../components/widget/SelectLabel';
 import api from '../../../utils/api-admin';
 
-const Create = (props) => {
+const Create = (props) => {  
+  const [modalWarning, setModalWarning] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-
+ 
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    api.insertPermission(data)
+    if(!data.get('permission')){
+      setModalWarning(true);
+      return false
+    }
+    api.insertRole(data)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
@@ -21,13 +28,14 @@ const Create = (props) => {
       console.log(err.response);
     })
   }
+  
 
   return (
     <>
-      <Layout title="Create admin permission" page_name="Admin Permission" sub_page="Create" main_link="permission">
+      <Layout title="Create Company Type" page_name="Company Type" sub_page="Create" main_link="company_type">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Create admin permission</h4>
+            <h4>Create Company Type</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -35,26 +43,41 @@ const Create = (props) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
+                className:'form-control', type : 'name',
                 name : 'name', required : true
               }} 
-              labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'name',
+                name : 'prefix', required : true
+              }} 
+              labelName="Prefix : " iconProps={{className : 'fa icon icon-email'}}  />
+            </div>
+          </div>
+
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'key', required : true
+                name : 'commission_rate', required : true,
+                pattern : "[0-9]*", maxLength : 3
               }} 
-              labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Commission Rate : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
-          <div className="row justify-content-center mt-4">
+
+
+          
+          <div className="row justify-content-center mt-4 mt-4">
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="Submit" _class="btn-primary" />
-                <Link href="/backend/permission">
+                <Link href="/backend/roles">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
@@ -67,8 +90,11 @@ const Create = (props) => {
         <SuccessDialog show={modalSuccess}
           text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
-          route={"/backend/permission"} />
+          route={"/backend/roles"} />
 
+        <WarningDialog show={modalWarning}
+          text="Please select at least 1 permission !!!"
+          size="md" onHide={() => setModalWarning(false)} />  
       </Layout>
     </>
   )
