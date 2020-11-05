@@ -41,7 +41,7 @@ const TableCompanyType = (props) => {
     })
   }
 
-  console.log(companies);
+  // console.log(companies);
 
   return (
     <>
@@ -50,19 +50,21 @@ const TableCompanyType = (props) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>Role name</th>
-              <th>Access level</th>
+              <th>Name</th>
+              <th>Prefix</th>
+              <th>Commission Rate</th>
               <th>Created date</th>
               <th className="text-center" style={{width: "25%"}}>Manage</th>
             </tr>
           </thead>
           <tbody>
-            {/* {
+            {
               (companies && companies.length) ? companies.map((val, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.name}</td>
-                  <td>{val.level}</td>
+                  <td>{val.prefix}</td>
+                  <td>{val.commission_rate}</td>
                   <td>{val.createdAt}</td>
                   <td className="text-center">
                     <ul className="buttons manage">
@@ -78,7 +80,7 @@ const TableCompanyType = (props) => {
                   </td>
                 </tr>
               )) : <tr><td colSpan="100%">Data Not found!!!</td></tr>
-            } */}
+            }
             
           </tbody>
         </table>

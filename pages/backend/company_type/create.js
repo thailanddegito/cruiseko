@@ -4,22 +4,15 @@ import Layout from '../../../components/backend/layout/Layout';
 import Button from '../../../components/widget/Button';
 import InputLabel from '../../../components/widget/InputLabel';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
-import WarningDialog from '../../../components/widget/ModalWarningDialog';
-import SelectLabel from '../../../components/widget/SelectLabel';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {  
-  const [modalWarning, setModalWarning] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
  
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    if(!data.get('permission')){
-      setModalWarning(true);
-      return false
-    }
-    api.insertRole(data)
+    api.insertCompany(data)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
@@ -77,7 +70,7 @@ const Create = (props) => {
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="Submit" _class="btn-primary" />
-                <Link href="/backend/roles">
+                <Link href="/backend/company_type">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
@@ -90,11 +83,8 @@ const Create = (props) => {
         <SuccessDialog show={modalSuccess}
           text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
-          route={"/backend/roles"} />
+          route={"/backend/company_type"} />
 
-        <WarningDialog show={modalWarning}
-          text="Please select at least 1 permission !!!"
-          size="md" onHide={() => setModalWarning(false)} />  
       </Layout>
     </>
   )
