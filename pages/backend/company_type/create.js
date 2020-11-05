@@ -47,7 +47,8 @@ const Create = (props) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'name',
-                name : 'prefix', required : true
+                name : 'prefix', required : true,
+                pattern : "^[A-Z]+$", minLength : 2, maxLength : 2
               }} 
               labelName="Prefix : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>

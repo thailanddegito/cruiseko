@@ -77,7 +77,8 @@ const EditRole = ({query}) => {
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'name',
                 defaultValue : companies ? companies.prefix: '',
-                name : 'prefix', required : true
+                name : 'prefix', required : true,
+                pattern : "^[A-Z]+$", minLength : 2, maxLength : 2
               }} 
               labelName="Prefix : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
