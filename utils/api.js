@@ -16,7 +16,7 @@ const service = axios.create({baseURL :'/api' })
 // });
 
 service.interceptors.request.use(function (config) {
-    console.log('call api url1' ,config.url)
+    // console.log('call api url1' ,config.url)
     if(typeof window == 'undefined'){
         // console.log('asda')
         return config;

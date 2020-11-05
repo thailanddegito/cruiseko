@@ -40,7 +40,7 @@ const Success = (props) => {
               <InputLabel inputProps={{ 
                 className:'form-control icon', type : 'password',name : 'password', 
                 value:inputData.password , onChange : handleChange,
-                pattern : ".{6,}", required : true
+                pattern : ".{6,}", required : true, autoComplete : "off"
               }} 
               labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
@@ -50,7 +50,7 @@ const Success = (props) => {
               <InputLabel inputProps={{ 
                 className:'form-control icon', type : 'password', name : 'confirm_password',
                 value:inputData.confirm_password , onChange : handleChange,
-                pattern : ".{6,}", required : true
+                pattern : ".{6,}", required : true, autoComplete : "off"
               }} 
               labelName="Re - Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
