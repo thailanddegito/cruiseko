@@ -6,7 +6,8 @@ exports.getAll = async(req,res,next)=>{
   try{
       
     var order = [['order','asc']]
-    const com_types = await CompanyType.findAll({order} )
+    var where = { deleted : 0}
+    const com_types = await CompanyType.findAll({order,where} )
     res.json(com_types)
   }
   catch(err){
