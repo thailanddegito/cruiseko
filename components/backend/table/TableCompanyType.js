@@ -5,13 +5,13 @@ import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TableCompanyType = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [roles, setRole] = useState();
+  const [companies, setCompany] = useState();
 
-  const fechRole = () => {
-    api.getRole()
+  const fechCompany = () => {
+    api.getCompany()
     .then(res=>{
       const data = res.data;
-      setRole(data);
+      setCompany(data);
     })
     .catch(err => {
       console.log(err.response);
@@ -19,7 +19,7 @@ const TableCompanyType = (props) => {
   }
   
   useEffect(() => {
-    fechRole();
+    fechCompany();
   },[]);
   
   const [ref_id, setrefID] = useState();
@@ -30,16 +30,18 @@ const TableCompanyType = (props) => {
 
   const onConfirm = ()=>{
     if(!ref_id) return;
-    api.delRole(ref_id)
+    api.delCompany(ref_id)
     .then(res=>{
       const data = res.data;
-      fechRole();
+      fechCompany();
       setModalConfirm(false);
     })
     .catch(err => {
       console.log(err.response);
     })
   }
+
+  console.log(companies);
 
   return (
     <>
@@ -55,8 +57,8 @@ const TableCompanyType = (props) => {
             </tr>
           </thead>
           <tbody>
-            {
-              (roles && roles.length) ? roles.map((val, index) => (
+            {/* {
+              (companies && companies.length) ? companies.map((val, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.name}</td>
@@ -76,7 +78,7 @@ const TableCompanyType = (props) => {
                   </td>
                 </tr>
               )) : <tr><td colSpan="100%">Data Not found!!!</td></tr>
-            }
+            } */}
             
           </tbody>
         </table>

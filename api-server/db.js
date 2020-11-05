@@ -42,6 +42,7 @@ for (var key of Object.keys(models)) {
 // models.Admin.sync({force : true})
 // models.Permission.sync({force : true})
 // models.User.sync({force : true})
+// models.CompanyType.sync({force : true})
 // sequelize.sync({alter:true})
 // .then(() => console.log('Sync db success') )
 
