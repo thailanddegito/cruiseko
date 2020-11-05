@@ -56,7 +56,7 @@ export default {
    delAdminUsers : (id) => service.delete(`/backend/admin/${id}`),
 
    //Company Type
-   getCompany : () => service.get(`/backend/company-type`),
+   getCompany : (params) => service.get(`/backend/company-type`, {params}),
    getCompanyOne : (id) => service.get(`/backend/company-type/${id}`),
    insertCompany : (data) => service.post('/backend/company-type',data) ,
    updateCompany : (id, data) => service.put(`/backend/company-type/${id}`,data) ,

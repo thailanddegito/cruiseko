@@ -8,7 +8,7 @@ const TableCompanyType = (props) => {
   const [companies, setCompany] = useState();
 
   const fechCompany = () => {
-    api.getCompany()
+    api.getCompany({deleted : 0})
     .then(res=>{
       const data = res.data;
       setCompany(data);
