@@ -30,6 +30,7 @@ const Layout = (props) => {
         <link rel="stylesheet" href="/backend_css/js/editor/summernote-bs4.css" />
 
         <link href="/backend_css/css/custom.css" rel="stylesheet" />
+        <link href="/backend_css/css/custom_xxl.css" rel="stylesheet" />
         <link href="/backend_css/css/collapse.css" rel="stylesheet" />
 
       
