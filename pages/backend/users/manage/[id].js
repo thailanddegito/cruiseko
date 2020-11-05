@@ -10,7 +10,6 @@ import api from '../../../../utils/api-admin';
 import { Lightbox } from "react-modal-image";
 
 const UserManage = ({query}) => {
-  const page_key = "users";
   const [modalApprove, setModalApprove] = useState(false);
   const [modalProblem, setModalProblem] = useState(false);
   const [toggle, setToggle] = useState(true);

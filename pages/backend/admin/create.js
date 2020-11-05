@@ -8,7 +8,6 @@ import SelectLabel from '../../../components/widget/SelectLabel';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {
-  const page_key = "admin";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [roles, setRole] = useState();
 

@@ -39,7 +39,7 @@ const UserCard = (props) => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1367,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,

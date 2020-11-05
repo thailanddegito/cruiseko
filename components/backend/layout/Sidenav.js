@@ -87,28 +87,37 @@ const Sidenav = (props) => {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
-                  (admin.role_id == 0 || checkMenu(1)) && (
-                    <>
-                      <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-                        <Link href="/backend/users">
-                          <a className="nav-link d-flex justify-content-between align-items-center">
-                            <div>
-                              <i className="fa fa-fw fa-user"></i>
-                              <span className="nav-link-text">Users</span>
-                            </div>
-                            {
-                              counts && counts.partner_pending ? (
-                                <span className="nav-link-text badge badge-pill badge-danger">{counts.partner_pending} New</span>
-                              ) : null
-                            }
-                          </a>
-                        </Link>
-                      </li>
-                    </>
+                  (admin.role_id == 0 || checkMainMenu(1,2)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Users" || page_name == "Company Type") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseUsers" data-parent="#AdminUsers">
+                        <i className="fa fa-fw fa-user"></i>
+                        <span className="nav-link-text">Users</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Users" || page_name == "Company Type") ? 'show' : ''}`} id="collapseUsers">
+                        {
+                          (admin.role_id == 0 || checkMenu(1)) && (
+                            <li>
+                              <Link href="/backend/users">
+                                <a>Users</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(2)) && (
+                            <li>
+                              <Link href="/backend/company_type">
+                                <a>Company Type</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </li>
                   )
                 }
                 {
-                  (admin.role_id == 0 || checkMainMenu(2,3)) && (
+                  (admin.role_id == 0 || checkMainMenu(3,4)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Admin" || page_name == "Admin Role") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-users"></i>
@@ -116,7 +125,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Admin" || page_name == "Admin Role") ? 'show' : ''}`} id="collapseAdminUsers">
                         {
-                          (admin.role_id == 0 || checkMenu(2)) && (
+                          (admin.role_id == 0 || checkMenu(3)) && (
                             <li>
                               <Link href="/backend/admin">
                                 <a>Admins</a>
@@ -125,7 +134,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(3)) && (
+                          (admin.role_id == 0 || checkMenu(4)) && (
                             <li>
                               <Link href="/backend/roles">
                                 <a>Admin roles</a>
