@@ -45,6 +45,13 @@ module.exports = {
         }
     },
 
+    isValidUserId : async(id)=>{
+        let prefix = id.substring(0,2)
+        let num = id.substring(id.length-3,id.legth)
+        const user = await DB.User.findOne({where : {[Op.and] : [{id  : {[Op.startsWith] : prefix} } ,{id : {[Op.endsWith] : num }}]  } })
+        return !!!user
+    },
+
     moveFileWithPath : (file,path)=>{
         return new Promise((resolve,reject)=>{
             const dir = __dirname + `/../../static-server/${path}/`;
