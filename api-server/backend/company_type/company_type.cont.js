@@ -35,6 +35,8 @@ exports.create = async(req,res,next)=>{
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 
+    prefix = prefix.replace(/\s/g,'')
+
     await CompanyType.create(data)
     res.json({success : true})
   }

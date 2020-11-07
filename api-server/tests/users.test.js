@@ -9,9 +9,7 @@ describe('Register endpoint', () => {
     it('should gen FIT valid id', async () => {
       const res = await request(app)
         .post('/users/gen-id')
-        .send({
-          type : 'fit'
-        })
+        .send()
       expect(res.statusCode).toEqual(200)
       expect(res.body).toHaveProperty('id')
       expect(res.body.id).toEqual('FIT00001')
