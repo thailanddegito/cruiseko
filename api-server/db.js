@@ -28,8 +28,11 @@ const models = {
     Role : require('./admins/roles.model')(sequelize,Sequelize),
     RoleHasPermission : require('./admins/role_has_permission.model')(sequelize,Sequelize),
     Permission : require('./admins/permission.model')(sequelize,Sequelize),
-    Product : require('./products/products.model')(sequelize,Sequelize),
     CompanyType : require('./backend/company_type/company_type.model')(sequelize,Sequelize),
+    Product : require('./products/products.model')(sequelize,Sequelize),
+    Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
+    BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
+    
 }
 
 for (var key of Object.keys(models)) {
