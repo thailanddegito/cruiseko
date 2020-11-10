@@ -75,5 +75,20 @@ export default {
     insertRole : (data) => service.post(`/backend/roles`,data),
     updateRole : (data) => service.post(`/backend/roles/update`,data),
     delRole : (id) => service.delete(`/backend/roles/${id}`),
+
+
+    //Boat Category
+   getBoatCate : (params) => service.get(`/boat-category`, {params}),
+   getBoatCateOne : (id) => service.get(`/boat-category/${id}`),
+   insertBoatCate : (data) => service.post('/boat-category',data) ,
+   updateBoatCate : (id, data) => service.put(`/boat-category/${id}`,data) ,
+   delBoatCate : (id) => service.delete(`/boat-category/${id}`),
+
+    //Boat
+    getBoat : (params) => service.get(`/boat`, {params}),
+    getBoatOne : (id) => service.get(`/boat/${id}`),
+    insertBoat : (data) => service.post('/boat',data) ,
+    updateBoat : (id, data) => service.put(`/boat/${id}`,data) ,
+    delBoat : (id) => service.delete(`/boat/${id}`),
  
 }

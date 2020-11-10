@@ -88,6 +88,36 @@ const Sidenav = (props) => {
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
                   (admin.role_id == 0 || checkMainMenu(1,2)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Boat">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Boat" || page_name == "Boat Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBoat" data-parent="#Boat">
+                        <i className="fa fa-fw fa-user"></i>
+                        <span className="nav-link-text">Boat</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Boat" || page_name == "Boat Category") ? 'show' : ''}`} id="collapseBoat">
+                        {
+                          (admin.role_id == 0 || checkMenu(1)) && (
+                            <li>
+                              <Link href="/backend/boat">
+                                <a>Boat</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(2)) && (
+                            <li>
+                              <Link href="/backend/boat_category">
+                                <a>Boat Type</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </li>
+                  )
+                }
+                {
+                  (admin.role_id == 0 || checkMainMenu(3,4)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Users" || page_name == "Company Type") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-user"></i>
@@ -95,7 +125,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Users" || page_name == "Company Type") ? 'show' : ''}`} id="collapseUsers">
                         {
-                          (admin.role_id == 0 || checkMenu(1)) && (
+                          (admin.role_id == 0 || checkMenu(3)) && (
                             <li>
                               <Link href="/backend/users">
                                 <a>Users</a>
@@ -104,7 +134,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(2)) && (
+                          (admin.role_id == 0 || checkMenu(4)) && (
                             <li>
                               <Link href="/backend/company_type">
                                 <a>Company Type</a>
@@ -117,7 +147,7 @@ const Sidenav = (props) => {
                   )
                 }
                 {
-                  (admin.role_id == 0 || checkMainMenu(3,4)) && (
+                  (admin.role_id == 0 || checkMainMenu(5,6)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Admin" || page_name == "Admin Role") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-users"></i>
@@ -125,7 +155,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Admin" || page_name == "Admin Role") ? 'show' : ''}`} id="collapseAdminUsers">
                         {
-                          (admin.role_id == 0 || checkMenu(3)) && (
+                          (admin.role_id == 0 || checkMenu(5)) && (
                             <li>
                               <Link href="/backend/admin">
                                 <a>Admins</a>
@@ -134,7 +164,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(4)) && (
+                          (admin.role_id == 0 || checkMenu(6)) && (
                             <li>
                               <Link href="/backend/roles">
                                 <a>Admin roles</a>

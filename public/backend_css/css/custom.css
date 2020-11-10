@@ -64,6 +64,9 @@ ul.buttons.manage {
 .font-14 {
   font-size: 14px;
 }
+.font-24 {
+  font-size: 24px;
+}
 .approve-logo {
   width: 80px;
   height: 80px;
@@ -257,6 +260,93 @@ span.nav-link-text {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.box-img .fas.fa-plus-square {
+  position: relative;
+  font-size: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dropbox {
+  display: none;
+}
+
+
+.icon.fa {
+  font-family: ElegantIcons;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon.fa::before {
+  margin-left: 0;
+}
+.img-box {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  border: 2px dashed #eee;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.img-box.show img, .img-box.show video {
+  max-height: 100%;
+  max-width: 100%;
+}
+.middle {
+  position: relative;
+}
+.middle, .middle-absolute {
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.img-box:hover .middle-absolute {
+  display: block;
+  z-index: 3;
+  color: #fff;
+  font-size: 24px;
+}
+.box-img.circle .img-box:hover .dropbox, .img-box:hover .dropbox {
+  display: block;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  z-index: 2;
+  background-color: #000;
+  opacity: .5;
+}
+.img-box:hover .dropbox {
+  border-radius: 8px;
+  margin-top: 0;
+}
+.img-box .middle-absolute {
+  display: none;
+}
+.middle-absolute {
+  position: absolute;
+}
+.box-img {
+  position: relative;
+}
+.box-img input[type=file] {
+  display: none;
+}
+.box-img .input-require {
+  display: block !important;
+  position: absolute;
+  width: 120px;
+  height: 32px;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {

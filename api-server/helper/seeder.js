@@ -30,6 +30,8 @@ exports.initAdmin = async () => {
 exports.initPermission = async() =>{
   try{
     const data = [
+      {name : 'Boat' , key : 'boat' },
+      {name : 'Boat Category' , key : 'boat_category'},
       {name : 'Users' , key : 'users' },
       {name : 'Company Type' , key : 'company_type'},
       {name : 'Admin' , key : 'admin'},
