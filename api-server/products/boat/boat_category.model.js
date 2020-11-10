@@ -7,7 +7,10 @@ module.exports = (sequelize, type) => {
       },
       name : type.STRING,
       code : type.STRING(20),
-      
+      deleted : {
+        type : type.INTEGER,
+        defaultValue : 0
+      },
     },
     {
         timestamps: true,

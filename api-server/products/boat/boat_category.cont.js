@@ -3,7 +3,7 @@ const {BoatCategory} = require('../../db')
 
 exports.getAll = async(req,res,next)=>{
   try{
-      const cates = await BoatCategory.findAll();
+      const cates = await BoatCategory.findAll({where : {deleted : 0}});
       res.json(cates)
   }
   catch(err){
@@ -49,7 +49,7 @@ exports.update = async(req,res,next)=>{
 exports.delete = async(req,res,next)=>{
   const cate_id = req.params.id
   try{
-    await BoatCategory.destroy({where : {cate_id}})
+    await BoatCategory.update({deleted : 1},{where : {cate_id}})
     res.json({success:true})
   }
   catch(err){
