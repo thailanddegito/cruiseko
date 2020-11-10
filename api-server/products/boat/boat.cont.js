@@ -5,8 +5,13 @@ const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
   try{
+      const include = [
+        {model : BoatImage , attributes : ['id','image']},
+        {model : BoatCategory}
+      ]
       var where = {deleted : 0}
-      const cates = await Boat.findAll({where});
+      var options = {where,include}
+      const cates = await Boat.findAll(options);
       res.json(cates)
   }
   catch(err){
@@ -17,7 +22,13 @@ exports.getAll = async(req,res,next)=>{
 exports.getOne = async(req,res,next)=>{
   const boat_id = req.params.id
   try{
-      const cate = await Boat.findOne({where : {boat_id}});
+      const include = [
+        {model : BoatImage , attributes : ['id','image']},
+        {model : BoatCategory}
+      ]
+      var where = {boat_id,deleted : 0}
+      var options = {where,include}
+      const cate = await Boat.findOne(options);
       res.json(cate)
   }
   catch(err){
