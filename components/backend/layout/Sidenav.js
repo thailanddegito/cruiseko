@@ -90,7 +90,7 @@ const Sidenav = (props) => {
                   (admin.role_id == 0 || checkMainMenu(1,2)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Boat">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Boat" || page_name == "Boat Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBoat" data-parent="#Boat">
-                        <i className="fa fa-fw fa-user"></i>
+                        <i className="fa fa-fw fa-ship"></i>
                         <span className="nav-link-text">Boat</span>
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Boat" || page_name == "Boat Category") ? 'show' : ''}`} id="collapseBoat">
