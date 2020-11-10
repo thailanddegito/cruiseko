@@ -61,7 +61,7 @@ exports.create = async(req,res,next)=>{
   }
   catch(err){
     next(err);
-    if(transaction) transaction.rollback()
+    if(transaction) await transaction.rollback()
   }
 }
 
