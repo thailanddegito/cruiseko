@@ -64,7 +64,7 @@ const EditRole = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 defaultValue : companies ? companies.name: '',
                 name : 'name', required : true
               }} 
@@ -75,7 +75,7 @@ const EditRole = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 defaultValue : companies ? companies.prefix: '',
                 name : 'prefix', required : true,
                 pattern : "^[A-Z]+$", minLength : 2, maxLength : 2

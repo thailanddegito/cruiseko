@@ -92,7 +92,7 @@ const EditRole = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 defaultValue : roles ? roles.name: '',
                 name : 'name', required : true
               }} 
