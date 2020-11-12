@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,memo } from 'react';
 import dynamic from 'next/dynamic';
 import Button from '../../widget/Button';
 import InputLabel from '../../widget/InputLabel';
@@ -14,7 +14,7 @@ const animatedComponents = makeAnimated();
 const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
 const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: false, loading: () => Loading })
 
-const ProductDetail = (props) => {
+const ProductDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
 
@@ -33,7 +33,8 @@ const ProductDetail = (props) => {
     api.getBoat()
     .then(res=>{
       const data = res.data;
-      var temp = data.map(val => ({...val,val : val.boat_id})  )
+      var temp = data.map(val => ({label : val.name,value : val.boat_id})  )
+      console.log(temp)
       setBoat(temp);
     })
     .catch(err => {
@@ -95,7 +96,7 @@ const ProductDetail = (props) => {
               components={animatedComponents}
               isMulti={false}
               placeholder="-- Please Select Boat --"
-              name={"boat"}
+              name="boat_id"
               options={boats}
               // onChange={(e) => handleChange(e)}
             /> 
@@ -104,5 +105,5 @@ const ProductDetail = (props) => {
       </div>
     </>
   )
-}
+})
 export default ProductDetail

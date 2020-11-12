@@ -28,6 +28,8 @@ exports.create = async(req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.image_logo = tools.genFileUrl(fileName,'images')
     }
+
+    res.json({success:true})
   }
   catch(err){
     next(err);

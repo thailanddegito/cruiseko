@@ -10,6 +10,13 @@ const Index = (props) => {
   const [show, setShow] = useState(false);
   const [price, setPrice] = useState([]);
 
+  /*
+    {start_date,end_date , adult : [] ,children : [] }
+
+    // {company_type_id , price , deposit ,commission }
+  */
+
+
   const handleShow = () => {
     setShow(true);
   }

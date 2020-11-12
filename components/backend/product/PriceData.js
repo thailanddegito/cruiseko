@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 
-const PriceData = (props) => {
+const PriceData = memo((props) => {
   const {name, text} = props;
 
   return (
@@ -51,5 +51,5 @@ const PriceData = (props) => {
 
     </>
   )
-}
+})
 export default PriceData
