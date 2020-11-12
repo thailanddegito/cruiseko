@@ -35,6 +35,7 @@
     "react-dom": "17.0.1",
     "react-dropzone": "^11.2.4",
     "react-modal-image": "^2.5.0",
+    "react-select": "^3.1.0",
     "react-slick": "^0.27.12",
     "react-spinners": "^0.9.0",
     "sequelize": "^6.3.5",

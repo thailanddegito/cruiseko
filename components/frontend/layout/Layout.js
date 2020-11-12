@@ -23,6 +23,7 @@ const Layout = (props) => {
         <link href="/template/css/vendors.css" rel="stylesheet" />
         <link href="/css/sidenav.css" rel="stylesheet" />
         <link href="/css/custom.css" rel="stylesheet" />
+        <link href="/css/content-styles.css" rel="stylesheet" />
 
         <script src="/template/js/common_scripts.js"></script>
         <script src="/template/js/main.js"></script>

@@ -24,6 +24,14 @@ body {
   min-width: 80px !important;
   border-radius: 4px !important;
 }
+.p-medium {
+	font-weight: 500 !important;
+	font-size: 1rem !important;
+	text-transform: none !important;
+	line-height: 1.5rem !important;
+	margin-bottom: 0 !important;
+	color: #000 !important;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -365,6 +373,19 @@ span.nav-link-text {
 .tab-pane {
   border: 1px solid #eee;
   padding: 30px 15px;
+}
+.adult-head, .children-head {
+  background-color: #EEE;
+  text-align: center;
+  padding: 5px;
+}
+.adult-head span, .children-head span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+}
+.select2 .css-1pahdxg-control, .select2 .css-yk16xz-control {
+    min-height: 42px;
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
