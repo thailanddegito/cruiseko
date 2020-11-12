@@ -43,22 +43,11 @@ const ProductDetail = (props) => {
         <div className="col-lg-4 col-12">
           <SelectLabel inputProps={{ 
             className:'form-control select', 
-            name : 'level', required : true,
+            name : 'cate_id', required : true,
           }} 
           labelName="Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
         </div>
       </div>
-
-      <div className="row">
-        <div className="col-lg-4 col-12">
-          <SelectLabel inputProps={{ 
-            className:'form-control select', 
-            name : 'level', required : true,
-          }} 
-          labelName="Time" iconProps={{className : 'fa icon icon-home'}} options={[]} />
-        </div>
-      </div>
-
 
 
       <div className="row">
@@ -74,16 +63,9 @@ const ProductDetail = (props) => {
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true
+            name : 'remark', required : true
           }} 
           labelName="Remark" iconProps={{className : 'fa icon icon-email'}}  />
-        </div>
-        <div className="col-lg-4 col-12">
-          <SelectLabel inputProps={{ 
-            className:'form-control select', 
-            name : 'level', required : true,
-          }} 
-          labelName="Status" iconProps={{className : 'fa icon icon-home'}} options={[]} />
         </div>
       </div>
     </>
