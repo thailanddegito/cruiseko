@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 // const db = require('./db')
 const fileUpload = require('express-fileupload')
+const tools = require('./helper/tools')
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -22,6 +23,33 @@ app.use('/boat',require('./products/boat/boat.route'))
 app.use('/boat-category',require('./products/boat/boat_category.route'))
 
 app.get('/test',(req,res) => res.send('test'))
+
+app.post('/ck-upload',async (req,res)=>{
+    //console.log(req.files.upload);
+    
+    // var names = file.name.split('.')
+    // const {base_domain} = tools
+    // if(names.length < 2){
+    //     return res.json({error :{uploaded: 0,message : 'Upload file error'}} )
+    // }
+    // var fileName = `${Date.now()}.${names[names.length-1]}`;
+    console.log('uploading file...')
+    try{
+        const file = req.files.upload;
+        let fileName = await tools.moveFileWithPath(file,'upload/images')
+        var url = tools.genFileUrl(fileName,'upload/images')
+        res.json({url})
+    }
+    catch(err){
+        console.log(err)
+        res.json({
+            error: {
+                message: err.name || err.message
+            }})
+    }
+    
+    //return res.json(req.body);
+  })
 
 app.get('*',(req,res)=>{
     res.send({error : 'InvalidEndpoint'})

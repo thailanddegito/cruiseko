@@ -55,7 +55,7 @@ const Editor = (props) =>{
       ]
     },
     simpleUpload: {
-      uploadUrl: api.baseUrl + '/ck-upload/images',
+      uploadUrl:  api.baseUrl+ '/ck-upload',
       // headers: {
       //     'X-CSRF-TOKEN': 'CSFR-Token',
       //     Authorization: 'Bearer <JSON Web Token>'
