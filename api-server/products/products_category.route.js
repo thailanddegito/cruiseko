@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const product_cate = require('./products_category.cont')
 // const backend = require('./backend.cont')
-const mw = require('../../middlewares/auth')
+const mw = require('../middlewares/auth')
 
 const protect_method = ['post','put','delete']
 protect_method.forEach(val => router[val]('/*',mw.jwt('admin')))
