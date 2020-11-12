@@ -62,7 +62,7 @@ const Index = (props) => {
             <a className="nav-link active" data-toggle="tab" href="#details">Product Details</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#images">Product Images</a>
+            <a className="nav-link" data-toggle="tab" href="#images">Product Gallery</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>

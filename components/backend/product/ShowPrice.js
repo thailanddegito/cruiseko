@@ -10,9 +10,9 @@ const ShowPrice = (props) => {
       {
         price && price.length ? (
           <>
-            <div className="row mt-4">
-              <div className="col-4">Schedule Start</div>
-              <div className="col-4">Schedule End</div>
+            <div className="row my-4">
+              <div className="col-4"><p className="p-medium">Schedule Start</p></div>
+              <div className="col-4"><p className="p-medium">Schedule End</p></div>
               <div className="col-4"><div className="text-right"></div></div>
             </div>
             <div>

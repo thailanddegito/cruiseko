@@ -6,10 +6,10 @@ const ShowPriceData = (props) => {
 
   return (
     <>
-      <div className="row mt-4">
+      <div className="row mt-2">
         <div className="col-4">{start_date ? tools.formatDate(start_date) : null}</div>
         <div className="col-4">{end_date ? tools.formatDate(end_date) : null}</div>
-        <div className="col-4"><div className="text-right" onClick={onClickEdit} >See more</div></div>
+        <div className="col-4"><div className="text-right"><a href="#" onClick={onClickEdit}>See more</a></div></div>
       </div>
     </>
   )
