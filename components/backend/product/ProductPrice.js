@@ -1,11 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import PriceData from '../product/PriceData';
 import Datetime from 'react-datetime';
+import api from '../../../utils/api-admin'
 
 const ProductPrice = (props) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [companies, setCompany] = useState();
+
+  const fechCompany = () => {
+    api.getCompany()
+    .then(res=>{
+      const data = res.data;
+      setCompany(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  useEffect(() => {
+    fechCompany();
+  },[]);
 
   const showstartDate = (e) => {
     var today = e._i;
@@ -66,7 +83,12 @@ const ProductPrice = (props) => {
         </div>
         <div className="adult-body my-4">
           <PriceData name="fit" text="FIT" />
-          <PriceData name="agent" text="Agent" />
+          {
+            companies && companies.map((val, index) => (
+              <PriceData name={val.id} text={val.name} key={index} />
+            ))
+          }
+          
         </div>
       </div>
       <div className="children">
