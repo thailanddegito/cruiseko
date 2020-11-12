@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import ProductDetail from '../../../components/backend/product/ProductDetail';
 import ProductImage from '../../../components/backend/product/ProductImage';
+import ProductPrice from '../../../components/backend/product/ProductPrice';
+import ShowPrice from '../../../components/backend/product/ShowPrice';
+import Button from '../../../components/widget/Button';
 
 const Index = (props) => {
+  const [show, setShow] = useState(false);
+  const [price, setPrice] = useState([]);
+
+  const handleShow = () => {
+    setShow(true);
+  }
+  const handleCancel = () => {
+    setShow(false);
+  }
+
+  const handleAdd = () => {
+    setShow(false);
+  }
+
+
 
   return (
     <>
@@ -23,6 +41,9 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Product Images</a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
+          </li>
         </ul>
         <div className="tab-content">
           <div className="tab-pane active" id="details">
@@ -32,6 +53,50 @@ const Index = (props) => {
           </div>
           <div className="tab-pane fade" id="images">
             <ProductImage />
+          </div>
+          <div className="tab-pane fade" id="price">
+            <div className="row">
+              <div className="col-12">
+                <div className="text-right">
+                  {!show ?<Button _type="button" _name="Add" _class="btn-primary" _click={() => handleShow()} /> :null}
+                </div>
+              </div>
+            </div>
+
+            {
+              show ? (
+                <>
+                  <div>
+                    <ProductPrice />
+                  </div>
+                  <div className="text-center">
+                    <Button _type="button" _name="Add" _class="btn-primary" _click={() => handleAdd()} />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={() => handleCancel()} />
+                  </div>
+                </>
+              ) : (
+                <>
+                  {
+                    price && price.length ? (
+                      <>
+                        <div className="row mt-4">
+                          <div className="col-4">Schedule Start</div>
+                          <div className="col-4">Schedule End</div>
+                          <div className="col-4"><div className="text-right">See more</div></div>
+                        </div>
+                        <div>
+                          {
+                            price.map((val, index) => (
+                              <ShowPrice key={index} />
+                            ))
+                          }
+                        </div>
+                      </>
+                    ) : null
+                  }
+                </>
+              )
+            }
           </div>
         </div>
        
