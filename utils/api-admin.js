@@ -76,6 +76,12 @@ export default {
     updateRole : (data) => service.post(`/backend/roles/update`,data),
     delRole : (id) => service.delete(`/backend/roles/${id}`),
 
+    //Boat
+    getBoat : (params) => service.get(`/boat`, {params}),
+    getBoatOne : (id) => service.get(`/boat/${id}`),
+    insertBoat : (data) => service.post('/boat',data) ,
+    updateBoat : (id, data) => service.put(`/boat/${id}`,data) ,
+    delBoat : (id) => service.delete(`/boat/${id}`),
 
     //Boat Category
    getBoatCate : (params) => service.get(`/boat-category`, {params}),
@@ -84,11 +90,15 @@ export default {
    updateBoatCate : (id, data) => service.put(`/boat-category/${id}`,data) ,
    delBoatCate : (id) => service.delete(`/boat-category/${id}`),
 
-    //Boat
-    getBoat : (params) => service.get(`/boat`, {params}),
-    getBoatOne : (id) => service.get(`/boat/${id}`),
-    insertBoat : (data) => service.post('/boat',data) ,
-    updateBoat : (id, data) => service.put(`/boat/${id}`,data) ,
-    delBoat : (id) => service.delete(`/boat/${id}`),
+
+    //Product Category
+    getProductCate : (params) => service.get(`/products-category`, {params}),
+    getProductCateOne : (id) => service.get(`/products-category/${id}`),
+    insertProductCate : (data) => service.post('/products-category',data) ,
+    updateProductCate : (id, data) => service.put(`/products-category/${id}`,data) ,
+    delProductCate : (id) => service.delete(`/products-category/${id}`),
+ 
+
+   
  
 }

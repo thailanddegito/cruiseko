@@ -8,7 +8,7 @@ const Index = (props) => {
   return (
     <>
       <Layout title="Boat" page_name="Boat">
-      <div className="row justify-content-start">
+        <div className="row justify-content-start">
           <div className="col-6">
             <h4>Boat</h4>
           </div>
