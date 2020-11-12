@@ -16,6 +16,7 @@ app.use(fileUpload({
 
 app.use('/users',require('./users/users.route'))
 app.use('/products',require('./products/products.route'))
+app.use('/products-category',require('./products/products_category.route'))
 app.use('/backend',require('./backend/backend.route'))
 app.use('/boat',require('./products/boat/boat.route'))
 app.use('/boat-category',require('./products/boat/boat_category.route'))

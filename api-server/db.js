@@ -29,6 +29,7 @@ const models = {
     RoleHasPermission : require('./admins/role_has_permission.model')(sequelize,Sequelize),
     Permission : require('./admins/permission.model')(sequelize,Sequelize),
     CompanyType : require('./backend/company_type/company_type.model')(sequelize,Sequelize),
+    ProductCategory : require('./products/products_category.model')(sequelize,Sequelize),
     Product : require('./products/products.model')(sequelize,Sequelize),
     Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
     BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),

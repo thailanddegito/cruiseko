@@ -12,10 +12,13 @@ const {sequelize} = require('../db')
 
 
 
-exports.syncDB = async() =>{
+exports.syncDB = async({alter}) =>{
     try{
-        console.log('Syncing db ->',process.env.DB_NAME)
-        await sequelize.sync({force : true})
+        console.log('Syncing db ->',process.env.DB_NAME,`(${alter ? 'alter' : 'force' })`)
+        var options = {}
+        if(alter) options.alter = true;
+        else options.force = true;
+        await sequelize.sync(options)
         console.log('sync db success')
     }
     catch(err){
@@ -27,6 +30,9 @@ exports.syncDB = async() =>{
 
 if(method === 'sync'){
     this.syncDB().then(() => process.exit(0))
+}
+else if(method === 'sync-alter'){
+    this.syncDB({alter : true}).then(() => process.exit(0))
 }
 else {
     console.log('method required')
