@@ -15,6 +15,7 @@ app.use(fileUpload({
 }));
 
 app.use('/users',require('./users/users.route'))
+app.use('/products',require('./products/products.route'))
 app.use('/backend',require('./backend/backend.route'))
 
 app.get('/test',(req,res) => res.send('test'))

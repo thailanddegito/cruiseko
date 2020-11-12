@@ -28,6 +28,7 @@ const models = {
     Role : require('./admins/roles.model')(sequelize,Sequelize),
     RoleHasPermission : require('./admins/role_has_permission.model')(sequelize,Sequelize),
     Permission : require('./admins/permission.model')(sequelize,Sequelize),
+    Product : require('./products/products.model')(sequelize,Sequelize),
 }
 
 for (var key of Object.keys(models)) {
