@@ -55,6 +55,13 @@ export default {
    updateAdminUsers : (id, data) => service.put(`/backend/admin/${id}`,data) ,
    delAdminUsers : (id) => service.delete(`/backend/admin/${id}`),
 
+   //Company Type
+   getCompany : (params) => service.get(`/backend/company-type`, {params}),
+   getCompanyOne : (id) => service.get(`/backend/company-type/${id}`),
+   insertCompany : (data) => service.post('/backend/company-type',data) ,
+   updateCompany : (id, data) => service.put(`/backend/company-type/${id}`,data) ,
+   delCompany : (id) => service.delete(`/backend/company-type/${id}`),
+
    //Permission
    getPermission : () => service.get(`/backend/permission`),
    getPermissioneOne : (id) => service.get(`/backend/permission/${id}`),
@@ -68,5 +75,30 @@ export default {
     insertRole : (data) => service.post(`/backend/roles`,data),
     updateRole : (data) => service.post(`/backend/roles/update`,data),
     delRole : (id) => service.delete(`/backend/roles/${id}`),
+
+    //Boat
+    getBoat : (params) => service.get(`/boat`, {params}),
+    getBoatOne : (id) => service.get(`/boat/${id}`),
+    insertBoat : (data) => service.post('/boat',data) ,
+    updateBoat : (id, data) => service.put(`/boat/${id}`,data) ,
+    delBoat : (id) => service.delete(`/boat/${id}`),
+
+    //Boat Category
+    getBoatCate : (params) => service.get(`/boat-category`, {params}),
+    getBoatCateOne : (id) => service.get(`/boat-category/${id}`),
+    insertBoatCate : (data) => service.post('/boat-category',data) ,
+    updateBoatCate : (id, data) => service.put(`/boat-category/${id}`,data) ,
+    delBoatCate : (id) => service.delete(`/boat-category/${id}`),
+
+
+    //Product Category
+    getProductCate : (params) => service.get(`/products-category`, {params}),
+    getProductCateOne : (id) => service.get(`/products-category/${id}`),
+    insertProductCate : (data) => service.post('/products-category',data) ,
+    updateProductCate : (id, data) => service.put(`/products-category/${id}`,data) ,
+    delProductCate : (id) => service.delete(`/products-category/${id}`),
+ 
+
+   
  
 }

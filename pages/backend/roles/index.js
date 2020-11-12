@@ -4,14 +4,13 @@ import Layout from '../../../components/backend/layout/Layout';
 import TableRole from '../../../components/backend/table/TableRole';
 
 const Index = (props) => {
-  const page_key = "roles";
 
   return (
     <>
-      <Layout title="Admin role" page_name="Admin role">
+      <Layout title="Admin Role" page_name="Admin Role">
       <div className="row justify-content-start">
           <div className="col-6">
-            <h4>Admin role</h4>
+            <h4>Admin Role</h4>
           </div>
           <div className="col-6">
             <div className="text-right">

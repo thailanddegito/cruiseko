@@ -28,7 +28,15 @@ const models = {
     Role : require('./admins/roles.model')(sequelize,Sequelize),
     RoleHasPermission : require('./admins/role_has_permission.model')(sequelize,Sequelize),
     Permission : require('./admins/permission.model')(sequelize,Sequelize),
+    CompanyType : require('./backend/company_type/company_type.model')(sequelize,Sequelize),
+    ProductCategory : require('./products/products_category.model')(sequelize,Sequelize),
     Product : require('./products/products.model')(sequelize,Sequelize),
+    Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
+    BoatImage : require('./products/boat/boat_images.model')(sequelize,Sequelize),
+    BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
+    PriceCalendar : require('./products/price_calendar.model')(sequelize,Sequelize),
+    PriceCalendarDetail : require('./products/price_calendar_detail.model')(sequelize,Sequelize),
+    
 }
 
 for (var key of Object.keys(models)) {
@@ -38,7 +46,10 @@ for (var key of Object.keys(models)) {
 
 // console.log(Admin.associate)
 // console.log('models',sequelize.models)
+// models.Admin.sync({force : true})
+// models.Permission.sync({force : true})
 // models.User.sync({force : true})
+// models.CompanyType.sync({force : true})
 // sequelize.sync({alter:true})
 // .then(() => console.log('Sync db success') )
 

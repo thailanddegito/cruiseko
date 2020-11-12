@@ -1,14 +1,32 @@
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ImageBoxCircle from '../../widget/ImageBoxCircle';
 import InputLabel from '../../widget/InputLabel';
 import InputFileLabel from '../../widget/InputFileLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Button from '../../widget/Button';
 import SelectAddress from '../../widget/SelectAddress';
+import api from '../../../utils/api'
 
 const Company = (props) => {
   const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange} = props;
+  const [companies, setCompany] = useState();
+
+  const fechCompany = () => {
+    api.getCompany()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,val : val.id})  )
+      setCompany(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  useEffect(() => {
+    fechCompany();
+  },[]);
  
   const saveStep1 = (event) => {
     event.preventDefault();
@@ -36,12 +54,18 @@ const Company = (props) => {
                     value :inputData.company_type ,
                     onChange:handleChange
                   }} 
-                  labelName="Company Type" icon={false} options={optionCompanyType} />
+                  labelName="Company Type" icon={false} options={companies} />
                 </div>
               </div>
               <div className="row mx-0">
                 <div className="col-12">
-                  <InputLabel inputProps={{ className:'form-control', type : 'text',name : 'company_name_en', required : true,  pattern : "^[a-zA-Z0-9 ]+$"}} 
+                  <InputLabel inputProps={{ 
+                    className:'form-control', type : 'text',
+                    name : 'company_name_en', required : true, 
+                    pattern : "^[a-zA-Z0-9 ]+$",
+                    value :inputData.company_name_en ,
+                    onChange:handleChange
+                  }} 
                   labelName="Company Name English" icon={false} />
                 </div>
               </div>

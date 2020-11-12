@@ -1,0 +1,32 @@
+import Link from 'next/link';
+import React from 'react';
+import Layout from '../../../components/backend/layout/Layout';
+
+const Index = (props) => {
+
+  return (
+    <>
+      <Layout title="Product" page_name="Product">
+        <div className="row justify-content-start">
+          <div className="col-6">
+            <h4>Product</h4>
+          </div>
+          <div className="col-6">
+            <div className="text-right">
+              <Link href="/backend/product/create">
+                <a className="btn btn-primary">Create</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <div>
+          {/* <TableBoat /> */}
+        </div>
+      </Layout>
+    </>
+  )
+}
+
+
+export default Index

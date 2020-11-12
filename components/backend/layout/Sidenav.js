@@ -43,14 +43,27 @@ const Sidenav = (props) => {
     window.location = '/backend/login';
   }
 
-  const checkMenu = (key)=>{
+  const checkMainMenu = (con1, con2) => {
+    if(!admin && !admin.role) return
+    if(admin.role.role_has_permissions){
+      for(con1; con1 <= con2; con1++) {
+        const check = admin.role.role_has_permissions.filter((val)=> val.permission_id == con1)
+        // console.log('check', check)
+        if (check.length) {
+          return true
+        }
+      }
+    }
+  }
+
+  const checkMenu = (id)=>{
     if(!admin && !admin.role) return;
     if(admin.role.role_has_permissions){
       console.log('role_has_permissions', admin.role.role_has_permissions);
-      // const check = admin.role.role_has_permissions.filter((val)=> val.permission_key == key)
-      // if (check.length) {
-      //   return true
-      // }
+      const check = admin.role.role_has_permissions.filter((val)=> val.permission_id == id)
+      if (check.length) {
+        return true
+      }
     }
   }
   // console.log('counts', counts);
@@ -74,44 +87,125 @@ const Sidenav = (props) => {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
-                  (admin.role_id == 0 || checkMenu('users')) && (
-                    <>
-                      <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
-                        <Link href="/backend/users">
-                          <a className="nav-link d-flex justify-content-between align-items-center">
-                            <div>
-                              <i className="fa fa-fw fa-user"></i>
-                              <span className="nav-link-text">Users</span>
-                            </div>
-                            {
-                              counts && counts.partner_pending ? (
-                                <span className="nav-link-text badge badge-pill badge-danger">{counts.partner_pending} New</span>
-                              ) : null
-                            }
-                          </a>
-                        </Link>
-                      </li>
-                    </>
+                  (admin.role_id == 0 || checkMainMenu(1,2)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Product">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Product" || page_name == "Product Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseCategory" data-parent="#Category">
+                        <i className="fa fa-fw fa-ship"></i>
+                        <span className="nav-link-text">Product</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Product" || page_name == "Product Category") ? 'show' : ''}`} id="collapseCategory">
+                        {
+                          (admin.role_id == 0 || checkMenu(1)) && (
+                            <li>
+                              <Link href="/backend/product">
+                                <a>Product</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(2)) && (
+                            <li>
+                              <Link href="/backend/product_category">
+                                <a>Product Category</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </li>
                   )
                 }
-                <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
-                  <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
-                    <i className="fa fa-fw fa-users"></i>
-                    <span className="nav-link-text">Admins</span>
-                  </a>
-                  <ul className="sidenav-second-level collapse" id="collapseAdminUsers">
-                    <li>
-                      <Link href="/backend/admin">
-                        <a>Admins</a>
-                      </Link>
+                {
+                  (admin.role_id == 0 || checkMainMenu(3,4)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Boat">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Boat" || page_name == "Boat Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBoat" data-parent="#Boat">
+                        <i className="fa fa-fw fa-ship"></i>
+                        <span className="nav-link-text">Boat</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Boat" || page_name == "Boat Category") ? 'show' : ''}`} id="collapseBoat">
+                        {
+                          (admin.role_id == 0 || checkMenu(3)) && (
+                            <li>
+                              <Link href="/backend/boat">
+                                <a>Boat</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(4)) && (
+                            <li>
+                              <Link href="/backend/boat_category">
+                                <a>Boat Category</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
                     </li>
-                    <li>
-                      <Link href="/backend/roles">
-                        <a>Admin roles</a>
-                      </Link>
+                  )
+                }
+                {
+                  (admin.role_id == 0 || checkMainMenu(5,6)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Users" || page_name == "Company Type") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseUsers" data-parent="#AdminUsers">
+                        <i className="fa fa-fw fa-user"></i>
+                        <span className="nav-link-text">Users</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Users" || page_name == "Company Type") ? 'show' : ''}`} id="collapseUsers">
+                        {
+                          (admin.role_id == 0 || checkMenu(5)) && (
+                            <li>
+                              <Link href="/backend/users">
+                                <a>Users</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(6)) && (
+                            <li>
+                              <Link href="/backend/company_type">
+                                <a>Company Type</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
                     </li>
-                  </ul>
-                </li>
+                  )
+                }
+                {
+                  (admin.role_id == 0 || checkMainMenu(7,8)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Admin" || page_name == "Admin Role") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
+                        <i className="fa fa-fw fa-users"></i>
+                        <span className="nav-link-text">Admins</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Admin" || page_name == "Admin Role") ? 'show' : ''}`} id="collapseAdminUsers">
+                        {
+                          (admin.role_id == 0 || checkMenu(7)) && (
+                            <li>
+                              <Link href="/backend/admin">
+                                <a>Admins</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(8)) && (
+                            <li>
+                              <Link href="/backend/roles">
+                                <a>Admin roles</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </li>
+                  )
+                }
               </ul>
               <ul className="navbar-nav sidenav-toggler">
                 <li className="nav-item">

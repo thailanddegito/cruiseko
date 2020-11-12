@@ -13,6 +13,7 @@ const mw = require('../middlewares/auth')
 // router.post('/register',cont.register)
 // router.post('/gen-id',cont.genUserId)
 
+router.use('/company-type',require('./company_type/company_type.route'))
 
 // router.get('/profile',mw.jwt('admin'),cont.profile)
 router.post('/admin/login',admin.login)

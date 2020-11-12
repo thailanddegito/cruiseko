@@ -4,11 +4,10 @@ import Layout from '../../../components/backend/layout/Layout';
 import TablePermission from '../../../components/backend/table/TablePermission';
 
 const Index = (props) => {
-  const page_key = "permission";
 
   return (
     <>
-      <Layout title="Admin permission" page_name="Admin permission">
+      <Layout title="Admin permission" page_name="Admin Permission">
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>Admin permission</h4>

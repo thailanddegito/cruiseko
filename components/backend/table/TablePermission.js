@@ -50,6 +50,7 @@ const TablePermission = (props) => {
             <tr>
               <th>#</th>
               <th>Menu name</th>
+              <th>Key</th>
               <th>Created date</th>
               <th className="text-center" style={{width: "25%"}}>Manage</th>
             </tr>
@@ -60,6 +61,7 @@ const TablePermission = (props) => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.name}</td>
+                  <td>{val.key}</td>
                   <td>{val.createdAt}</td>
                   <td className="text-center">
                     <ul className="buttons manage">

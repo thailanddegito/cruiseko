@@ -8,7 +8,7 @@ const UserCard = (props) => {
   const [users, setUsers] = useState(false);
 
   const fecthUsers = () => {
-    api.getUsers({user_type : 'partner', approve_status : 0, limit : 4})
+    api.getUsers({user_type : 'partner', approve_status : 0, limit : 30})
     .then(res=>{
       const data = res.data;
       setUsers(data);
@@ -39,7 +39,7 @@ const UserCard = (props) => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1367,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,

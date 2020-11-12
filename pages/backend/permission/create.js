@@ -7,7 +7,6 @@ import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 import api from '../../../utils/api-admin';
 
 const Create = (props) => {
-  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const handleSave = (event) => {
@@ -25,10 +24,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create admin roles" page_name="Create admin roles" sub_page="create">
+      <Layout title="Create admin permission" page_name="Admin Permission" sub_page="Create" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Create admin roles</h4>
+            <h4>Create admin permission</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -46,7 +45,7 @@ const Create = (props) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'permission_key', required : true
+                name : 'key', required : true
               }} 
               labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>

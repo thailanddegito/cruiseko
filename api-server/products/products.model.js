@@ -6,7 +6,20 @@ module.exports = (sequelize, type) => {
         autoIncrement: true
       },
       name : type.STRING,
-      price : type.DECIMAL(18,2),
+      cate_id : type.INTEGER,
+      brand : type.STRING,
+      program_code : type.STRING,
+      description : type.TEXT,
+      product_banner : type.STRING,
+      picture : type.STRING,
+      remark : type.TEXT,
+      highlight : type.TEXT,
+      itinerary : type.TEXT,
+      pricing_type : {
+        type : type.STRING(20),
+        defaultValue : 'tour'
+      },
+      // price : type.DECIMAL(18,2),
       
     },
     {
@@ -14,9 +27,10 @@ module.exports = (sequelize, type) => {
         freezeTableName: true
     })
   
-    // Product.associate = function(models) {
-    //     Product.hasMany(models.RoleHasPermission,{foreignKey : 'role_id',constraints: false})
-    // };
+    Product.associate = function(models) {
+        Product.belongsTo(models.ProductCategory,{foreignKey : 'cate_id',constraints: false});
+        Product.hasMany(models.PriceCalendar,{foreignKey : 'product_id',constraints: false})
+    };
     return Product
   }
   

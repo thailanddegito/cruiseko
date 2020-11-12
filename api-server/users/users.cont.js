@@ -4,10 +4,11 @@ const db = require('../db')
 const {User} = db
 const bcrypt = require('bcrypt');
 const saltRounds = 11;
-const errors = require('../errors')
 const tools = require('../helper/tools')
+const errors = require('../errors')
 const {DefaultError} = errors
 const {Op} = require('sequelize');
+const  async =  require('async') ;
 
 exports.index = async(req,res,next)=>{
     var {page,limit,user_type,approve_status,search} = req.query;
@@ -122,7 +123,7 @@ exports.login = async(req,res,next)=>{
 
 exports.register = async(req,res,next)=>{
     var data = req.body;
-    var {username,password,company_type,user_type,company_name_en} = data;
+    var {id,username,password,company_type,user_type,company_name_en} = data;
     var files = req.files || {}
     // var image_logo,image_license;
     try{
@@ -148,11 +149,14 @@ exports.register = async(req,res,next)=>{
         }
 
         if(user_type === 'fit'){
-            data.id = await tools.genUserId(user_type,company_name_en)
+            data.id = await tools.genUserId(user_type)
             data.accept_status = 1;
         }
 
 
+        if(id && !(await tools.isValidUserId(id))){
+            throw new DefaultError(errors.DUPLICATED_EMAIL);
+        }
         
         const hash = await bcrypt.hash(password, saltRounds)
 
@@ -245,17 +249,29 @@ exports.checkEmail = async(req,res,next)=>{
         next(err);
     }
 }
+// var q = async.queue(function(task, callback) {
+//     task.do(...task.val).then(res => callback(null,res)).catch(err => callback(err))
+// }, 1);
 
 exports.genUserId = async(req,res,next)=>{
-    var {type} = req.body;
+    //type is company_id
+    var {company_type_id='fit',company_name_en} = req.body;
     console.log(req.body)
     try{
-        if(!type){
+        if(!company_type_id ){
             throw new DefaultError(errors.FILEDS_INCOMPLETE);
         }
         
 
-        const id = await tools.genUserId(type)
+        const id = await tools.genUserId(company_type_id,company_name_en)
+
+        // const task= {do : tools.genUserId,val : [company_type_id,company_name_en] }
+        // const id = await new Promise((resolve,reject)=>{
+        //     q.push(task, (err,result) => {
+        //         if(err) return reject(err)
+        //         resolve(result)
+        //     });
+        // })
 
         res.json({id  })
     }

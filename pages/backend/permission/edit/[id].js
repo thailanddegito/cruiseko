@@ -8,7 +8,6 @@ import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 
 const EditPermission = ({query}) => {
-  const page_key = "permission";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [permission, setPermission] = useState()
   const router = useRouter();
@@ -47,7 +46,7 @@ const EditPermission = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit admin permission" page_name="Edit admin permission" sub_page="edit" main_link="permission">
+      <Layout title="Edit admin permission" page_name="Admin Permission" sub_page="Edit" main_link="permission">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit admin permission</h4>
@@ -57,7 +56,7 @@ const EditPermission = ({query}) => {
         <form onSubmit={handleSave}>
           <input type="hidden" name="id" value={permission ?permission.id:''} />
           <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 defaultValue : permission ? permission.name: '',
@@ -70,8 +69,8 @@ const EditPermission = ({query}) => {
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                defaultValue : permission ? permission.permission_key: '',
-                name : 'permission_key', required : true
+                defaultValue : permission ? permission.key: '',
+                name : 'key', required : true
               }} 
               labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
             </div>

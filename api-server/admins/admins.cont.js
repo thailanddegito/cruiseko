@@ -4,9 +4,10 @@ const db = require('../db')
 const {Admin,Role,RoleHasPermission,Permission} = db
 const bcrypt = require('bcrypt');
 const saltRounds = 11;
-const errors = require('../errors')
+
 const tools = require('../helper/tools');
 const { Op } = require('sequelize');
+const errors = require('../errors')
 const {DefaultError} = errors
 
 

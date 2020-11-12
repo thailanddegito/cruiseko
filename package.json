@@ -7,16 +7,25 @@
     "server:dev": "nodemon app.js",
     "build": "next build",
     "start": "set NODE_ENV=production & node app.js",
-    "heroku-postbuild": "next build"
+    "heroku-postbuild": "next build",
+    "seeder": "node api-server/helper/seeder",
+    "db": "node api-server/helper/db",
+    "test": "jest",
+    "pretest": "npm run db sync test"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^2.1.0",
+    "async": "^3.2.0",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "ckeditor": "file:/./file-packs/ckeditor-5.tgz",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "express-jwt": "^6.0.0",
+    "immer": "^7.0.14",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "next": "9.5.5",
@@ -25,13 +34,26 @@
     "react-data-table-component": "^6.11.5",
     "react-datetime": "^3.0.4",
     "react-dom": "17.0.1",
+    "react-dropzone": "^11.2.4",
     "react-modal-image": "^2.5.0",
+    "react-select": "^3.1.0",
     "react-slick": "^0.27.12",
+    "react-spinners": "^0.9.0",
     "sequelize": "^6.3.5",
     "styled-components": "^5.2.1"
   },
   "engines": {
     "node": "12.x",
     "npm": "6.x"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

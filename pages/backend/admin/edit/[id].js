@@ -9,7 +9,6 @@ import SelectLabel from '../../../../components/widget/SelectLabel';
 import api from '../../../../utils/api-admin';
 
 const EditAdmin = ({query}) => {
-  const page_key = "admin";
   const [modalSuccess, setModalSuccess] = useState(false);
   const [users, setUsers] = useState();
   const [roles, setRole] = useState();
@@ -64,7 +63,7 @@ const EditAdmin = ({query}) => {
 
   return (
     <>
-      <Layout title="Editing admin" page_name="admin" sub_page="edit" main_link="admin">
+      <Layout title="Editing admin" page_name="Admin" sub_page="Edit" main_link="admin">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit admin</h4>
@@ -78,7 +77,7 @@ const EditAdmin = ({query}) => {
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <InputLabel inputProps={{ 
-                className:'form-control', type : 'name',
+                className:'form-control', type : 'text',
                 name : 'name', required : true,
                 defaultValue : users.name
               }} 

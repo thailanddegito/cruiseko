@@ -4,7 +4,6 @@ import Layout from '../../../components/backend/layout/Layout';
 import TableAdmin from '../../../components/backend/table/TableAdmin';
 
 const Index = (props) => {
-  const page_key = "admin";
 
   return (
     <>
