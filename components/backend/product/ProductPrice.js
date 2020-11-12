@@ -101,7 +101,11 @@ const ProductPrice = memo((props) => {
         </div>
         <div className="children-body my-4">
           <PriceData name="fit" text="FIT" />
-          <PriceData name="agent" text="Agent" />
+          {
+            companies && companies.map((val, index) => (
+              <PriceData name={val.id} text={val.name} key={index} />
+            ))
+          }
         </div>
       </div>
     </>
