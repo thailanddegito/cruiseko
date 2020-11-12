@@ -356,6 +356,12 @@ span.nav-link-text {
 .dropzone .mb-0.text-center {
   margin: 0 auto;
 }
+.loading-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
