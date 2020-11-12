@@ -45,6 +45,7 @@ module.exports = (sequelize, type) => {
   
     Boat.associate = function(models) {
       Boat.belongsTo(models.BoatCategory,{foreignKey : 'cate_id',constraints: false})
+      Boat.hasMany(models.BoatImage,{foreignKey : 'cate_id',constraints: false})
     };
     return Boat
   }

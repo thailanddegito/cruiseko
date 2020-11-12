@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import PriceData from '../product/PriceData';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 
-const ProductPrice = (props) => {
+const ProductPrice = memo((props) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
@@ -106,5 +106,5 @@ const ProductPrice = (props) => {
       </div>
     </>
   )
-}
+})
 export default ProductPrice

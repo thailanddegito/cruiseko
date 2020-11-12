@@ -32,7 +32,10 @@ const models = {
     ProductCategory : require('./products/products_category.model')(sequelize,Sequelize),
     Product : require('./products/products.model')(sequelize,Sequelize),
     Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
+    BoatImage : require('./products/boat/boat_images.model')(sequelize,Sequelize),
     BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
+    PriceCalendar : require('./products/price_calendar.model')(sequelize,Sequelize),
+    PriceCalendarDetail : require('./products/price_calendar_detail.model')(sequelize,Sequelize),
     
 }
 
