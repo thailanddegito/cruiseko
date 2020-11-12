@@ -384,6 +384,9 @@ span.nav-link-text {
   font-size: 18px;
   color: #000;
 }
+.select2 .css-1pahdxg-control, .select2 .css-yk16xz-control {
+    min-height: 42px;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
