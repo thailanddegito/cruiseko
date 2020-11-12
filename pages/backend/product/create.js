@@ -18,6 +18,7 @@ const Index = (props) => {
   }
 
   const handleAdd = () => {
+    setPrice([]);
     setShow(false);
   }
 
