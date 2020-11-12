@@ -77,24 +77,9 @@ const Index = (props) => {
                 </>
               ) : (
                 <>
-                  {
-                    price && price.length ? (
-                      <>
-                        <div className="row mt-4">
-                          <div className="col-4">Schedule Start</div>
-                          <div className="col-4">Schedule End</div>
-                          <div className="col-4"><div className="text-right">See more</div></div>
-                        </div>
-                        <div>
-                          {
-                            price.map((val, index) => (
-                              <ShowPrice key={index} />
-                            ))
-                          }
-                        </div>
-                      </>
-                    ) : null
-                  }
+                  <div>
+                    <ShowPrice price={price} />
+                  </div>
                 </>
               )
             }
