@@ -9,6 +9,7 @@ import Button from '../../../components/widget/Button';
 const Index = (props) => {
   const [show, setShow] = useState(false);
   const [price, setPrice] = useState([]);
+  const [editData,setEditData] = useState()
 
   /*
     {start_date,end_date , adult : [] ,children : [] }
@@ -19,17 +20,31 @@ const Index = (props) => {
 
   const handleShow = () => {
     setShow(true);
+    if(editData) setEditData(null)
   }
   const handleCancel = () => {
     setShow(false);
   }
 
-  const handleAdd = () => {
-    setPrice([]);
+  const handleAdd = (price_data) => {
+    setPrice([...price,price_data]);
     setShow(false);
   }
 
+  const onClickEdit = (index)=>{
+    setEditData({...price[index],index})
+    setShow(true)
+  }
 
+  const handlePriceSave =(data,index)=>{
+    var tmp = [...price]
+    tmp[index] = data
+    console.log('editing data',tmp)
+    setPrice(tmp)
+    setShow(false);
+  }
+
+  
 
   return (
     <>
@@ -75,17 +90,22 @@ const Index = (props) => {
               show ? (
                 <>
                   <div>
-                    <ProductPrice />
+                    <ProductPrice 
+                    handleAdd={handleAdd} 
+                    handleCancel={handleCancel} 
+                    editData={editData}
+                    handlePriceSave={handlePriceSave}
+                    lasted={price[price.length-1]} />
                   </div>
-                  <div className="text-center">
+                  {/* <div className="text-center">
                     <Button _type="button" _name="Add" _class="btn-primary" _click={() => handleAdd()} />
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={() => handleCancel()} />
-                  </div>
+                  </div> */}
                 </>
               ) : (
                 <>
                   <div>
-                    <ShowPrice price={price} />
+                    <ShowPrice price={price} onClickEdit={onClickEdit}  />
                   </div>
                 </>
               )

@@ -3,17 +3,46 @@ import InputLabel from '../../widget/InputLabel';
 import PriceData from '../product/PriceData';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
+import produce from 'immer'
+import Button from '../../../components/widget/Button';
 
 const ProductPrice = memo((props) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  // const [startDate, setStartDate] = useState(null);
+  // const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
+  const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave} = props
+  const initState = {
+    start_date:null,end_date : null,
+    adult : [{company_type_id : 0,name : 'FIT',price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0} ],
+    children : [{company_type_id : 0,name : 'FIT',price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0} ],
+  }
+  const [data,setData] = useState(editData || initState)
 
   const fechCompany = () => {
+    if(companies || editData) return;
+    console.log('fetch')
     api.getCompany()
     .then(res=>{
       const data = res.data;
       setCompany(data);
+      return data
+    })
+    .then(companies => {
+      // console.log(companies)
+      var adult = companies.map( val => (
+        {
+          company_type_id : val.id,name : val.name,price :null,
+          deposit_rate:null,deposit:null,commission:null,commission_rate: val.commission_rate
+        }
+      ))
+      var children = companies.map( val => (
+        {
+          company_type_id : val.id,name : val.name,price :null,
+          deposit_rate:null,deposit:null,commission:null,commission_rate: val.commission_rate
+        }
+      ))
+      var temp = {...data , adult : [...data.adult,...adult] ,children: [...data.children,...children]}
+      setData(temp)
     })
     .catch(err => {
       console.log(err.response);
@@ -24,27 +53,45 @@ const ProductPrice = memo((props) => {
     fechCompany();
   },[]);
 
+  useEffect(() => editData && setData(editData) ,[editData]  )
+
+
+  const onCancel = ()=>{
+    setData(initState)
+    handleCancel && handleCancel()
+  }
+
+  const handlePriceChange =(type,index,key,val) =>{
+    const nextState = produce(data, draftState => {
+      draftState[type][index][key] = val
+    })
+    setData(nextState)
+  }
+
   const showstartDate = (e) => {
-    var today = e._i;
-    var data = e._d;
-    setStartDate(data);
+    var date = e._d;
+    // setStartDate(data);
+    setData({...data,start_date : date})
   }
 
   const showendDate = (e) => {
-    var today = e._i;
-    var data = e._d;
-    setEndDate(data);
+    var date = e._d;
+    // setEndDate(data);
+    setData({...data,end_date : date})
   }
 
   const validStartDate = (current) => {
     // var getStart = startDate;
-    return current.isSameOrBefore(new Date());
+    return current.isAfter(lasted.end_date);
   }
 
   const validEndDate = (current) => {
-    var getStart = startDate;
-    return current.isSameOrAfter(getStart) && current.isSameOrBefore(new Date());
+    var getStart = data.start_date;
+    return current.isSameOrAfter(getStart);
   }
+
+  console.log('data',data)
+  console.log('editData',editData)
 
   return (
     <>
@@ -56,9 +103,10 @@ const ProductPrice = memo((props) => {
             dateFormat="YYYY-MM-DD"
             timeFormat={false}
             onChange={(e) => { showstartDate(e) }}
-            value={startDate ? startDate : ''}
+            value={data.start_date}
             inputProps={{ name: 'start_date', required: true, autoComplete: 'off' }} 
-            isValidDate={validStartDate} />
+            isValidDate={lasted? validStartDate : undefined}
+             />
           </div>
         </div>
         <div className="col-lg-3 col-12">
@@ -67,7 +115,7 @@ const ProductPrice = memo((props) => {
           dateFormat="YYYY-MM-DD"
           timeFormat={false}
           onChange={(e) => { showendDate(e) }}
-          value={endDate ? endDate : ''}
+          value={data.end_date}
           inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
           isValidDate={validEndDate} />
         </div>
@@ -82,10 +130,14 @@ const ProductPrice = memo((props) => {
           </div>
         </div>
         <div className="adult-body my-4">
-          <PriceData name="fit" text="FIT" />
           {
-            companies && companies.map((val, index) => (
-              <PriceData name={val.id} text={val.name} key={index} />
+            data.adult.map((val, index) => (
+              <PriceData key={val.company_type_id} 
+              {...val}
+              type="adult"
+              index={index}
+              handlePriceChange={handlePriceChange}
+              />
             ))
           }
           
@@ -100,13 +152,21 @@ const ProductPrice = memo((props) => {
           </div>
         </div>
         <div className="children-body my-4">
-          <PriceData name="fit" text="FIT" />
           {
-            companies && companies.map((val, index) => (
-              <PriceData name={val.id} text={val.name} key={index} />
+            data.children.map((val, index) => (
+              <PriceData key={val.company_type_id} 
+              type="children"
+              handlePriceChange={handlePriceChange}
+              index={index}
+              {...val}
+              />
             ))
           }
         </div>
+      </div>
+      <div className="text-center">
+        <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
+        <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
       </div>
     </>
   )

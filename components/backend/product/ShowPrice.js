@@ -3,7 +3,7 @@ import tools from '.././../../utils/tools'
 import ShowPriceData from '../product/ShowPriceData'
 
 const ShowPrice = (props) => {
-  const {price} = props;
+  const {price,onClickEdit} = props;
 
   return (
     <>
@@ -13,12 +13,12 @@ const ShowPrice = (props) => {
             <div className="row mt-4">
               <div className="col-4">Schedule Start</div>
               <div className="col-4">Schedule End</div>
-              <div className="col-4"><div className="text-right">See more</div></div>
+              <div className="col-4"><div className="text-right"></div></div>
             </div>
             <div>
               {
                 price.map((val, index) => (
-                  <ShowPrice key={index} />
+                  <ShowPriceData key={index} val={val} onClickEdit={() => onClickEdit(index) } />
                 ))
               }
             </div>
