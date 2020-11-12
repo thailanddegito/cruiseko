@@ -84,11 +84,11 @@ export default {
     delBoat : (id) => service.delete(`/boat/${id}`),
 
     //Boat Category
-   getBoatCate : (params) => service.get(`/boat-category`, {params}),
-   getBoatCateOne : (id) => service.get(`/boat-category/${id}`),
-   insertBoatCate : (data) => service.post('/boat-category',data) ,
-   updateBoatCate : (id, data) => service.put(`/boat-category/${id}`,data) ,
-   delBoatCate : (id) => service.delete(`/boat-category/${id}`),
+    getBoatCate : (params) => service.get(`/boat-category`, {params}),
+    getBoatCateOne : (id) => service.get(`/boat-category/${id}`),
+    insertBoatCate : (data) => service.post('/boat-category',data) ,
+    updateBoatCate : (id, data) => service.put(`/boat-category/${id}`,data) ,
+    delBoatCate : (id) => service.delete(`/boat-category/${id}`),
 
 
     //Product Category
