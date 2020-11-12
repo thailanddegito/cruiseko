@@ -1,25 +1,58 @@
-import React from 'react';
+import React, {useState} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import PriceData from '../product/PriceData';
+import Datetime from 'react-datetime';
 
 const ProductPrice = (props) => {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  const showstartDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    setStartDate(data);
+  }
+
+  const showendDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    setEndDate(data);
+  }
+
+  const validStartDate = (current) => {
+    // var getStart = startDate;
+    return current.isSameOrBefore(new Date());
+  }
+
+  const validEndDate = (current) => {
+    var getStart = startDate;
+    return current.isSameOrAfter(getStart) && current.isSameOrBefore(new Date());
+  }
 
   return (
     <>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center mb-4">
         <div className="col-lg-3 col-12">
-          <InputLabel inputProps={{ 
-            className:'form-control', type : 'text',
-            name : 'name', required : true
-          }} 
-          labelName="When does your schedule start?" iconProps={{className : 'fa icon icon-email'}}  />
+          <div className="form-group">
+            <label>When does your schedule start?</label>
+            <Datetime
+            dateFormat="YYYY-MM-DD"
+            timeFormat={false}
+            onChange={(e) => { showstartDate(e) }}
+            value={startDate ? startDate : ''}
+            inputProps={{ name: 'start_date', required: true, autoComplete: 'off' }} 
+            isValidDate={validStartDate} />
+          </div>
         </div>
         <div className="col-lg-3 col-12">
-          <InputLabel inputProps={{ 
-            className:'form-control', type : 'text',
-            name : 'name', required : true
-          }} 
-          labelName="When does your schedule end?" iconProps={{className : 'fa icon icon-email'}}  />
+          <label>When does your schedule end?</label>
+          <Datetime
+          dateFormat="YYYY-MM-DD"
+          timeFormat={false}
+          onChange={(e) => { showendDate(e) }}
+          value={endDate ? endDate : ''}
+          inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
+          isValidDate={validEndDate} />
         </div>
       </div>
 
