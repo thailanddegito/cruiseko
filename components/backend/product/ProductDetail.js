@@ -15,8 +15,8 @@ const Loading = <div className="position-relative"><DivLoad loading={true} /></d
 const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const ProductDetail = (props) => {
-
   const [types, setType] = useState();
+  const [boats, setBoat] = useState();
 
   const fecthProductCate = () => {
     api.getProductCate()
@@ -29,12 +29,23 @@ const ProductDetail = (props) => {
       console.log(err.response);
     })
   }
+  const fecthBoat = () => {
+    api.getBoat()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,val : val.boat_id})  )
+      setBoat(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
   
   useEffect(() => {
+    fecthBoat();
     fecthProductCate();
   },[]);
 
-  var options = [{ value: '1', label: 'สินค้า CU'}, { value: '2', label: 'E-book'}, { value: '4', label: 'Course Online'}];
 
   
 
@@ -85,7 +96,7 @@ const ProductDetail = (props) => {
               isMulti={false}
               placeholder="-- Please Select Boat --"
               name={"boat"}
-              options={options}
+              options={boats}
               // onChange={(e) => handleChange(e)}
             /> 
           </div>

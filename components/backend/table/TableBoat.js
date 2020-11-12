@@ -5,13 +5,13 @@ import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
 const TableBoat = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [types, setType] = useState();
+  const [boats, setBoat] = useState();
 
   const fecthBoat = () => {
     api.getBoat()
     .then(res=>{
       const data = res.data;
-      setType(data);
+      setBoat(data);
     })
     .catch(err => {
       console.log(err.response);
@@ -60,7 +60,7 @@ const TableBoat = (props) => {
           </thead>
           <tbody>
             {
-              (types && types.length) ? types.map((val, index) => (
+              (boats && boats.length) ? boats.map((val, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{val.name}</td>
