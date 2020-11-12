@@ -9,7 +9,7 @@ const DivLoad = (props) => {
     {
       loading ? (
         <div className="loading-center">
-          <BeatLoader size={20} color={"#DE5C8E"} loading={loading} />
+          <BeatLoader size={20} color={"#007BFF"} loading={loading} />
         </div>
       ) : ''
     }

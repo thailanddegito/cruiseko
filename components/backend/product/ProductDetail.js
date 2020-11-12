@@ -65,7 +65,7 @@ const ProductDetail = (props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Detail</label>
-            <Editor name="detail" height="400px" required/>
+            <Editor name="detail" height="200px" required/>
           </div>
         </div>
       </div>
@@ -86,22 +86,6 @@ const ProductDetail = (props) => {
           labelName="Status" iconProps={{className : 'fa icon icon-home'}} options={[]} />
         </div>
       </div>
-
-      <div className="divider"></div>
-      <div className="row justify-content-start">
-        <div className="col-6">
-          <h4>Photos</h4>
-        </div>
-      </div>
-      <div className="divider"></div>
-      <div className="row">
-        <div className="col-lg-12 col-12">
-          <div className="form-group">
-            <Dropzone />
-          </div>
-        </div>
-      </div>
-
     </>
   )
 }
