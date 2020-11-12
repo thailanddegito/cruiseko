@@ -1,5 +1,6 @@
 import React from 'react';
 import tools from '.././../../utils/tools'
+import ShowPriceData from '../product/ShowPriceData'
 
 const ShowPrice = (props) => {
   const {price} = props;
