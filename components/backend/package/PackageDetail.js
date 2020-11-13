@@ -5,21 +5,21 @@ import InputLabel from '../../widget/InputLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Dropzone from '../../widget/Dropzone'
 import api from '../../../utils/api-admin'
-import DivLoad from '../../../components/widget/DivLoad';
+import DivLoad from '../../widget/DivLoad';
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
 const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
-const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: false, loading: () => Loading })
+const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
-const ProductDetail = memo((props) => {
+const PackageDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
 
-  const fecthProductCate = () => {
-    api.getProductCate()
+  const fecthPackageCate = () => {
+    api.getPackageCate()
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,val : val.cate_id})  )
@@ -44,7 +44,7 @@ const ProductDetail = memo((props) => {
   
   useEffect(() => {
     fecthBoat();
-    fecthProductCate();
+    fecthPackageCate();
   },[]);
 
 
@@ -106,4 +106,4 @@ const ProductDetail = memo((props) => {
     </>
   )
 })
-export default ProductDetail
+export default PackageDetail

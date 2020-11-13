@@ -1,5 +1,5 @@
 import React from 'react';
-import tools from '.././../../utils/tools'
+import tools from '../../../utils/tools'
 
 const ShowPriceData = (props) => {
   const {val : {start_date, end_date},onClickEdit} = props;

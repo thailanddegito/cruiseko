@@ -5,12 +5,12 @@ import InputLabel from '../../widget/InputLabel';
 import SelectLabel from '../../widget/SelectLabel';
 import Dropzone from '../../widget/Dropzone'
 import api from '../../../utils/api-admin'
-import DivLoad from '../../../components/widget/DivLoad';
+import DivLoad from '../../widget/DivLoad';
 
 const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
-const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: false, loading: () => Loading })
+const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
-const ProductImage = (props) => {
+const PackageImage = (props) => {
 
   return (
     <>
@@ -25,4 +25,4 @@ const ProductImage = (props) => {
     </>
   )
 }
-export default ProductImage
+export default PackageImage

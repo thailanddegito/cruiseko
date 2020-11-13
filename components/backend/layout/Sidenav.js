@@ -88,17 +88,17 @@ const Sidenav = (props) => {
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
                   (admin.role_id == 0 || checkMainMenu(1,2)) && (
-                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Product">
-                      <a className={`nav-link nav-link-collapse ${(page_name == "Product" || page_name == "Product Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseCategory" data-parent="#Category">
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Package">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Package" || page_name == "Package Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseCategory" data-parent="#Category">
                         <i className="fa fa-fw fa-ship"></i>
-                        <span className="nav-link-text">Product</span>
+                        <span className="nav-link-text">Package</span>
                       </a>
-                      <ul className={`sidenav-second-level collapse ${(page_name == "Product" || page_name == "Product Category") ? 'show' : ''}`} id="collapseCategory">
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Package" || page_name == "Package Category") ? 'show' : ''}`} id="collapseCategory">
                         {
                           (admin.role_id == 0 || checkMenu(1)) && (
                             <li>
-                              <Link href="/backend/product">
-                                <a>Product</a>
+                              <Link href="/backend/package">
+                                <a>Package</a>
                               </Link>
                             </li>
                           )
@@ -106,8 +106,8 @@ const Sidenav = (props) => {
                         {
                           (admin.role_id == 0 || checkMenu(2)) && (
                             <li>
-                              <Link href="/backend/product_category">
-                                <a>Product Category</a>
+                              <Link href="/backend/package_category">
+                                <a>Package Category</a>
                               </Link>
                             </li>
                           )

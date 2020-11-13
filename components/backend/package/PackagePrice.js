@@ -1,12 +1,12 @@
 import React, {useState, useEffect, memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
-import PriceData from '../product/PriceData';
+import PriceData from './PriceData';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 import produce from 'immer'
-import Button from '../../../components/widget/Button';
+import Button from '../../widget/Button';
 
-const ProductPrice = memo((props) => {
+const PackagePrice = memo((props) => {
   // const [startDate, setStartDate] = useState(null);
   // const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
@@ -171,4 +171,4 @@ const ProductPrice = memo((props) => {
     </>
   )
 })
-export default ProductPrice
+export default PackagePrice

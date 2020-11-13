@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
-import ProductDetail from '../../../components/backend/product/ProductDetail';
-import ProductImage from '../../../components/backend/product/ProductImage';
-import ProductPrice from '../../../components/backend/product/ProductPrice';
-import ShowPrice from '../../../components/backend/product/ShowPrice';
+import PackageDetail from '../../../components/backend/package/PackageDetail';
+import PackageImage from '../../../components/backend/package/PackageImage';
+import PackagePrice from '../../../components/backend/package/PackagePrice';
+import ShowPrice from '../../../components/backend/package/ShowPrice';
 import Button from '../../../components/widget/Button';
 
 const Index = (props) => {
@@ -48,10 +48,10 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Create Product" page_name="Product">
+      <Layout title="Create Package" page_name="Package">
         <div className="row justify-content-start">
           <div className="col-6">
-            <h4>Create Product</h4>
+            <h4>Create Package</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -59,10 +59,10 @@ const Index = (props) => {
 
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link active" data-toggle="tab" href="#details">Product Details</a>
+            <a className="nav-link active" data-toggle="tab" href="#details">Package Details</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#images">Product Gallery</a>
+            <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
@@ -71,11 +71,11 @@ const Index = (props) => {
         <div className="tab-content">
           <div className="tab-pane active" id="details">
             <div>
-              <ProductDetail />
+              <PackageDetail />
             </div>
           </div>
           <div className="tab-pane fade" id="images">
-            <ProductImage />
+            <PackageImage />
           </div>
           <div className="tab-pane fade" id="price">
             <div className="row">
@@ -90,7 +90,7 @@ const Index = (props) => {
               show ? (
                 <>
                   <div>
-                    <ProductPrice 
+                    <PackagePrice 
                     handleAdd={handleAdd} 
                     handleCancel={handleCancel} 
                     editData={editData}

@@ -1,6 +1,6 @@
 import React from 'react';
-import tools from '.././../../utils/tools'
-import ShowPriceData from '../product/ShowPriceData'
+import tools from '../../../utils/tools'
+import ShowPriceData from './ShowPriceData'
 
 const ShowPrice = (props) => {
   const {price,onClickEdit} = props;

@@ -6,14 +6,14 @@ const Index = (props) => {
 
   return (
     <>
-      <Layout title="Product" page_name="Product">
+      <Layout title="Package" page_name="Package">
         <div className="row justify-content-start">
           <div className="col-6">
-            <h4>Product</h4>
+            <h4>Package</h4>
           </div>
           <div className="col-6">
             <div className="text-right">
-              <Link href="/backend/product/create">
+              <Link href="/backend/package/create">
                 <a className="btn btn-primary">Create</a>
               </Link>
             </div>

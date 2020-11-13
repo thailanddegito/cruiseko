@@ -3,12 +3,12 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
-const TableProductCategory = (props) => {
+const TablePackageCategory = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
   const [types, setType] = useState();
 
-  const fecthProductCate = () => {
-    api.getProductCate()
+  const fecthPackageCate = () => {
+    api.getPackageCate()
     .then(res=>{
       const data = res.data;
       setType(data);
@@ -19,7 +19,7 @@ const TableProductCategory = (props) => {
   }
   
   useEffect(() => {
-    fecthProductCate();
+    fecthPackageCate();
   },[]);
   
   const [ref_id, setrefID] = useState();
@@ -30,10 +30,10 @@ const TableProductCategory = (props) => {
 
   const onConfirm = ()=>{
     if(!ref_id) return;
-    api.delProductCate(ref_id)
+    api.delPackageCate(ref_id)
     .then(res=>{
       const data = res.data;
-      fecthProductCate();
+      fecthPackageCate();
       setModalConfirm(false);
     })
     .catch(err => {
@@ -66,7 +66,7 @@ const TableProductCategory = (props) => {
                   <td className="text-center">
                     <ul className="buttons manage">
                       <li>
-                        <Link href="/backend/product_category/edit/[id]" as={`/backend/product_category/edit/${val.cate_id}`}>
+                        <Link href="/backend/package_category/edit/[id]" as={`/backend/package_category/edit/${val.cate_id}`}>
                           <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
                         </Link>
                       </li>
@@ -93,4 +93,4 @@ const TableProductCategory = (props) => {
     </>
   )
 }
-export default TableProductCategory
+export default TablePackageCategory
