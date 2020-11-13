@@ -11,7 +11,7 @@ import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
-const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
+const Loading = <div className="position-relative" style={{height : '200px'}}><DivLoad loading={true} /></div>;
 const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const PackageDetail = memo((props) => {
