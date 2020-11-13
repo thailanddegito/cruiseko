@@ -2,7 +2,7 @@ import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import Button from '../../widget/Button';
 
-const PackageTier = memo((props) => {
+const PackageTierHeader = memo((props) => {
   const {name, handleAddTier} = props;
 
   return (
@@ -29,4 +29,4 @@ const PackageTier = memo((props) => {
     </>
   )
 })
-export default PackageTier
+export default PackageTierHeader

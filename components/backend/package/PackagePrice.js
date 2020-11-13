@@ -1,7 +1,8 @@
 import React, {useState, useEffect, memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 import PriceInfo from './PriceInfo';
-import PackageTier from './PackageTier';
+import PackageTierHeader from './PackageTierHeader';
+import PackageTierData from './PackageTierData';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 import produce from 'immer'
@@ -176,18 +177,14 @@ const PackagePrice = memo((props) => {
             {
               priceTypes == 2 ? (
                 <>
-                  <PackageTier handleAddTier={handleAddTier} />
+                  <PackageTierHeader handleAddTier={handleAddTier} />
                   {
                     addDataTier ? (
                       <>
-                        <div className="tier">
-                          <div className="tier-header">Tier 1 - 2</div>
-                          <div>
-                            <PriceInfo name="Adult's Price" data={data.adult} type="adult" handlePriceChange={handlePriceChange} />
-                            <PriceInfo name="Children's Price" data={data.children} type="children" handlePriceChange={handlePriceChange} />
-                          </div>
+                        <div className="price-data " id="accordion">
+                          <PackageTierData data={data} id={'1'} handlePriceChange={handlePriceChange} />
                         </div>
-                        <div className="text-center">
+                        <div className="text-center mt-5">
                           <Button _type="button" _name={'Save'} _class="btn-primary" />
                           <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                         </div>
@@ -197,6 +194,7 @@ const PackagePrice = memo((props) => {
                 </>
               ) : null
             }
+
            
           </div>
         ) : null
