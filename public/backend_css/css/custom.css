@@ -374,12 +374,26 @@ span.nav-link-text {
   border: 1px solid #eee;
   padding: 30px 15px;
 }
-.adult-head, .children-head {
+
+.package-type {
+  border: 1px solid #eee;
+}
+.package-head {
   background-color: #EEE;
   text-align: center;
   padding: 5px;
 }
-.adult-head span, .children-head span {
+.package-head span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+}
+.price-head {
+  background-color: #EEE;
+  text-align: center;
+  padding: 5px;
+}
+.price-head span {
   font-weight: bold;
   font-size: 18px;
   color: #000;
@@ -387,6 +401,7 @@ span.nav-link-text {
 .select2 .css-1pahdxg-control, .select2 .css-yk16xz-control {
     min-height: 42px;
 }
+
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
