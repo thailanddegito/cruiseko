@@ -1,7 +1,7 @@
 import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 
-const PriceData = memo((props) => {
+const TourData = memo((props) => {
   const {name,handlePriceChange,type,index} = props;
 
   const onChange =(e,key) =>{
@@ -13,7 +13,7 @@ const PriceData = memo((props) => {
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-2 col-12">
           <div className="text-center">
-            <p className="p-medium">Adult's Price</p>
+            <p className="p-medium">{name}</p>
           </div>
        </div>
         <div className="col-lg-2 col-12">
@@ -70,4 +70,4 @@ const PriceData = memo((props) => {
     </>
   )
 })
-export default PriceData
+export default TourData

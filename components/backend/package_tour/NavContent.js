@@ -7,7 +7,8 @@ const NavHeader = (props) => {
   return (
     <>
       <div className={`tab-pane ${active ? 'active' : 'fade'}`} id={`${target}`}>
-        <TourData />
+        <TourData name="Adult's Price" />
+        <TourData name="Children's Price" />
       </div>
     </>
   )
