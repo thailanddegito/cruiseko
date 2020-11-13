@@ -96,7 +96,7 @@ const PackagePrice = memo((props) => {
   }
 
 
-  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Tier'}];
+  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Private Tour'}];
   const [priceTypes, setPriceType] = useState('');
   const [addDataTier, setAddDataTier] = useState(false);
   const handleChange = (e) => {
