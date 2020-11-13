@@ -410,6 +410,14 @@ span.nav-link-text {
   width: auto;
   min-width: auto !important;
 }
+.btn-add-tier {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #007bff; 
+  background-color: #007bff;
+  color: #FFF;
+  cursor: pointer;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;

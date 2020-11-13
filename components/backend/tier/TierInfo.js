@@ -1,6 +1,7 @@
 import React,{useState, memo} from 'react';
-import TierData from './TierData';
 import ModalCompanyTier from './ModalCompanyTier';
+import NavHeader from './NavHeader';
+import NavContent from './NavContent';
 
 const PriceInfo = memo((props) => {
   const {name, data, type, handlePriceChange} = props;
@@ -9,20 +10,15 @@ const PriceInfo = memo((props) => {
   return (
     <>
       <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className="nav-link active" data-toggle="tab" href="#fit">FIT</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" data-toggle="tab" href="#agent">Agent</a>
-        </li>
+        <NavHeader name="FIT" target="fit" active={true} />
+        {/* <NavHeader name="Agent" target="agent" active={false} /> */}
         <div>
-          <button onClick={() => setModalShow(true)}>+</button>
+          <button className="btn-add-tier" onClick={() => setModalShow(true)}>+</button>
         </div>
       </ul>
       <div className="tab-content">
-        <div className="tab-pane active" id="fit">
-          <TierData />
-        </div>
+        <NavContent name="FIT" target="fit" active={true}/>
+        {/* <NavContent name="Agent" target="agent" active={false}/> */}
       </div>
 
       <ModalCompanyTier show={modalShow}
