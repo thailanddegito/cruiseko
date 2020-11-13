@@ -188,7 +188,7 @@ const PackagePrice = memo((props) => {
                     <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
                   </div>
-                  </div>
+                </div>
               ) : null
             }     
          
