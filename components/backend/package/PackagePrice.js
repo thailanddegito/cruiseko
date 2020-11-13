@@ -1,6 +1,7 @@
 import React, {useState, useEffect, memo} from 'react';
 import PriceInfo from './PriceInfo';
-import TierInfo from '../tier/TierInfo';
+import TourInfo from '../package_tour/TourInfo';
+import TierInfo from '../package_tier/TierInfo';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 import produce from 'immer'
@@ -96,7 +97,7 @@ const PackagePrice = memo((props) => {
   }
 
 
-  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Private Tour'}];
+  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Private Tour'}, { value: '3', label: 'Old Tour'}];
   const [priceTypes, setPriceType] = useState('');
   const [addDataTier, setAddDataTier] = useState(false);
   const handleChange = (e) => {
@@ -155,9 +156,29 @@ const PackagePrice = memo((props) => {
         </div>
       </div>
 
-   
             {
               priceTypes == 1 ? (
+                <div className="pb-5">
+                  <div>
+                    <TourInfo />
+                  </div>
+                </div>
+              ) : null
+            }
+                  
+          
+            {
+              priceTypes == 2 ? (
+                <div className="pb-5">
+                  <div>
+                    <TierInfo />
+                  </div>
+                </div>
+              ) : null
+            }
+
+            {
+              priceTypes == 3 ? (
                 <div className="package-type pb-5">
                   <div>
                     <PriceInfo name="Adult's Price" data={data.adult} type="adult" handlePriceChange={handlePriceChange} />
@@ -169,22 +190,7 @@ const PackagePrice = memo((props) => {
                   </div>
                   </div>
               ) : null
-            }
-          
-          
-            {
-              priceTypes == 2 ? (
-                <div className="pb-5">
-                  <div>
-                    <TierInfo />
-                  </div>
-                  {/* <div className="text-center">
-                    <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
-                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
-                  </div> */}
-                </div>
-              ) : null
-            }
+            }     
          
     
     </>
