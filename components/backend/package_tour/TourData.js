@@ -52,6 +52,15 @@ const TourData = memo((props) => {
           labelName="% Commission" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
         <div className="col-lg-2 col-12">
+          <InputLabel inputProps={{ 
+              className:'form-control', type : 'text',
+              name : 'name', required : true,
+              value : props.commission, readOnly:name === 'FIT',
+              onChange : (e) => onChange(e,'commission')
+            }} 
+            labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
+        </div>
+        {/* <div className="col-lg-2 col-12">
           <div className="d-flex align-items-center justify-content-between">
           <InputLabel inputProps={{ 
               className:'form-control', type : 'text',
@@ -68,7 +77,7 @@ const TourData = memo((props) => {
               ) : null
             }
           </div>
-        </div>
+        </div> */}
       </div>
 
     </>
