@@ -1,8 +1,6 @@
 import React, {useState, useEffect, memo} from 'react';
-import InputLabel from '../../widget/InputLabel';
 import PriceInfo from './PriceInfo';
-import PackageTierHeader from './PackageTierHeader';
-import PackageTierData from './PackageTierData';
+import TierInfo from '../tier/TierInfo';
 import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 import produce from 'immer'
@@ -119,7 +117,7 @@ const PackagePrice = memo((props) => {
     <>
       <div className="row justify-content-center mb-4">
         <div className="col-lg-3 col-12">
-          <div className="form-group">
+          <div className="form-group select2">
             <label>Type</label>
             <Select
                 closeMenuOnSelect={false}
@@ -157,12 +155,10 @@ const PackagePrice = memo((props) => {
         </div>
       </div>
 
-      {
-        priceTypes ? (
-          <div className="package-type pb-5">
+   
             {
               priceTypes == 1 ? (
-                <>
+                <div className="package-type pb-5">
                   <div>
                     <PriceInfo name="Adult's Price" data={data.adult} type="adult" handlePriceChange={handlePriceChange} />
                     <PriceInfo name="Children's Price" data={data.children} type="children" handlePriceChange={handlePriceChange} />
@@ -171,35 +167,26 @@ const PackagePrice = memo((props) => {
                     <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
                   </div>
-                </>
+                  </div>
               ) : null
             }
+          
+          
             {
               priceTypes == 2 ? (
-                <>
-                  <PackageTierHeader handleAddTier={handleAddTier} />
-                  {
-                    addDataTier ? (
-                      <>
-                        <div className="price-data " id="accordion">
-                          <PackageTierData data={data} id={'1'} handlePriceChange={handlePriceChange} />
-                        </div>
-                        <div className="text-center mt-5">
-                          <Button _type="button" _name={'Save'} _class="btn-primary" />
-                          <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
-                        </div>
-                      </>
-                    ) : null
-                  }
-                </>
+                <div className="pb-5">
+                  <div>
+                    <TierInfo />
+                  </div>
+                  {/* <div className="text-center">
+                    <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
+                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
+                  </div> */}
+                </div>
               ) : null
             }
-
-           
-          </div>
-        ) : null
-      }
-     
+         
+    
     </>
   )
 })
