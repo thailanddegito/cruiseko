@@ -56,13 +56,18 @@ const PriceData = memo((props) => {
           labelName="% Commission" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
         <div className="col-lg-2 col-12">
+          <div className="d-flex align-items-center justify-content-between">
           <InputLabel inputProps={{ 
-            className:'form-control', type : 'text',
-            name : 'name', required : true,
-            value : props.commission, readOnly:name === 'FIT',
-            onChange : (e) => onChange(e,'commission')
-          }} 
-          labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
+              className:'form-control', type : 'text',
+              name : 'name', required : true,
+              value : props.commission, readOnly:name === 'FIT',
+              onChange : (e) => onChange(e,'commission')
+            }} 
+            labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
+            <div>
+              <button className="btn-add-tier">+</button>
+            </div>
+          </div>
         </div>
       </div>
 
