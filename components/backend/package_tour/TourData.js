@@ -2,7 +2,7 @@ import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 
 const TourData = memo((props) => {
-  const {name,handlePriceChange,type,index} = props;
+  const {name,handlePriceChange,type,index, btn} = props;
 
   const onChange =(e,key) =>{
     var {value} = e.target;
@@ -60,9 +60,13 @@ const TourData = memo((props) => {
               onChange : (e) => onChange(e,'commission')
             }} 
             labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
-            <div>
-              <button className="btn-add-tier">+</button>
-            </div>
+            {
+              btn ? (
+                <div>
+                  <button className="btn-add-tier">+</button>
+                </div>
+              ) : null
+            }
           </div>
         </div>
       </div>
