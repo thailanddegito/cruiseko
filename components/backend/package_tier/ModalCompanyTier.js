@@ -30,7 +30,7 @@ const Dialog = (props) => {
                   /> 
               </div>
             </div>
-            <div className="col-12 mt-3">
+            {/* <div className="col-12 mt-3">
                 <InputLabel inputProps={{ 
                 className:'form-control mr-2', type : 'text',
                 name : 'name', required : true,
@@ -38,8 +38,8 @@ const Dialog = (props) => {
                 onChange : (e) => onChange(e,'price')
               }} 
               labelName="Start Tier" iconProps={{className : 'fa icon icon-email'}}  />
-            </div>
-            <div className="col-12 mb-4">
+            </div> */}
+            <div className="col-12 mt-5 mb-4">
               <div className="text-center">
                 <button type="button" className="btn btn-primary" onClick={props.onHide}>OK</button>
                 <button type="button" className="btn btn-outline-primary ml-4" onClick={props.onHide}>Cancel</button>
