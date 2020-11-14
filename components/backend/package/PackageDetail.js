@@ -22,7 +22,7 @@ const PackageDetail = memo((props) => {
     api.getPackageCate()
     .then(res=>{
       const data = res.data;
-      var temp = data.map(val => ({...val,val : val.cate_id})  )
+      var temp = data.map(val => ({...val,value : val.cate_id,label : val.name})  )
       setType(temp);
     })
     .catch(err => {
@@ -62,11 +62,18 @@ const PackageDetail = memo((props) => {
           labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
         <div className="col-lg-4 col-12">
-          <SelectLabel inputProps={{ 
-            className:'form-control select', 
-            name : 'cate_id', required : true,
-          }} 
-          labelName="Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
+          <div className="form-group select2">
+            <label className="">Category</label>
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti={false}
+              placeholder="-- Please Select Category --"
+              name="cate_id"
+              options={types}
+              // onChange={(e) => handleChange(e)}
+            /> 
+          </div>
         </div>
       </div>
 
