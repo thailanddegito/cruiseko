@@ -47,11 +47,11 @@ const ColumsBody = (props) => {
           <ul className="buttons manage">
             <li>
               <Link href="/backend/boat/edit/[id]" as={`/backend/boat/edit/${row.boat_id}`}>
-                <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
+                <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
               </Link>
             </li>
             <li>
-              <a className="a-manage danger" onClick={() => delData(row.boat_id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
+              <button className="a-manage danger" onClick={() => delData(row.boat_id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>
             </li>
           </ul>
         </span>

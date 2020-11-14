@@ -56,7 +56,7 @@ const columns = [
         <ul className="buttons manage">
           <li>
             <Link href="/backend/users/manage/[id]" as={`/backend/users/manage/${row.id}`}>
-              <a className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>Manage</span></a>
+              <button className="a-manage warning"><i className="fa fa-fw fa-cog"></i> <span>Manage</span></button>
             </Link>
           </li>
         </ul>

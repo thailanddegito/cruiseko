@@ -237,6 +237,7 @@ span.nav-link-text {
   padding: 2px 4px;
   margin: 0 4px;
   cursor: pointer;
+  min-width: 68px;
 }
 .a-manage.warning {
   border-color: #ffc107;

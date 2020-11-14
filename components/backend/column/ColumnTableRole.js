@@ -32,11 +32,11 @@ const ColumsBody = (props) => {
           <ul className="buttons manage">
             <li>
               <Link href="/backend/roles/edit/[id]" as={`/backend/roles/edit/${row.id}`}>
-                <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
+                <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
               </Link>
             </li>
             <li>
-              <a className="a-manage danger" onClick={() => delData(row.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
+              <button className="a-manage danger" onClick={() => delData(row.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>
             </li>
           </ul>
         </span>
