@@ -1,13 +1,10 @@
-import React, { useEffect, useState,memo } from 'react';
 import dynamic from 'next/dynamic';
-import Button from '../../widget/Button';
-import InputLabel from '../../widget/InputLabel';
-import SelectLabel from '../../widget/SelectLabel';
-import Dropzone from '../../widget/Dropzone'
-import api from '../../../utils/api-admin'
-import DivLoad from '../../widget/DivLoad';
-import Select from 'react-select'
+import React, { memo, useEffect, useState } from 'react';
+import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import api from '../../../utils/api-admin';
+import DivLoad from '../../widget/DivLoad';
+import InputLabel from '../../widget/InputLabel';
 
 const animatedComponents = makeAnimated();
 
