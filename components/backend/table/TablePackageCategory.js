@@ -3,6 +3,11 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
+import DataTable from 'react-data-table-component'
+import SubHeaderComponent from './SubHeaderComponent'
+import ColumnTable from '../column/ColumnTablePackageCategory'
+
+
 const TablePackageCategory = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
   const [types, setType] = useState();
@@ -40,48 +45,32 @@ const TablePackageCategory = (props) => {
       console.log(err.response);
     })
   }
+  
+  const [filterText, setFilterText] = useState('');
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const filteredItems = types ? types.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  
+  const columns = ColumnTable({delData});
 
 
   return (
     <>
-      <div className="table-responsive">
-        <table className="table table-bordered" width="100%" cellSpacing="0">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Code</th>
-              <th>Created date</th>
-              <th className="text-center" style={{width: "25%"}}>Manage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              (types && types.length) ? types.map((val, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{val.name}</td>
-                  <td>{val.code}</td>
-                  <td>{val.createdAt}</td>
-                  <td className="text-center">
-                    <ul className="buttons manage">
-                      <li>
-                        <Link href="/backend/package_category/edit/[id]" as={`/backend/package_category/edit/${val.cate_id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
-                        </Link>
-                      </li>
-                      <li>
-                        <a className="a-manage danger" onClick={() => delData(val.cate_id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              )) : <tr><td colSpan="100%">Data Not found!!!</td></tr>
-            }
-            
-          </tbody>
-        </table>
-      </div>
+     
+
+      <DataTable
+        columns={columns}
+        data={filteredItems}
+        pagination
+        paginationResetDefaultPage={resetPaginationToggle}
+        noHeader
+        subHeader
+        subHeaderComponent={
+          <SubHeaderComponent 
+            setResetPaginationToggle={setResetPaginationToggle} resetPaginationToggle={resetPaginationToggle} 
+            setFilterText={setFilterText} filterText={filterText}
+          />
+        }
+      />
       
       <ModalConfirmDialog show={modalConfirm}
           text={`Do you confirm to delete this ?`}

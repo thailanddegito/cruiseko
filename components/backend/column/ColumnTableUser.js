@@ -49,7 +49,7 @@ const columns = [
   {
     name: '',
     sortable: true,
-    maxWidth : '200px',
+    width : '200px',
     right : true,
     cell : row => (
       <span>

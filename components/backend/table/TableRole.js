@@ -3,6 +3,11 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 
+import DataTable from 'react-data-table-component'
+import SubHeaderComponent from './SubHeaderComponent'
+import ColumnTable from '../column/ColumnTableRole'
+
+
 const TableRole = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
   const [roles, setRole] = useState();
@@ -41,46 +46,30 @@ const TableRole = (props) => {
     })
   }
 
+  const [filterText, setFilterText] = useState('');
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const filteredItems = roles ? roles.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  
+  const columns = ColumnTable({delData});
+
   return (
     <>
-      <div className="table-responsive">
-        <table className="table table-bordered" width="100%" cellSpacing="0">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Role name</th>
-              <th>Access level</th>
-              <th>Created date</th>
-              <th className="text-center" style={{width: "25%"}}>Manage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              (roles && roles.length) ? roles.map((val, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{val.name}</td>
-                  <td>{val.level}</td>
-                  <td>{val.createdAt}</td>
-                  <td className="text-center">
-                    <ul className="buttons manage">
-                      <li>
-                        <Link href="/backend/roles/edit/[id]" as={`/backend/roles/edit/${val.id}`}>
-                          <a className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></a>
-                        </Link>
-                      </li>
-                      <li>
-                        <a className="a-manage danger" onClick={() => delData(val.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              )) : <tr><td colSpan="100%">Data Not found!!!</td></tr>
-            }
-            
-          </tbody>
-        </table>
-      </div>
+    
+
+      <DataTable
+        columns={columns}
+        data={filteredItems}
+        pagination
+        paginationResetDefaultPage={resetPaginationToggle}
+        noHeader
+        subHeader
+        subHeaderComponent={
+          <SubHeaderComponent 
+            setResetPaginationToggle={setResetPaginationToggle} resetPaginationToggle={resetPaginationToggle} 
+            setFilterText={setFilterText} filterText={filterText}
+          />
+        }
+      />
       
       <ModalConfirmDialog show={modalConfirm}
           text={`Do you confirm to delete this ?`}
