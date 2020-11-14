@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Layout from '../../../components/backend/layout/Layout';
+import TablePackage from '../../../components/backend/table/TablePackage';
 
 const Index = (props) => {
 
@@ -21,7 +22,7 @@ const Index = (props) => {
         </div>
         <div className="divider"></div>
         <div>
-          {/* <TableBoat /> */}
+          <TablePackage />
         </div>
       </Layout>
     </>
