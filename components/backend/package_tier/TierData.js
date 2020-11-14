@@ -64,13 +64,13 @@ const PriceData = memo((props) => {
               onChange : (e) => onChange(e,'commission')
             }} 
             labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
+            <div className="div-btn-add-tier">
             {
               btn ? (
-                <div>
-                  <button className="btn-add-tier">+</button>
-                </div>
+                <button className="btn-add-tier">+</button>
               ) : null
             }
+            </div>
           </div>
         </div>
       </div>
