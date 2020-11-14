@@ -3,10 +3,10 @@ import InputLabel from '../../widget/InputLabel';
 
 const TourData = memo((props) => {
   const {name,handlePriceChange,type,index, btn} = props;
-
+  const {user_type_name,customer_type} = props
   const onChange =(e,key) =>{
     var {value} = e.target;
-    handlePriceChange(type,index,key,value)
+    handlePriceChange(user_type_name,customer_type,key,value)
   }
   return (
     <>

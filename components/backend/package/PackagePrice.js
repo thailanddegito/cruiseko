@@ -11,18 +11,37 @@ import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
+// const initPrice = {
+//   adult : {price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0},
+//   children : {price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0}
+// }
+const price_list = [
+  {customer_type :'adult',name : "Adult's Price", price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0},
+  {customer_type :'children',name : "Children's Price", price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0}
+]
+
+const initStateTypeNormal = {
+    start_date:null,end_date : null,
+    pricing_type : 'normal',
+    user_type : [ {name : 'FIT',company_type_id : 0  ,price_list }  ]
+}
+
+const initFirstTier = {number : 2,price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0}
+
+const initStateTypeTier = {
+    start_date:null,end_date : null,
+    pricing_type : 'tier',
+    user_type : [ {name : 'FIT',company_type_id : 0 , tier_start : 1 , tiers : [initFirstTier] }  ]
+  
+}
 
 const PackagePrice = memo((props) => {
   // const [startDate, setStartDate] = useState(null);
   // const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
   const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave} = props
-  const initState = {
-    start_date:null,end_date : null,
-    adult : [{company_type_id : 0,name : 'FIT',price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0} ],
-    children : [{company_type_id : 0,name : 'FIT',price :null,deposit_rate:0,commission_rate: 0,deposit:0,commission:0} ],
-  }
-  const [data,setData] = useState(editData || initState)
+
+  const [data,setData] = useState(editData || initStateTypeNormal)
 
   const fechCompany = () => {
     if(companies || editData) return;
@@ -63,26 +82,72 @@ const PackagePrice = memo((props) => {
 
 
   const onCancel = ()=>{
-    setData(initState)
+    setData(initStateTypeNormal)
     handleCancel && handleCancel()
   }
 
-  const handlePriceChange =(type,index,key,val) =>{
+  const handlePriceChangeNormal =(user_type_name,customer_type,key,value) =>{
     const nextState = produce(data, draftState => {
-      draftState[type][index][key] = val
+      draftState.user_type.find(val => val.name === user_type_name)
+      .price_list.find(val => val.customer_type === customer_type)[key] = value
+    })
+    setData(nextState)
+  }
+
+  const handlePriceChangeTier = (user_type_name,tier_index,key,value) =>{
+    console.log(user_type_name,tier_index,key,value)
+    const nextState = produce(data, draftState => {
+      draftState.user_type.find(val => val.name === user_type_name).tiers[tier_index][key] = value
+    })
+    setData(nextState)
+  }
+
+  const addUserTypeNormal = (user) =>{
+    const nextState = produce(data, draftState => {
+      var _price_list = price_list.map(val =>  (
+        {...val,commission_rate : user.commission_rate}
+      ) )
+      var user_data = {...user,company_type_id : user.id,price_list : _price_list}
+      
+      draftState.user_type.push(user_data)
+    })
+    setData(nextState)
+  }
+  const addUserTypeTier = (user) =>{
+    const nextState = produce(data, draftState => {
+      var _tiers = [ {...initFirstTier,commission_rate : user.commission_rate} ]
+      var user_data = {...user,company_type_id : user.id,tier_start : 1,tiers : _tiers}
+      draftState.user_type.push(user_data)
+    })
+    setData(nextState)
+  }
+
+  const handleTierStartChange = (user_type_name,value) =>{
+    // console.log(user_type_name,value)
+    const nextState = produce(data, draftState => {
+      draftState.user_type.find(val => val.name === user_type_name)
+      .tier_start = value
+    })
+    setData(nextState)
+  }
+
+  const handleAddTier = (user_type_name,tier_index) =>{
+    const nextState = produce(data, draftState => {
+      var user = draftState.user_type.find(val => val.name === user_type_name)
+      var tiers = user.tiers
+      var prep = {...tiers[tier_index],number :null  }
+      tiers.splice(tier_index+1,0,prep)
     })
     setData(nextState)
   }
 
   const showstartDate = (e) => {
     var date = e._d;
-    // setStartDate(data);
     setData({...data,start_date : date})
   }
 
   const showendDate = (e) => {
     var date = e._d;
-    // setEndDate(data);
     setData({...data,end_date : date})
   }
 
@@ -97,21 +162,19 @@ const PackagePrice = memo((props) => {
   }
 
 
-  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Private Tour'}, { value: '3', label: 'Old Tour'}];
-  const [priceTypes, setPriceType] = useState('');
+  var options = [{ value: 'normal', label: 'Tour'}, { value: 'tier', label: 'Private Tour'}, { value: 'old', label: 'Old Tour'}];
+  // const [priceTypes, setPriceType] = useState('');
   const [addDataTier, setAddDataTier] = useState(false);
   const handleChange = (e) => {
-    if(e) {
-      setPriceType(e.value);
-    }else{
-      setPriceType('');
-    }
+    // setPriceType(e.value);
+    var init = e.value === 'normal' ? initStateTypeNormal : initStateTypeTier
+    setData(init)
   }
 
-  const handleAddTier = () => {
-    setAddDataTier(true);
-  }
-  // console.log('data',data)
+  // const handleAddTier = () => {
+  //   setAddDataTier(true);
+  // }
+  console.log('data',data)
   // console.log('editData',editData)
 
   return (
@@ -125,7 +188,7 @@ const PackagePrice = memo((props) => {
                 components={animatedComponents}
                 isMulti={false}
                 placeholder="-- Please Select Type --"
-                name={"price_types"}
+                name={"pricing_type"}
                 options={options}
                 onChange={(e) => handleChange(e)}
               /> 
@@ -157,10 +220,13 @@ const PackagePrice = memo((props) => {
       </div>
 
             {
-              priceTypes == 1 ? (
+              data.pricing_type === 'normal' ? (
                 <div className="pb-5">
                   <div>
-                    <TourInfo />
+                    <TourInfo  
+                    data={data.user_type}
+                    handlePriceChange={handlePriceChangeNormal}
+                    addUserType={addUserTypeNormal} />
                   </div>
                 </div>
               ) : null
@@ -168,17 +234,22 @@ const PackagePrice = memo((props) => {
                   
           
             {
-              priceTypes == 2 ? (
+              data.pricing_type === 'tier' ? (
                 <div className="pb-5">
                   <div>
-                    <TierInfo />
+                    <TierInfo 
+                    data={data.user_type}
+                    handlePriceChange={handlePriceChangeTier}
+                    handleTierStartChange={handleTierStartChange}
+                    handleAddTier={handleAddTier}
+                    addUserType={addUserTypeTier} />
                   </div>
                 </div>
               ) : null
             }
 
-            {
-              priceTypes == 3 ? (
+            {/* {
+              data.pricing_type === 'old' ? (
                 <div className="package-type pb-5">
                   <div>
                     <PriceInfo name="Adult's Price" data={data.adult} type="adult" handlePriceChange={handlePriceChange} />
@@ -190,7 +261,7 @@ const PackagePrice = memo((props) => {
                   </div>
                 </div>
               ) : null
-            }     
+            }      */}
          
     
     </>

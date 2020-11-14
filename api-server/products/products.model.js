@@ -29,7 +29,7 @@ module.exports = (sequelize, type) => {
   
     Product.associate = function(models) {
         Product.belongsTo(models.ProductCategory,{foreignKey : 'cate_id',constraints: false});
-        Product.hasMany(models.PriceCalendar,{foreignKey : 'product_id',constraints: false})
+        Product.hasMany(models.PriceDate,{foreignKey : 'product_id',constraints: false})
     };
     return Product
   }

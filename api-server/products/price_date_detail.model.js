@@ -1,11 +1,12 @@
 module.exports = (sequelize, type) => {
-  var PriceCalendarDetail  = sequelize.define('price_calendar_detail', {
+  var PriceDateDetail  = sequelize.define('price_date_detail', {
     id : {
       type: type.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    calendar_id : type.INTEGER,
+    price_date_id : type.INTEGER,
+    tier_id : type.INTEGER,
     company_type_id : type.INTEGER,
     // range_start : type.INTEGER,
     // range_end : type.INTEGER,
@@ -21,8 +22,8 @@ module.exports = (sequelize, type) => {
       freezeTableName: true
   })
 
-  PriceCalendarDetail.associate = function(models) {
-    PriceCalendarDetail.belongsTo(models.PriceCalendar,{foreignKey : 'calendar_id',constraints: false})
+  PriceDateDetail.associate = function(models) {
+    PriceDateDetail.belongsTo(models.PriceDate,{foreignKey : 'price_date_id',constraints: false})
   };
-  return PriceCalendarDetail
+  return PriceDateDetail
 }

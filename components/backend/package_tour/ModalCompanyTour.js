@@ -8,7 +8,9 @@ import api from '../../../utils/api-admin'
 const animatedComponents = makeAnimated();
 
 const Dialog = (props) => {
+  const {addUserType,user_list} = props
   const [companies, setCompany] = useState();
+  const [selected,setSelected] = useState();
 
   const fechCompany = () => {
     api.getCompany()
@@ -21,12 +23,27 @@ const Dialog = (props) => {
       console.log(err.response);
     })
   }
+
+  const handleChange = (e) =>{
+    setSelected(e.value)
+  }
+
+  const onClickOK = () =>{
+    addUserType && addUserType(companies.find(val => val.id === selected) )
+    // alert(selected)
+    if(!selected) {
+      alert('Please select the value')
+      return;
+    }
+    props.onHide()
+  }
   
   useEffect(() => {
     fechCompany();
   },[]);
 
 
+  const filteredList = companies ? companies.filter(val => !user_list.includes(val.id) ) : []
  
   return (
     <Modal className="modal-alert" centered show={props.show} onHide={props.onHide} size={props.size}>
@@ -42,8 +59,8 @@ const Dialog = (props) => {
                     isMulti={false}
                     placeholder="-- Please Select Type --"
                     name={"price_types"}
-                    options={companies}
-                    onChange={(e) => handleChange(e)}
+                    options={filteredList}
+                    onChange={handleChange}
                   /> 
               </div>
             </div>
@@ -58,7 +75,7 @@ const Dialog = (props) => {
             </div> */}
             <div className="col-12 mt-5 mb-4">
               <div className="text-center">
-                <button type="button" className="btn btn-primary" onClick={props.onHide}>OK</button>
+                <button type="button" className="btn btn-primary" onClick={onClickOK}>OK</button>
                 <button type="button" className="btn btn-outline-primary ml-4" onClick={props.onHide}>Cancel</button>
               </div>
             </div>

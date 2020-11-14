@@ -2,11 +2,11 @@ import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 
 const PriceData = memo((props) => {
-  const {name,handlePriceChange,type,index, btn} = props;
+  const {name,handlePriceChange,type,index, btn,handleAddTier} = props;
 
   const onChange =(e,key) =>{
     var {value} = e.target;
-    handlePriceChange(type,index,key,value)
+    handlePriceChange(name,index,key,value)
   }
   return (
     <>
@@ -14,9 +14,9 @@ const PriceData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control mr-2', type : 'text',
-            name : 'name', required : true,
-            value : props.price,
-            onChange : (e) => onChange(e,'price')
+            required : true,
+            value : props.number,
+            onChange : (e) => onChange(e,'number')
           }} 
           labelName="Tier ..." iconProps={{className : 'fa icon icon-email'}}  />
        </div>
@@ -67,7 +67,7 @@ const PriceData = memo((props) => {
             <div className="div-btn-add-tier">
             {
               btn ? (
-                <button className="btn-add-tier">+</button>
+                <button className="btn-add-tier" onClick={() => handleAddTier(name,index)} >+</button>
               ) : null
             }
             </div>

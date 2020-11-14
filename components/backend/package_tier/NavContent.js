@@ -3,8 +3,11 @@ import TierData from './TierData';
 import InputLabel from '../../widget/InputLabel';
 
 const NavHeader = (props) => {
-  const {name, target, active} = props;
+  const {name, target, active,handleTierStartChange,data,handlePriceChange,handleAddTier} = props;
 
+  const onChange = (e) =>{
+    handleTierStartChange && handleTierStartChange(name,e.target.value)
+  }
   return (
     <>
       <div className={`tab-pane ${active ? 'active' : 'fade'}`} id={`${target}`}>
@@ -13,14 +16,23 @@ const NavHeader = (props) => {
             <InputLabel inputProps={{ 
               className:'form-control mr-2', type : 'text',
               name : 'name', required : true,
-              value : props.price,
-              onChange : (e) => onChange(e,'price')
+              value : data.tier_start,
+              onChange 
             }} 
             labelName="Start tier" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
        </div>
-        <TierData btn={false} />
-        <TierData btn={true} />
+        {data.tiers.map((val,index) =>  (
+          <TierData btn={index === data.tiers.length-1} 
+          name={name}
+          key={index}
+          {...val}
+          index={index}
+          handleAddTier={handleAddTier}
+          handlePriceChange={handlePriceChange}
+          />
+        ))}
+        
       </div>
     </>
   )

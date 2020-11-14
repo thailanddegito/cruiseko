@@ -34,8 +34,9 @@ const models = {
     Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
     BoatImage : require('./products/boat/boat_images.model')(sequelize,Sequelize),
     BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
-    PriceCalendar : require('./products/price_calendar.model')(sequelize,Sequelize),
-    PriceCalendarDetail : require('./products/price_calendar_detail.model')(sequelize,Sequelize),
+    PriceDate : require('./products/price_date.model')(sequelize,Sequelize),
+    PriceDateDetail : require('./products/price_date_detail.model')(sequelize,Sequelize),
+    PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
     
 }
 
