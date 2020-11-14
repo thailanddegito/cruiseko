@@ -1,14 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Modal } from 'react-bootstrap';
 import InputLabel from '../../widget/InputLabel';
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
+import api from '../../../utils/api-admin'
 
 const animatedComponents = makeAnimated();
 
 const Dialog = (props) => {
+  const [companies, setCompany] = useState();
 
-  var options = [{ value: '1', label: 'Tour'}, { value: '2', label: 'Tier'}];
+  const fechCompany = () => {
+    api.getCompany()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,value : val.id, label : val.name})  )
+      setCompany(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  
+  useEffect(() => {
+    fechCompany();
+  },[]);
+
 
  
   return (
@@ -25,7 +42,7 @@ const Dialog = (props) => {
                     isMulti={false}
                     placeholder="-- Please Select Type --"
                     name={"price_types"}
-                    options={options}
+                    options={companies}
                     onChange={(e) => handleChange(e)}
                   /> 
               </div>
