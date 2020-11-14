@@ -4,7 +4,15 @@ import Link from 'next/link'
 import {toDateISO} from '../../../utils/tools'
 
 const ColumsBody = (props) => {
-  const {delData, roles} = props;
+  const {delData, roles, admin} = props;
+  if(!admin) return null;
+  if(!admin.data) return;
+  const users = admin.data;
+
+  const checkLevel = (role_id) => {
+    return roles && roles.find((val) => role_id == val.id).level;
+  }
+
 
   const columns = [
     {
@@ -40,16 +48,20 @@ const ColumsBody = (props) => {
       right : true,
       cell : row => (
         <span>
-          <ul className="buttons manage">
-            <li>
-              <Link href="/backend/admin/edit/[id]" as={`/backend/admin/edit/${row.id}`}>
-                <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
-              </Link>
-            </li>
-            <li>
-              <button className="a-manage danger" onClick={() => delData(row.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>
-            </li>
-          </ul>
+           {
+            users.role_id == 0 || ((users.role && users.role.level) < checkLevel(row.role_id)) ? (
+              <ul className="buttons manage">
+                <li>
+                  <Link href="/backend/admin/edit/[id]" as={`/backend/admin/edit/${row.id}`}>
+                    <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
+                  </Link>
+                </li>
+                <li>
+                  <button className="a-manage danger" onClick={() => delData(row.id)}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>
+                </li>
+              </ul>
+            ) : null
+          }
         </span>
       )
     },

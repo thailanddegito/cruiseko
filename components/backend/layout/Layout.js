@@ -7,7 +7,7 @@ const Layout = (props) => {
   const {title, loading, children, page_name, sub_page, main_link, no_class} = props;
   const { admin } = useContext(UserContext);
 
-  console.log('admin',admin)
+  // console.log('admin',admin)
   return (
     <>
       <Head>

@@ -9,6 +9,7 @@ import ColumnTable from '../column/ColumnTableAdmin'
 
 
 const TableAdmin = (props) => {
+  const {admin} = props;
   const [modalConfirm, setModalConfirm] = useState(false);
   const [users, setUsers] = useState();
   const [roles, setRole] = useState();
@@ -66,7 +67,9 @@ const TableAdmin = (props) => {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = users ? users.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
-  const columns = ColumnTable({delData, roles});
+  const columns = ColumnTable({delData, roles, admin});
+
+  // console.log(admin);
 
   return (
     <>
