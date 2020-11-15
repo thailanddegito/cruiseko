@@ -8,15 +8,15 @@ import SubHeaderComponent from './SubHeaderComponent'
 import ColumnTable from '../column/ColumnTablePackage'
 
 
-const TablePackageCategory = (props) => {
+const TablePackage = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [types, setType] = useState();
+  const [packages, setPackage] = useState();
 
-  const fecthPackageCate = () => {
-    api.getPackageCate()
+  const fecthPackage = () => {
+    api.getPackage()
     .then(res=>{
       const data = res.data;
-      setType(data);
+      setPackage(data);
     })
     .catch(err => {
       console.log(err.response);
@@ -24,7 +24,7 @@ const TablePackageCategory = (props) => {
   }
   
   useEffect(() => {
-    fecthPackageCate();
+    fecthPackage();
   },[]);
   
   const [ref_id, setrefID] = useState();
@@ -35,10 +35,10 @@ const TablePackageCategory = (props) => {
 
   const onConfirm = ()=>{
     if(!ref_id) return;
-    api.delPackageCate(ref_id)
+    api.delPackage(ref_id)
     .then(res=>{
       const data = res.data;
-      fecthPackageCate();
+      fecthPackage();
       setModalConfirm(false);
     })
     .catch(err => {
@@ -48,7 +48,7 @@ const TablePackageCategory = (props) => {
   
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = types ? types.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  const filteredItems = packages ? packages.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
   const columns = ColumnTable({delData});
 
@@ -57,7 +57,7 @@ const TablePackageCategory = (props) => {
     <>
      
 
-      {/* <DataTable
+      <DataTable
         columns={columns}
         data={filteredItems}
         pagination
@@ -70,7 +70,7 @@ const TablePackageCategory = (props) => {
             setFilterText={setFilterText} filterText={filterText}
           />
         }
-      /> */}
+      />
       
       <ModalConfirmDialog show={modalConfirm}
           text={`Do you confirm to delete this ?`}
@@ -82,4 +82,4 @@ const TablePackageCategory = (props) => {
     </>
   )
 }
-export default TablePackageCategory
+export default TablePackage

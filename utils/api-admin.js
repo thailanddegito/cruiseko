@@ -99,8 +99,9 @@ export default {
     delPackageCate : (id) => service.delete(`/products-category/${id}`),
  
     //Package
-    createPackage : (data) => service.post('/products',data) ,
-
+    getPackage : (params) => service.get(`/products`, {params}),
+    insertPackageCate : (data) => service.post('/products',data) ,
+    delPackage : (id) => service.delete(`/products/${id}`),
    
  
 }
