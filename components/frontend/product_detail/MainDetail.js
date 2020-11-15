@@ -7,7 +7,7 @@ import Review from './Review';
 import Price from './Price';
 
 const Detail = (props) => {
-  const {error} = props;
+  const {packages} = props;
 
   return (
     <>
@@ -25,7 +25,7 @@ const Detail = (props) => {
           <div className="row">
             <div className="col-lg-8">
               <section id="description">
-                <Description />
+                <Description packages={packages} />
                 <ImageGallery />
                 <MainEvent />
                 <hr />

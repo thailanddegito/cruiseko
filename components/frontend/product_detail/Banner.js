@@ -11,42 +11,43 @@ const images = [
 ];
 
 const Banner = (props) => {
-  const {error} = props;
+  const {packages} = props;
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
 
   return (
-    <>
-      <section className="hero_in tours_detail">
-        <div className="wrapper">
-          <div className="container">
-            <h1 className="fadeInUp"><span></span>Tour detail page</h1>
+    packages ? (
+      <>
+        <section className="hero_in tours_detail">
+          <div className="wrapper">
+            <div className="container">
+              <h1 className="fadeInUp"><span></span>{packages.name ? packages.name : null}</h1>
+            </div>
+            <span className="magnific-gallery">
+              <a href="#" className="btn_photos" title="Photo title"  onClick={() => setIsOpen(true)}>View photos</a>
+            </span>
           </div>
-          <span className="magnific-gallery">
-            <a href="#" className="btn_photos" title="Photo title"  onClick={() => setIsOpen(true)}>View photos</a>
-          </span>
-        </div>
-      </section>
-      
-      {  
-        isOpen && (
-          <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={() => setIsOpen(false)}
-            onMovePrevRequest={() =>
-              setPhotoIndex((photoIndex + images.length - 1) % images.length)
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % images.length)
-            }
-          />
-        )
-      }
-      
-    </>
+        </section>
+        
+        {  
+          isOpen && (
+            <Lightbox
+              mainSrc={images[photoIndex]}
+              nextSrc={images[(photoIndex + 1) % images.length]}
+              prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+              onCloseRequest={() => setIsOpen(false)}
+              onMovePrevRequest={() =>
+                setPhotoIndex((photoIndex + images.length - 1) % images.length)
+              }
+              onMoveNextRequest={() =>
+                setPhotoIndex((photoIndex + 1) % images.length)
+              }
+            />
+          )
+        } 
+      </>
+    ) : null
   )
 }
 export default Banner

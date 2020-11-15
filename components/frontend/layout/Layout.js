@@ -33,8 +33,6 @@ const Layout = (props) => {
         <script src="/template/js/main.js"></script>
         <script src="/template/assets/validate.js"></script>
         
-        <script src="/template/js/map_single_tour.js"></script>
-        <script src="/template/js/infobox.js"></script>
       
       </Head>
       

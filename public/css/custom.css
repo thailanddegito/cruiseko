@@ -25,6 +25,14 @@ header.header.sticky {
   padding: 0;
   border: none;
 }
+a.show-color {
+  color: #007bff;
+}
+a.show-color:hover, a.show-color:focus {
+  color: #111;
+  text-decoration: none;
+  outline: none;
+}
 .container .main-content {
   background-color: #fff;
   margin: 0 auto;

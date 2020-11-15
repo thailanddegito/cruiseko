@@ -2,57 +2,48 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../components/frontend/layout/Layout';
 import Banner from '../../components/frontend/product_detail/Banner';
 import MainDetail from '../../components/frontend/product_detail/MainDetail';
+import Router, {useRouter } from 'next/router';
+import api from '../../utils/api';
 
-
-const Login = ({ t }) => {
+const ProductDetail = ({query}) => {
   const [loading, setLodding] = useState(false);
+  const [packages, setPackage] = useState();
 
+	const router = useRouter();
+	const id = router.query.id;
+	
 
+	const fecthPackageOne = () => {
+		setLodding(true);
+		api.getPackageOne(id)
+    .then(res=>{
+      const data = res.data;
+      setPackage(data);
+      setLodding(false);
+    })
+    .catch(err => {
+      setLodding(false);
+      console.log(err.response);
+    })
+	}
+
+	
   useEffect(() => {
-    $('input[name="dates"]').daterangepicker({
-		  autoUpdateInput: false,
-		  parentEl:'.scroll-fix',
-		  minDate:new Date(),
-		  opens: 'left',
-		  locale: {
-			  cancelLabel: 'Clear'
-		  }
-	  });
-	  $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-		  $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
-	  });
-	  $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
-		  $(this).val('');
-    });
-    $(window).on('load', function() {
-			"use strict";
-			$.instagramFeed({
-				'username': 'thelouvremuseum',
-				'container': "#instagram-feed",
-				'display_profile': false,
-				'display_biography': false,
-				'display_gallery': true,
-				'get_raw_json': false,
-				'callback': null,
-				'styling': true,
-				'items': 12,
-				'items_per_row': 6,
-				'margin': 1
-			});
-		});
-	},[]);
+    fecthPackageOne();
+  }, [])
+  
 	
-	
+	console.log(packages);
   
   return (
     <Layout loading={loading} title="Product Details">
 			<aside className="main-content">
 				<main>
 					<div>
-						<Banner />
+						<Banner packages={packages} />
 					</div>
 					<div>
-						<MainDetail/>
+						<MainDetail packages={packages} />
 					</div>
 				</main>
 			</aside>
@@ -60,5 +51,7 @@ const Login = ({ t }) => {
   )
 }
 
-
-export default Login
+ProductDetail.getInitialProps = ({query}) => {
+  return {query}; //has to be like an object
+}
+export default ProductDetail
