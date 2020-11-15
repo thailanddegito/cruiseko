@@ -8,7 +8,7 @@ import api from '../../../utils/api-admin'
 const animatedComponents = makeAnimated();
 
 const Dialog = (props) => {
-  const {addUserType,user_list} = props
+  const {addUserType, user_list, setCountUser} = props
   const [companies, setCompany] = useState();
   const [selected,setSelected] = useState();
 
@@ -29,21 +29,25 @@ const Dialog = (props) => {
   }
 
   const onClickOK = () =>{
-    addUserType && addUserType(companies.find(val => val.id === selected) )
     // alert(selected)
     if(!selected) {
       alert('Please select the value')
       return;
     }
+    addUserType && addUserType(companies.find(val => val.id === selected) )
+
     props.onHide()
   }
   
   useEffect(() => {
     fechCompany();
   },[]);
+  
 
 
-  const filteredList = companies ? companies.filter(val => !user_list.includes(val.id) ) : []
+  const filteredList = companies ? companies.filter(val => !user_list.includes(val.id) ) : [];
+  setCountUser(filteredList.length);
+  // console.log(filteredList);
  
   return (
     <Modal className="modal-alert" centered show={props.show} onHide={props.onHide} size={props.size}>
