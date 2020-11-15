@@ -17,7 +17,7 @@ module.exports = (sequelize, type) => {
 
   PriceCompanyType.associate = function(models) {
     // PriceTier.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
-    PriceCompanyType.hasMany(models.PriceTier,{foreignKey : 'price_company_type_id',constraints: false})
+    PriceCompanyType.hasMany(models.PriceDateDetail,{foreignKey : 'price_company_type_id',constraints: false})
   };
   return PriceCompanyType
 }
