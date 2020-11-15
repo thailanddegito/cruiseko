@@ -100,7 +100,7 @@ export default {
  
     //Package
     getPackage : (params) => service.get(`/products`, {params}),
-    insertPackageCate : (data) => service.post('/products',data) ,
+    insertPackage : (data) => service.post('/products',data) ,
     delPackage : (id) => service.delete(`/products/${id}`),
    
  
