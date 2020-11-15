@@ -33,6 +33,11 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
+      name: 'Time',
+      selector: 'time',
+      sortable: true,
+    },
+    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

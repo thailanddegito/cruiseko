@@ -30,6 +30,11 @@ module.exports = (sequelize, type) => {
         allowNull : false,
         defaultValue : 0
       },
+      time : {
+        type : type.INTEGER,
+        allowNull : false,
+        defaultValue : 0
+      },
       picture : type.STRING,
       deleted : {
         type : type.INTEGER,
