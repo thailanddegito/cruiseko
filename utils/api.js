@@ -44,4 +44,9 @@ export default {
 
     //Company Type
     getCompany : (params) => service.get(`/backend/company-type`, {params}),
+
+    //Package
+    getPackage : (params) => service.get(`/products`, {params}),
+    getPackageOne : (id) => service.get(`/products/${id}`),
+
 }
