@@ -1,6 +1,9 @@
 .main-layout {
   margin: 112px 0;
 }
+header {
+  z-index: 999;
+}
 .btn, .btn.btn_1.rounded {
   min-width: 140px !important;
   border-radius: 25px !important;
@@ -147,6 +150,77 @@ input[type=file].form-control {
 .form-group.input-file input[type=text]{
   padding-right: 100px;
   z-index: 1;
+}
+button.ril-prev-button.ril__navButtons.ril__navButtonPrev {
+  opacity: 1;
+  margin: 0 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  display: block;
+  z-index: 100;
+  overflow: hidden;
+  background: rgba(255,255,255,.15);
+  padding: 30px;
+  border-radius: 50%;
+  outline: 0!important;
+  font-family: ElegantIcons;
+  font-size: 32px;
+}
+
+button.ril-next-button.ril__navButtons.ril__navButtonNext {
+  opacity: 1;
+  margin: 0 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  display: block;
+  z-index: 100;
+  overflow: hidden;
+  background: rgba(255,255,255,.15);
+  padding: 30px;
+  border-radius: 50%;
+  outline: 0!important;
+  font-family: ElegantIcons;
+  font-size: 32px;
+}
+button.ril-prev-button.ril__navButtons.ril__navButtonPrev:before {
+  content: "\34";
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+button.ril-next-button.ril__navButtons.ril__navButtonNext:before {
+  content: "\35";
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next-button.ril__navButtons.ril__navButtonNext:hover {
+  background: #66676b;
+  color: #fff;
 }
 @media only screen and (min-width: 992px) {
   header .main-menu {
