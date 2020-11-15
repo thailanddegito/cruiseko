@@ -6,6 +6,7 @@ import Datetime from 'react-datetime';
 import api from '../../../utils/api-admin'
 import produce from 'immer'
 import Button from '../../widget/Button';
+import InputLabel from '../../widget/InputLabel';
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 
@@ -265,6 +266,13 @@ const PackagePrice = memo((props) => {
             inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
             isValidDate={validEndDate} />
           </div>
+        </div>
+        <div className="col-lg-3 col-12">
+          <InputLabel inputProps={{ 
+            className:'form-control', type : 'text',
+            name: 'cost'
+          }} 
+          labelName="Cost" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
       </div>
       {
