@@ -64,7 +64,7 @@ const Index = (props) => {
       <Layout title="Edit Package" page_name="Edit Package" sub_page="Edit" main_link="package">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Edit Package Category</h4>
+            <h4>Edit Package</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -110,10 +110,6 @@ const Index = (props) => {
                       handlePriceSave={handlePriceSave}
                       lasted={price[price.length-1]} />
                     </div>
-                    {/* <div className="text-center">
-                      <Button _type="button" _name="Add" _class="btn-primary" _click={() => handleAdd()} />
-                      <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={() => handleCancel()} />
-                    </div> */}
                   </>
                 ) : (
                   <>
