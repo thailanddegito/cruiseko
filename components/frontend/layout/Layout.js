@@ -25,9 +25,17 @@ const Layout = (props) => {
         <link href="/css/custom.css" rel="stylesheet" />
         <link href="/css/content-styles.css" rel="stylesheet" />
 
+      
+        <script src="/template/js/jquery-3.5.1.min.js"></script>
+        <script src="/template/js/bootstrap.bundle.min.js"></script>
+        <script src="/template/js/jquery.easing.js"></script>
         <script src="/template/js/common_scripts.js"></script>
         <script src="/template/js/main.js"></script>
-        <script src="/template/JS/validate.js"></script>
+        <script src="/template/assets/validate.js"></script>
+        
+        <script src="/template/js/map_single_tour.js"></script>
+        <script src="/template/js/infobox.js"></script>
+      
       </Head>
       
       <Header loading={loading} />
