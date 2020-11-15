@@ -13,7 +13,7 @@ const images = [
 const Banner = (props) => {
   const {error} = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(1);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
 
   return (
@@ -28,21 +28,24 @@ const Banner = (props) => {
           </span>
         </div>
       </section>
-       
-      {isOpen && (
-        <Lightbox
-          mainSrc={images[photoIndex]}
-          nextSrc={images[(photoIndex + 1) % images.length]}
-          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() =>
-            setPhotoIndex((photoIndex + images.length - 1) % images.length)
-          }
-          onMoveNextRequest={() =>
-            setPhotoIndex((photoIndex + 1) % images.length)
-          }
-        />
-      )}
+      
+      {  
+        isOpen && (
+          <Lightbox
+            mainSrc={images[photoIndex]}
+            nextSrc={images[(photoIndex + 1) % images.length]}
+            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            onCloseRequest={() => setIsOpen(false)}
+            onMovePrevRequest={() =>
+              setPhotoIndex((photoIndex + images.length - 1) % images.length)
+            }
+            onMoveNextRequest={() =>
+              setPhotoIndex((photoIndex + 1) % images.length)
+            }
+          />
+        )
+      }
+      
     </>
   )
 }
