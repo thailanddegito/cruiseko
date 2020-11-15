@@ -26,6 +26,8 @@ const NavHeader = (props) => {
           <TierData btn={index === data.tiers.length-1} 
           name={name}
           key={index}
+          prev_tier={index !== 0 ? data.tiers[index-1]  :  {number : data.tier_start} }
+          next_tier={data[index+1]}
           {...val}
           index={index}
           handleAddTier={handleAddTier}

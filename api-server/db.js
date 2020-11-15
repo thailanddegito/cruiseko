@@ -31,12 +31,14 @@ const models = {
     CompanyType : require('./backend/company_type/company_type.model')(sequelize,Sequelize),
     ProductCategory : require('./products/products_category.model')(sequelize,Sequelize),
     Product : require('./products/products.model')(sequelize,Sequelize),
+    ProductImage : require('./products/products_images.model')(sequelize,Sequelize),
     Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
     BoatImage : require('./products/boat/boat_images.model')(sequelize,Sequelize),
     BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
     PriceDate : require('./products/price_date.model')(sequelize,Sequelize),
+    PriceCompanyType : require('./products/price_company_type.model')(sequelize,Sequelize),
     PriceDateDetail : require('./products/price_date_detail.model')(sequelize,Sequelize),
-    PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
+    // PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
     
 }
 

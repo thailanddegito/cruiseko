@@ -14,7 +14,7 @@ const PriceInfo = memo((props) => {
         {/* <NavHeader name="FIT" target="fit" active={true} /> */}
         {/* <NavHeader name="Agent" target="agent" active={false} /> */}
         <div>
-          <button className="btn-add-tier" onClick={() => setModalShow(true)}>+</button>
+          <button type="button" className="btn-add-tier" onClick={() => setModalShow(true)}>+</button>
         </div>
       </ul>
       <div className="tab-content">

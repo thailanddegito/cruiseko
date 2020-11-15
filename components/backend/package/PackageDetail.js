@@ -79,7 +79,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Detail</label>
-            <Editor name="detail" height="200px" required/>
+            <Editor name="description" height="200px" required/>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React,{memo} from 'react';
 import InputLabel from '../../widget/InputLabel';
 
 const PriceData = memo((props) => {
-  const {name,handlePriceChange,type,index, btn,handleAddTier} = props;
+  const {name,handlePriceChange,type,index, btn,handleAddTier,prev_tier,next_tier} = props;
 
   const onChange =(e,key) =>{
     var {value} = e.target;
@@ -14,16 +14,14 @@ const PriceData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control mr-2', type : 'text',
-            required : true,
             value : props.number,
             onChange : (e) => onChange(e,'number')
           }} 
-          labelName="Tier ..." iconProps={{className : 'fa icon icon-email'}}  />
+          labelName={`Tier ${prev_tier.number || '?'} - ${props.number || '?'} `} iconProps={{className : 'fa icon icon-email'}}  />
        </div>
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.price,
             onChange : (e) => onChange(e,'price')
           }} 
@@ -32,7 +30,6 @@ const PriceData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.deposit_rate, readOnly:name === 'FIT',
             onChange : (e) => onChange(e,'deposit_rate')
           }} 
@@ -41,7 +38,6 @@ const PriceData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.deposit, readOnly:name === 'FIT',
             onChange : (e) => onChange(e,'deposit')
           }} 
@@ -50,7 +46,6 @@ const PriceData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.commission_rate , readOnly : true
           }} 
           labelName="% Commission" iconProps={{className : 'fa icon icon-email'}}  />
@@ -59,7 +54,6 @@ const PriceData = memo((props) => {
           <div className="d-flex align-items-center justify-content-between">
           <InputLabel inputProps={{ 
               className:'form-control', type : 'text',
-              name : 'name', required : true,
               value : props.commission, readOnly:name === 'FIT',
               onChange : (e) => onChange(e,'commission')
             }} 

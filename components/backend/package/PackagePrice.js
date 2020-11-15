@@ -81,6 +81,9 @@ const PackagePrice = memo((props) => {
   useEffect(() => editData && setData(editData) ,[editData]  )
 
 
+
+
+
   const onCancel = ()=>{
     setData(initStateTypeNormal)
     handleCancel && handleCancel()
@@ -88,16 +91,59 @@ const PackagePrice = memo((props) => {
 
   const handlePriceChangeNormal =(user_type_name,customer_type,key,value) =>{
     const nextState = produce(data, draftState => {
-      draftState.user_type.find(val => val.name === user_type_name)
-      .price_list.find(val => val.customer_type === customer_type)[key] = value
+      var price_data = draftState.user_type.find(val => val.name === user_type_name)
+      .price_list.find(val => val.customer_type === customer_type)
+      price_data[key] = value;
+
+      if(!value) return;
+      if(key === 'deposit_rate'){
+        if(parseInt(value) !== NaN && price_data.price){
+          var cal = parseFloat(price_data.price)  * parseFloat(value)  / 100
+          price_data.deposit = cal
+        }
+      }
+      else if(key === 'price'){
+        if(parseInt(price_data.deposit_rate) ){
+          var cal = parseFloat(price_data.price)  * parseFloat(price_data.deposit_rate)  / 100
+          price_data.deposit = cal
+        }
+        if(parseInt(price_data.commission_rate)  ){
+          var cal = parseFloat(price_data.price)  * parseFloat(price_data.commission_rate)  / 100
+          cal = parseFloat(price_data.price) - parseInt(cal)
+          cal = cal % 10 !== 0 ? cal - (cal % 10) + 10 : cal
+          price_data.commission = cal
+        }
+      }
     })
     setData(nextState)
   }
 
   const handlePriceChangeTier = (user_type_name,tier_index,key,value) =>{
-    console.log(user_type_name,tier_index,key,value)
+    // console.log(user_type_name,tier_index,key,value)
     const nextState = produce(data, draftState => {
-      draftState.user_type.find(val => val.name === user_type_name).tiers[tier_index][key] = value
+      var price_data = draftState.user_type.find(val => val.name === user_type_name).tiers[tier_index];
+      price_data[key] = value
+
+
+      if(!value) return;
+      if(key === 'deposit_rate'){
+        if(parseInt(value) !== NaN && price_data.price){
+          var cal = parseFloat(price_data.price)  * parseFloat(value)  / 100
+          price_data.deposit = cal
+        }
+      }
+      else if(key === 'price'){
+        if(parseInt(price_data.deposit_rate) ){
+          var cal = parseFloat(price_data.price)  * parseFloat(price_data.deposit_rate)  / 100
+          price_data.deposit = cal
+        }
+        if(parseInt(price_data.commission_rate)  ){
+          var cal = parseFloat(price_data.price)  * parseFloat(price_data.commission_rate)  / 100
+          cal = parseFloat(price_data.price) - parseInt(cal)
+          cal = cal % 10 !== 0 ? cal - (cal % 10) + 10 : cal
+          price_data.commission = cal
+        }
+      }
     })
     setData(nextState)
   }
@@ -247,6 +293,10 @@ const PackagePrice = memo((props) => {
                 </div>
               ) : null
             }
+            <div className="text-center">
+                <Button _type="button" _name={!editData ? "Add" : "Save"} _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
+                <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
+            </div>
 
             {/* {
               data.pricing_type === 'old' ? (

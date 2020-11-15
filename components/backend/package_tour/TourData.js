@@ -19,7 +19,6 @@ const TourData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.price,
             onChange : (e) => onChange(e,'price')
           }} 
@@ -28,8 +27,7 @@ const TourData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
-            value : props.deposit_rate, readOnly:name === 'FIT',
+            value : props.deposit_rate, readOnly:user_type_name === 'FIT',
             onChange : (e) => onChange(e,'deposit_rate')
           }} 
           labelName="% Deposit" iconProps={{className : 'fa icon icon-email'}}  />
@@ -37,8 +35,7 @@ const TourData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
-            value : props.deposit, readOnly:name === 'FIT',
+            value : props.deposit, readOnly:user_type_name === 'FIT',
             onChange : (e) => onChange(e,'deposit')
           }} 
           labelName="Deposit" iconProps={{className : 'fa icon icon-email'}}  />
@@ -46,7 +43,6 @@ const TourData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true,
             value : props.commission_rate , readOnly : true
           }} 
           labelName="% Commission" iconProps={{className : 'fa icon icon-email'}}  />
@@ -54,8 +50,7 @@ const TourData = memo((props) => {
         <div className="col-lg-2 col-12">
           <InputLabel inputProps={{ 
               className:'form-control', type : 'text',
-              name : 'name', required : true,
-              value : props.commission, readOnly:name === 'FIT',
+              value : props.commission, readOnly:user_type_name === 'FIT',
               onChange : (e) => onChange(e,'commission')
             }} 
             labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />

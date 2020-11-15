@@ -6,8 +6,8 @@ module.exports = (sequelize, type) => {
       autoIncrement: true
     },
     product_id : type.INTEGER,
-    start_date : type.DATE,
-    end_date : type.DATE,
+    start_date : type.DATEONLY,
+    end_date : type.DATEONLY,
     pricing_type : {
       //can be ( normal , tier )
       type : type.STRING(20),

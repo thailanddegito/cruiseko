@@ -90,15 +90,18 @@ const Dropzone = (props) => {
   }, [files]);
 
   return (
-    <form onSubmit={onSave} encType="multipart/form-data">
+    <div >
       <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} name="image" />
+        <input {...getInputProps()} name="images" />
         <p className="mb-0 text-center">เลือกไฟล์ หรือ ลากไฟล์</p>
       </div>
       <div style={thumbsContainer}>
         {thumbs}
       </div>
-    </form>
+      {/* <div style={{display:'none'}}>
+        {files.map((val,index) => <input key={index} defaultValue={val} name="images" /> )}
+      </div> */}
+    </div>
   );
 }
 

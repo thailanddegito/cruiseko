@@ -98,6 +98,8 @@ export default {
     updatePackageCate : (id, data) => service.put(`/products-category/${id}`,data) ,
     delPackageCate : (id) => service.delete(`/products-category/${id}`),
  
+    //Package
+    createPackage : (data) => service.post('/products',data) ,
 
    
  
