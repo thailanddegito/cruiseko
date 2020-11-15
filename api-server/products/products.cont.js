@@ -55,15 +55,7 @@ exports.create = async(req,res,next)=>{
   var transaction;
   var images_urls = []
   try{
-    if(files.images){
-      var images = files.images
-      if(!Array.isArray(files.images))  images = [images]
-      images = images.filter(val => val.name)
-      for(const file of images){
-        let fileName = await tools.moveFileWithPath(file,'images')
-        if(fileName) images_urls.push(tools.genFileUrl(fileName,'images'))
-      }
-    }
+    images_urls = handleProductImages(files)
     if(files.picture && files.picture.name){
       //console.log(req.files);
       let file = files.picture;
@@ -91,11 +83,33 @@ exports.create = async(req,res,next)=>{
 
 exports.update = async(req,res,next)=>{
   const id = req.params.id
+  var data = req.body;
+  var {method = 'draft',price_date_list} = data;
+  var files = req.files || {}
+  var images_urls = []
+  var transaction;
+  console.log(data)
   try{
+    images_urls = handleProductImages(files)
 
+    transaction = await sequelize.transaction()
+    if(price_date_list){
+      await clearPriceData(id,transaction)
+      await createPriceData(price_date_list,id,transaction)
+    }
+
+    if(images_urls.length){
+      var images_data = images_urls.map(val => ({product_id,image : val}) )
+      await ProductImage.bulkCreate(images_data,{transaction})
+    }
+
+    await Product.update(data,{where : {id},transaction})
+    await transaction.commit()
+    res.json({success:true})
   }
   catch(err){
     next(err)
+    if(transaction) await transaction.rollback()
   }
 }
 
@@ -108,6 +122,20 @@ exports.delete = async(req,res,next)=>{
   catch(err){
     next(err);
   }
+}
+
+async function handleProductImages (files){
+  var images_urls = []
+  if(files.images){
+    var images = files.images
+    if(!Array.isArray(files.images))  images = [images]
+    images = images.filter(val => val.name)
+    for(const file of images){
+      let fileName = await tools.moveFileWithPath(file,'images')
+      if(fileName) images_urls.push(tools.genFileUrl(fileName,'images'))
+    }
+  }
+  return images_urls;
 }
 
 
@@ -131,39 +159,54 @@ async function createProduct({isDraft,data,images_urls,price_date_list,transacti
       await ProductImage.bulkCreate(images_data,{transaction})
     }
 
-    if(price_date_list){
-      price_date_list = JSON.parse(price_date_list)
-      var price_date_arr = price_date_list.map(val =>  ({...val,product_id}) )
-
-      for(const date of  price_date_arr){
-        const {pricing_type,user_type} = date
-        const price_date = await PriceDate.create(date,{transaction} )
-        const {id : price_date_id} = price_date;
-        for(const ut of user_type){
-          const ut_item = await PriceCompanyType.create({...ut,price_date_id,id:null},{transaction})
-          const {id : price_company_type_id} = ut_item;
-          var details = []
-          const {tiers,company_type_id} = ut;
-          if(pricing_type === 'tier' ){
-            
-            details = tiers.map((val,i) => {
-              const {number} = val;
-              var range_start = i === 0 ? 0 : tiers[i-1].number;
-              var range_end = number;
-              return {...val,range_start,range_end,price_date_id,price_company_type_id,company_type_id}
-            })
-          }
-          else{
-            const {price_list} = ut;
-            details = price_list.map((val,i) => {
-              return {...val,price_date_id,price_company_type_id,company_type_id}
-            })
-          }
-          await PriceDateDetail.bulkCreate(details,{transaction})
-        }
-        
-      }
-    }
+    await createPriceData(price_date_list,product_id,transaction)
 
     return product
+}
+
+
+async function createPriceData (price_date_list,product_id,transaction) {
+  if(price_date_list){
+    price_date_list = JSON.parse(price_date_list)
+    var price_date_arr = price_date_list.map(val =>  ({...val,product_id}) )
+
+    for(const date of  price_date_arr){
+      const {pricing_type,user_type} = date
+      const price_date = await PriceDate.create(date,{transaction} )
+      const {id : price_date_id} = price_date;
+      for(const ut of user_type){
+        const ut_item = await PriceCompanyType.create({...ut,price_date_id,id:null},{transaction})
+        const {id : price_company_type_id} = ut_item;
+        var details = []
+        const {tiers,company_type_id,tier_start} = ut;
+        if(pricing_type === 'tier' ){
+          
+          details = tiers.map((val,i) => {
+            const {number} = val;
+            var range_start = i === 0 ? tier_start : tiers[i-1].number;
+            var range_end = number;
+            return {...val,range_start,range_end,price_date_id,price_company_type_id,company_type_id}
+          })
+        }
+        else{
+          const {price_list} = ut;
+          details = price_list.map((val,i) => {
+            return {...val,price_date_id,price_company_type_id,company_type_id}
+          })
+        }
+        await PriceDateDetail.bulkCreate(details,{transaction})
+      }
+      
+    }
+  }
+}
+
+async function clearPriceData(product_id,transaction){
+  const price_dates = await PriceDate.findAll({where : {product_id},transaction,raw:true})
+  const date_ids = price_dates.map(val => val.id)
+  return Promise.all([
+    PriceDate.destroy({where : {product_id},transaction}),
+    PriceCompanyType.destroy({where : {price_date_id :date_ids },transaction}),
+    PriceDateDetail.destroy({where : {price_date_id :date_ids },transaction})
+  ])
 }

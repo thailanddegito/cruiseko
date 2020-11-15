@@ -101,6 +101,7 @@ export default {
     //Package
     getPackage : (params) => service.get(`/products`, {params}),
     getPackageOne : (id,params) => service.get(`/products/${id}`,{params}),
+    updatePackageOne : (id,data) => service.put(`/products/${id}`,data),
     insertPackage : (data) => service.post('/products',data) ,
     delPackage : (id) => service.delete(`/products/${id}`),
    

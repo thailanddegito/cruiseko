@@ -38,6 +38,7 @@ export const toPriceListState = (price_dates) => {
       var prep = {
         ...price_com,
         name : company_type_id === 0 ? 'FIT' : price_com.company_type.name,
+        tier_start : pricing_type === 'tier' ? detail[0] ? detail[0].range_start : 1 : undefined 
       }
       prep[pricing_type === 'tier' ? 'tiers' : 'price_list'] = detail;
 
