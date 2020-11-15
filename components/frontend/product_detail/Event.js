@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Event = (props) => {
-  const {error} = props;
+  const {number, data} = props;
 
   return (
     <>
@@ -10,7 +10,7 @@ const Event = (props) => {
         <time className="cbp_tmtime" dateTime="09:30"><span>30 min.</span><span>09:30</span>
         </time>
         <div className="cbp_tmicon">
-          1
+          {number}
         </div>
         <div className="cbp_tmlabel">
           <div className="hidden-xs">
