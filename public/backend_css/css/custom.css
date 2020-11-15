@@ -307,9 +307,6 @@ span.nav-link-text {
   max-height: 100%;
   max-width: 100%;
 }
-.middle {
-  position: relative;
-}
 .middle, .middle-absolute {
   float: left;
   left: 50%;
