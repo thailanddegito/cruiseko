@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
 import PackageDetail from '../../../../components/backend/package/PackageDetail';
 import PackageImage from '../../../../components/backend/package/PackageImage';
@@ -6,12 +6,34 @@ import PackagePrice from '../../../../components/backend/package/PackagePrice';
 import ShowPrice from '../../../../components/backend/package/ShowPrice';
 import Button from '../../../../components/widget/Button';
 import api from '../../../../utils/api-admin'
+import {useRouter} from 'next/router'
 
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
+  const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [editData,setEditData] = useState()
+
+  const router = useRouter()
+  const {id} = router.query;
+
+  useEffect(() => {
+    if(!id) return;
+    fetchPackage();
+  }, [id]);
+
+  const fetchPackage = ()=>{
+    api.getPackageOne(id)
+    .then(res => {
+      const data= res.data;
+      setPkg(data)
+      console.log('fetched data',data)
+    })
+    .catch(err=>{
+      console.log(err.response || err)
+    })
+  }
 
   const handleShow = () => {
     setShow(true);
@@ -84,7 +106,7 @@ const Index = (props) => {
           <div className="tab-content">
             <div className="tab-pane active" id="details">
               <div>
-                <PackageDetail />
+                <PackageDetail pkg={pkg} />
               </div>
             </div>
             <div className="tab-pane fade" id="images">

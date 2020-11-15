@@ -24,6 +24,7 @@ module.exports = (sequelize, type) => {
   PriceDate.associate = function(models) {
     PriceDate.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
     PriceDate.hasMany(models.PriceDateDetail,{foreignKey : 'price_date_id',constraints: false})
+    PriceDate.hasMany(models.PriceCompanyType,{foreignKey : 'price_date_id',constraints: false})
   };
   return PriceDate
 }

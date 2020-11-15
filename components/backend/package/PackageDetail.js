@@ -12,6 +12,7 @@ const Loading = <div className="position-relative" style={{height : '200px'}}><D
 const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const PackageDetail = memo((props) => {
+  const {pkg} = props;
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
 
@@ -46,7 +47,8 @@ const PackageDetail = memo((props) => {
 
 
   
-
+  var defaultCate = pkg ? types.find(val => val.value === pkg.cate_id) : undefined;
+  console.log('defaultCate',defaultCate)
 
   return (
     <>
@@ -54,7 +56,8 @@ const PackageDetail = memo((props) => {
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'name', required : true
+            name : 'name', required : true,
+            defaultValue : pkg ? pkg.name : undefined
           }} 
           labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
@@ -68,6 +71,7 @@ const PackageDetail = memo((props) => {
               placeholder="-- Please Select Category --"
               name="cate_id"
               options={types}
+              value={pkg ? types.find(val => val.value === pkg.cate_id) : undefined }
               // onChange={(e) => handleChange(e)}
             /> 
           </div>
@@ -79,7 +83,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Detail</label>
-            <Editor name="description" height="200px" required/>
+            <Editor name="description" height="200px" required defaultValue={pkg ? pkg.description : ''} />
           </div>
         </div>
       </div>
@@ -88,7 +92,8 @@ const PackageDetail = memo((props) => {
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name : 'remark', required : true
+            name : 'remark', required : true,
+            defaultValue : pkg ? pkg.remark : undefined
           }} 
           labelName="Remark" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
@@ -102,6 +107,7 @@ const PackageDetail = memo((props) => {
               placeholder="-- Please Select Boat --"
               name="boat_id"
               options={boats}
+
               // onChange={(e) => handleChange(e)}
             /> 
           </div>
