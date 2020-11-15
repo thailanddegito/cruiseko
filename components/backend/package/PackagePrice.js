@@ -237,6 +237,7 @@ const PackagePrice = memo((props) => {
                 name={"pricing_type"}
                 options={options}
                 onChange={(e) => handleChange(e)}
+                defaultValue={{ label: "Tour", value: 'normal' }}
               /> 
           </div>
         </div>
