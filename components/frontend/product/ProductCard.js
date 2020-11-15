@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Button from '../../widget/Button';
 
 const ProductCard = (props) => {
   const {error} = props;
@@ -12,14 +11,20 @@ const ProductCard = (props) => {
       <div class="box_grid">
         <figure>
           <a href="#0" class="wish_bt"></a>
-          <a href="tour-detail.html">
-            <img src="/template/img/tour_1.jpg" class="img-fluid" alt="" width="800" height="533"/>
-            <div class="read_more"><span>Read more</span></div>
-          </a>
+          <Link href="/product-details/[id]" as={`/product-details/1`}>
+            <a>
+              <img src="/template/img/tour_1.jpg" class="img-fluid" alt="" width="800" height="533"/>
+              <div class="read_more"><span>Read more</span></div>
+            </a>
+          </Link>
           <small>Historic</small>
         </figure>
         <div class="wrapper">
-          <h3><a href="tour-detail.html">Arc Triomphe</a></h3>
+          <h3>
+          <Link href="/product-details/[id]" as={`/product-details/1`}>
+            <a >Arc Triomphe</a>
+          </Link>
+          </h3>
           <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
           <span class="price">From <strong>$54</strong> /per person</span>
         </div>
