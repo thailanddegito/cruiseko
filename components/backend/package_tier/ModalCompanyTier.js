@@ -39,7 +39,8 @@ const Dialog = (props) => {
       return;
     }
     addUserType && addUserType(companies.find(val => val.id === selected) )
-    props.onHide()
+    setSelected('');
+    props.onHide(); 
   }
 
  
