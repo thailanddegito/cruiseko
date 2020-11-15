@@ -48,7 +48,7 @@ const TablePackage = (props) => {
   
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = packages ? packages.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  const filteredItems = packages ? packages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
   const columns = ColumnTable({delData});
 

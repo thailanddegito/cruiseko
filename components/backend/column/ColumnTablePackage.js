@@ -12,11 +12,11 @@ const ColumsBody = (props) => {
       selector: 'name',
       sortable: true,
     },
-    {
-      name: 'Code',
-      selector: 'code',
-      sortable: true,
-    },
+    // {
+    //   name: 'Code',
+    //   selector: 'code',
+    //   sortable: true,
+    // },
     {
       name: 'Created date',
       selector: 'createdAt',
