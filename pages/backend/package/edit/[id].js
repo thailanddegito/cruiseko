@@ -7,6 +7,7 @@ import ShowPrice from '../../../../components/backend/package/ShowPrice';
 import Button from '../../../../components/widget/Button';
 import api from '../../../../utils/api-admin'
 import {useRouter} from 'next/router'
+import {toPriceListState} from '../../../../utils/packageHelper'
 
 
 const Index = (props) => {
@@ -29,6 +30,8 @@ const Index = (props) => {
       const data= res.data;
       setPkg(data)
       console.log('fetched data',data)
+      console.log('transform',toPriceListState(data.price_dates))
+      setPriceList(toPriceListState(data.price_dates))
     })
     .catch(err=>{
       console.log(err.response || err)

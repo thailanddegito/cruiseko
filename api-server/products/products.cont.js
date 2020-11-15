@@ -1,4 +1,6 @@
-const { Product,ProductImage,sequelize,PriceDate,PriceCompanyType,PriceDateDetail,PriceTier} = require('../db')
+const { Product,ProductImage,sequelize,PriceDate,
+  CompanyType,
+  PriceCompanyType,PriceDateDetail,PriceTier} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
@@ -29,10 +31,11 @@ exports.getOne = async(req,res,next)=>{
   const id = req.params.id
   try{
     const price_include = [
-      {model : PriceCompanyType , include : [PriceDateDetail]}
+      {model : PriceCompanyType , include : [PriceDateDetail,CompanyType]}
     ]
     const include = [
-      {model : PriceDate ,include :price_include}
+      {model : PriceDate ,include :price_include},
+      {model : ProductImage , attributes:['id','image']}
     ]
     var where = {id,deleted : 0}
     const product = await Product.findOne({where,include})
@@ -137,18 +140,26 @@ async function createProduct({isDraft,data,images_urls,price_date_list,transacti
         const price_date = await PriceDate.create(date,{transaction} )
         const {id : price_date_id} = price_date;
         for(const ut of user_type){
-          const ut_item = await PriceCompanyType.create({...ut,price_date_id},{transaction})
+          const ut_item = await PriceCompanyType.create({...ut,price_date_id,id:null},{transaction})
           const {id : price_company_type_id} = ut_item;
+          var details = []
+          const {tiers,company_type_id} = ut;
           if(pricing_type === 'tier' ){
-            const {tiers} = ut;
-            const price_details_data = tiers.map((val,i) => {
+            
+            details = tiers.map((val,i) => {
               const {number} = val;
               var range_start = i === 0 ? 0 : tiers[i-1].number;
               var range_end = number;
-              return {...val,range_start,range_end,price_date_id,price_company_type_id}
+              return {...val,range_start,range_end,price_date_id,price_company_type_id,company_type_id}
             })
-            await PriceDateDetail.bulkCreate(price_details_data,{transaction})
           }
+          else{
+            const {price_list} = ut;
+            details = price_list.map((val,i) => {
+              return {...val,price_date_id,price_company_type_id,company_type_id}
+            })
+          }
+          await PriceDateDetail.bulkCreate(details,{transaction})
         }
         
       }
