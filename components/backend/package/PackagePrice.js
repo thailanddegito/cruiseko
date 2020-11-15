@@ -255,66 +255,48 @@ const PackagePrice = memo((props) => {
           </div>
         </div>
         <div className="col-lg-3 col-12">
-          <label>When does your schedule end?</label>
-          <Datetime
-          dateFormat="YYYY-MM-DD"
-          timeFormat={false}
-          onChange={(e) => { showendDate(e) }}
-          value={data.end_date}
-          inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
-          isValidDate={validEndDate} />
+          <div className="form-group">
+            <label>When does your schedule end?</label>
+            <Datetime
+            dateFormat="YYYY-MM-DD"
+            timeFormat={false}
+            onChange={(e) => { showendDate(e) }}
+            value={data.end_date}
+            inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
+            isValidDate={validEndDate} />
+          </div>
         </div>
       </div>
-
-            {
-              data.pricing_type === 'normal' ? (
-                <div className="pb-5">
-                  <div>
-                    <TourInfo  
-                    data={data.user_type}
-                    handlePriceChange={handlePriceChangeNormal}
-                    addUserType={addUserTypeNormal} />
-                  </div>
-                </div>
-              ) : null
-            }
-                  
-          
-            {
-              data.pricing_type === 'tier' ? (
-                <div className="pb-5">
-                  <div>
-                    <TierInfo 
-                    data={data.user_type}
-                    handlePriceChange={handlePriceChangeTier}
-                    handleTierStartChange={handleTierStartChange}
-                    handleAddTier={handleAddTier}
-                    addUserType={addUserTypeTier} />
-                  </div>
-                </div>
-              ) : null
-            }
-            <div className="text-center">
-                <Button _type="button" _name={!editData ? "Add" : "Save"} _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
-                <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
+      {
+        data.pricing_type === 'normal' ? (
+          <div className="pb-5">
+            <div>
+              <TourInfo  
+              data={data.user_type}
+              handlePriceChange={handlePriceChangeNormal}
+              addUserType={addUserTypeNormal} />
             </div>
-
-            {/* {
-              data.pricing_type === 'old' ? (
-                <div className="package-type pb-5">
-                  <div>
-                    <PriceInfo name="Adult's Price" data={data.adult} type="adult" handlePriceChange={handlePriceChange} />
-                    <PriceInfo name="Children's Price" data={data.children} type="children" handlePriceChange={handlePriceChange} />
-                  </div>
-                  <div className="text-center">
-                    <Button _type="button" _name={editData ? "Save" : "Add"} _class="btn-primary" _click={() => editData? handlePriceSave(data,editData.index) : handleAdd(data)} />
-                    <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
-                  </div>
-                </div>
-              ) : null
-            }      */}
-         
-    
+          </div>
+        ) : null
+      }
+      {
+        data.pricing_type === 'tier' ? (
+          <div className="pb-5">
+            <div>
+              <TierInfo 
+              data={data.user_type}
+              handlePriceChange={handlePriceChangeTier}
+              handleTierStartChange={handleTierStartChange}
+              handleAddTier={handleAddTier}
+              addUserType={addUserTypeTier} />
+            </div>
+          </div>
+        ) : null
+      }
+      <div className="text-center">
+        <Button _type="button" _name={!editData ? "Add" : "Save"} _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
+        <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
+      </div>
     </>
   )
 })
