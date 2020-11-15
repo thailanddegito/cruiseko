@@ -8,6 +8,7 @@ const columns = [
     name: 'Company Name',
     selector: 'company_name_en',
     sortable: true,
+    minWidth : '200px',
     cell : row => (
       <div className="d-flex align-items-center my-2">
         <div>

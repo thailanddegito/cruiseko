@@ -49,7 +49,7 @@ const Index = (props) => {
     formData.append('price_date_list',JSON.stringify(priceList))
     formData.append('method',method)
 
-    api.insertPackageCate(formData)
+    api.insertPackage(formData)
     .then(() => {
       
     })
