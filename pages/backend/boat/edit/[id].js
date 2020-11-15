@@ -98,7 +98,7 @@ const EditRole = ({query}) => {
                       name : 'name', required : true,
                       defaultValue : boats.name
                     }} 
-                    labelName="Name : " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
@@ -109,7 +109,7 @@ const EditRole = ({query}) => {
                       name : 'code', required : true,
                       defaultValue : boats.code
                     }} 
-                    labelName="Code : " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Code  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
@@ -120,7 +120,7 @@ const EditRole = ({query}) => {
                       name : 'company', required : true,
                       defaultValue : boats.company
                     }} 
-                    labelName="Company : " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Company  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
@@ -131,7 +131,7 @@ const EditRole = ({query}) => {
                       name : 'amount', required : true,
                       defaultValue : boats.amount
                     }} 
-                    labelName="Amount : " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Amount  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
@@ -142,7 +142,18 @@ const EditRole = ({query}) => {
                       name : 'capacity', required : true,
                       defaultValue : boats.capacity
                     }} 
-                    labelName="Capacity : " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Capacity  " iconProps={{className : 'fa icon icon-home'}} />
+                  </div>
+                </div>
+
+                <div className="row justify-content-center">
+                  <div className="col-lg-6 col-12">
+                    <InputLabel inputProps={{ 
+                      className:'form-control', type : 'text',
+                      name : 'time', required : true,
+                      defaultValue : boats.time
+                    }} 
+                    labelName="Time  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 

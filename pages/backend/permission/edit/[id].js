@@ -62,7 +62,7 @@ const EditPermission = ({query}) => {
                 defaultValue : permission ? permission.name: '',
                 name : 'name', required : true
               }} 
-              labelName="Menu name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Menu Name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -72,7 +72,7 @@ const EditPermission = ({query}) => {
                 defaultValue : permission ? permission.key: '',
                 name : 'key', required : true
               }} 
-              labelName="Key : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Key " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center mt-4">

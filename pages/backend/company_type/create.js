@@ -39,7 +39,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
@@ -50,7 +50,7 @@ const Create = (props) => {
                 name : 'prefix', required : true,
                 pattern : "^[A-Z]+$", minLength : 2, maxLength : 2
               }} 
-              labelName="Prefix : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Prefix " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
@@ -61,7 +61,7 @@ const Create = (props) => {
                 name : 'commission_rate', required : true,
                 pattern : "[0-9]*", maxLength : 3
               }} 
-              labelName="Commission Rate (%) : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Commission Rate (%) " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 

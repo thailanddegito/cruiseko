@@ -68,7 +68,7 @@ const EditRole = ({query}) => {
                 defaultValue : types ? types.name: '',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-home'}}  />
+              labelName="Name " iconProps={{className : 'fa icon icon-home'}}  />
             </div>
           </div>
 
@@ -79,7 +79,7 @@ const EditRole = ({query}) => {
                 defaultValue : types ? types.code: '',
                 name : 'code', required : true,
               }} 
-              labelName="Code : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 

@@ -81,7 +81,7 @@ const EditAdmin = ({query}) => {
                 name : 'name', required : true,
                 defaultValue : users.name
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -91,7 +91,7 @@ const EditAdmin = ({query}) => {
                 name : 'email', required : true,
                 defaultValue : users.email
               }} 
-              labelName="Email : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Email " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -101,7 +101,7 @@ const EditAdmin = ({query}) => {
                 name : 'username', required : true,
                 defaultValue : users.username
               }} 
-              labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Username " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -110,7 +110,7 @@ const EditAdmin = ({query}) => {
                 className:'form-control', type : 'password',name : 'password', 
                 pattern : ".{6,}"
               }} 
-              labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
+              labelName="Password " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
           </div>
 

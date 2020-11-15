@@ -67,7 +67,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
-              labelName="Role name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Role name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
