@@ -53,7 +53,7 @@ const EditRole = ({query}) => {
   return (
     <>
       <Layout title="Edit Package Category" page_name="Package Category" sub_page="Edit" main_link="package_category">
-      <div className="row justify-content-start">
+        <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit Package Category</h4>
           </div>

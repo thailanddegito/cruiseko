@@ -31,7 +31,7 @@ const ColumsBody = (props) => {
         <span>
           <ul className="buttons manage">
             <li>
-              <Link href="/backend/package_category/edit/[id]" as={`/backend/package_category/edit/${row.cate_id}`}>
+              <Link href="/backend/package/edit/[id]" as={`/backend/package/edit/${row.cate_id}`}>
                 <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
               </Link>
             </li>
