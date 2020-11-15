@@ -17,7 +17,7 @@ const AddReview = (props) => {
               <label>Email *</label>
               <input type="email" name="email_review" id="email_review" defaultValue="" className="form-control" />
             </div>
-            <div className="form-group col-md-6">
+            {/* <div className="form-group col-md-6">
               <label>Rating </label>
               <div className="custom-select-form">
               <select name="rating_review" id="rating_review" defaultValue="1" className="wide">
@@ -33,7 +33,7 @@ const AddReview = (props) => {
                 <option value="10">10 (highest)</option>
               </select>
               </div>
-            </div>
+            </div> */}
             <div className="form-group col-md-12">
               <label>Your Review</label>
               <textarea name="review_text" id="review_text" className="form-control" style={{height : '130px'}}></textarea>
