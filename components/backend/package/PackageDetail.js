@@ -47,8 +47,8 @@ const PackageDetail = memo((props) => {
 
 
   
-  var defaultCate = pkg ? types.find(val => val.value === pkg.cate_id) : undefined;
-  console.log('defaultCate',defaultCate)
+  var defaultCate = pkg && types ? types.find(val => val.value === pkg.cate_id) : undefined;
+  // console.log('defaultCate',defaultCate)
 
   return (
     <>
@@ -71,7 +71,7 @@ const PackageDetail = memo((props) => {
               placeholder="-- Please Select Category --"
               name="cate_id"
               options={types}
-              value={pkg ? types.find(val => val.value === pkg.cate_id) : undefined }
+              value={defaultCate }
               // onChange={(e) => handleChange(e)}
             /> 
           </div>
@@ -83,7 +83,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Detail</label>
-            <Editor name="description" height="200px" required defaultValue={pkg ? pkg.description : ''} />
+            <Editor name="description" height="200px" required data={pkg ? pkg.description : ''} />
           </div>
         </div>
       </div>
