@@ -49,7 +49,8 @@ export const toPriceListState = (price_dates) => {
       start_date : val.start_date,
       end_date : val.end_date,
       pricing_type : val.pricing_type,
-      user_type
+      user_type,
+      cost : val.cost,
     }
 
     return root;
