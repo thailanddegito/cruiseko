@@ -30,7 +30,7 @@ const Index = (props) => {
       const data= res.data;
       setPkg(data)
       console.log('fetched data',data)
-      console.log('transform',toPriceListState(data.price_dates))
+      // console.log('transform',toPriceListState(data.price_dates))
       setPriceList(toPriceListState(data.price_dates))
     })
     .catch(err=>{
@@ -54,6 +54,12 @@ const Index = (props) => {
   const onClickEdit = (index)=>{
     setEditData({...priceList[index],index})
     setShow(true)
+  }
+
+  const onClickDelete = (index) =>{
+    var tmp = [...priceList]
+    tmp.splice(index,1)
+    setPriceList(tmp)
   }
 
   const handlePriceSave =(data,index)=>{
@@ -113,7 +119,7 @@ const Index = (props) => {
               </div>
             </div>
             <div className="tab-pane fade" id="images">
-              <PackageImage />
+              <PackageImage  images={pkg? pkg.products_images : []} />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">
@@ -133,13 +139,13 @@ const Index = (props) => {
                       handleCancel={handleCancel} 
                       editData={editData}
                       handlePriceSave={handlePriceSave}
-                      lasted={price[price.length-1]} />
+                      lasted={priceList[priceList.length-1]} />
                     </div>
                   </>
                 ) : (
                   <>
                     <div>
-                      <ShowPrice price={priceList} onClickEdit={onClickEdit}  />
+                      <ShowPrice price={priceList} onClickEdit={onClickEdit} onClickDelete={onClickDelete}  />
                     </div>
                   </>
                 )

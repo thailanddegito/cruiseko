@@ -14,6 +14,7 @@ module.exports = (sequelize, type) => {
     price : type.DECIMAL(18,2),
     deposit : type.DECIMAL(18,2),
     commission : type.DECIMAL(18,2),
+    cost : type.DECIMAL(18,2),
     
     
   },
