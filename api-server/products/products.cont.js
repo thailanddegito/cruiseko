@@ -9,7 +9,7 @@ exports.getAll = async(req,res,next)=>{
   var {page,limit} = req.query
   try{
 
-    var where = {}
+    var where = {deleted : 0}
     var options = {where}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;

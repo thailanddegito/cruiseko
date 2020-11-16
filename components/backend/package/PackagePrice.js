@@ -24,6 +24,7 @@ const price_list = [
 const initStateTypeNormal = {
     start_date:null,end_date : null,
     pricing_type : 'normal',
+    cost : null,
     user_type : [ {name : 'FIT',company_type_id : 0  ,price_list }  ]
 }
 
@@ -31,6 +32,7 @@ const initFirstTier = {number : 2,price :null,deposit_rate:0,commission_rate: 0,
 
 const initStateTypeTier = {
     start_date:null,end_date : null,
+    cost : null,
     pricing_type : 'tier',
     user_type : [ {name : 'FIT',company_type_id : 0 , tier_start : 1 , tiers : [initFirstTier] }  ]
   
@@ -252,6 +254,7 @@ const PackagePrice = memo((props) => {
             value={data.start_date}
             inputProps={{ name: 'start_date', required: true, autoComplete: 'off' }} 
             isValidDate={lasted? validStartDate : undefined}
+            initialViewDate={lasted ? lasted.end_date : undefined }
              />
           </div>
         </div>
@@ -264,13 +267,16 @@ const PackagePrice = memo((props) => {
             onChange={(e) => { showendDate(e) }}
             value={data.end_date}
             inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
-            isValidDate={validEndDate} />
+            isValidDate={validEndDate} 
+            initialViewDate={lasted ? lasted.end_date : undefined }
+            />
           </div>
         </div>
         <div className="col-lg-3 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name: 'cost'
+            name: 'cost',value : data.cost,
+            onChange : e => setData({...data,cost : e.target.value })
           }} 
           labelName="Cost" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
