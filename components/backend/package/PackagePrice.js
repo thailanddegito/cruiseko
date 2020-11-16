@@ -222,7 +222,7 @@ const PackagePrice = memo((props) => {
   //   setAddDataTier(true);
   // }
   console.log('data',data)
-  // console.log('editData',editData)
+  console.log('lasted',lasted)
 
   return (
     <>

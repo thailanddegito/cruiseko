@@ -30,6 +30,12 @@ const Index = (props) => {
     setShow(true)
   }
 
+  const onClickDelete = (index) =>{
+    var tmp = [...priceList]
+    tmp.splice(index,1)
+    setPriceList(tmp)
+  }
+
   const handlePriceSave =(data,index)=>{
     var tmp = [...priceList]
     tmp[index] = data
@@ -111,7 +117,7 @@ const Index = (props) => {
                       handleCancel={handleCancel} 
                       editData={editData}
                       handlePriceSave={handlePriceSave}
-                      lasted={price[price.length-1]} />
+                      lasted={priceList[priceList.length-1]} />
                     </div>
                     {/* <div className="text-center">
                       <Button _type="button" _name="Add" _class="btn-primary" _click={() => handleAdd()} />
@@ -121,7 +127,7 @@ const Index = (props) => {
                 ) : (
                   <>
                     <div>
-                      <ShowPrice price={priceList} onClickEdit={onClickEdit}  />
+                      <ShowPrice price={priceList} onClickEdit={onClickEdit} onClickDelete={onClickDelete}  />
                     </div>
                   </>
                 )

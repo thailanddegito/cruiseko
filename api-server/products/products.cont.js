@@ -55,7 +55,7 @@ exports.create = async(req,res,next)=>{
   var transaction;
   var images_urls = []
   try{
-    images_urls = handleProductImages(files)
+    images_urls = await handleProductImages(files)
     if(files.picture && files.picture.name){
       //console.log(req.files);
       let file = files.picture;
@@ -83,14 +83,16 @@ exports.create = async(req,res,next)=>{
 
 exports.update = async(req,res,next)=>{
   const id = req.params.id
+  const product_id = id;
   var data = req.body;
   var {method = 'draft',price_date_list} = data;
   var files = req.files || {}
   var images_urls = []
   var transaction;
   console.log(data)
+  console.log('files',files)
   try{
-    images_urls = handleProductImages(files)
+    images_urls = await handleProductImages(files)
 
     transaction = await sequelize.transaction()
     if(price_date_list){
@@ -98,6 +100,7 @@ exports.update = async(req,res,next)=>{
       await createPriceData(price_date_list,id,transaction)
     }
 
+    // console.log(images_urls)
     if(images_urls.length){
       var images_data = images_urls.map(val => ({product_id,image : val}) )
       await ProductImage.bulkCreate(images_data,{transaction})
