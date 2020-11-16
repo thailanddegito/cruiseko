@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../../utils/api-admin'
 import DataTable from 'react-data-table-component'
 import SubHeaderComponent from './SubHeaderComponent'
-import ColumnTable from '../user/ColumnTable'
+import ColumnTable from '../column/ColumnTableUser'
 
 const TableUser = (props) => {
   const [users, setUsers] = useState(false);

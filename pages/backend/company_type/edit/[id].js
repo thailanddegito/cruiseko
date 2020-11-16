@@ -68,7 +68,7 @@ const EditRole = ({query}) => {
                 defaultValue : companies ? companies.name: '',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
@@ -80,7 +80,7 @@ const EditRole = ({query}) => {
                 name : 'prefix', required : true,
                 pattern : "^[A-Z]+$", minLength : 2, maxLength : 2
               }} 
-              labelName="Prefix : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Prefix " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 
@@ -92,7 +92,7 @@ const EditRole = ({query}) => {
                 name : 'commission_rate', required : true,
                 pattern : "[0-9]*", maxLength : 3
               }} 
-              labelName="Commission Rate (%) : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Commission Rate (%) " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
 

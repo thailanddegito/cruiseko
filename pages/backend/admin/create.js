@@ -63,7 +63,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Name " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -72,7 +72,7 @@ const Create = (props) => {
                 className:'form-control', type : 'email',
                 name : 'email', required : true
               }} 
-              labelName="Email : " iconProps={{className : 'fa icon icon-email'}}  />
+              labelName="Email " iconProps={{className : 'fa icon icon-email'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -81,7 +81,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'username', required : true
               }} 
-              labelName="Username : " iconProps={{className : 'fa icon icon-user'}}  />
+              labelName="Username " iconProps={{className : 'fa icon icon-user'}}  />
             </div>
           </div>
           <div className="row justify-content-center">
@@ -90,7 +90,7 @@ const Create = (props) => {
                 className:'form-control', type : 'password',name : 'password', 
                 pattern : ".{6,}", required : true
               }} 
-              labelName="Password : " iconProps={{className : 'fa icon icon-key-1'}}  />
+              labelName="Password " iconProps={{className : 'fa icon icon-key-1'}}  />
             </div>
           </div>
 

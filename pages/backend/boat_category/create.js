@@ -39,7 +39,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Name " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -49,7 +49,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'code', required : true,
               }} 
-              labelName="Code : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 

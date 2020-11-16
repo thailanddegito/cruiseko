@@ -92,13 +92,18 @@ export default {
 
 
     //Product Category
-    getProductCate : (params) => service.get(`/products-category`, {params}),
-    getProductCateOne : (id) => service.get(`/products-category/${id}`),
-    insertProductCate : (data) => service.post('/products-category',data) ,
-    updateProductCate : (id, data) => service.put(`/products-category/${id}`,data) ,
-    delProductCate : (id) => service.delete(`/products-category/${id}`),
+    getPackageCate : (params) => service.get(`/products-category`, {params}),
+    getPackageCateOne : (id) => service.get(`/products-category/${id}`),
+    insertPackageCate : (data) => service.post('/products-category',data) ,
+    updatePackageCate : (id, data) => service.put(`/products-category/${id}`,data) ,
+    delPackageCate : (id) => service.delete(`/products-category/${id}`),
  
-
+    //Package
+    getPackage : (params) => service.get(`/products`, {params}),
+    getPackageOne : (id,params) => service.get(`/products/${id}`,{params}),
+    updatePackageOne : (id,data) => service.put(`/products/${id}`,data),
+    insertPackage : (data) => service.post('/products',data) ,
+    delPackage : (id) => service.delete(`/products/${id}`),
    
  
 }

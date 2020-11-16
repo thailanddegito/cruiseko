@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import React from 'react';
+import React,{useContext} from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import TableAdmin from '../../../components/backend/table/TableAdmin';
+import UserContext from '../../../contexts/UserContext';
 
 const Index = (props) => {
+  const { admin } = useContext(UserContext);
 
   return (
     <>
@@ -22,7 +24,7 @@ const Index = (props) => {
         </div>
         <div className="divider"></div>
         <div>
-          <TableAdmin />
+          <TableAdmin admin={admin} />
         </div>
       </Layout>
     </>

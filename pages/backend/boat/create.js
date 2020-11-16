@@ -72,7 +72,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'name', required : true
               }} 
-              labelName="Name : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -82,7 +82,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'code', required : true
               }} 
-              labelName="Code : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -92,7 +92,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'company', required : true
               }} 
-              labelName="Company : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Company " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -102,7 +102,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'amount', required : true
               }} 
-              labelName="Amount : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Amount " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -112,14 +112,24 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'capacity', required : true
               }} 
-              labelName="Capacity : " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Capacity  " iconProps={{className : 'fa icon icon-home'}} />
+            </div>
+          </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',
+                name : 'time', required : true
+              }} 
+              labelName="Time " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
           <div className="row justify-content-center">
             <div className="col-lg-6 col-12">
               <div className="form-group">
-                <label>Picture : </label>
+                <label>Picture  </label>
                 <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
               </div>
             </div>

@@ -15,9 +15,15 @@ module.exports = (sequelize, type) => {
       remark : type.TEXT,
       highlight : type.TEXT,
       itinerary : type.TEXT,
-      pricing_type : {
-        type : type.STRING(20),
-        defaultValue : 'tour'
+      is_draft : {
+        type : type.INTEGER,
+        defaultValue : 1
+      },
+      duplicate_ref : type.INTEGER,
+      draft_ref : type.INTEGER,
+      deleted : {
+        type : type.INTEGER,
+        defaultValue : 0
       },
       // price : type.DECIMAL(18,2),
       
@@ -29,7 +35,8 @@ module.exports = (sequelize, type) => {
   
     Product.associate = function(models) {
         Product.belongsTo(models.ProductCategory,{foreignKey : 'cate_id',constraints: false});
-        Product.hasMany(models.PriceCalendar,{foreignKey : 'product_id',constraints: false})
+        Product.hasMany(models.PriceDate,{foreignKey : 'product_id',constraints: false})
+        Product.hasMany(models.ProductImage,{foreignKey : 'product_id',constraints: false})
     };
     return Product
   }

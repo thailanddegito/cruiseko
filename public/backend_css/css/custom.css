@@ -237,6 +237,7 @@ span.nav-link-text {
   padding: 2px 4px;
   margin: 0 4px;
   cursor: pointer;
+  min-width: 68px;
 }
 .a-manage.warning {
   border-color: #ffc107;
@@ -306,9 +307,6 @@ span.nav-link-text {
   max-height: 100%;
   max-width: 100%;
 }
-.middle {
-  position: relative;
-}
 .middle, .middle-absolute {
   float: left;
   left: 50%;
@@ -374,18 +372,53 @@ span.nav-link-text {
   border: 1px solid #eee;
   padding: 30px 15px;
 }
-.adult-head, .children-head {
+
+.package-type {
+  border: 1px solid #eee;
+}
+.package-head {
   background-color: #EEE;
   text-align: center;
   padding: 5px;
 }
-.adult-head span, .children-head span {
+.package-head span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+}
+.price-head {
+  background-color: #EEE;
+  text-align: center;
+  padding: 5px;
+}
+.price-head span {
   font-weight: bold;
   font-size: 18px;
   color: #000;
 }
 .select2 .css-1pahdxg-control, .select2 .css-yk16xz-control {
     min-height: 42px;
+}
+.price-data .card{
+  border: none;
+}
+.price-data .card .name-tier{
+  padding-left: 0;
+  padding-right: 0;
+  width: auto;
+  min-width: auto !important;
+}
+.btn-add-tier {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #007bff; 
+  background-color: #007bff;
+  color: #FFF;
+  cursor: pointer;
+}
+.div-btn-add-tier {
+  width: 40px;
+  margin-left: 15px;
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
