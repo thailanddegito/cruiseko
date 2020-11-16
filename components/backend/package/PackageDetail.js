@@ -15,6 +15,7 @@ const PackageDetail = memo((props) => {
   const {pkg} = props;
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
+  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
 
   const fecthPackageCate = () => {
     api.getPackageCate()
@@ -39,15 +40,29 @@ const PackageDetail = memo((props) => {
       console.log(err.response);
     })
   }
+
+  const handleSelectChange = (key,item)=>{
+    console.log(item)
+    setSelectData({...selectData,[key] : item})
+  }
   
   useEffect(() => {
     fecthBoat();
     fecthPackageCate();
   },[]);
 
+  useEffect(() => {
+    if(!pkg || !boats || !types) return;
+
+    const cate = types.find(val => val.value === pkg.cate_id )
+    const boat = boats.find(val => val.vlue === pkg.boat_id)
+    
+    setSelectData({cate,boat})
+  }, [pkg,types,boats]);
+
 
   
-  var defaultCate = pkg && types ? types.find(val => val.value === pkg.cate_id) : undefined;
+  // var defaultCate = pkg && types ? types.find(val => val.value === pkg.cate_id) : undefined;
   // console.log('defaultCate',defaultCate)
 
   return (
@@ -71,8 +86,8 @@ const PackageDetail = memo((props) => {
               placeholder="-- Please Select Category --"
               name="cate_id"
               options={types}
-              value={defaultCate }
-              // onChange={(e) => handleChange(e)}
+              value={selectData.cate }
+              onChange={ (e) => handleSelectChange('cate',e) }
             /> 
           </div>
         </div>
@@ -107,6 +122,8 @@ const PackageDetail = memo((props) => {
               placeholder="-- Please Select Boat --"
               name="boat_id"
               options={boats}
+              value={selectData.boat_id }
+              onChange={ (e) => handleSelectChange('boat_id',e) }
 
               // onChange={(e) => handleChange(e)}
             /> 

@@ -7,11 +7,11 @@ import Dropzone from '../../widget/Dropzone'
 import api from '../../../utils/api-admin'
 import DivLoad from '../../widget/DivLoad';
 
-const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
-const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
+// const Loading = <div className="position-relative"><DivLoad loading={true} /></div>;
+// const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const PackageImage = (props) => {
-
+  const {images =[]} = props
   return (
     <>
       <div className="row">
@@ -21,7 +21,15 @@ const PackageImage = (props) => {
           </div>
         </div>
       </div>
-
+      <div className="row">
+        <div className="col-lg-12 col-12">
+          {
+          images.map((val,index) =>  (
+            <img  style={{width : 100,height:100}} key={index} src={val.image} />
+          ))
+          }
+        </div>
+      </div>
     </>
   )
 }
