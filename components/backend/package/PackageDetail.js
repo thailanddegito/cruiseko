@@ -100,11 +100,19 @@ const PackageDetail = memo((props) => {
         </div>
       </div>
 
+      <div className="row"> 
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Short Description</label>
+            <textarea className="form-control" name="short_description" required data={pkg ? pkg.short_description : ''}></textarea>
+          </div>
+        </div>
+      </div>
 
       <div className="row">
         <div className="col-12">
           <div className="form-group mb-4">
-            <label>Detail</label>
+            <label>Description</label>
             <Editor name="description" height="200px" required data={pkg ? pkg.description : ''} />
           </div>
         </div>

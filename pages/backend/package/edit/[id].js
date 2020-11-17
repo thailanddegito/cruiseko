@@ -152,8 +152,12 @@ const Index = (props) => {
               }
             </div>
           </div>
-          <div>
-            <Button _type="button" _name="Save Draft"  _click={() => handleSubmit('draft')} /> 
+          <div className="row mt-4">
+            <div className="col-12">
+              <div className="text-right">
+                <Button _type="button" _class="btn-outline-primary" _name="Save Draft"  _click={() => handleSubmit('draft')} /> 
+              </div>
+            </div>
           </div>
         </form>
         
