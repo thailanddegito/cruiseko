@@ -82,9 +82,9 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link active" data-toggle="tab" href="#details">Package Details</a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
           </li>
@@ -96,9 +96,9 @@ const Index = (props) => {
                 <PackageDetail />
               </div>
             </div>
-            <div className="tab-pane fade" id="images">
+            {/* <div className="tab-pane fade" id="images">
               <PackageImage />
-            </div>
+            </div> */}
             <div className="tab-pane fade" id="price">
               <div className="row">
                 <div className="col-12">

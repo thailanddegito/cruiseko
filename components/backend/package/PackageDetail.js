@@ -16,6 +16,7 @@ const PackageDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
   const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
+  const [img, setImg] = useState();
 
   const fecthPackageCate = () => {
     api.getPackageCate()
@@ -59,11 +60,17 @@ const PackageDetail = memo((props) => {
     
     setSelectData({cate,boat})
   }, [pkg,types,boats]);
+  useEffect(() => {
+    if(!pkg) return;
+    setImg(pkg.picture ? pkg.picture : "/template/img/tour_1.jpg");
+  },[pkg]);
 
-
-  
-  // var defaultCate = pkg && types ? types.find(val => val.value === pkg.cate_id) : undefined;
-  // console.log('defaultCate',defaultCate)
+  const handleChange = (event) => {
+    if(!event.target.files[0]) {
+      return;
+    }
+    setImg(URL.createObjectURL(event.target.files[0]));
+  }
 
   return (
     <>
@@ -124,9 +131,22 @@ const PackageDetail = memo((props) => {
               options={boats}
               value={selectData.boat_id }
               onChange={ (e) => handleSelectChange('boat_id',e) }
-
-              // onChange={(e) => handleChange(e)}
             /> 
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-4 col-12">
+          <div className="form-group">
+            <label>Thumbnail</label>
+            <div className="default-picture">
+              <div>
+                <img src={img} className="mw-100" />
+              </div>
+              <label className="mt-3">file</label>
+              <input type="file" name="picture" id="picture" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
+            </div>
           </div>
         </div>
       </div>
