@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {Admin,Permission} = require('../db')
+const {Admin,Permission,BoatCategory} = require('../db')
 
 
 
@@ -41,9 +41,44 @@ exports.initPermission = async() =>{
     ]
 
     await Permission.sync({force : true})
-    console.log('Create permission successfully!')
+    
 
     await Permission.bulkCreate(data)
+    console.log('Create permission successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+exports.initBoatActivities = async() =>{
+  try{
+    const data = [
+      {name : 'Dinner cruise' , code : '' },
+      {name : 'Long Tail Boat' , code : ''},
+      {name : 'Charter Yacht' , code : '' },
+      {name : 'Rice Bargue Boat' , code : ''},
+      {name : 'Dive Trip' , code : '' },
+      {name : 'Water Sports' , code : ''},
+    ]
+
+    await BoatCategory.sync({force : true})
+    
+
+    await BoatCategory.bulkCreate(data)
+    console.log('Create boat activities successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+exports.initDefault = async() =>{
+  try{
+    await this.initAdmin()
+    await this.initPermission();
+    await this.initBoatActivities();
+    console.log('seeded successfully!')
   }
   catch(err){
     console.log(err)
@@ -57,4 +92,11 @@ if(method === 'admin'){
 }
 else if(method === 'per'){
   this.initPermission().then(() => process.exit(0))
+}
+else if(method === 'all'){
+  this.initDefault().then(() => process.exit(0))
+}
+else {
+  var methods = ['admin','per','all']
+  console.log('method required ',methods)
 }
