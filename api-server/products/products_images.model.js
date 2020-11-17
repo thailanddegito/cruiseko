@@ -9,6 +9,10 @@ module.exports = (sequelize, type) => {
       type : type.INTEGER,
       allowNull : false
     },
+    type : {
+      type : type.STRING(30),
+      defaultValue :'gallery'
+    },
     image : type.STRING,
     
   },

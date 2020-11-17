@@ -9,6 +9,7 @@ module.exports = (sequelize, type) => {
       cate_id : type.INTEGER,
       brand : type.STRING,
       program_code : type.STRING,
+      short_description : type.STRING,
       description : type.TEXT,
       product_banner : type.STRING,
       picture : type.STRING,
