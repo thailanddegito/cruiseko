@@ -26,7 +26,7 @@ const ProductCard = (props) => {
                 <a className="show-color">{packages.name ? packages.name : null}</a>
               </Link>
               </h3>
-              <div className="show-editor ck ck-content" dangerouslySetInnerHTML={{ __html: ((!packages.description || packages.description == 'undefined') ? '' : packages.description) }} />
+              <p>{packages.short_description ? packages.short_description : null}</p>
               <span class="price">From <strong>$54</strong> /per person</span>
             </div>
             <ul>
