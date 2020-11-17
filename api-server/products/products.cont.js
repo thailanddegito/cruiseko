@@ -94,6 +94,13 @@ exports.update = async(req,res,next)=>{
   try{
     images_urls = await handleProductImages(files)
 
+    if(files.picture && files.picture.name){
+      //console.log(req.files);
+      let file = files.picture;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.picture = tools.genFileUrl(fileName,'images')
+    }
+
     transaction = await sequelize.transaction()
     if(price_date_list){
       await clearPriceData(id,transaction)
