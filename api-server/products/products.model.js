@@ -20,8 +20,16 @@ module.exports = (sequelize, type) => {
         type : type.INTEGER,
         defaultValue : 1
       },
+      equal_draft : {
+        type : type.INTEGER,
+        defaultValue : 0
+      },
       duplicate_ref : type.INTEGER,
       draft_ref : type.INTEGER,
+      publish_status : {
+        type : type.INTEGER,
+        defaultValue : 0
+      },
       deleted : {
         type : type.INTEGER,
         defaultValue : 0

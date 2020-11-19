@@ -57,3 +57,13 @@ export const toPriceListState = (price_dates) => {
 
   })
 }
+
+
+export const sortImages = (images,order) =>{
+  if(!order) return;
+  images.sort((a,b) =>{
+    var a = order.findIndex(val => val.id === a.id )
+    var b = order.findIndex(val => val.id === b.id )
+    return a-b
+  })
+}

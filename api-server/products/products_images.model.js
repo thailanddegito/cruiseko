@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, type) => {
   var ProductImage  = sequelize.define('products_images', {
     id : {
@@ -8,6 +9,10 @@ module.exports = (sequelize, type) => {
     product_id : {
       type : type.INTEGER,
       allowNull : false
+    },
+    order : {
+      type : type.INTEGER,
+      defaultValue:1000
     },
     type : {
       type : type.STRING(30),

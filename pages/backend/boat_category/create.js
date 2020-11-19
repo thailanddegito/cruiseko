@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
 import Button from '../../../components/widget/Button';
 import InputLabel from '../../../components/widget/InputLabel';
+import SelectLabel from '../../../components/widget/SelectLabel';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 import api from '../../../utils/api-admin';
 
@@ -50,6 +51,17 @@ const Create = (props) => {
                 name : 'code', required : true,
               }} 
               labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
+            </div>
+          </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <SelectLabel 
+              inputProps={{ 
+                className:'form-control select', 
+                name : 'type', required : true,
+              }} 
+              labelName="Type" options={[{name : 'Tour',val : 'tour'},{name : 'Charter',val : 'charter'}]} />
             </div>
           </div>
 

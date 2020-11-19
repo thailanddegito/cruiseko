@@ -14,6 +14,7 @@ module.exports = {
     DefaultError,
     NOT_FOUND : 'NotFoundError',
     INVALID_EMAIL : 'InvalidEmailError',
+    INVALID_INPUT : 'InvalidInputError',
     DUPLICATED_EMAIL : 'DuplicatedEmailError',
     DUPLICATED_USERNAME : 'DuplicatedUsernameError',
     INVALID_PASSWORD : 'InvalidPasswordError',
@@ -21,4 +22,5 @@ module.exports = {
     PERMISSION_ERROR : 'PermissionError',
     PENDING_APPROVE : 'PendingApproveError',
     NOT_APPROVE : 'NotApproveError',
+    NOT_PUBLISHED : 'NotPublishedError',
 }

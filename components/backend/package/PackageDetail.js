@@ -74,14 +74,14 @@ const PackageDetail = memo((props) => {
 
   return (
     <>
-      <div className="row">
+      <div className="row" >
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
             name : 'name', required : true,
             defaultValue : pkg ? pkg.name : undefined
           }} 
-          labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  />
+          labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  /> 
         </div>
         <div className="col-lg-4 col-12">
           <div className="form-group select2">
@@ -104,7 +104,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Short Description</label>
-            <textarea className="form-control" name="short_description" required data={pkg ? pkg.short_description : ''}></textarea>
+            <textarea className="form-control" name="short_description" required defaultValue={pkg ? pkg.short_description : ''}></textarea>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Description</label>
-            <Editor name="description" height="200px" required data={pkg ? pkg.description : ''} />
+            <Editor name="description" height="200px" required data={pkg?.description} />
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ const PackageDetail = memo((props) => {
               <div>
                 <img src={img} className="mw-100" />
               </div>
-              <label className="mt-3">file</label>
+              {/* <label className="mt-3">file</label> */}
               <input type="file" name="picture" id="picture" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
             </div>
           </div>

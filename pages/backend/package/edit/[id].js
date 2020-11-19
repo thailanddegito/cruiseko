@@ -5,16 +5,19 @@ import PackageImage from '../../../../components/backend/package/PackageImage';
 import PackagePrice from '../../../../components/backend/package/PackagePrice';
 import ShowPrice from '../../../../components/backend/package/ShowPrice';
 import Button from '../../../../components/widget/Button';
+import LoadingButton from '../../../../components/widget/LoadingButton';
 import api from '../../../../utils/api-admin'
 import {useRouter} from 'next/router'
 import {toPriceListState} from '../../../../utils/packageHelper'
-
+import Router from 'next/router'
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [editData,setEditData] = useState()
+  const [saving,setSaving] = useState(false)
+  const [galleryOrder,setGalleryOrder] = useState()
 
   const router = useRouter()
   const {id} = router.query;
@@ -65,7 +68,7 @@ const Index = (props) => {
   const handlePriceSave =(data,index)=>{
     var tmp = [...priceList]
     tmp[index] = data
-    console.log('editing data',tmp)
+    // console.log('editing data',tmp)
     setPriceList(tmp)
     setShow(false);
   }
@@ -81,18 +84,23 @@ const Index = (props) => {
     formData.append('price_date_list',JSON.stringify(priceList))
     formData.append('method',method)
 
+    if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
+
+    setSaving(true)
     api.updatePackageOne(id,formData)
     .then(() => {
-      
+      setSaving(false)
+      Router.push('/backend/package');
     })
     .catch(err =>{
+      setSaving(false)
       console.log(err.response || err)
     })
 
   }
   return (
     <>
-      <Layout title="Edit Package" page_name="Edit Package" sub_page="Edit" main_link="package">
+      <Layout title="Edit Package" page_name="Package" sub_page="Edit" main_link="package">
         <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit Package</h4>
@@ -102,7 +110,7 @@ const Index = (props) => {
 
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link active" data-toggle="tab" href="#details">Package Details</a>
+            <a className="nav-link active" data-toggle="tab" href="#details">Package Detail</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
@@ -115,11 +123,13 @@ const Index = (props) => {
           <div className="tab-content">
             <div className="tab-pane active" id="details">
               <div>
-                <PackageDetail pkg={pkg} />
+                <PackageDetail pkg={pkg}  />
               </div>
             </div>
             <div className="tab-pane fade" id="images">
-              <PackageImage  images={pkg? pkg.products_images : []} />
+              <PackageImage  images={pkg? pkg.products_images : []} 
+              setGalleryOrder={setGalleryOrder}
+              galleryOrder={galleryOrder} />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">
@@ -155,7 +165,19 @@ const Index = (props) => {
           <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
-                <Button _type="button" _class="btn-outline-primary" _name="Save Draft"  _click={() => handleSubmit('draft')} /> 
+                <LoadingButton type="button" 
+                className="btn-outline-primary"  
+                loading={saving}
+                onClick={() => handleSubmit('draft')} >
+                  Save Draft
+                </LoadingButton> 
+
+                <LoadingButton type="button" 
+                className="btn-outline-primary ml-3"  
+                loading={saving}
+                onClick={() => handleSubmit('publish')} >
+                  Publish
+                </LoadingButton> 
               </div>
             </div>
           </div>

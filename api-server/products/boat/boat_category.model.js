@@ -7,6 +7,11 @@ module.exports = (sequelize, type) => {
       },
       name : type.STRING,
       code : type.STRING(20),
+      type : {
+        //#charter, tour
+        type :type.STRING(20),
+        defaultValue:'tour'
+      },
       deleted : {
         type : type.INTEGER,
         defaultValue : 0

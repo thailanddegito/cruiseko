@@ -54,12 +54,12 @@ exports.initPermission = async() =>{
 exports.initBoatActivities = async() =>{
   try{
     const data = [
-      {name : 'Dinner cruise' , code : '' },
-      {name : 'Long Tail Boat' , code : ''},
-      {name : 'Charter Yacht' , code : '' },
-      {name : 'Rice Bargue Boat' , code : ''},
-      {name : 'Dive Trip' , code : '' },
-      {name : 'Water Sports' , code : ''},
+      {name : 'Dinner cruise' , code : 'DC' },
+      {name : 'Long Tail Boat' , code : 'LT',type:'charter'},
+      {name : 'Charter Yacht' , code : 'CY' ,type:'charter'},
+      {name : 'Rice Bargue Boat' , code : 'RB',type:'charter'},
+      {name : 'Dive Trip' , code : 'DT' },
+      {name : 'Water Sports' , code : 'WS'},
     ]
 
     await BoatCategory.sync({force : true})

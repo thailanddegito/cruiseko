@@ -27,8 +27,8 @@ const Editor = (props) =>{
       'blockQuote',
       'insertTable',
   
-      'undo',
-      'redo'
+      // 'undo',
+      // 'redo'
     ],
     removePlugins: [ 'ImageCaption' ],
     image: {
@@ -88,7 +88,7 @@ const Editor = (props) =>{
         data = {data}
         onInit = { 
           editor => {
-            console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
+            // console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
             editor.editing.view.change( writer => {
               writer.setStyle( 'min-height', height, editor.editing.view.document.getRoot() );
             });

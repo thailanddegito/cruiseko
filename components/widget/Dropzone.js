@@ -93,7 +93,7 @@ const Dropzone = (props) => {
     <div >
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} name="images" />
-        <p className="mb-0 text-center">เลือกไฟล์ หรือ ลากไฟล์</p>
+        <p className="mb-0 text-center">Select or drop files</p>
       </div>
       <div style={thumbsContainer}>
         {thumbs}

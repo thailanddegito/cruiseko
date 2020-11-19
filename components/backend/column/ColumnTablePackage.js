@@ -18,6 +18,14 @@ const ColumsBody = (props) => {
     //   sortable: true,
     // },
     {
+      name: 'Publish status',
+      selector: 'publish_status',
+    },
+    {
+      name: 'Draft status',
+      selector: 'equal_draft',
+    },
+    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

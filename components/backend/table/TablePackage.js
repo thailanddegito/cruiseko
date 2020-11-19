@@ -13,7 +13,7 @@ const TablePackage = (props) => {
   const [packages, setPackage] = useState();
 
   const fecthPackage = () => {
-    api.getPackage()
+    api.getPackage({is_draft : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);

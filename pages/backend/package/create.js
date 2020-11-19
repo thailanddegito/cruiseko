@@ -5,12 +5,15 @@ import PackageImage from '../../../components/backend/package/PackageImage';
 import PackagePrice from '../../../components/backend/package/PackagePrice';
 import ShowPrice from '../../../components/backend/package/ShowPrice';
 import Button from '../../../components/widget/Button';
+import LoadingButton from '../../../components/widget/LoadingButton';
 import api from '../../../utils/api-admin'
+import Router from 'next/router'
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
   const [priceList, setPriceList] = useState([]);
   const [editData,setEditData] = useState()
+  const [saving,setSaving] = useState(false)
 
   const handleShow = () => {
     setShow(true);
@@ -55,11 +58,15 @@ const Index = (props) => {
     formData.append('price_date_list',JSON.stringify(priceList))
     formData.append('method',method)
 
+    setSaving(true)
+
     api.insertPackage(formData)
     .then(() => {
-      
+      setSaving(false)
+      Router.push('/backend/package');
     })
     .catch(err =>{
+      setSaving(false)
       console.log(err.response || err)
     })
 
@@ -80,7 +87,7 @@ const Index = (props) => {
 
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link active" data-toggle="tab" href="#details">Package Details</a>
+            <a className="nav-link active" data-toggle="tab" href="#details">Package Detail</a>
           </li>
           {/* <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
@@ -137,7 +144,12 @@ const Index = (props) => {
           <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
-                <Button _type="button" _class="btn-outline-primary" _name="Save Draft"  _click={() => handleSubmit('draft')} /> 
+                <LoadingButton type="button" 
+                className="btn-outline-primary"  
+                loading={saving}
+                onClick={() => handleSubmit('draft')} >
+                  Save Draft
+                </LoadingButton> 
               </div>
             </div>
           </div>

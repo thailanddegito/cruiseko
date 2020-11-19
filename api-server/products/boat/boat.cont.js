@@ -1,6 +1,7 @@
 const {Boat,BoatCategory,BoatImage,sequelize} = require('../../db')
 const tools = require('../../helper/tools')
 const errors = require('../../errors')
+const {createProduct} = require('../products.cont')
 const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
@@ -38,13 +39,17 @@ exports.getOne = async(req,res,next)=>{
 
 exports.create = async(req,res,next)=>{
   var data = req.body;
-  var {} = data;
+  var {name,cate_id} = data;
   var files = req.files || {}
   var image_urls = []
   var transaction;
   try{
 
-    if(files.picture && files.picture){
+    if(!cate_id || !name){
+      throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+
+    if(files.picture && files.picture.name){
       let file = files.picture;
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
@@ -59,12 +64,27 @@ exports.create = async(req,res,next)=>{
         if(fileName) image_urls.push(tools.genFileUrl(fileName,'images'))
       }
     }
+
+    const boat_cate = await BoatCategory.findOne({where :{ cate_id},attributes:['type']})
+
+    if(!boat_cate){
+      throw new DefaultError(errors.INVALID_INPUT);
+    }
+
     transaction = await sequelize.transaction()
     const boat = await Boat.create(data,{transaction})
     var task = [];
     for(const image of image_urls){
       task.push(BoatImage.create({boat_id : boat.boat_id , image},{transaction}) )
     }
+
+    if(boat_cate.type === 'charter'){
+      var pkg_data = {
+        name
+      }
+      task.push(createProduct({isDraft:true,data:pkg_data,transaction}))
+    }
+
     await Promise.all(task)
     await transaction.commit()
     
