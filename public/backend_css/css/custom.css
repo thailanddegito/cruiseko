@@ -431,7 +431,7 @@ span.nav-link-text {
   padding: 4px;
   box-sizing: border-box;
 }
-.drag-box .drag {
+.drag-box img {
   position: relative;
   width: 100px;
   height: 100px;
@@ -439,6 +439,17 @@ span.nav-link-text {
   max-height: 100%;
   object-fit: contain;
   margin: 0 auto;
+}
+.div-table {
+  align-items: center;
+  margin: 16px 0;
+  padding: 8px 0;
+}
+.div-table:nth-child(odd) {
+  background-color: #EEE;
+}
+.div-table:nth-child(even) {
+  background-color: #FFF;
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {

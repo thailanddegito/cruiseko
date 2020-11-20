@@ -12,10 +12,8 @@ const ShowPriceData = (props) => {
         <div className="col-2"> {pricing_type === 'normal' ? 'Tour' : 'Tier' } </div>
         <div className="col-2">
           <div className="text-right">
-            <span className="mr-3" ><a href="#" onClick={onClickEdit}>See more</a></span>
-            
-            <span><a href="#" onClick={onClickDelete}>Delete</a></span>
-            
+            <button className="a-manage warning" onClick={onClickEdit}><i className="fa fa-fw fa-pencil"></i> <span>See more</span></button>
+            <button className="a-manage danger" onClick={onClickDelete}><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>            
           </div>
         </div>
       </div>
