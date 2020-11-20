@@ -53,8 +53,8 @@ const PackageImage = (props) => {
             <Drag handleOrderChange={handleGalleryOrderChange} items={sortedImages} >
               {
               sortedImages.map((val,index) =>  (
-                <div className="drag-box" key={index}>
-                  <img className="drag mr-1" src={val.image} />
+                <div className="drag drag-box" key={index}>
+                  <img className="mr-1" src={val.image} />
                 </div>
               ))
               }
