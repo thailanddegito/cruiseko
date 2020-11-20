@@ -27,8 +27,10 @@ const ColumsBody = (props) => {
       )
     },
     {
-      name: 'Draft status',
-      selector: 'equal_draft',
+      name: 'Drafting',
+      cell : row => (
+        row.equal_draft == 1 ? 'No' : 'Yes'
+      )
     },
     {
       name: 'Created date',
