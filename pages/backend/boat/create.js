@@ -8,6 +8,11 @@ import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 import api from '../../../utils/api-admin';
 import ImageBoxBackend from '../../../components/widget/ImageBoxBackend';
 
+import dynamic from 'next/dynamic';
+import DivLoad from '../../../components/widget/DivLoad';
+
+const Loading = <div className="position-relative" style={{height : '200px'}}><DivLoad loading={true} /></div>;
+const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const Create = (props) => {  
   const [modalSuccess, setModalSuccess] = useState(false);
@@ -56,7 +61,14 @@ const Create = (props) => {
         <form onSubmit={handleSave} encType="multipart/form-data" >
 
           <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-8 col-12">
+              <InputLabel inputProps={{ 
+                className:'form-control', type : 'text',
+                name : 'name', required : true
+              }} 
+              labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
+            </div>
+            <div className="col-lg-4 col-12">
               <SelectLabel 
               inputProps={{ 
                 className:'form-control select', 
@@ -66,38 +78,24 @@ const Create = (props) => {
             </div>
           </div>
 
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'name', required : true
-              }} 
-              labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-          </div>
+          
 
           <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'code', required : true
               }} 
               labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
             </div>
-          </div>
-
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'company', required : true
               }} 
               labelName="Company " iconProps={{className : 'fa icon icon-home'}} />
             </div>
-          </div>
-
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'amount', required : true
@@ -106,18 +104,15 @@ const Create = (props) => {
             </div>
           </div>
 
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+          <div className="row justify-content-start">
+            <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'capacity', required : true
               }} 
               labelName="Capacity  " iconProps={{className : 'fa icon icon-home'}} />
             </div>
-          </div>
-
-          <div className="row justify-content-center">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
                 name : 'time', required : true
@@ -126,7 +121,16 @@ const Create = (props) => {
             </div>
           </div>
 
-          <div className="row justify-content-center">
+          <div className="row">
+            <div className="col-12">
+              <div className="form-group mb-4">
+                <label>Description</label>
+                <Editor name="description" height="200px" required />
+              </div>
+            </div>
+          </div>
+
+          <div className="row justify-content-start">
             <div className="col-lg-6 col-12">
               <div className="form-group">
                 <label>Picture  </label>

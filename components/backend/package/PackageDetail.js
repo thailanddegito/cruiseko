@@ -16,7 +16,7 @@ const PackageDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
   const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
-  const [img, setImg] = useState();
+  const [img, setImg] = useState("/template/img/tour_1.jpg");
 
   const fecthPackageCate = () => {
     api.getPackageCate()
