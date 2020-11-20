@@ -450,6 +450,7 @@ span.nav-link-text {
 .div-table:nth-child(even) {
   background-color: #FFF;
 }
+
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;

@@ -3,9 +3,14 @@ import { Modal } from 'react-bootstrap';
 import Router from 'next/router';
 
 const Dialog = (props) => {
-  const {route} = props;
+  const {route, onHide} = props;
   const redirectPage = (e) => {
-    Router.push(route);
+    if(route) {
+      Router.push(route);
+    }else{
+      onHide();
+    }
+    
   }
 
   return (

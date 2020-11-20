@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 
 import DataTable from 'react-data-table-component'
 import SubHeaderComponent from './SubHeaderComponent'
@@ -10,6 +11,8 @@ import ColumnTable from '../column/ColumnTablePackage'
 
 const TablePackage = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
+
   const [packages, setPackage] = useState();
 
   const fecthPackage = () => {
@@ -45,12 +48,29 @@ const TablePackage = (props) => {
       console.log(err.response);
     })
   }
+
+  const handleFunction = (status, id) => {
+    console.log(id);
+    var val = status == 1 ? 0 : 1;
+    var data = {id, publish_status : val};
+    console.log(data);
+    api.updatePackagePublish(data)
+    .then(res=>{
+      const data = res.data;
+      setModalSuccess(true);
+      fecthPackage();
+    })
+    .catch(err => {
+      console.log(err);
+      console.log(err.response);
+    }) 
+  }
   
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = packages ? packages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
-  const columns = ColumnTable({delData});
+  const columns = ColumnTable({delData, handleFunction});
 
 
   return (
@@ -79,6 +99,11 @@ const TablePackage = (props) => {
           onConfirm={() => onConfirm()}
           ref_id={ref_id}
           onHide={() => setModalConfirm(false)} />
+
+      <SuccessDialog show={modalSuccess}
+        text="Successfully saved data !!!"
+        size="md" onHide={() => setModalSuccess(false)}
+        /> 
     </>
   )
 }
