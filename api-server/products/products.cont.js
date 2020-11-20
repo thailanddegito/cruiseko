@@ -125,8 +125,9 @@ exports.update = async(req,res,next)=>{
 
     // console.log(images_urls)
     if(images_urls.length){
-      var images_data = images_urls.map(val => ({product_id,image : val}) )
-      task.push(ProductImage.bulkCreate(images_data,{transaction}))
+      var images_data = images_urls.map(val => ({...val,product_id}) )
+      await ProductImage.bulkCreate(images_data,{transaction})
+      // task.push(ProductImage.bulkCreate(images_data,{transaction}))
     }
 
     data.equal_draft = 0;
@@ -206,7 +207,16 @@ async function handleProductImages (files){
     images = images.filter(val => val.name)
     for(const file of images){
       let fileName = await tools.moveFileWithPath(file,'images')
-      if(fileName) images_urls.push(tools.genFileUrl(fileName,'images'))
+      if(fileName) images_urls.push({image : tools.genFileUrl(fileName,'images'),type:'gallery'})
+    }
+  }
+  if(files.banners){
+    var images = files.banners
+    if(!Array.isArray(files.banners))  images = [images]
+    images = images.filter(val => val.name)
+    for(const file of images){
+      let fileName = await tools.moveFileWithPath(file,'images')
+      if(fileName) images_urls.push({image : tools.genFileUrl(fileName,'images'),type:'banner'})
     }
   }
   return images_urls;
@@ -229,7 +239,7 @@ async function createProduct({isDraft,data,images_urls,price_date_list,transacti
 
 
     if(images_urls && images_urls.length){
-      var images_data = images_urls.map(val => ({product_id,image : val,id : null}) )
+      var images_data = images_urls.map(val => ({...val,product_id,id : null}) )
       await ProductImage.bulkCreate(images_data,{transaction})
     }
 
