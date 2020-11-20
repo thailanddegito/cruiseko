@@ -8,7 +8,7 @@ import Drag from '../../widget/Drag';
 import {sortImages} from '../../../utils/packageHelper'
 
 const PackageImage = (props) => {
-  const {images =[],galleryOrder,setGalleryOrder, dropzone_header, input_name, index, pixel_text} = props
+  const {images =[],galleryOrder=[],setGalleryOrder, dropzone_header, input_name, index, pixel_text} = props
 
   var sortedImages = [...images]
 
@@ -18,11 +18,12 @@ const PackageImage = (props) => {
     var data  = [...images];
     const item = data.splice(fromIndex, 1)[0];
     data.splice(toIndex, 0, item);
-    setGalleryOrder(data.map((val,index) => ({id : val.id,order:index+1})))
+    let order_tmp = galleryOrder.filter(val => data.findIndex(d => d.id === val.id) === -1 )
+    setGalleryOrder([...order_tmp,...data.map((val,index) => ({id : val.id,order:index+1}))])
   }
 
   // console.log('sortedImages',sortedImages)
-  // console.log(galleryOrder)
+  console.log(galleryOrder)
 
   return (
     <>
