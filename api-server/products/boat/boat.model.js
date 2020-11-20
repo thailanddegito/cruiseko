@@ -12,6 +12,7 @@ module.exports = (sequelize, type) => {
       name : type.STRING,
       code : type.STRING(20),
       company : type.STRING,
+      description : type.TEXT,
       price_per_hr :{
         type : type.DECIMAL(12,2),
         defaultValue : 0

@@ -119,9 +119,11 @@ exports.update = async(req,res,next)=>{
     let task = [];
     if(images_order){
       images_order = JSON.parse(images_order);
+      let sub_task = [];
       for(const im of images_order){
-        task.push(ProductImage.update({order : im.order},{where : {id : im.id},transaction}))
+        sub_task.push(ProductImage.update({order : im.order},{where : {id : im.id},transaction}))
       }
+      await Promise.all(sub_task)
     }
 
     // console.log(images_urls)
