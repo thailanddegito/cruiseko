@@ -38,7 +38,7 @@ exports.getOne = async(req,res,next)=>{
     ]
     const include = [
       {model : PriceDate ,include :price_include},
-      {model : ProductImage , attributes:['id','image']}
+      {model : ProductImage , attributes:['id','image','type','order']}
     ]
     var where = {id,deleted : 0}
     var order =  [
