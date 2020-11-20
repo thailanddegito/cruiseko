@@ -6,7 +6,7 @@ const ShowPriceData = (props) => {
 
   return (
     <>
-      <div className="row mt-2">
+      <div className="row div-table">
         <div className="col-4">{start_date ? tools.formatDate(start_date,false,false) : null}</div>
         <div className="col-4">{end_date ? tools.formatDate(end_date,false,false) : null}</div>
         <div className="col-2"> {pricing_type === 'normal' ? 'Tour' : 'Tier' } </div>
