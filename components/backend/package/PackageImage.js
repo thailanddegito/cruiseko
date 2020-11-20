@@ -8,7 +8,7 @@ import Drag from '../../widget/Drag';
 import {sortImages} from '../../../utils/packageHelper'
 
 const PackageImage = (props) => {
-  const {images =[],galleryOrder,setGalleryOrder} = props
+  const {images =[],galleryOrder,setGalleryOrder, dropzone_header, input_name, index, pixel_text} = props
 
   var sortedImages = [...images]
 
@@ -26,10 +26,21 @@ const PackageImage = (props) => {
 
   return (
     <>
+      {index && index != 0 ? <div className="divider"></div> : null}
+      <div className="row justify-content-start">
+        <div className="col-6">
+          <div className="d-flex align-items-center">
+            <h4>{dropzone_header}</h4>
+            {pixel_text ? <span className="ml-3">({pixel_text})</span> : null}
+          </div>
+        </div>
+      </div>
+      <div className="divider"></div>
+
       <div className="row">
         <div className="col-lg-12 col-12">
           <div className="form-group">
-            <Dropzone />
+            <Dropzone name={input_name} />
           </div>
         </div>
       </div>
@@ -41,7 +52,9 @@ const PackageImage = (props) => {
             <Drag handleOrderChange={handleGalleryOrderChange} items={sortedImages} >
               {
               sortedImages.map((val,index) =>  (
-                <img className="drag mr-1" style={{width : 100,height:100}} key={index} src={val.image} />
+                <div className="drag-box" key={index}>
+                  <img className="drag mr-1" src={val.image} />
+                </div>
               ))
               }
             </Drag>
@@ -49,6 +62,9 @@ const PackageImage = (props) => {
           </div>
         </div>
       ) : null}
+
+
+     
       
     </>
   )

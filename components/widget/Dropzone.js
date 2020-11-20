@@ -37,7 +37,7 @@ const img = {
 };
 
 const Dropzone = (props) => {
-  const {handleUpload,onUploadDone, id} = props;
+  const {handleUpload,onUploadDone, id, name} = props;
   const [files, setFiles] = useState([]);
   const {getRootProps, getInputProps} = useDropzone({
     accept: 'image/*',
@@ -92,7 +92,7 @@ const Dropzone = (props) => {
   return (
     <div >
       <div {...getRootProps({className: 'dropzone'})}>
-        <input {...getInputProps()} name="images" />
+        <input {...getInputProps()} name={name} />
         <p className="mb-0 text-center">Select or drop files</p>
       </div>
       <div style={thumbsContainer}>

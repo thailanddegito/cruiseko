@@ -10,6 +10,7 @@ import api from '../../../../utils/api-admin'
 import {useRouter} from 'next/router'
 import {toPriceListState} from '../../../../utils/packageHelper'
 import Router from 'next/router'
+import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ const Index = (props) => {
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
   const [galleryOrder,setGalleryOrder] = useState()
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   const router = useRouter()
   const {id} = router.query;
@@ -90,7 +92,7 @@ const Index = (props) => {
     api.updatePackageOne(id,formData)
     .then(() => {
       setSaving(false)
-      Router.push('/backend/package');
+      setModalSuccess(true);
     })
     .catch(err =>{
       setSaving(false)
@@ -123,13 +125,20 @@ const Index = (props) => {
           <div className="tab-content">
             <div className="tab-pane active" id="details">
               <div>
-                <PackageDetail pkg={pkg}  />
+                <PackageDetail pkg={pkg} />
               </div>
             </div>
             <div className="tab-pane fade" id="images">
-              <PackageImage  images={pkg? pkg.products_images : []} 
-              setGalleryOrder={setGalleryOrder}
-              galleryOrder={galleryOrder} />
+              <PackageImage  images={pkg? pkg.products_images.filter((val) => val.type === 'banner') : []} 
+                setGalleryOrder={setGalleryOrder}
+                galleryOrder={galleryOrder}
+                dropzone_header="Banner Images" pixel_text="1600px x 1067px" input_name="banners" index="0"
+              />
+              <PackageImage  images={pkg? pkg.products_images.filter((val) => val.type === 'gallery') : []} 
+                setGalleryOrder={setGalleryOrder}
+                galleryOrder={galleryOrder}
+                dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1"
+              />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">
@@ -173,7 +182,7 @@ const Index = (props) => {
                 </LoadingButton> 
 
                 <LoadingButton type="button" 
-                className="btn-outline-primary ml-3"  
+                className="btn-primary ml-3"  
                 loading={saving}
                 onClick={() => handleSubmit('publish')} >
                   Publish
@@ -183,7 +192,10 @@ const Index = (props) => {
           </div>
         </form>
         
-       
+        <SuccessDialog show={modalSuccess}
+          text="Successfully saved data !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/package"} />
 
       </Layout>
     </>

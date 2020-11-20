@@ -8,12 +8,14 @@ import Button from '../../../components/widget/Button';
 import LoadingButton from '../../../components/widget/LoadingButton';
 import api from '../../../utils/api-admin'
 import Router from 'next/router'
+import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
   const [priceList, setPriceList] = useState([]);
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   const handleShow = () => {
     setShow(true);
@@ -63,7 +65,7 @@ const Index = (props) => {
     api.insertPackage(formData)
     .then(() => {
       setSaving(false)
-      Router.push('/backend/package');
+      setModalSuccess(true);
     })
     .catch(err =>{
       setSaving(false)
@@ -89,9 +91,9 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link active" data-toggle="tab" href="#details">Package Detail</a>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
-          </li> */}
+          </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
           </li>
@@ -103,9 +105,10 @@ const Index = (props) => {
                 <PackageDetail />
               </div>
             </div>
-            {/* <div className="tab-pane fade" id="images">
-              <PackageImage />
-            </div> */}
+            <div className="tab-pane fade" id="images">
+              <PackageImage dropzone_header="Banner Images" pixel_text="1600px x 1067px" input_name="banners" index="0" />
+              <PackageImage dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1" />
+            </div>
             <div className="tab-pane fade" id="price">
               <div className="row">
                 <div className="col-12">
@@ -150,12 +153,23 @@ const Index = (props) => {
                 onClick={() => handleSubmit('draft')} >
                   Save Draft
                 </LoadingButton> 
+
+                <LoadingButton type="button" 
+                className="btn-primary ml-3"  
+                loading={saving}
+                onClick={() => handleSubmit('publish')} >
+                  Publish
+                </LoadingButton> 
               </div>
             </div>
           </div>
         </form>
         
        
+        <SuccessDialog show={modalSuccess}
+          text="Successfully saved data !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+          route={"/backend/package"} />
 
         
       </Layout>

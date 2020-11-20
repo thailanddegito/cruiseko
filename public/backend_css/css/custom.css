@@ -420,6 +420,26 @@ span.nav-link-text {
   width: 40px;
   margin-left: 15px;
 }
+.drag-box {
+  display: inline-flex;
+  border-radius: 2px;
+  border: 1px solid rgb(234, 234, 234);
+  margin-bottom: 8px;
+  margin-right: 8px;
+  width: 100px;
+  height: 100px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.drag-box .drag {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
