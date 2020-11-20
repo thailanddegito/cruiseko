@@ -23,7 +23,7 @@ const PackageImage = (props) => {
   }
 
   // console.log('sortedImages',sortedImages)
-  console.log(galleryOrder)
+  // console.log(galleryOrder)
 
   return (
     <>
