@@ -34,6 +34,7 @@ const Banner = (props) => {
           {`
             .hero_in.tours_detail:before {
               background: url(${images ? images[0].image : '../img/hero_in_tours_detail.jpg'}) center center no-repeat;
+              background-size: cover;
             }
           `}
           </style>
