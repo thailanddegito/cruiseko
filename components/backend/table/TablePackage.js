@@ -45,12 +45,29 @@ const TablePackage = (props) => {
       console.log(err.response);
     })
   }
+
+  const handleFunction = (status, id) => {
+    console.log(id);
+    var val = status == 1 ? 0 : 1;
+    var data = {id, publish_status : val};
+    console.log(data);
+    api.updatePackagePublish(data)
+    .then(res=>{
+      const data = res.data;
+      console.log(data);
+      fecthPackage();
+    })
+    .catch(err => {
+      console.log(err);
+      console.log(err.response);
+    }) 
+  }
   
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = packages ? packages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
-  const columns = ColumnTable({delData});
+  const columns = ColumnTable({delData, handleFunction});
 
 
   return (

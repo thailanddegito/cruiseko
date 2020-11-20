@@ -2,9 +2,10 @@
 import React from 'react';
 import Link from 'next/link'
 import {toDateISO} from '../../../utils/tools'
+import Switch from '../../widget/Switch'
 
 const ColumsBody = (props) => {
-  const {delData} = props;
+  const {delData, handleFunction} = props;
 
   const columns = [
     {
@@ -19,7 +20,11 @@ const ColumsBody = (props) => {
     // },
     {
       name: 'Publish status',
-      selector: 'publish_status',
+      cell : row => (
+        (row.publish_status >= 0) ? (
+          <Switch name="publish_status" id={`publish_status${row.id}`} checked={row.publish_status == 1 ? true : false} handleFunction={() => handleFunction(row.publish_status , row.id)} />
+        ) : null
+      )
     },
     {
       name: 'Draft status',
