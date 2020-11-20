@@ -442,8 +442,7 @@ span.nav-link-text {
 }
 .div-table {
   align-items: center;
-  margin: 16px 0;
-  padding: 8px 0;
+  padding: 10px 0;
 }
 .div-table:nth-child(odd) {
   background-color: #EEE;
