@@ -71,6 +71,7 @@ exports.create = async(req,res,next)=>{
     transaction = await sequelize.transaction()
 
     data.equal_draft = method === 'publish' ? 1 : 0;
+    data.publish_status = method === 'publish' ? 1 : 0;
 
     const product_draft = await createProduct({isDraft : true,data,images_urls,price_date_list,transaction})
     if(method === 'publish'){
@@ -131,6 +132,7 @@ exports.update = async(req,res,next)=>{
     }
 
     data.equal_draft = 0;
+    data.publish_status = method === 'publish' ? 1 : 0;
 
     if(method === 'publish'){
       data.equal_draft = 1;
@@ -166,7 +168,7 @@ exports.update = async(req,res,next)=>{
 exports.updatePublishStatus = async(req,res,next)=>{
   var {id,publish_status} = req.body;
   try{
-    if(!publish_status && publish_status !== 0){
+    if(!publish_status && publish_status !== 0 || !id){
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 
