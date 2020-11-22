@@ -9,7 +9,7 @@ const Home = (props) => {
 
   const fecthPackage = () => {
     setLodding(true);
-    api.getPackage()
+    api.getPackage({is_draft : 0 , publish_status : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);
