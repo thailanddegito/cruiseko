@@ -73,7 +73,7 @@ const Editor = (props) =>{
     const data = editor.getData();
     setInputData(data)
   }
-  console.log('data',data)
+  // console.log('data',data)
 
   return (
     <div style={{position:'relative'}}>
