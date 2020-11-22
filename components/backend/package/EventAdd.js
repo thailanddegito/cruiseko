@@ -9,7 +9,8 @@ const init_state = {
   time_title : '',
   time : '',
   description : '',
-  file : null
+  file : null,
+  image : null,
 }
 
 
@@ -28,8 +29,8 @@ const EventAdd = memo((props) => {
       return;
     }
     const file = event.target.files[0];
-    setImg(URL.createObjectURL(file));
-    setState({...state,file  })
+    // setImg(URL.createObjectURL(file));
+    setState({...state,file,image :  URL.createObjectURL(file) })
   }
 
   const handleChange = (e) =>{
@@ -101,7 +102,7 @@ const EventAdd = memo((props) => {
             <label>Thumbnail</label>
             <div className="default-picture">
               <div>
-                <img src={img} className="mw-100" />
+                <img src={state.image || "/template/img/tour_1.jpg"} className="mw-100" />
               </div>
               <input type="file" name="image" id="image" className="form-control"  onChange={handleImageChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
             </div>

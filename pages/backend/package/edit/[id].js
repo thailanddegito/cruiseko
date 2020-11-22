@@ -89,10 +89,16 @@ const Index = (props) => {
       return;
     }
     formData.append('price_date_list',JSON.stringify(priceList))
+    formData.append('events',JSON.stringify(events))
     formData.append('method',method)
 
     if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
     if(delImg) formData.append('images_deleted', JSON.stringify(delImg))
+
+    for(let i = 0 ; i < events.length ; i++){
+      if(events[i].file) formData.append('event_img'+i,events[i].file)
+    }
+
 
     setSaving(true)
     api.updatePackageOne(id,formData)
