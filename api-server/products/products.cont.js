@@ -1,5 +1,5 @@
 const { Product,ProductImage,sequelize,PriceDate,
-  CompanyType,
+  CompanyType,ProductBoat,Event,
   PriceCompanyType,PriceDateDetail,PriceTier} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
@@ -40,7 +40,8 @@ exports.getOne = async(req,res,next)=>{
     ]
     const include = [
       {model : PriceDate ,include :price_include},
-      {model : ProductImage , attributes:['id','image','type','order']}
+      {model : ProductImage , attributes:['id','image','type','order']},
+      {model : Event}
     ]
     var where = {id,deleted : 0}
     var order =  [
@@ -56,7 +57,7 @@ exports.getOne = async(req,res,next)=>{
 
 exports.create = async(req,res,next)=>{
   var data = req.body;
-  var {method = 'draft',price_date_list} = data;
+  var {method = 'draft',price_date_list,events} = data;
   var files = req.files || {}
   console.log('data',data)
   console.log('files',files)
@@ -75,10 +76,14 @@ exports.create = async(req,res,next)=>{
     data.equal_draft = method === 'publish' ? 1 : 0;
     data.publish_status = method === 'publish' ? 1 : 0;
 
-    const product_draft = await createProduct({isDraft : true,data,images_urls,price_date_list,transaction})
+    const product_draft = await createProduct({isDraft : true,data,images_urls,
+      events,price_date_list,transaction,files,
+    })
     if(method === 'publish'){
       
-      await createProduct({isDraft : false,data,images_urls,price_date_list,transaction,draft_ref :product_draft.id })
+      await createProduct({isDraft : false,data,images_urls,events,
+        price_date_list,transaction,draft_ref :product_draft.id, files,
+      })
     }
 
 
@@ -95,7 +100,7 @@ exports.update = async(req,res,next)=>{
   const id = req.params.id
   const product_id = id;
   var data = req.body;
-  var {method = 'draft',price_date_list,images_order,images_deleted} = data;
+  var {method = 'draft',price_date_list,images_order,images_deleted,events} = data;
   var files = req.files || {}
   var images_urls = []
   var transaction;
@@ -118,6 +123,13 @@ exports.update = async(req,res,next)=>{
       await clearPriceData(id,transaction)
       await createPriceData(price_date_list,id,transaction)
     }
+
+    if(events){
+      await clearEvents(id,transaction)
+      await createEvents(events,id,files,transaction)
+    }
+
+
     let task = [];
     if(images_order){
       images_order = JSON.parse(images_order);
@@ -150,13 +162,19 @@ exports.update = async(req,res,next)=>{
         pkg_live = await createProduct({isDraft:false,data,price_date_list,transaction,draft_ref:id})
       }
       else {
+        // console.log('ttttt')
         task.push(Product.update(data,{where : {draft_ref : id},transaction}))
+        await clearPriceData(pkg_live.id,transaction)
+        await clearEvents(pkg_live.id,transaction)
+        task.push(createPriceData(price_date_list,pkg_live.id,transaction))
+        task.push(createEvents(events,pkg_live.id,files,transaction))
       }
       const live_id = pkg_live.id
       var draft_images = await ProductImage.findAll({where : {product_id : id},attributes:['image','order','type'],transaction,raw:true})
       draft_images = draft_images.map(val => ({...val,product_id : live_id}) )
       // console.log(draft_images)
 
+      
       task.push(clearImages(live_id,transaction))
       task.push(ProductImage.bulkCreate(draft_images,{transaction}))
     }
@@ -253,7 +271,7 @@ async function handleProductImages (files){
 }
 
 exports.createProduct = createProduct;
-async function createProduct({isDraft,data,images_urls,price_date_list,transaction,draft_ref}){
+async function createProduct({isDraft,data,images_urls,events,price_date_list,transaction,draft_ref,files}){
     var _data ={...data}
 
     if(!isDraft){
@@ -274,6 +292,7 @@ async function createProduct({isDraft,data,images_urls,price_date_list,transacti
     }
 
     await createPriceData(price_date_list,product_id,transaction)
+    await createEvents(events,product_id,files,transaction)
 
     return product
 }
@@ -315,6 +334,33 @@ async function createPriceData (price_date_list,product_id,transaction) {
   }
 }
 
+async function createEvents(events,product_id,files,transaction){
+  if(!events) return;
+  if(typeof events === 'string')
+    events = JSON.parse(events)
+
+  for(let i = 0 ; i < events.length && files  ; i++){
+    var img_name = 'event_img'+i;
+    if(files[img_name] && files[img_name].name ){
+      
+      let file = files[img_name];
+      let fileName = await tools.moveFileWithPath(file,'images')
+      if(fileName) events[i].image = tools.genFileUrl(fileName,'images');
+    }
+  }
+  
+  events = events.map((val,index) => {
+
+    return {...val,product_id,id:null}
+  })
+  await Event.bulkCreate(events,{transaction})
+}
+
+async function clearEvents(product_id,transaction){
+  await Event.destroy({where : {product_id},transaction})
+}
+
+
 async function clearPriceData(product_id,transaction){
   const price_dates = await PriceDate.findAll({where : {product_id},transaction,raw:true})
   const date_ids = price_dates.map(val => val.id)
@@ -346,7 +392,7 @@ async function copyPriceProduct(product_id,price_dates,transaction){
 
 async function copyProduct({draft_id,transaction}){
   const draft = await getOneProduct(draft_id,transaction)
-  const {products_images,price_dates} = draft;
+  const {products_images,price_dates,events} = draft;
 
   var data = {...draft.toJSON(),id:null,draft_ref : draft_id,equal_draft:1}
 
@@ -358,12 +404,13 @@ async function copyProduct({draft_id,transaction}){
   
   await Promise.all(task)
   await copyPriceProduct(product_id,price_dates,transaction)
+  await createEvents(events.toJSON(),product_id,null,transaction)
 }
 
 async function equalizeProduct({draft_id,live_id,transaction}){
   const product_id = live_id;
   const draft = await getOneProduct(draft_id,transaction)
-  const {products_images,price_dates} = draft;
+  const {products_images,price_dates,events} = draft;
   var draft_images = products_images.map(val => ({...val.toJSON(),product_id : live_id,id:null}) )
   // console.log(price_dates)
   var task = [];
@@ -376,9 +423,10 @@ async function equalizeProduct({draft_id,live_id,transaction}){
   task.push(Product.update(data,{where : {id : product_id},transaction}))
   
   task.push(clearPriceData(live_id,transaction))
+  task.push(clearEvents(live_id,transaction))
   await Promise.all(task)
   await copyPriceProduct(product_id,price_dates,transaction)
-
+  await createEvents(events.toJSON(),live_id,null,transaction)
 }
 
 async function getOneProduct(product_id,transaction){
@@ -387,7 +435,8 @@ async function getOneProduct(product_id,transaction){
   ]
   const include = [
     {model : PriceDate ,include :price_include, attributes:{exclude : ['id']}},
-    {model : ProductImage , attributes:{exclude : ['id']}}
+    {model : ProductImage , attributes:{exclude : ['id']}},
+    {model : Event}
   ]
   const draft = await Product.findOne({where : {id : product_id},include,transaction})
 

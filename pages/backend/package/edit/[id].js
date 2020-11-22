@@ -18,6 +18,7 @@ const Index = (props) => {
   const [show, setShow] = useState(false);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
+  const [events,setEvents] = useState([]);
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
   const [galleryOrder,setGalleryOrder] = useState()
@@ -40,6 +41,7 @@ const Index = (props) => {
       console.log('fetched data',data)
       // console.log('transform',toPriceListState(data.price_dates))
       setPriceList(toPriceListState(data.price_dates))
+      setEvents(data.events)
     })
     .catch(err=>{
       console.log(err.response || err)
@@ -87,10 +89,16 @@ const Index = (props) => {
       return;
     }
     formData.append('price_date_list',JSON.stringify(priceList))
+    formData.append('events',JSON.stringify(events))
     formData.append('method',method)
 
     if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
     if(delImg) formData.append('images_deleted', JSON.stringify(delImg))
+
+    for(let i = 0 ; i < events.length ; i++){
+      if(events[i].file) formData.append('event_img'+i,events[i].file)
+    }
+
 
     setSaving(true)
     api.updatePackageOne(id,formData)
@@ -166,7 +174,7 @@ const Index = (props) => {
               />
             </div>
             <div className="tab-pane fade" id="events">
-              <EventMain pkg={pkg} />
+              <EventMain pkg={pkg} events={events} setEvents={setEvents} />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">

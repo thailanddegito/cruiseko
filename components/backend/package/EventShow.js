@@ -2,7 +2,7 @@ import React,{memo} from 'react';
 import EventShowData from './EventShowData';
 
 const EventShow = memo((props) => {
-  const {name} = props;
+  const {events,handleDelete,handleClickEdit} = props;
 
   return (
     <>
@@ -12,9 +12,9 @@ const EventShow = memo((props) => {
         <div className="col-4"><div className="text-right"></div></div>
       </div>
       <div>
-        <EventShowData />
-        <EventShowData />
-        <EventShowData />
+        {events.map((val,index) => (
+          <EventShowData {...val} index={index} handleDelete={handleDelete} handleClickEdit={handleClickEdit} />
+        ) )}
       </div>
     </>
   )

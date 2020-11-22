@@ -54,6 +54,7 @@ module.exports = (sequelize, type) => {
         Product.belongsTo(models.Boat,{foreignKey : 'by_boat_id',constraints: false});
         Product.hasMany(models.PriceDate,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.ProductImage,{foreignKey : 'product_id',constraints: false})
+        Product.hasMany(models.Event,{foreignKey : 'product_id',constraints: false})
     };
     return Product
   }
