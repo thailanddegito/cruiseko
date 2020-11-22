@@ -30,7 +30,7 @@ const Detail = (props) => {
                 <EditorData name="Highlight" data={packages?.highlight} />
                 <EditorData name="Itinerary" data={packages?.itinerary} />
 
-                <ImageGallery />
+                <ImageGallery packages={packages} />
                 <MainEvent packages={packages} />
                 <hr />
               </section>
