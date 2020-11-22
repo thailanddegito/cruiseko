@@ -113,7 +113,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Description</label>
-            <Editor name="description" height="200px" required data={pkg?.description} />
+            <Editor name="description" height="200px" required data={pkg ? pkg.description : ''} />
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Highlight</label>
-            <Editor name="highlight" height="200px" required data={pkg?.highlight} />
+            <Editor name="highlight" height="200px" required data={pkg ? pkg.highlight : ''} />
           </div>
         </div>
       </div>
@@ -131,7 +131,7 @@ const PackageDetail = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Itinerary</label>
-            <Editor name="itinerary" height="200px" required data={pkg?.itinerary} />
+            <Editor name="itinerary" height="200px" required data={pkg ? pkg.itinerary : ''} />
           </div>
         </div>
       </div>
