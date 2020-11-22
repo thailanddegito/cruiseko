@@ -9,6 +9,7 @@ import LoadingButton from '../../../components/widget/LoadingButton';
 import api from '../../../utils/api-admin'
 import Router from 'next/router'
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+import Link from 'next/link'
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -147,6 +148,11 @@ const Index = (props) => {
           <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
+                <Link href="/backend/package">
+                  <a>
+                    <Button _type="button" _name="Cancel" _class="btn-outline-default mr-4" />
+                  </a>
+                </Link>
                 <LoadingButton type="button" 
                 className="btn-outline-primary"  
                 loading={saving}

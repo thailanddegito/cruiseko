@@ -12,6 +12,16 @@ body {
   background-color: #007bff;
   border-color: #007bff;
 }
+.btn-outline-default {
+  color: #000;
+  background-color: #FFF;
+  border-color: #000;
+}
+.btn-outline-default:hover {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000;
+}
 .btn-previous {
   min-width: 80px !important;
   border-radius: 8px !important;
