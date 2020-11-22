@@ -11,6 +11,7 @@ module.exports = (sequelize, type) => {
       program_code : type.STRING,
       short_description : type.STRING,
       description : type.TEXT,
+      event_description : type.TEXT,
       product_banner : type.STRING,
       picture : type.STRING,
       remark : type.TEXT,
