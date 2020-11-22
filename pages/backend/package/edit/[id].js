@@ -162,7 +162,7 @@ const Index = (props) => {
                 setImage={setImage}
                 setGalleryOrder={setGalleryOrder}
                 galleryOrder={galleryOrder}
-                dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1"
+                dropzone_header="Image Gallery" pixel_text="960px x 640px" input_name="images" index="1"
               />
             </div>
             <div className="tab-pane fade" id="events">

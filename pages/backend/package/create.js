@@ -112,7 +112,7 @@ const Index = (props) => {
             </div>
             <div className="tab-pane fade" id="images">
               <PackageImage dropzone_header="Banner Images" pixel_text="1600px x 1067px" input_name="banners" index="0" />
-              <PackageImage dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1" />
+              <PackageImage dropzone_header="Image Gallery" pixel_text="960px x 640px" input_name="images" index="1" />
             </div>
             <div className="tab-pane fade" id="events">
               <EventMain />
