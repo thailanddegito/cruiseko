@@ -55,7 +55,7 @@ const EventAdd = memo((props) => {
               <div>
                 <img src={img} className="mw-100" />
               </div>
-              <input type="file" name="picture" id="picture" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
+              <input type="file" name="image" id="image" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
             </div>
           </div>
         </div>
