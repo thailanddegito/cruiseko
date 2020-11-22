@@ -112,7 +112,7 @@ const Index = (props) => {
     tmp.splice(in2, 1);
     tmp.products_images = tmp;
     deltmp.push(id);
-    setPkg(tmp);
+    setPkg({...pkg, products_images : tmp});
     setDelImg(deltmp);
   }
 
