@@ -15,6 +15,7 @@ import EventMain from '../../../components/backend/package/EventMain';
 const Index = (props) => {
   const [show, setShow] = useState(false);
   const [priceList, setPriceList] = useState([]);
+  const [events,setEvents] = useState([]);
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
   const [modalSuccess, setModalSuccess] = useState(false);
@@ -60,7 +61,12 @@ const Index = (props) => {
       return;
     }
     formData.append('price_date_list',JSON.stringify(priceList))
+    formData.append('events',JSON.stringify(events))
     formData.append('method',method)
+
+    for(let i = 0 ; i < events.length ; i++){
+      if(events[i].file) formData.append('event_img'+i,events[i].file)
+    }
 
     setSaving(true)
 
@@ -115,7 +121,7 @@ const Index = (props) => {
               <PackageImage dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1" />
             </div>
             <div className="tab-pane fade" id="events">
-              <EventMain />
+              <EventMain events={events} setEvents={setEvents} />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">
