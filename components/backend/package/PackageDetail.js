@@ -119,6 +119,24 @@ const PackageDetail = memo((props) => {
       </div>
 
       <div className="row">
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Highlight</label>
+            <Editor name="highlight" height="200px" required data={pkg?.highlight} />
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Itinerary</label>
+            <Editor name="itinerary" height="200px" required data={pkg?.itinerary} />
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
