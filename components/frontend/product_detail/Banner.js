@@ -9,7 +9,7 @@ const Banner = (props) => {
   const [photoIndex, setPhotoIndex] = useState(0);
 
   const images = packages ? packages.products_images.filter((val) => val.type === 'banner') : [];
-  console.log(images);
+  // console.log(images);
   
   return (
     packages ? (
