@@ -21,6 +21,7 @@ const Index = (props) => {
   const [saving,setSaving] = useState(false)
   const [galleryOrder,setGalleryOrder] = useState()
   const [modalSuccess, setModalSuccess] = useState(false);
+  const [delImg, setDelImg] = useState([]);
 
   const router = useRouter()
   const {id} = router.query;
@@ -88,6 +89,7 @@ const Index = (props) => {
     formData.append('method',method)
 
     if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
+    if(delImg) formData.append('images_deleted', JSON.stringify(delImg))
 
     setSaving(true)
     api.updatePackageOne(id,formData)
@@ -99,8 +101,24 @@ const Index = (props) => {
       setSaving(false)
       console.log(err.response || err)
     })
-
   }
+  
+  const setImage = (id) => {
+    if(!pkg) return;
+    var deltmp = [...delImg];
+    var tmp = [...pkg.products_images];
+    let in1 = tmp.filter((val) => val.id == id);
+    let in2 = tmp.indexOf(in1[0])
+    tmp.splice(in2, 1);
+    tmp.products_images = tmp;
+    deltmp.push(id);
+    setPkg(tmp);
+    setDelImg(deltmp);
+  }
+
+  console.log('delImg', delImg)
+
+
   return (
     <>
       <Layout title="Edit Package" page_name="Package" sub_page="Edit" main_link="package">
@@ -131,11 +149,13 @@ const Index = (props) => {
             </div>
             <div className="tab-pane fade" id="images">
               <PackageImage  images={pkg? pkg.products_images.filter((val) => val.type === 'banner') : []} 
+                setImage={setImage}
                 setGalleryOrder={setGalleryOrder}
                 galleryOrder={galleryOrder}
                 dropzone_header="Banner Images" pixel_text="1600px x 1067px" input_name="banners" index="0"
               />
               <PackageImage  images={pkg? pkg.products_images.filter((val) => val.type === 'gallery') : []} 
+                setImage={setImage}
                 setGalleryOrder={setGalleryOrder}
                 galleryOrder={galleryOrder}
                 dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1"

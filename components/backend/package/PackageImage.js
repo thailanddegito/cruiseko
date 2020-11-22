@@ -8,7 +8,7 @@ import Drag from '../../widget/Drag';
 import {sortImages} from '../../../utils/packageHelper'
 
 const PackageImage = (props) => {
-  const {images =[],galleryOrder=[],setGalleryOrder, dropzone_header, input_name, index, pixel_text} = props
+  const {images =[],setImage, galleryOrder=[],setGalleryOrder, dropzone_header, input_name, index, pixel_text} = props
 
   var sortedImages = [...images]
 
@@ -22,7 +22,18 @@ const PackageImage = (props) => {
     setGalleryOrder([...order_tmp,...data.map((val,index) => ({id : val.id,order:index+1}))])
   }
 
-  // console.log('sortedImages',sortedImages)
+  const delImg = (id) => {
+    if(!images) return;
+    setImage(id)
+   
+    // console.log(tmp);
+    // setPkg(tmp)
+  }
+
+  useEffect(() => {
+
+  }, [])
+  console.log('sortedImages',sortedImages)
   // console.log(galleryOrder)
 
   return (
@@ -53,8 +64,13 @@ const PackageImage = (props) => {
             <Drag handleOrderChange={handleGalleryOrderChange} items={sortedImages} >
               {
               sortedImages.map((val,index) =>  (
-                <div className="drag drag-box" key={index}>
-                  <img className="mr-1" src={val.image} />
+                <div className="drag" key={index}>
+                  <div>
+                    <div className="drag-box">
+                      <img className="mr-1" src={val.image} />
+                    </div>
+                    <div className="drag-text-del"><a className="drag-del" onClick={() => delImg(val.id)}>Del</a></div>
+                  </div>
                 </div>
               ))
               }
