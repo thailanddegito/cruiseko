@@ -26,7 +26,7 @@ const ProductCard = (props) => {
                 <a className="show-color">{packages.name ? packages.name : null}</a>
               </Link>
               </h3>
-              <p>{packages.short_description ? packages.short_description : null}</p>
+              <p className="short-description">{packages.short_description ? packages.short_description : null}</p>
               <span class="price">From <strong>$54</strong> /per person</span>
             </div>
             <ul>

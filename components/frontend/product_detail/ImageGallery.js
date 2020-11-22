@@ -24,12 +24,12 @@ const ImageGallery = (props) => {
 				<ul class="magnific-gallery">
           {
             images ? images.map((val, index) => (
-              <li>
+              <li key={index} onClick={() => handleClick(index)}>
                 <figure>
                   <img src={val.image ? val.image : "/template/img/gallery/large/pic_1.jpg"} alt="" />
                   <figcaption>
                     <div class="caption-content">
-                      <a title="Photo title" data-effect="mfp-zoom-in" onClick={() => handleClick(index)}>
+                      <a title="Photo title" data-effect="mfp-zoom-in">
                         <i class="pe-7s-albums"></i>
                         <p>Your caption</p>
                       </a>
