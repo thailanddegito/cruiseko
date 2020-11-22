@@ -1,20 +1,20 @@
 import React,{memo} from 'react';
-import PriceData from './PriceData';
+import EventShowData from './EventShowData';
 
 const EventShow = memo((props) => {
   const {name} = props;
 
   return (
     <>
-      <div className="row div-table">
-        <div className="col-4">Title</div>
-        <div className="col-4">Time Title</div>
-        <div className="col-4">
-          <div className="text-right">
-            <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>See more</span></button>
-            <button className="a-manage danger"><i className="fa fa-fw fa-trash"></i> <span>Delete</span></button>            
-          </div>
-        </div>
+      <div className="row my-4">
+        <div className="col-4"><p className="p-medium">Events Title</p></div>
+        <div className="col-4"><p className="p-medium">Time Title</p></div>
+        <div className="col-4"><div className="text-right"></div></div>
+      </div>
+      <div>
+        <EventShowData />
+        <EventShowData />
+        <EventShowData />
       </div>
     </>
   )
