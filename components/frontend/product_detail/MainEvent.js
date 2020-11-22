@@ -9,7 +9,7 @@ const MainEvent = (props) => {
   return (
     <>
       <EditorData name="Events" data={packages?.event_description} />
-      {
+      {/* {
         packages.events ? (
           <ul className="cbp_tmtimeline">
             {
@@ -20,7 +20,7 @@ const MainEvent = (props) => {
           </ul>
         ) : null
       }
-      
+       */}
     </>
   )
 }
