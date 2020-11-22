@@ -25,9 +25,13 @@ const Detail = (props) => {
           <div className="row">
             <div className="col-lg-8">
               <section id="description">
+                
                 <EditorData name="Description" data={packages?.description} />
+                <EditorData name="Highlight" data={packages?.highlight} />
+                <EditorData name="Itinerary" data={packages?.itinerary} />
+
                 <ImageGallery />
-                <MainEvent />
+                <MainEvent packages={packages} />
                 <hr />
               </section>
               <section id="reviews">
