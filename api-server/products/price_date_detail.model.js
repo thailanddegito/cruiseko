@@ -6,7 +6,7 @@ module.exports = (sequelize, type) => {
       autoIncrement: true
     },
     price_date_id : type.INTEGER,
-    // tier_id : type.INTEGER,
+    price_company_type_id : type.INTEGER,
     company_type_id : type.INTEGER,
     range_start : type.INTEGER,
     range_end : type.INTEGER,

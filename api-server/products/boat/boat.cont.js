@@ -80,7 +80,8 @@ exports.create = async(req,res,next)=>{
 
     if(boat_cate.type === 'charter'){
       var pkg_data = {
-        name
+        name,
+        is_boat : 1
       }
       task.push(createProduct({isDraft:true,data:pkg_data,transaction}))
     }

@@ -7,12 +7,14 @@ const {DefaultError} = errors
 const {Op} = require('sequelize')
 
 exports.getAll = async(req,res,next)=>{
-  var {page,limit,is_draft=1} = req.query
+  var {page,limit,is_draft=1,publish_status,is_boat=0} = req.query
   try{
 
     var where = {deleted : 0}
 
     if(is_draft) where.is_draft = is_draft; 
+    if(publish_status) where.publish_status = publish_status;
+    if(is_boat !== undefined) where.is_boat = is_boat;
     var options = {where}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
@@ -93,7 +95,7 @@ exports.update = async(req,res,next)=>{
   const id = req.params.id
   const product_id = id;
   var data = req.body;
-  var {method = 'draft',price_date_list,images_order} = data;
+  var {method = 'draft',price_date_list,images_order,images_deleted} = data;
   var files = req.files || {}
   var images_urls = []
   var transaction;
@@ -125,6 +127,10 @@ exports.update = async(req,res,next)=>{
       }
       await Promise.all(sub_task)
     }
+    if(images_deleted){
+      images_deleted = JSON.parse(images_deleted);
+      task.push(ProductImage.destroy({where : {id :images_deleted },transaction}))
+    }
 
     // console.log(images_urls)
     if(images_urls.length){
@@ -134,10 +140,11 @@ exports.update = async(req,res,next)=>{
     }
 
     data.equal_draft = 0;
-    data.publish_status = method === 'publish' ? 1 : 0;
+    // data.publish_status = method === 'publish' ? 1 : 0;
 
     if(method === 'publish'){
       data.equal_draft = 1;
+      data.publish_status = 1;
       if(!pkg_live){
         pkg_live = await createProduct({isDraft:false,data,price_date_list,transaction,draft_ref:id})
       }
@@ -169,25 +176,43 @@ exports.update = async(req,res,next)=>{
 
 exports.updatePublishStatus = async(req,res,next)=>{
   var {id,publish_status} = req.body;
+  var transaction;
+  console.log('updatePublishStatus',req.body)
   try{
     if(!publish_status && publish_status !== 0 || !id){
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 
+    const product = await Product.findOne({where :{id}});
+    if(!product){
+      throw new DefaultError(errors.NOT_FOUND);
+    }
+
+    transaction = await sequelize.transaction()
+    var equal_draft = product.equal_draft;
     if(publish_status == 1){
-      const pkg_live = await Product.findOne({where : {draft_ref : id}});
+      equal_draft = 1;
+      const pkg_live = await Product.findOne({where : {draft_ref : id},transaction});
 
       if(!pkg_live){
-        throw new DefaultError(errors.NOT_PUBLISHED);
+        // throw new DefaultError(errors.NOT_PUBLISHED);
+        await copyProduct({draft_id:id,transaction})
+      }
+      else if(product.equal_draft !== 1){
+        await equalizeProduct({draft_id:id,live_id:pkg_live.id,transaction})
       }
     }
+
+    
     
 
-    await Product.update({publish_status },{where : {[Op.or] : [{id },{draft_ref : id} ] }})
+    await Product.update({publish_status,equal_draft },{where : {[Op.or] : [{id },{draft_ref : id} ] },transaction})
+    await transaction.commit()
     res.json({success:true})
   }
   catch(err){
     next(err);
+    if(transaction) await transaction.rollback()
   }
 }
 
@@ -255,7 +280,7 @@ async function createProduct({isDraft,data,images_urls,price_date_list,transacti
 
 async function createPriceData (price_date_list,product_id,transaction) {
   if(price_date_list){
-    price_date_list = JSON.parse(price_date_list)
+    if(typeof price_date_list === 'string') price_date_list = JSON.parse(price_date_list)
     var price_date_arr = price_date_list.map(val =>  ({...val,product_id}) )
 
     for(const date of  price_date_arr){
@@ -301,4 +326,69 @@ async function clearPriceData(product_id,transaction){
 
 async function clearImages(product_id,transaction){
   return ProductImage.destroy({where : {product_id},transaction})
+}
+
+async function copyPriceProduct(product_id,price_dates,transaction){
+  for(const date of price_dates){
+    const price_date = await PriceDate.create({...date.toJSON(),id:null,product_id},{transaction})
+    const price_date_id = price_date.id
+    const {price_company_types} = date
+    for(const cp of price_company_types ){
+      const cp_item = await PriceCompanyType.create({...cp.toJSON(),price_date_id,id : null},{transaction})
+      const {price_date_details} = cp
+      const detail = price_date_details.map(val => ({...val.toJSON(),price_company_type_id:cp_item.id,price_date_id,id:null}))
+      await PriceDateDetail.bulkCreate(detail,{transaction})
+    }
+  }
+}
+
+
+async function copyProduct({draft_id,transaction}){
+  const draft = await getOneProduct(draft_id,transaction)
+  const {products_images,price_dates} = draft;
+
+  var data = {...draft.toJSON(),id:null,draft_ref : draft_id,equal_draft:1}
+
+  const new_product =  await createProduct({isDraft:false,data,transaction,draft_ref:draft_id})
+  const product_id = new_product.id
+  var task = [];
+  if(products_images.length)
+    task.push(ProductImage.bulkCreate(products_images.map(val => ({...val.toJSON(),product_id})),{transaction}))
+  
+  await Promise.all(task)
+  await copyPriceProduct(product_id,price_dates,transaction)
+}
+
+async function equalizeProduct({draft_id,live_id,transaction}){
+  const product_id = live_id;
+  const draft = await getOneProduct(draft_id,transaction)
+  const {products_images,price_dates} = draft;
+  var draft_images = products_images.map(val => ({...val.toJSON(),product_id : live_id,id:null}) )
+  // console.log(price_dates)
+  var task = [];
+  task.push(clearImages(live_id,transaction))
+  if(draft_images.length){
+    task.push(ProductImage.bulkCreate(draft_images,{transaction}))
+  }
+
+  var data = {...draft.toJSON(),id:null,is_draft:0,draft_ref : draft_id,equal_draft:1}
+  task.push(Product.update(data,{where : {id : product_id},transaction}))
+  
+  task.push(clearPriceData(live_id,transaction))
+  await Promise.all(task)
+  await copyPriceProduct(product_id,price_dates,transaction)
+
+}
+
+async function getOneProduct(product_id,transaction){
+  const price_include = [
+    {model : PriceCompanyType , include : [PriceDateDetail]}
+  ]
+  const include = [
+    {model : PriceDate ,include :price_include, attributes:{exclude : ['id']}},
+    {model : ProductImage , attributes:{exclude : ['id']}}
+  ]
+  const draft = await Product.findOne({where : {id : product_id},include,transaction})
+
+  return draft;
 }
