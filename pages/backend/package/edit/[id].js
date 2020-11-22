@@ -12,6 +12,7 @@ import {toPriceListState} from '../../../../utils/packageHelper'
 import Router from 'next/router'
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import Link from 'next/link'
+import EventMain from '../../../../components/backend/package/EventMain';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -137,6 +138,9 @@ const Index = (props) => {
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
           </li>
           <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#events">Events Detail</a>
+          </li>
+          <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
           </li>
         </ul>
@@ -160,6 +164,9 @@ const Index = (props) => {
                 galleryOrder={galleryOrder}
                 dropzone_header="Image Gallery" pixel_text="1600px x 1067px" input_name="images" index="1"
               />
+            </div>
+            <div className="tab-pane fade" id="events">
+              <EventMain pkg={pkg} />
             </div>
             <div className="tab-pane fade" id="price">
               <div className="row">

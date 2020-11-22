@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Description from './Description';
+import EditorData from './EditorData';
 import ImageGallery from './ImageGallery';
 import MainEvent from './MainEvent';
 import Review from './Review';
@@ -25,7 +25,7 @@ const Detail = (props) => {
           <div className="row">
             <div className="col-lg-8">
               <section id="description">
-                <Description packages={packages} />
+                <EditorData name="Description" data={packages?.description} />
                 <ImageGallery />
                 <MainEvent />
                 <hr />
