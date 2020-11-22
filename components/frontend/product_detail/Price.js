@@ -93,7 +93,7 @@ const Price = (props) => {
           </div>
         </div>
         <a href="cart-1.html" className="btn_1 full-width purchase">Purchase</a>
-        <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart"></i> Add to wishlist</a>
+        {/* <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart"></i> Add to wishlist</a> */}
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       <ul className="share-buttons">

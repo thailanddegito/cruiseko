@@ -5,22 +5,7 @@ const ImageGallery = (props) => {
   const {error} = props;
 
   useEffect(() => {
-    $(window).on('load', function() {
-			"use strict";
-			$.instagramFeed({
-				'username': 'thelouvremuseum',
-				'container': "#instagram-feed",
-				'display_profile': false,
-				'display_biography': false,
-				'display_gallery': true,
-				'get_raw_json': false,
-				'callback': null,
-				'styling': true,
-				'items': 12,
-				'items_per_row': 6,
-				'margin': 1
-			});
-		});
+    
 	},[]);
 
   return (

@@ -3,13 +3,6 @@ import React, { useState } from 'react';
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
-// const images = [
-//   '/template/img/gallery/tour_list_1.jpg',
-//   '/template/img/gallery/tour_list_1.jpg',
-//   '/template/img/gallery/tour_list_1.jpg',
-//   '/template/img/gallery/tour_list_1.jpg',
-// ];
-
 const Banner = (props) => {
   const {packages} = props;
   const [isOpen, setIsOpen] = useState(false);
