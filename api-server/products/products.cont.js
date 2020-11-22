@@ -129,7 +129,8 @@ exports.update = async(req,res,next)=>{
     }
     if(images_deleted){
       images_deleted = JSON.parse(images_deleted);
-      task.push(ProductImage.destroy({where : {id :images_deleted },transaction}))
+      await ProductImage.destroy({where : {id :images_deleted },transaction})
+      // task.push(ProductImage.destroy({where : {id :images_deleted },transaction}))
     }
 
     // console.log(images_urls)
