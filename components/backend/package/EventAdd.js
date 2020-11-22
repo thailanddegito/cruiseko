@@ -16,7 +16,7 @@ const init_state = {
 
 const EventAdd = memo((props) => {
   const {editData,addEvent,handleClose,editEvent} = props;
-  const [img, setImg] = useState("/template/img/tour_1.jpg");
+  // const [img, setImg] = useState("/template/img/tour_1.jpg");
   const [state,setState] = useState(editData || init_state)
 
   useEffect(() => {
