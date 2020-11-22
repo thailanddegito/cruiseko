@@ -38,6 +38,7 @@ const models = {
     PriceDate : require('./products/price_date.model')(sequelize,Sequelize),
     PriceCompanyType : require('./products/price_company_type.model')(sequelize,Sequelize),
     PriceDateDetail : require('./products/price_date_detail.model')(sequelize,Sequelize),
+    ProductBoat : require('./products/products_boat.model')(sequelize,Sequelize),
     // PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
     
 }

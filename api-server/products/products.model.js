@@ -7,6 +7,7 @@ module.exports = (sequelize, type) => {
       },
       name : type.STRING,
       cate_id : type.INTEGER,
+      by_boat_id : type.INTEGER,
       brand : type.STRING,
       program_code : type.STRING,
       short_description : type.STRING,
@@ -50,6 +51,7 @@ module.exports = (sequelize, type) => {
   
     Product.associate = function(models) {
         Product.belongsTo(models.ProductCategory,{foreignKey : 'cate_id',constraints: false});
+        Product.belongsTo(models.Boat,{foreignKey : 'by_boat_id',constraints: false});
         Product.hasMany(models.PriceDate,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.ProductImage,{foreignKey : 'product_id',constraints: false})
     };
