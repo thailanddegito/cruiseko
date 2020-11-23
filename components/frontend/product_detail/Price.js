@@ -96,11 +96,11 @@ const Price = (props) => {
         {/* <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart"></i> Add to wishlist</a> */}
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
-      <ul className="share-buttons">
+      {/* <ul className="share-buttons">
         <li><a className="fb-share" href="#0"><i className="social_facebook"></i> Share</a></li>
         <li><a className="twitter-share" href="#0"><i className="social_twitter"></i> Tweet</a></li>
         <li><a className="gplus-share" href="#0"><i className="social_googleplus"></i> Share</a></li>
-      </ul>
+      </ul> */}
     </>
   )
 }
