@@ -100,7 +100,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'amount', required : true
               }} 
-              labelName="Amount " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Allotment " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
@@ -117,7 +117,7 @@ const Create = (props) => {
                 className:'form-control', type : 'text',
                 name : 'time', required : true
               }} 
-              labelName="Time " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Minimum Hour " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 

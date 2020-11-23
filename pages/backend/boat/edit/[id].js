@@ -128,7 +128,7 @@ const EditRole = ({query}) => {
                       name : 'amount', required : true,
                       defaultValue : boats.amount
                     }} 
-                    labelName="Amount  " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Allotment  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
@@ -147,7 +147,7 @@ const EditRole = ({query}) => {
                       name : 'time', required : true,
                       defaultValue : boats.time
                     }} 
-                    labelName="Time  " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Minimum Hour  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 
