@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery';
 import MainEvent from './MainEvent';
 import Review from './Review';
 import Price from './Price';
+import Remark from './Remark';
 
 const Detail = (props) => {
   const {packages} = props;
@@ -32,7 +33,7 @@ const Detail = (props) => {
 
                 <ImageGallery packages={packages} />
                 <MainEvent packages={packages} />
-                {/* <hr /> */}
+                <Remark data={packages?.remark} />
               </section>
               {/* <section id="reviews">
                 <Review />
