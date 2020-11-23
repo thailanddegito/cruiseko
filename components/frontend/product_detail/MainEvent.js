@@ -6,11 +6,13 @@ import EditorData from './EditorData';
 const MainEvent = (props) => {
   const {packages} = props;
 
+  console.log(packages);
+
   return (
     <>
       <EditorData name="Events" data={packages?.event_description} />
-      {/* {
-        packages.events ? (
+      {
+        packages?.events ? (
           <ul className="cbp_tmtimeline">
             {
                packages.events.map((val, index) => (
@@ -20,7 +22,7 @@ const MainEvent = (props) => {
           </ul>
         ) : null
       }
-       */}
+      
     </>
   )
 }

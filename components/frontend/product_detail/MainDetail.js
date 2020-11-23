@@ -32,12 +32,12 @@ const Detail = (props) => {
 
                 <ImageGallery packages={packages} />
                 <MainEvent packages={packages} />
-                <hr />
+                {/* <hr /> */}
               </section>
-              <section id="reviews">
+              {/* <section id="reviews">
                 <Review />
               </section>
-              <hr />
+              <hr /> */}
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
