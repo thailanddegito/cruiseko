@@ -210,11 +210,11 @@ const Index = (props) => {
           <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
-                <Link href="/backend/package">
+                {/* <Link href="/backend/package">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-default mr-4" />
                   </a>
-                </Link>
+                </Link> */}
                 <LoadingButton type="button" 
                 className="btn-outline-primary"  
                 loading={saving}
