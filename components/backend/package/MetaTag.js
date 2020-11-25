@@ -57,7 +57,7 @@ const MetaTag = memo((props) => {
               <div>
                 <img src={img} className="mw-100" />
               </div>
-              <input type="file" name="meta_images" id="meta_images" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
+              <input type="file" name="meta_image" id="meta_image" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
             </div>
           </div>
         </div>
