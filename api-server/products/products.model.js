@@ -18,6 +18,10 @@ module.exports = (sequelize, type) => {
       remark : type.TEXT,
       highlight : type.TEXT,
       itinerary : type.TEXT,
+      meta_title : type.TEXT,
+      meta_description : type.TEXT,
+      meta_keyword : type.TEXT,
+      meta_image : type.STRING,
       is_draft : {
         type : type.INTEGER,
         defaultValue : 1

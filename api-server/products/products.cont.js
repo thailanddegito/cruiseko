@@ -72,6 +72,12 @@ exports.create = async(req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
     }
+    if(files.meta_image && files.meta_image.name){
+      //console.log(req.files);
+      let file = files.meta_image;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.meta_image = tools.genFileUrl(fileName,'images')
+    }
     transaction = await sequelize.transaction()
 
     data.equal_draft = method === 'publish' ? 1 : 0;
@@ -115,6 +121,13 @@ exports.update = async(req,res,next)=>{
       let file = files.picture;
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
+    }
+
+    if(files.meta_image && files.meta_image.name){
+      //console.log(req.files);
+      let file = files.meta_image;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.meta_image = tools.genFileUrl(fileName,'images')
     }
 
     var product_boats = await ProductBoat.findAll({where : {product_id},raw:true}) 
