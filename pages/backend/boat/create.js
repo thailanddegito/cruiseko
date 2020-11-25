@@ -115,7 +115,7 @@ const Create = (props) => {
             <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'time', required : true
+                name : 'min_hr', required : true
               }} 
               labelName="Minimum Hour " iconProps={{className : 'fa icon icon-home'}} />
             </div>
