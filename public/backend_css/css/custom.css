@@ -478,11 +478,12 @@ span.nav-link-text {
 .package-scroll {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   z-index: 999;
-  width: 85%;
+  width: calc(100% - 200px);  
   height: 64px;
-  padding-top: 12px;
+  padding-top: 0;
   background-color: #FFF;
   padding-right: 24px;
   top: 62px;
@@ -503,5 +504,11 @@ span.nav-link-text {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a, #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
     padding: 10px;
     padding-left: 2.75em;
+  }
+}
+@media (max-width: 991px) {
+  .package-scroll {
+    width: calc(100% - 0px) !important;  
+
   }
 }

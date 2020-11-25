@@ -83,11 +83,11 @@ const Index = (props) => {
   return (
     <>
       <Layout title="Create Package" page_name="Package" headerScroll={headerScroll}>
-        <div className="row justify-content-start">
-          <div className="col-6">
+        <div className="row justify-content-between align-items-center px-3">
+          <div className="">
             <h4>Create Package</h4>
           </div>
-          <div className="col-6">
+          <div className="">
             <div className="text-right">
               <LoadingButton type="button" 
                 className="btn-outline-primary"  
