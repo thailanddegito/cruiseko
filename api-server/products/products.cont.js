@@ -7,7 +7,7 @@ const {DefaultError} = errors
 const {Op} = require('sequelize')
 
 exports.getAll = async(req,res,next)=>{
-  var {page,limit,is_draft=1,publish_status,is_boat=0} = req.query
+  var {page,limit,is_draft=1,publish_status,is_boat} = req.query
   try{
 
     var where = {deleted : 0}
