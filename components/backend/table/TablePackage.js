@@ -19,6 +19,7 @@ const TablePackage = (props) => {
     api.getPackage({is_draft : 1})
     .then(res=>{
       const data = res.data;
+      console.log('data',data)
       setPackage(data);
     })
     .catch(err => {
