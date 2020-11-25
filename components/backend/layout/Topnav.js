@@ -16,6 +16,7 @@ const Topnav = (props) => {
 
   const onScroll = () => {
     const navbar = document.getElementById('scroll-package')
+    if(!navbar) return;
     setScroll(document.documentElement.scrollTop);
     if (scroll > 100) {
       navbar.classList.add("scrolled");
