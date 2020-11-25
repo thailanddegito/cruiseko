@@ -46,6 +46,8 @@ const PackageDetail = memo((props) => {
     console.log(item)
     setSelectData({...selectData,[key] : item})
   }
+
+
   
   useEffect(() => {
     fecthBoat();
@@ -56,9 +58,10 @@ const PackageDetail = memo((props) => {
     if(!pkg || !boats || !types) return;
 
     const cate = types.find(val => val.value === pkg.cate_id )
-    const boat = boats.find(val => val.vlue === pkg.boat_id)
-    
-    setSelectData({cate,boat})
+    const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
+    // console.log('boat',boat)
+    // console.log('cate',cate)
+    setSelectData({cate,boat_id})
   }, [pkg,types,boats]);
   useEffect(() => {
     if(!pkg) return;
