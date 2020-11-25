@@ -24,9 +24,9 @@ const MetaTag = memo((props) => {
   return (
     <>
       <div className="row">
-        <div className="col-8">
+        <div className="col-lg-8 col-12">
           <div className="row mx-0">
-            <div className="col-12 px-0">
+            <div className="col-lg-12 col-12 px-0">
               <div className="form-group mb-4">
                 <label>Title</label>
                 <textarea className="form-control" name="meta_title" defaultValue={pkg ? pkg.meta_title : ''}></textarea>
@@ -34,7 +34,7 @@ const MetaTag = memo((props) => {
             </div>
           </div>
           <div className="row mx-0">
-            <div className="col-12 px-0">
+            <div className="col-lg-12 col-12 px-0">
               <div className="form-group mb-4">
                 <label>Description</label>
                 <textarea className="form-control" name="meta_description" defaultValue={pkg ? pkg.meta_description : ''}></textarea>
@@ -42,7 +42,7 @@ const MetaTag = memo((props) => {
             </div>
           </div>
           <div className="row mx-0">
-            <div className="col-12 px-0">
+            <div className="col-lg-12 col-12 px-0">
               <div className="form-group mb-4">
                 <label>Keyword</label>
                 <textarea className="form-control" name="meta_keyword" defaultValue={pkg ? pkg.meta_keyword : ''}></textarea>
@@ -50,7 +50,7 @@ const MetaTag = memo((props) => {
             </div>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-lg-4 col-12">
           <div className="form-group">
             <label>Images</label>
             <div className="default-picture">
