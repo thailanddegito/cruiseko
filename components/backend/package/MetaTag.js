@@ -29,7 +29,7 @@ const MetaTag = memo((props) => {
             <div className="col-12 px-0">
               <div className="form-group mb-4">
                 <label>Title</label>
-                <textarea className="form-control" name="meta_title" required defaultValue={pkg ? pkg.meta_title : ''}></textarea>
+                <textarea className="form-control" name="meta_title" defaultValue={pkg ? pkg.meta_title : ''}></textarea>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ const MetaTag = memo((props) => {
             <div className="col-12 px-0">
               <div className="form-group mb-4">
                 <label>Description</label>
-                <textarea className="form-control" name="meta_description" required defaultValue={pkg ? pkg.meta_description : ''}></textarea>
+                <textarea className="form-control" name="meta_description" defaultValue={pkg ? pkg.meta_description : ''}></textarea>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ const MetaTag = memo((props) => {
             <div className="col-12 px-0">
               <div className="form-group mb-4">
                 <label>Keyword</label>
-                <textarea className="form-control" name="meta_keyword" required defaultValue={pkg ? pkg.meta_keyword : ''}></textarea>
+                <textarea className="form-control" name="meta_keyword" defaultValue={pkg ? pkg.meta_keyword : ''}></textarea>
               </div>
             </div>
           </div>
