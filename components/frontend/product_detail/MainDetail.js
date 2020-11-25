@@ -28,8 +28,8 @@ const Detail = (props) => {
               <section id="description">
                 
                 <EditorData name="Description" data={packages?.description} />
-                <EditorData name="Highlight" data={packages?.highlight} />
-                <EditorData name="Itinerary" data={packages?.itinerary} />
+                {/* <EditorData name="Highlight" data={packages?.highlight} />
+                <EditorData name="Itinerary" data={packages?.itinerary} /> */}
 
                 <ImageGallery packages={packages} />
                 <MainEvent packages={packages} />

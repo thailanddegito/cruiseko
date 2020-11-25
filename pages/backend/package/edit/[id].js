@@ -13,6 +13,7 @@ import Router from 'next/router'
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import Link from 'next/link'
 import EventMain from '../../../../components/backend/package/EventMain';
+import MetaTag from '../../../../components/backend/package/MetaTag';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -151,6 +152,9 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#tags">Meta Tags</a>
+          </li>
         </ul>
         <form  id="package-form" >
           <div className="tab-content">
@@ -205,6 +209,9 @@ const Index = (props) => {
                   </>
                 )
               }
+            </div>
+            <div className="tab-pane fade" id="tags">
+              <MetaTag pkg={pkg} />
             </div>
           </div>
           <div className="row mt-4">

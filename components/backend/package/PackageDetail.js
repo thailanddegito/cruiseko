@@ -118,7 +118,7 @@ const PackageDetail = memo((props) => {
         </div>
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Highlight</label>
@@ -134,7 +134,7 @@ const PackageDetail = memo((props) => {
             <Editor name="itinerary" height="200px" required data={pkg ? pkg.itinerary : ''} />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="row">
         <div className="col-lg-8 col-12">

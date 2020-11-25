@@ -71,9 +71,10 @@ const Index = (props) => {
     setSaving(true)
 
     api.insertPackage(formData)
-    .then(() => {
+    .then((res) => {
+      const data = res.data;
       setSaving(false)
-      setModalSuccess(true);
+      Router.push('/backend/package/edit/[id]?id='+data.product_id, '/backend/package/edit/'+data.product_id);
     })
     .catch(err =>{
       setSaving(false)
@@ -99,15 +100,21 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link active" data-toggle="tab" href="#details">Package Detail</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#events">Events Detail</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
-          </li>
+          {/* {
+            tab ? (
+              <>
+               <li className="nav-item">
+                  <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" data-toggle="tab" href="#events">Events Detail</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
+                </li>
+              </>
+            ) : null
+          } */}
         </ul>
         <form  id="package-form" >
           <div className="tab-content">
@@ -116,7 +123,7 @@ const Index = (props) => {
                 <PackageDetail />
               </div>
             </div>
-            <div className="tab-pane fade" id="images">
+            {/*<div className="tab-pane fade" id="images">
               <PackageImage dropzone_header="Banner Images" pixel_text="1600px x 1067px" input_name="banners" index="0" />
               <PackageImage dropzone_header="Image Gallery" pixel_text="960px x 640px" input_name="images" index="1" />
             </div>
@@ -143,10 +150,6 @@ const Index = (props) => {
                       handlePriceSave={handlePriceSave}
                       lasted={priceList[priceList.length-1]} />
                     </div>
-                    {/* <div className="text-center">
-                      <Button _type="button" _name="Add" _class="btn-primary" _click={() => handleAdd()} />
-                      <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={() => handleCancel()} />
-                    </div> */}
                   </>
                 ) : (
                   <>
@@ -156,7 +159,7 @@ const Index = (props) => {
                   </>
                 )
               }
-            </div>
+            </div> */}
           </div>
           <div className="row mt-4">
             <div className="col-12">
@@ -173,12 +176,12 @@ const Index = (props) => {
                   Save Draft
                 </LoadingButton> 
 
-                <LoadingButton type="button" 
+                {/* <LoadingButton type="button" 
                 className="btn-primary ml-3"  
                 loading={saving}
                 onClick={() => handleSubmit('publish')} >
                   Publish
-                </LoadingButton> 
+                </LoadingButton>  */}
               </div>
             </div>
           </div>

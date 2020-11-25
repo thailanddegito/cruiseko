@@ -54,7 +54,7 @@ const EventMain = memo((props) => {
         <div className="col-12">
           <div className="form-group mb-4">
             <label>Events Description</label>
-            <Editor name="event_description" height="200px" required data={pkg ? pkg.event_description : ''}  />
+            <Editor name="event_description" height="200px" data={pkg ? pkg.event_description : ''}  />
           </div>
         </div>
       </div>
