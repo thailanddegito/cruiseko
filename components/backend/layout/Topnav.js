@@ -5,23 +5,35 @@ import Link from 'next/link'
 const Topnav = (props) => {
   const {children, page_name, sub_page, main_link, no_class, headerScroll } = props;
   const [scroll, setScroll] = useState(0);
-
-
+  const [pageHeight, setPageHeight] = useState(0);
   
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => 
+     setPageHeight(entries[0].target.clientHeight)
+    )
+    resizeObserver.observe(document.body)
+  }, [])
+
+  const onScroll = () => {
+    const navbar = document.getElementById('scroll-package')
+    setScroll(document.documentElement.scrollTop);
+    if (scroll > 100) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+  }
+
+  useEffect(() => {
+    onScroll()
+  }, [pageHeight])
+
 
   useEffect(() => {
     if(!headerScroll) return;
-    const onScroll = () => {
-      const navbar = document.getElementById('scroll-package')
-      setScroll(document.documentElement.scrollTop);
-      if (scroll > 100) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled")
-      }
-    }
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const _onScroll = onScroll
+    window.addEventListener('scroll', _onScroll)
+    return () => window.removeEventListener('scroll', _onScroll)
   }, [scroll, headerScroll])
 
   return (
