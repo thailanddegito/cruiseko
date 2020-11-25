@@ -83,7 +83,8 @@ exports.create = async(req,res,next)=>{
         name,
         is_boat : 1,
         by_boat_id : boat.boat_id,
-        boat_id : boat.boat_id
+        boat_id : boat.boat_id,
+        picture : data.picture
       }
       task.push(createProduct({isDraft:true,data:pkg_data,transaction}))
     }
@@ -106,16 +107,23 @@ exports.update = async(req,res,next)=>{
   var image_urls = []
   var transaction;
   try{
+    const boat = await Boat.findOne({where : {boat_id}})
+    if(!boat){
+      throw new DefaultError(errors.NOT_FOUND)
+    }
     if(files.picture && files.picture){
       let file = files.picture;
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
     }
-    await Boat.update(data,{where : {boat_id}})
+    transaction = await sequelize.transaction()
+    await Boat.update(data,{where : {boat_id},transaction})
+    await transaction.commit()
     res.json({success:true})
   }
   catch(err){
     next(err)
+    if(transaction) await transaction.rollback()
   }
 }
 

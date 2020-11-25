@@ -15,7 +15,7 @@ exports.getAll = async(req,res,next)=>{
     if(is_draft) where.is_draft = is_draft; 
     if(publish_status) where.publish_status = publish_status;
     if(is_boat !== undefined) where.is_boat = is_boat;
-    var options = {where}
+    var options = {where,logging:console.log}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
       
@@ -24,7 +24,26 @@ exports.getAll = async(req,res,next)=>{
     if(!isNaN(limit)){
         options.limit = parseInt(limit);
     }
-    const products = await Product.findAndCountAll(options)
+
+    const price_include = [
+      {model : PriceCompanyType , include : [PriceDateDetail,CompanyType]}
+    ]
+    const now = new Date();
+    var where_date = {
+      [Op.and] : [
+        {start_date : {[Op.lte] : now}  },
+        {end_date : {[Op.gte] : now}  }
+      ]
+    }
+    const include = [
+      {model : PriceDate /* ,include :price_include */,where : where_date,required:false },
+      // {model : ProductImage , attributes:['id','image','type','order']},
+      // {model : Event},
+      // {model : ProductBoat}
+    ]
+
+
+    const products = await Product.findAndCountAll({...options,include})
     res.json(products)
   }
   catch(err){
