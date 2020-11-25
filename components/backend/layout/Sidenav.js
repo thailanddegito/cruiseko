@@ -8,7 +8,7 @@ import AdminAuthService from '../../../utils/AdminAuthService';
 import api from '../../../utils/api-admin';
 
 const Sidenav = (props) => {
-  const {children, page_name, sub_page, main_link, admin, no_class} = props;
+  const {children, page_name, sub_page, main_link, admin, no_class, headerScroll} = props;
   const [toggle, setToggle] = useState(false);
   const [counts, setCounts] = useState(false);
 
@@ -223,7 +223,7 @@ const Sidenav = (props) => {
             </div>
           </nav>
 
-          <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} />
+          <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} headerScroll={headerScroll} />
           <Modal handleClick={() => handleLogout()} />
         </>
       )

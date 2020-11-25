@@ -1,16 +1,11 @@
+import Router from 'next/router';
 import React, { useState } from 'react';
 import Layout from '../../../components/backend/layout/Layout';
+import HeaderScrollPackage from '../../../components/backend/package/HeaderScrollPackage';
 import PackageDetail from '../../../components/backend/package/PackageDetail';
-import PackageImage from '../../../components/backend/package/PackageImage';
-import PackagePrice from '../../../components/backend/package/PackagePrice';
-import ShowPrice from '../../../components/backend/package/ShowPrice';
-import Button from '../../../components/widget/Button';
 import LoadingButton from '../../../components/widget/LoadingButton';
-import api from '../../../utils/api-admin'
-import Router from 'next/router'
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
-import Link from 'next/link'
-import EventMain from '../../../components/backend/package/EventMain';
+import api from '../../../utils/api-admin';
 
 const Index = (props) => {
   const [show, setShow] = useState(false);
@@ -83,16 +78,16 @@ const Index = (props) => {
 
   }
 
-  
+  const headerScroll = <HeaderScrollPackage name="Create Package" saving={saving} handleSubmit={handleSubmit} />;
 
   return (
     <>
-      <Layout title="Create Package" page_name="Package">
-        <div className="row justify-content-start">
-          <div className="col-6">
+      <Layout title="Create Package" page_name="Package" headerScroll={headerScroll}>
+        <div className="row justify-content-between align-items-center px-3">
+          <div className="">
             <h4>Create Package</h4>
           </div>
-          <div className="col-6">
+          <div className="">
             <div className="text-right">
               <LoadingButton type="button" 
                 className="btn-outline-primary"  
@@ -103,6 +98,7 @@ const Index = (props) => {
             </div>
           </div>
         </div>
+
         <div className="divider"></div>
 
 

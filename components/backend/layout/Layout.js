@@ -4,7 +4,7 @@ import Sidenav from './Sidenav';
 import UserContext from '../../../contexts/UserContext';
 
 const Layout = (props) => {
-  const {title, loading, children, page_name, sub_page, main_link, no_class} = props;
+  const {title, loading, children, page_name, sub_page, main_link, no_class, headerScroll} = props;
   const { admin } = useContext(UserContext);
 
   // console.log('admin',admin)
@@ -55,7 +55,7 @@ const Layout = (props) => {
       {
         admin.isLogin ? (
           <Sidenav loading={loading} children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} 
-          no_class={no_class} admin={admin && admin.data} />
+          no_class={no_class} admin={admin && admin.data} headerScroll={headerScroll} />
         ) : (
           <div className='main-layout'>
             {children}

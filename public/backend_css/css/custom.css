@@ -475,7 +475,27 @@ span.nav-link-text {
 .div-table:nth-child(even) {
   background-color: #FFF;
 }
-
+.package-scroll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  width: calc(100% - 200px);  
+  height: 64px;
+  padding-top: 0;
+  background-color: #FFF;
+  padding-right: 24px;
+  top: 62px;
+  margin-left: -15px;
+  padding-left: 47px;
+  padding-right: 45px;
+  opacity: 0;
+  transition: 0.3 ease-in;
+}
+.package-scroll.scrolled {
+  opacity: 1;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
@@ -484,5 +504,11 @@ span.nav-link-text {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a, #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
     padding: 10px;
     padding-left: 2.75em;
+  }
+}
+@media (max-width: 991px) {
+  .package-scroll {
+    width: calc(100% - 0px) !important;  
+
   }
 }
