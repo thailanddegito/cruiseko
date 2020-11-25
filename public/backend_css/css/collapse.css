@@ -103,6 +103,10 @@
     width: auto !important;
     margin: 8px 0 !important;
     max-width: 100%;
+    min-width: 100px !important;
+  }
+  .btn.publish {
+    margin-left: 1rem!important;
   }
   .mobile-display {
     display: block !important;

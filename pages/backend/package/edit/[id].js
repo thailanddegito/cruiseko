@@ -150,7 +150,7 @@ const Index = (props) => {
               </LoadingButton> 
 
               <LoadingButton type="button" 
-                className="btn-primary ml-3"  
+                className="btn-primary publish ml-3"  
                 loading={saving}
                 onClick={() => handleSubmit('publish')} >
                 Publish
