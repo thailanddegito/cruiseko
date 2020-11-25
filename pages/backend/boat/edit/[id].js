@@ -144,8 +144,8 @@ const EditRole = ({query}) => {
                   <div className="col-lg-4 col-12">
                     <InputLabel inputProps={{ 
                       className:'form-control', type : 'text',
-                      name : 'time', required : true,
-                      defaultValue : boats.time
+                      name : 'min_hr', required : true,
+                      defaultValue : boats.min_hr
                     }} 
                     labelName="Minimum Hour  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
