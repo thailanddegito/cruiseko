@@ -26,6 +26,22 @@ const ColumsBody = (props) => {
       )
     },
     {
+      name: 'Today Pricing Type',
+      cell : row => {
+        if(row.price_dates[0]) {
+          if(row.price_dates[0].pricing_type == 'normal') {
+            return 'Tour';
+          }else if(row.price_dates[0].pricing_type == 'tier') {
+            return 'Private Tour';
+          }else{
+            return 'Charter'
+          }
+        }else{
+          return 'No Data';
+        }
+      }
+    },
+    {
       name: 'Publish status',
       cell : row => (
         (row.publish_status >= 0) ? (
