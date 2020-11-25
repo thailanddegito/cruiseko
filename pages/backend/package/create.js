@@ -92,6 +92,16 @@ const Index = (props) => {
           <div className="col-6">
             <h4>Create Package</h4>
           </div>
+          <div className="col-6">
+            <div className="text-right">
+              <LoadingButton type="button" 
+                className="btn-outline-primary"  
+                loading={saving}
+                onClick={() => handleSubmit('draft')} >
+                Save Draft
+              </LoadingButton> 
+            </div>
+          </div>
         </div>
         <div className="divider"></div>
 
@@ -161,14 +171,14 @@ const Index = (props) => {
               }
             </div> */}
           </div>
-          <div className="row mt-4">
+          {/* <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
-                {/* <Link href="/backend/package">
+                <Link href="/backend/package">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-default mr-4" />
                   </a>
-                </Link> */}
+                </Link>
                 <LoadingButton type="button" 
                 className="btn-outline-primary"  
                 loading={saving}
@@ -176,15 +186,15 @@ const Index = (props) => {
                   Save Draft
                 </LoadingButton> 
 
-                {/* <LoadingButton type="button" 
+                <LoadingButton type="button" 
                 className="btn-primary ml-3"  
                 loading={saving}
                 onClick={() => handleSubmit('publish')} >
                   Publish
-                </LoadingButton>  */}
+                </LoadingButton> 
               </div>
             </div>
-          </div>
+          </div> */}
         </form>
         
        

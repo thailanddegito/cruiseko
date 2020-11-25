@@ -16,7 +16,7 @@ import EventMain from '../../../../components/backend/package/EventMain';
 import MetaTag from '../../../../components/backend/package/MetaTag';
 
 const Index = (props) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [events,setEvents] = useState([]);
@@ -33,6 +33,11 @@ const Index = (props) => {
     if(!id) return;
     fetchPackage();
   }, [id]);
+
+  useEffect(() => {
+    if(!priceList.length) return;
+    setShow(false);
+  }, [priceList]);
 
   const fetchPackage = ()=>{
     api.getPackageOne(id)
@@ -133,8 +138,25 @@ const Index = (props) => {
     <>
       <Layout title="Edit Package" page_name="Package" sub_page="Edit" main_link="package">
         <div className="row justify-content-start">
-          <div className="col-12">
+          <div className="col-6">
             <h4>Edit Package</h4>
+          </div>
+          <div className="col-6">
+            <div className="text-right">
+              <LoadingButton type="button" 
+                className="btn-outline-primary"  
+                loading={saving}
+                onClick={() => handleSubmit('draft')} >
+                Save Draft
+              </LoadingButton> 
+
+              <LoadingButton type="button" 
+                className="btn-primary ml-3"  
+                loading={saving}
+                onClick={() => handleSubmit('publish')} >
+                Publish
+              </LoadingButton> 
+            </div>
           </div>
         </div>
         <div className="divider"></div>
@@ -214,30 +236,30 @@ const Index = (props) => {
               <MetaTag pkg={pkg} />
             </div>
           </div>
-          <div className="row mt-4">
+          {/* <div className="row mt-4">
             <div className="col-12">
               <div className="text-right">
-                {/* <Link href="/backend/package">
+                <Link href="/backend/package">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-default mr-4" />
                   </a>
-                </Link> */}
+                </Link>
                 <LoadingButton type="button" 
-                className="btn-outline-primary"  
-                loading={saving}
-                onClick={() => handleSubmit('draft')} >
+                  className="btn-outline-primary"  
+                  loading={saving}
+                  onClick={() => handleSubmit('draft')} >
                   Save Draft
                 </LoadingButton> 
 
                 <LoadingButton type="button" 
-                className="btn-primary ml-3"  
-                loading={saving}
-                onClick={() => handleSubmit('publish')} >
+                  className="btn-primary ml-3"  
+                  loading={saving}
+                  onClick={() => handleSubmit('publish')} >
                   Publish
                 </LoadingButton> 
               </div>
             </div>
-          </div>
+          </div> */}
         </form>
         
         <SuccessDialog show={modalSuccess}
