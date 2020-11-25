@@ -1,19 +1,18 @@
-import React, { useState,useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
+import EventMain from '../../../../components/backend/package/EventMain';
+import MetaTag from '../../../../components/backend/package/MetaTag';
+import HeaderScrollPackage from '../../../../components/backend/package/HeaderScrollPackage';
 import PackageDetail from '../../../../components/backend/package/PackageDetail';
 import PackageImage from '../../../../components/backend/package/PackageImage';
 import PackagePrice from '../../../../components/backend/package/PackagePrice';
 import ShowPrice from '../../../../components/backend/package/ShowPrice';
 import Button from '../../../../components/widget/Button';
 import LoadingButton from '../../../../components/widget/LoadingButton';
-import api from '../../../../utils/api-admin'
-import {useRouter} from 'next/router'
-import {toPriceListState} from '../../../../utils/packageHelper'
-import Router from 'next/router'
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
-import Link from 'next/link'
-import EventMain from '../../../../components/backend/package/EventMain';
-import MetaTag from '../../../../components/backend/package/MetaTag';
+import api from '../../../../utils/api-admin';
+import { toPriceListState } from '../../../../utils/packageHelper';
 
 const Index = (props) => {
   const [show, setShow] = useState(true);
@@ -131,12 +130,12 @@ const Index = (props) => {
     setDelImg(deltmp);
   }
 
-  console.log('delImg', delImg)
+  const headerScroll = <HeaderScrollPackage name="Edit Package" saving={saving} handleSubmit={handleSubmit} is_publish={true} />;
 
 
   return (
     <>
-      <Layout title="Edit Package" page_name="Package" sub_page="Edit" main_link="package">
+      <Layout title="Edit Package" page_name="Package" sub_page="Edit" main_link="package" headerScroll={headerScroll}>
         <div className="row justify-content-start">
           <div className="col-6">
             <h4>Edit Package</h4>
