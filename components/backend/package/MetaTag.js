@@ -11,7 +11,7 @@ const MetaTag = memo((props) => {
 
   useEffect(() => {
     if(!pkg) return;
-    setImg(pkg.meta_images ? pkg.meta_images : "/template/img/tour_1.jpg");
+    setImg(pkg.meta_image ? pkg.meta_image : "/template/img/tour_1.jpg");
   },[pkg]);
 
   const handleChange = (event) => {
