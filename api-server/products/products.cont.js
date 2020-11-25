@@ -15,7 +15,7 @@ exports.getAll = async(req,res,next)=>{
     if(is_draft) where.is_draft = is_draft; 
     if(publish_status) where.publish_status = publish_status;
     if(is_boat !== undefined) where.is_boat = is_boat;
-    var options = {where,logging:console.log}
+    var options = {where/* ,logging:console.log */}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
       
