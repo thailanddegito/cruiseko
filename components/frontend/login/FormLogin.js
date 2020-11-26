@@ -15,12 +15,12 @@ const FormLogin = (props) => {
         className:'form-control', type : 'email',name : 'username', id : "email",
         pattern : "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", title :"Invalid email", required : true
       }} 
-      labelName="Email" iconProps={{className : 'fa icon icon-email'}}  />
+      labelName="Email" icon={false} />
       <InputLabel inputProps={{ 
         className:'form-control', type : 'password',name : 'password', id : "password",
         pattern : ".{6,}", title :"six or more characters", required : true
       }} 
-      labelName="Password" iconProps={{className : 'fa icon icon-lock-1'}}  />
+      labelName="Password" icon={false} />
       {
         error && ( 
           <div className="text-danger"> Email or password is incorrect </div>
