@@ -26,7 +26,7 @@ exports.getAll = async(req,res,next)=>{
     }
 
     const price_include = [
-      {model : PriceCompanyType , include : [PriceDateDetail,CompanyType]}
+      {model : PriceCompanyType , include : [PriceDateDetail/* ,CompanyType */]}
     ]
     const now = new Date();
     var where_date = {
@@ -36,7 +36,7 @@ exports.getAll = async(req,res,next)=>{
       ]
     }
     const include = [
-      {model : PriceDate /* ,include :price_include */,where : where_date,required:false },
+      {model : PriceDate ,include :price_include,where : where_date,required:false },
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
       // {model : ProductBoat}

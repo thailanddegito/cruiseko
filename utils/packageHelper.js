@@ -67,3 +67,53 @@ export const sortImages = (images,order) =>{
     return a-b
   })
 }
+
+export const calPackagePriceCard =(pkg,user)=>{
+  var result = {price : -1 ,unit : 'person'}
+  if(!pkg ) return result;
+  if(!pkg.price_dates.length) return result;
+
+  var price_date = pkg.price_dates[0]
+  var {pricing_type} = price_date;
+  console.log('pkg.price_dates',pkg.price_dates)
+
+  var user_type = !user ? 'fit' : user.type 
+
+  var company_type_id = 0
+  if(user && user.company_type_id) company_type_id = user.company_type_id;
+
+  var com_type = price_date.price_company_types.find(val => val.company_type_id == company_type_id)
+    // console.log('com_type',com_type)
+  if(!com_type) return result;
+
+  if(pricing_type === 'normal'){
+    var price_date_detail = com_type.price_date_details.find(val => val.customer_type === 'adult')
+  
+    if(price_date_detail)
+      result.price = price_date_detail.price
+    // return price_date_detail ? price_date_detail.price : result;
+  }
+  else{
+    var price_date_detail = com_type.price_date_details.reduce((maxItem ,current) =>{
+      if(!maxItem) return current;
+      if(current.range_end >= maxItem.range_end) return current;
+      else return maxItem
+    })
+
+    if(!price_date_detail) return result;
+
+    const {commission,range_end,price} = price_date_detail;
+    var net_price = parseFloat(commission)
+    console.log('price_date_detail',price_date_detail)
+
+    var normal_price = parseInt(parseFloat(price) / range_end) 
+
+
+    result.price =  user_type === 'fit' && net_price ? net_price/range_end : normal_price
+    
+  }
+
+  return result;
+  
+
+}

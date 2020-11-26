@@ -1,10 +1,15 @@
 
-import React from 'react';
+import React,{useContext} from 'react';
 import Link from 'next/link';
+import UserContext from '../../../contexts/UserContext';
+import {calPackagePriceCard} from '../../../utils/packageHelper'
 
 const ProductCard = (props) => {
   const {packages} = props;
+  const { user } = useContext(UserContext);
 
+  // console.log('price',calPackagePriceCard(packages,user))
+  const {price,unit} = calPackagePriceCard(packages,user)
   return (
     packages ? (
       <>
@@ -27,7 +32,13 @@ const ProductCard = (props) => {
               </Link>
               </h3>
               <p className="short-description">{packages.short_description ? packages.short_description : null}</p>
-              <span class="price">From <strong>$54</strong> /per person</span>
+              {
+                price !== -1 ? (
+                  <span class="price"> From <strong> {parseInt(price) } </strong> /per {unit} </span>
+                )
+                : <span class="price"></span>
+              }
+              
             </div>
             <ul>
               <li><i class="icon_clock_alt"></i> 1h 30min</li>

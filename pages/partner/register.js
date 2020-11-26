@@ -78,7 +78,8 @@ const Register = ({ t }) => {
         <div className="container" id="register">
           <aside className="main-content">
 
-              <Company setShow={setShow} show={show == 1} inputData={inputData} handleChange={handleChange} />
+              <Company setShow={setShow} show={show == 1} inputData={inputData} setInputData={setInputData}
+              handleChange={handleChange} />
               
               <User setShow={setShow} show={show == 2} 
               setInputData={setInputData}
