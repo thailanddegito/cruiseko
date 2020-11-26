@@ -269,6 +269,9 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
 figure:hover .caption-content i, figure:hover .caption-content  p{
   color: #FFF;
 }
+.hero_single.version_2 {
+  height: calc(100vh - 112px);
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
