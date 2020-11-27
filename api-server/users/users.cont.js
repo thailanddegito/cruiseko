@@ -155,7 +155,7 @@ exports.register = async(req,res,next)=>{
 
         if(user_type === 'fit'){
             data.id = await tools.genUserId(user_type)
-            data.accept_status = 1;
+            data.approve_status = 1;
         }
 
 

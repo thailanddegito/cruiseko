@@ -426,7 +426,11 @@ async function createPriceData (price_date_list,product_id,transaction) {
             return {...val,price_date_id,price_company_type_id,company_type_id,id : null}
           })
         }
-        await PriceDateDetail.bulkCreate(details,{transaction})
+        let task = [];
+        for(const item of details){
+          task.push(PriceDateDetail.create(item,{transaction}))
+        }
+        await Promise.all(task)
       }
       
     }
@@ -452,7 +456,12 @@ async function createEvents(events,product_id,files,transaction){
 
     return {...val,product_id,id:null}
   })
-  await Event.bulkCreate(events,{transaction})
+  let task = []
+  for(const item of events){
+    task.push(Event.create(item,{transaction}))
+  }
+  await Promise.all(task)
+  // await Event.bulkCreate(events,{transaction})
 }
 
 async function clearEvents(product_id,transaction){
@@ -483,7 +492,12 @@ async function copyPriceProduct(product_id,price_dates,transaction){
       const cp_item = await PriceCompanyType.create({...cp.toJSON(),price_date_id,id : null},{transaction})
       const {price_date_details} = cp
       const detail = price_date_details.map(val => ({...val.toJSON(),price_company_type_id:cp_item.id,price_date_id,id:null}))
-      await PriceDateDetail.bulkCreate(detail,{transaction})
+      
+      let task = [];
+      for(const item of detail){
+        task.push(PriceDateDetail.create(item,{transaction}))
+      }
+      await Promise.all(task)
     }
   }
 }
