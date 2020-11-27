@@ -22,8 +22,9 @@ const Detail = (props) => {
 
   const priceData = useMemo(() =>{
     return calPackagePrice(packages,user,state.date,state.adult,state.children)
-  },[state,user])
+  },[packages,state,user])
 
+  console.log('state',state)
   console.log('priceData',priceData)
   return (
     <>

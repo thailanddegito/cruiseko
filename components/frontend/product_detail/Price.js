@@ -4,7 +4,7 @@ import React, {useEffect,useState} from 'react';
 const Price = (props) => {
   const {error,state,setState} = props;
   // const [date,setDate] = useState()
-
+  const {price,unit} = props.priceData; 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
     var tot=0;
@@ -25,7 +25,8 @@ const Price = (props) => {
 
      var $button = $(this);
      var oldValue = $button.parent().find("input").val();
-     console.log(oldValue);
+     var key = $button.parent().attr('id') === 'adults' ? 'adult' : 'children'
+     
      if ($button.hasClass('qtyInc')) {
       var newVal = parseFloat(oldValue) + 1;
      } else {
@@ -33,9 +34,11 @@ const Price = (props) => {
       if (oldValue > 0) {
        var newVal = parseFloat(oldValue) - 1;
       } else {
-       newVal = 0;
+       newVal = 1;
       }
      }
+     setState({...state,[key] :newVal })
+    //  alert(newVal)
 
      $button.parent().find("input").val(newVal);
      qtySum();
@@ -90,7 +93,7 @@ const Price = (props) => {
     <>
       <div className="box_detail booking">
         <div className="price">
-          <span>45$ <small>person</small></span>
+          {price !== -1 && <span> {price} ฿</span>}
           <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
         </div>
         <div className="form-group input-dates">
