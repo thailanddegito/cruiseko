@@ -25,7 +25,7 @@ const Price = (props) => {
 
      var $button = $(this);
      var oldValue = $button.parent().find("input").val();
-
+     console.log(oldValue);
      if ($button.hasClass('qtyInc')) {
       var newVal = parseFloat(oldValue) + 1;
      } else {
@@ -67,11 +67,17 @@ const Price = (props) => {
   },[]);
 
   useEffect(() => {
-    $("#adults .qtyDec, #adults .qtyInc").on("click", function() {
-      alert('adults');
+    $("#adults .qtyDec").on("click", function() {
+    
     });
-    $("#childrens .qtyDec, #childrens .qtyInc").on("click", function() {
-      alert('childrens');
+    $("#adults .qtyInc").on("click", function() {
+     
+    });
+    $("#childrens .qtyDec").on("click", function() {
+    
+    });
+    $("#childrens .qtyInc").on("click", function() {
+     
     });
   },[]);
 
@@ -96,11 +102,11 @@ const Price = (props) => {
           <div className="panel-dropdown-content right">
             <div className="qtyButtons" id="adults">
               <label>Adults</label>
-              <input type="text" name="qtyInput" value="1" />
+              <input type="text" name="qtyInput" id="adults_input" value="1" />
             </div>
             <div className="qtyButtons" id="childrens">
               <label>Childrens</label>
-              <input type="text" name="qtyInput" value="0" />
+              <input type="text" name="qtyInput" id="childrens_input" value="0" />
             </div>
           </div>
         </div>
