@@ -50,7 +50,9 @@ const Register = ({ t }) => {
 
     api.register(form_success).then(res => {
       alert('Success')
-      Router.push('/partner/register-success')
+      window.location = '/partner/register-success'
+
+      // Router.push('/partner/register-success')
       
     })
     .catch(err => {

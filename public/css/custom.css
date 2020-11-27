@@ -291,6 +291,10 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .secondary_nav.is_stuck {
   display: none;
 }
+.a-click {
+  color: #000;
+  cursor: pointer;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

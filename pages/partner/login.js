@@ -25,7 +25,9 @@ const Login = ({ t }) => {
       AuthService.setToken(res.data.token)
       AuthService.setProfile({user_id : res.data.user_id})
       fetchUser()
-      Router.push('/')
+      // Router.push('/')
+      window.location = '/'
+
     })
     .catch(err => {
       if(!err.response) return;
