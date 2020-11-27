@@ -288,6 +288,9 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .box_list {
   margin: 30px 15px 0 15px;
 }
+.secondary_nav.is_stuck {
+  display: none;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
