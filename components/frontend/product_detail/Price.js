@@ -50,20 +50,18 @@ const Price = (props) => {
 
   useEffect(() => {
     $('input[name="dates"]').daterangepicker({
-      autoUpdateInput: false,
-      parentEl:'.scroll-fix',
-      minDate:new Date(),
-      opens: 'left',
-      locale: {
-        cancelLabel: 'Clear'
-      }
-    });
-    $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
-    });
-    $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-    });
+		  autoUpdateInput: true,
+		  parentEl:'.scroll-fix',
+		  singleDatePicker: true,
+		  autoApply: true,
+		  minDate:new Date(),
+		  showCustomRangeLabel: false,
+		  locale: {
+	        format: 'MM-DD-YYYY'
+	      }
+		  }, function(start, end, label) {
+		  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')');
+		});
   },[]);
 
 
