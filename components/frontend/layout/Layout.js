@@ -32,7 +32,8 @@ const Layout = (props) => {
         <script src="/template/js/common_scripts.js"></script>
         <script src="/template/js/main.js"></script>
         <script src="/template/assets/validate.js"></script>
-        
+        <script src="/template/js/isotope.min.js"></script>
+
       
       </Head>
       

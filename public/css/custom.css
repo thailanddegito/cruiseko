@@ -237,6 +237,13 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.short-land-description {
+  height: 110px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
 .img-gallery {
   width: 120px;
   height: 120px;
@@ -271,6 +278,9 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 }
 .hero_single.version_2 {
   height: calc(100vh - 112px);
+}
+.filters_listing {
+  padding: 10px 0 10px 0;
 }
 @media only screen and (min-width: 992px) {
   header .main-menu {

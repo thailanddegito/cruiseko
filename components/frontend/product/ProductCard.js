@@ -27,7 +27,7 @@ const ProductCard = (props) => {
             </figure>
             <div class="wrapper">
               <h3>
-              <Link href="/product-details/[id]" as={`/product-details/1`}>
+              <Link href="/product-details/[id]" as={`/product-details/${packages.id}`}>
                 <a className="show-color">{packages.name ? packages.name : null}</a>
               </Link>
               </h3>

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/frontend/layout/Layout';
-import ProductCard from '../components/frontend/product/ProductCard'
 import api from '../utils/api'
+import Banner from '../components/frontend/product/Banner'
+import ProductFilter from '../components/frontend/product/ProductFilter'
+import ProductCard from '../components/frontend/product/ProductCard'
+import ProductCardLandscape from '../components/frontend/product/ProductCardLandscape'
 
 const Home = (props) => {
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState();
+  const [showGrid, setShowGrid] = useState(1);
 
   const fecthPackage = () => {
     setLodding(true);
@@ -30,17 +34,39 @@ const Home = (props) => {
 
   return (
     <Layout loading={loading} title="Main Product">
-      <div className="container">
-        <div className="wrapper-grid">
-          <div className="row">
+      <aside className="main-content">
+				<main>
+					<div>
+            <Banner data={true} />
+					</div>
+          <div>
+            <ProductFilter setShowGrid={setShowGrid} showGrid={showGrid} />
+					</div>
+					<div className="container">
             {
-              (packages && packages.rows) ? packages.rows.map((val, index) => (
-                <ProductCard key={val.id} packages={val} />
-              )) : null
+              showGrid == 1 ? (
+                <div className="wrapper-grid">
+                  <div className="row">
+                    {
+                      (packages && packages.rows) ? packages.rows.map((val, index) => (
+                        <ProductCard key={val.id} packages={val} />
+                      )) : null
+                    }
+                  </div>
+                </div>
+              ) : (
+                <div className="isotope-wrapper">
+                  {
+                    (packages && packages.rows) ? packages.rows.map((val, index) => (
+                      <ProductCardLandscape key={val.id} packages={val} />
+                    )) : null
+                  }
+                </div>
+              )
             }
           </div>
-        </div>
-      </div>
+				</main>
+			</aside>
     </Layout>
   )
 }
