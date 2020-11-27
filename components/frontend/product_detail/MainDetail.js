@@ -1,5 +1,5 @@
 
-import React,{useState,useMemo} from 'react';
+import React,{useState,useMemo,useContext} from 'react';
 import EditorData from './EditorData';
 import ImageGallery from './ImageGallery';
 import MainEvent from './MainEvent';
@@ -8,6 +8,8 @@ import Price from './Price';
 import Remark from './Remark';
 import {toDateISO} from '../../../utils/tools'
 import {calPackagePrice} from '../../../utils/packageHelper'
+import UserContext from '../../../contexts/UserContext';
+
 
 const Detail = (props) => {
   const {packages} = props;
@@ -16,11 +18,13 @@ const Detail = (props) => {
     adult : 1,
     children : 0
   })
+  const { user } = useContext(UserContext);
 
-  const price_data = useMemo(() =>{
+  const priceData = useMemo(() =>{
+    return calPackagePrice(packages,user,state.date,state.adult,state.children)
+  },[state,user])
 
-  },[state])
-
+  console.log('priceData',priceData)
   return (
     <>
       <div className="bg_color_1">
@@ -53,7 +57,7 @@ const Detail = (props) => {
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
-              <Price state={state} setState={setState} />
+              <Price state={state} setState={setState} priceData={priceData} />
             </aside>
           </div>
         </div>
