@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   return (
     packages ? (
       <>
-        <div class="col-xl-4 col-lg-6 col-md-6 mt-4">
+        <div class="col-xl-4 col-lg-6 col-md-6 card-top">
           <div class="box_grid">
             <figure>
               {/* <a href="#0" class="wish_bt"></a> */}

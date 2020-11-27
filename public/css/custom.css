@@ -282,6 +282,12 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .filters_listing {
   padding: 10px 0 10px 0;
 }
+.card-top {
+  margin-top: 30px;
+}
+.box_list {
+  margin: 30px 15px 0 15px;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
