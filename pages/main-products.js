@@ -33,7 +33,7 @@ const Home = (props) => {
   // console.log(packages);
 
   return (
-    <Layout loading={loading} title="Main Product">
+    <Layout loading={loading} title="Main Product" page={'main_product'}>
       <aside className="main-content">
 				<main>
 					<div>

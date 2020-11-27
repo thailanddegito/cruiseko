@@ -36,7 +36,7 @@ const ProductDetail = ({query}) => {
 	console.log(packages);
   
   return (
-    <Layout loading={loading} title="Product Details">
+    <Layout loading={loading} title="Product Details" page={'product_details'}>
 			<aside className="main-content">
 				<main>
 					<div>

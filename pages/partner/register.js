@@ -61,7 +61,7 @@ const Register = ({ t }) => {
   }
 
   return (
-    <Layout loading={loading} title="Register">
+    <Layout loading={loading} title="Register" page={'partnaer_register'}>
       <main>
         <div className="container">
           <div className="row">

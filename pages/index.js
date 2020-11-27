@@ -27,7 +27,7 @@ const Home = (props) => {
   }, [])
 
   return (
-    <Layout loading={loading} title="Home">
+    <Layout loading={loading} title="Home" page={'home'}>
       <aside className="main-content">
 				<main>
 					<div>

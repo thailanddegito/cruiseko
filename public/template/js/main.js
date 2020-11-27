@@ -1,5 +1,4 @@
-(function ($) {
-
+$(document).ready(function() {
 	"use strict";
 	
 	$(window).on('load', function () {
@@ -70,23 +69,23 @@
 	
 	// WoW - animation on scroll
 	var wow = new WOW(
-	  {
+		{
 		boxClass:     'wow',      // animated element css class (default is wow)
 		animateClass: 'animated', // animation css class (default is animated)
 		offset:       0,          // distance to the element when triggering the animation (default is 0)
 		mobile:       true,       // trigger animations on mobile devices (default is true)
 		live:         true,       // act on asynchronously loaded content (default is true)
 		callback:     function(box) {
-		  // the callback is fired every time an animation is started
-		  // the argument that is passed in is the DOM node being animated
+			// the callback is fired every time an animation is started
+			// the argument that is passed in is the DOM node being animated
 		},
 		scrollContainer: null // optional scroll container selector, otherwise use window
-	  }
+		}
 	);
 	wow.init();
 	
 	// Header button explore
-    $('a[href^="#"].btn_explore').on('click', function (e) {
+		$('a[href^="#"].btn_explore').on('click', function (e) {
 			e.preventDefault();
 			var target = this.hash;
 			var $target = $(target);
@@ -105,7 +104,7 @@
 		$(this).magnificPopup({
 			delegate: 'a',
 			type: 'image',
-            preloader: true,
+						preloader: true,
 			gallery: {
 				enabled: true
 			},
@@ -171,11 +170,11 @@
 	}
 	$('.accordion_2').on('hidden.bs.collapse shown.bs.collapse', toggleChevron);
 		function toggleIcon(e) {
-        $(e.target)
-            .prev('.panel-heading')
-            .find(".indicator")
-            .toggleClass('ti-minus ti-plus');
-    }
+				$(e.target)
+						.prev('.panel-heading')
+						.find(".indicator")
+						.toggleClass('ti-minus ti-plus');
+		}
 	
 	// Jquery select
 	$('.custom-search-input-2 select, .custom-select-form select').niceSelect();
@@ -189,8 +188,8 @@
 	});
 	
 	// Like Icon
-    $('.wish_bt').on('click', function(e){
-    	e.preventDefault();
+		$('.wish_bt').on('click', function(e){
+			e.preventDefault();
 		$(this).toggleClass('liked');
 	});
 	
@@ -309,12 +308,12 @@
 
 	// Show more button
 	$(".content_more").hide();
-    $(".show_hide").on("click", function () {
-        var txt = $(".content_more").is(':visible') ? 'Read More' : 'Read Less';
-        $(this).text(txt);
-        $(this).prev('.content_more').slideToggle(200);
-    });
-	            
+		$(".show_hide").on("click", function () {
+				var txt = $(".content_more").is(':visible') ? 'Read More' : 'Read Less';
+				$(this).text(txt);
+				$(this).prev('.content_more').slideToggle(200);
+		});
+							
 	// Secondary nav scroll
 	var $sticky_nav= $('.secondary_nav');
 	$sticky_nav.find('a').on('click', function(e) {
@@ -336,9 +335,9 @@
 			|| location.hostname == this.hostname) {
 			var target = $(this.hash);
 			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			   if (target.length) {
-				 $('html,body').animate({
-					 scrollTop: target.offset().top -185
+				if (target.length) {
+				$('html,body').animate({
+					scrollTop: target.offset().top -185
 				}, 800);
 				return false;
 			}
@@ -359,30 +358,30 @@
 	});
 	
 	// Panel Dropdown
-    function close_panel_dropdown() {
+		function close_panel_dropdown() {
 		$('.panel-dropdown').removeClass("active");
-    }
-    $('.panel-dropdown a').on('click', function(e) {
+		}
+		$('.panel-dropdown a').on('click', function(e) {
 		if ( $(this).parent().is(".active") ) {
-            close_panel_dropdown();
-        } else {
-            close_panel_dropdown();
-            $(this).parent().addClass('active');
-        }
-        e.preventDefault();
-    });
+						close_panel_dropdown();
+				} else {
+						close_panel_dropdown();
+						$(this).parent().addClass('active');
+				}
+				e.preventDefault();
+		});
 
-    // Closes dropdown on click outside the conatainer
+		// Closes dropdown on click outside the conatainer
 	var mouse_is_inside = false;
 
 	$('.panel-dropdown').hover(function(){
-	    mouse_is_inside=true;
+			mouse_is_inside=true;
 	}, function(){
-	    mouse_is_inside=false;
+			mouse_is_inside=false;
 	});
 
 	$("body").mouseup(function(){
-	    if(! mouse_is_inside) close_panel_dropdown();
+			if(! mouse_is_inside) close_panel_dropdown();
 	});
 	
 	/* Dropdown user logged */
@@ -411,14 +410,13 @@
 
 	// Range DatePicker scroll fix
 	$(function () {
-	    $(window).bind("resize", function () {
-	        if ($(this).width() < 768) {
-	            $('.input-dates').removeClass('scroll-fix')
-	        } else {
-	            $('.input-dates').addClass('scroll-fix')
-	        }
-	    }).trigger('resize');
+			$(window).bind("resize", function () {
+					if ($(this).width() < 768) {
+							$('.input-dates').removeClass('scroll-fix')
+					} else {
+							$('.input-dates').addClass('scroll-fix')
+					}
+			}).trigger('resize');
 	});
-	
-})(window.jQuery); 
+});
 

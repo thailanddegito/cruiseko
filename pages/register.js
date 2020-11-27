@@ -53,7 +53,7 @@ const Register = ({ t }) => {
   }
 
   return (
-    <Layout loading={loading} title="Register">
+    <Layout loading={loading} title="Register" page={'register'}>
       <main>
         <div className="container">
           <div className="row">

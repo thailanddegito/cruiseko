@@ -16,20 +16,20 @@ const ProductCardLandscape = (props) => {
 						<div className="col-lg-5">
 							<figure>
 								<small>Museum</small>
-								<Link href="/product-details/[id]" as={`/product-details/${packages.id}`}>
-                	<a>
+								{/* <Link href={`/product-details/${packages.id}`}> */}
+                	<a href={`/product-details/${packages.id}`}>
 										<img src={packages.picture ? packages.picture : "/template/img/tour_3.jpg"} className="img-fluid" alt="" width="800" height="533" />
 										<div className="read_more"><span>Read more</span></div>
 									</a>
-								</Link>
+								{/* </Link> */}
 							</figure>
 						</div>
 						<div className="col-lg-7">
 							<div className="wrapper">
 								<h3>
-									<Link href="/product-details/[id]" as={`/product-details/${packages.id}`}>
-										<a className="show-color">{packages.name ? packages.name : null}</a>
-									</Link>
+									{/* <Link href={`/product-details/${packages.id}`}> */}
+										<a className="show-color" href={`/product-details/${packages.id}`}>{packages.name ? packages.name : null}</a>
+									{/* </Link> */}
 								</h3>
 								<p className="short-land-description">{packages.short_description ? packages.short_description : null}</p>
 								<span className="price">From <strong>$45</strong> /per person</span>
