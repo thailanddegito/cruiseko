@@ -219,6 +219,7 @@ const Index = (props) => {
                       handleCancel={handleCancel} 
                       editData={editData}
                       handlePriceSave={handlePriceSave}
+                      isBoat={!!pkg?.by_boat_id}
                       lasted={priceList[priceList.length-1]} />
                     </div>
                   </>

@@ -1,9 +1,9 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 
 const Price = (props) => {
-  const {error} = props;
-
+  const {error,state,setState} = props;
+  // const [date,setDate] = useState()
 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
@@ -59,12 +59,14 @@ const Price = (props) => {
 		  locale: {
 	        format: 'MM-DD-YYYY'
 	      }
-		  }, function(start, end, label) {
-		  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')');
-		});
+      }, 
+      function(start, end, label) {
+        setState({...state,date : start.format('YYYY-MM-DD')})
+		    // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')');
+		  });
   },[]);
 
-
+  // console.log('date',date)
 
   return (
     <>

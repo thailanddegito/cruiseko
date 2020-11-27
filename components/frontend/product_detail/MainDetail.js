@@ -1,14 +1,25 @@
 
-import React from 'react';
+import React,{useState,useMemo} from 'react';
 import EditorData from './EditorData';
 import ImageGallery from './ImageGallery';
 import MainEvent from './MainEvent';
 import Review from './Review';
 import Price from './Price';
 import Remark from './Remark';
+import {toDateISO} from '../../../utils/tools'
+import {calPackagePrice} from '../../../utils/packageHelper'
 
 const Detail = (props) => {
   const {packages} = props;
+  const [state,setState] = useState({
+    date : toDateISO(new Date()),
+    adult : 1,
+    children : 0
+  })
+
+  const price_data = useMemo(() =>{
+
+  },[state])
 
   return (
     <>
@@ -42,7 +53,7 @@ const Detail = (props) => {
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
-              <Price />
+              <Price state={state} setState={setState} />
             </aside>
           </div>
         </div>

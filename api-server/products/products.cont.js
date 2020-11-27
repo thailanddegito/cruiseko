@@ -1,13 +1,16 @@
 const { Product,ProductImage,sequelize,PriceDate,
   CompanyType,ProductBoat,Event,
-  PriceCompanyType,PriceDateDetail,PriceTier} = require('../db')
+  PriceCompanyType,PriceDateDetail, Boat, BoatCategory} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
 const {Op} = require('sequelize')
 
 exports.getAll = async(req,res,next)=>{
-  var {page,limit,is_draft=1,publish_status,is_boat} = req.query
+  var {page,limit,is_draft=1,publish_status,is_boat,price_today=1} = req.query
+  var {price_start_date,price_end_date,total_person} = req.query
+  var {cate_id} = req.query
+
   try{
 
     var where = {deleted : 0}
@@ -15,6 +18,9 @@ exports.getAll = async(req,res,next)=>{
     if(is_draft) where.is_draft = is_draft; 
     if(publish_status) where.publish_status = publish_status;
     if(is_boat !== undefined) where.is_boat = is_boat;
+
+
+
     var options = {where/* ,logging:console.log */}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
@@ -25,25 +31,59 @@ exports.getAll = async(req,res,next)=>{
         options.limit = parseInt(limit);
     }
 
-    const price_include = [
-      {model : PriceCompanyType , include : [PriceDateDetail/* ,CompanyType */]}
-    ]
+    
     const now = new Date();
-    var where_date = {
-      [Op.and] : [
+    var where_date = {}
+    var required_price = false;
+    if(price_today == 1){
+      where_date[Op.and] = [
         {start_date : {[Op.lte] : now}  },
         {end_date : {[Op.gte] : now}  }
       ]
     }
+    var where_price_detail ={}
+    if(price_start_date && price_end_date){
+      where_date[Op.and] = [
+        {start_date : {[Op.lte] : price_start_date}  },
+        {end_date : {[Op.gte] : price_end_date}  }
+      ]
+      required_price = true;
+
+    }
+    // if(total_person){
+    //   where_price_detail.range_start = {[Op.and] : [{[Op.lte] : total_person} ,{[Op.gte] : total_person}] }
+    // }
+
+    var where_boat = {}
+
+    
+    if(cate_id){
+      where_boat.cate_id = cate_id
+    }
+
+
+    const price_include = [
+      {model : PriceCompanyType , include : [
+        {model : PriceDateDetail}
+      ]}
+    ]
+    const boat_include = [
+      {model : Boat,required:true ,where : where_boat,/*  include : [{model : BoatCategory ,attributes :['cate_id'],where:where_cate,required:true}] */}
+    ]
     const include = [
-      {model : PriceDate ,include :price_include,where : where_date,required:false },
+      {model : PriceDate ,include :price_include,where : where_date,required:required_price },
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
-      // {model : ProductBoat}
+      
     ]
 
+    if(cate_id){
+      include.push({model : ProductBoat, include : boat_include,required:true })
+    }
 
-    const products = await Product.findAndCountAll({...options,include})
+    const attributes = {exclude : ['meta_title','meta_description','meta_keyword','meta_image']}
+
+    const products = await Product.findAndCountAll({...options,include,attributes,distinct:true})
     res.json(products)
   }
   catch(err){

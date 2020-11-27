@@ -40,6 +40,8 @@ const models = {
     PriceDateDetail : require('./products/price_date_detail.model')(sequelize,Sequelize),
     ProductBoat : require('./products/products_boat.model')(sequelize,Sequelize),
     Event : require('./products/event.model')(sequelize,Sequelize),
+    Booking : require('./booking/booking.model')(sequelize,Sequelize),
+    BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
     // PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
     
 }

@@ -42,7 +42,7 @@ const PackagePrice = memo((props) => {
   // const [startDate, setStartDate] = useState(null);
   // const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
-  const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave} = props
+  const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave,isBoat=false} = props
 
   const [data,setData] = useState(editData || initStateTypeNormal)
 
@@ -83,6 +83,13 @@ const PackagePrice = memo((props) => {
 
   useEffect(() => editData && setData(editData) ,[editData]  )
 
+
+  useEffect(() => {
+    if(!editData && isBoat){
+      setData(initStateTypeTier)
+    }
+    
+  }, [isBoat]);
 
 
 
@@ -212,6 +219,9 @@ const PackagePrice = memo((props) => {
 
 
   var options = [{ value: 'normal', label: 'Tour'}, { value: 'tier', label: 'Private Tour'}];
+  if(isBoat){
+    options = [{ value: 'tier', label: 'Charter'}]
+  }
   // const [priceTypes, setPriceType] = useState('');
   const [addDataTier, setAddDataTier] = useState(false);
   const handleChange = (e) => {
@@ -223,8 +233,8 @@ const PackagePrice = memo((props) => {
   // const handleAddTier = () => {
   //   setAddDataTier(true);
   // }
-  console.log('data',data)
-  console.log('lasted',lasted)
+  // console.log('data',data)
+  // console.log('lasted',lasted)
 
   return (
     <>
@@ -240,7 +250,8 @@ const PackagePrice = memo((props) => {
                 name={"pricing_type"}
                 options={options}
                 onChange={(e) => handleChange(e)}
-                defaultValue={{ label: "Tour", value: 'normal' }}
+                value={options.find(val => val.value === data.pricing_type) }
+                // defaultValue={{ label: "Tour", value: 'normal' }}
               /> 
           </div>
         </div>
