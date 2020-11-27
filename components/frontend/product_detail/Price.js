@@ -66,7 +66,19 @@ const Price = (props) => {
 		  });
   },[]);
 
-  // console.log('date',date)
+  useEffect(() => {
+    $("#adults .qtyDec, #adults .qtyInc").on("click", function() {
+      alert('adults');
+    });
+    $("#childrens .qtyDec, #childrens .qtyInc").on("click", function() {
+      alert('childrens');
+    });
+  },[]);
+
+
+  
+  
+
 
   return (
     <>
@@ -82,11 +94,11 @@ const Price = (props) => {
         <div className="panel-dropdown">
           <a>Guests <span className="qtyTotal">1</span></a>
           <div className="panel-dropdown-content right">
-            <div className="qtyButtons">
+            <div className="qtyButtons" id="adults">
               <label>Adults</label>
               <input type="text" name="qtyInput" value="1" />
             </div>
-            <div className="qtyButtons">
+            <div className="qtyButtons" id="childrens">
               <label>Childrens</label>
               <input type="text" name="qtyInput" value="0" />
             </div>
