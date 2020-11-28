@@ -4,6 +4,23 @@ const Banner = (props) => {
   const {data} = props;
 
   useEffect(() => {
+    'use strict';
+	  $('input[name="dates"]').daterangepicker({
+		  autoUpdateInput: false,
+		  minDate:new Date(),
+		  locale: {
+			  cancelLabel: 'Clear'
+		  }
+	  });
+	  $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+		  $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+	  });
+	  $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
+		  $(this).val('');
+	  });
+  }, [])
+
+  useEffect(() => {
 
     $(".qtyButtons input").after('<div class="qtyInc"></div>');
     $(".qtyButtons input").before('<div class="qtyDec"></div>');
@@ -65,7 +82,7 @@ const Banner = (props) => {
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <input class="form-control" type="text" name="dates" placeholder="When.." />
+                      <input class="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" />
                       <i class="icon_calendar"></i>
                     </div>
                   </div>
