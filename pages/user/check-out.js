@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Layout from '../../components/frontend/layout/Layout';
 import Address from '../../components/frontend/payment/Address'
 import PaymentMethod from '../../components/frontend/payment/PaymentMethod'
 import BillingAddress from '../../components/frontend/payment/BillingAddress'
 import CancellationPolicy from '../../components/frontend/payment/CancellationPolicy'
+import Router from 'next/router'
 import Summary from '../../components/frontend/payment/Summary'
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
+  const [data,setData] = useState();
+
+  useEffect(() => {
+    const _data =  localStorage.getItem('checkout_dt')
+    if(!_data){
+      Router.push('/')
+      return;
+    }
+    var json = JSON.parse(_data);
+    if(json.expired_at <= new Date().getTime() ){
+      Router.push('/')
+      return;
+    }
+    setData(JSON.parse(_data))
+    
+  }, []);
 
   return (
     <Layout loading={loading} title="Checkout" page={'checkout'}>
