@@ -160,7 +160,7 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
     if(children_detail){
       const {commission,price} = children_detail;
       const real_price = parseFloat(commission) || parseFloat(price)
-      console.log(real_price * children)
+      // console.log(real_price * children)
       if(!result.price) result.price = 0
       result.price += real_price * children 
     }
@@ -173,7 +173,7 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
 
     const {commission,price} = price_date_detail;
     var net_price = parseFloat(commission)
-    console.log('price_date_detail',total_person,price_date_detail)
+    // console.log('price_date_detail',total_person,price_date_detail)
 
     var normal_price = parseFloat(price) 
 

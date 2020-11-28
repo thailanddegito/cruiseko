@@ -26,6 +26,12 @@ const Detail = (props) => {
   },[packages,state,user])
 
   const checkout = () => {
+    var checkout_dt = {
+      product_id : packages.id,
+      ...state,
+      expired_at : (new Date()).getTime() + 15 * 60 * 1000 
+    }
+    localStorage.setItem('checkout_dt',JSON.stringify(checkout_dt))
     Router.push('/user/check-out');
   }
 
