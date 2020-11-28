@@ -29,6 +29,7 @@ const Detail = (props) => {
     var checkout_dt = {
       product_id : packages.id,
       ...state,
+      price : priceData.price,
       expired_at : (new Date()).getTime() + 15 * 60 * 1000 
     }
     localStorage.setItem('checkout_dt',JSON.stringify(checkout_dt))

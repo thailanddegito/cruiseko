@@ -19,12 +19,19 @@ const Payment = (props) => {
     }
     var json = JSON.parse(_data);
     if(json.expired_at <= new Date().getTime() ){
+      localStorage.removeItem('checkout_dt')
       Router.push('/')
       return;
     }
     setData(JSON.parse(_data))
     
   }, []);
+
+  const purchase = ()=>{
+    // localStorage.removeItem('checkout_dt')
+    alert('Hello')
+    // Router.push('/order-success')
+  }
 
   return (
     <Layout loading={loading} title="Payment" page={'payment'}>
@@ -43,7 +50,7 @@ const Payment = (props) => {
               
               <aside className="col-lg-4" id="sidebar">
                 <div className="box_detail">
-                  <Summary packages={true} />
+                  <Summary data={data} purchase={purchase} />
                 </div>
               </aside>
             </div>
