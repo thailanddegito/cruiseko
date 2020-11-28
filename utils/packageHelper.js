@@ -208,7 +208,7 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
     else{
       const boat_amt = Math.ceil(total_person / boat.capacity) 
       result.price =  real_price*boat_amt
-      result.unit = 'hour'
+      result.unit = 'boat'
       result.boat_amt = boat_amt;
     }
 

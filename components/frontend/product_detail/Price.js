@@ -7,7 +7,7 @@ const Price = (props) => {
   const {error,state,setState,checkout} = props;
   const [active, setActive] = useState(false);
   // const [date,setDate] = useState()
-  const {price,unit} = props.priceData; 
+  const {price,unit,boat_amt} = props.priceData; 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
     var tot=0;
@@ -75,9 +75,11 @@ const Price = (props) => {
     <>
       <div className="box_detail booking">
         <div className="price">
-          {price !== -1 && <span> {price} ฿</span>}
+          {price !== -1 && <span> {price} ฿ /{unit} </span>}
           <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
         </div>
+        {boat_amt && <div> Boat amount : {boat_amt} </div> }
+        
         <div className="form-group input-dates">
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
