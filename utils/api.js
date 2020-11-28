@@ -50,4 +50,7 @@ export default {
     getPackageOne : (id) => service.get(`/products/${id}`),
     checkout : (data) => service.post(`/booking`,data)
 
+    //Activities
+    getActivities : (params) => service.get(`/boat-category`, {params}),
+
 }
