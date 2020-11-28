@@ -132,6 +132,8 @@ const Index = (props) => {
 
   const headerScroll = <HeaderScrollPackage name="Edit Package" saving={saving} handleSubmit={handleSubmit} is_publish={true} />;
 
+  console.log(pkg);
+
 
   return (
     <>
@@ -167,9 +169,13 @@ const Index = (props) => {
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#images">Package Gallery</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" data-toggle="tab" href="#events">Events Detail</a>
-          </li>
+          {
+            pkg && !pkg.is_boat ? (
+              <li className="nav-item">
+                <a className="nav-link" data-toggle="tab" href="#events">Events Detail</a>
+              </li>
+            ) : null
+          }
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#price">Schedule and Pricing</a>
           </li>
