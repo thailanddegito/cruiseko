@@ -11,62 +11,62 @@
 		$(window).scroll();
 	});
 	
-	// // Sticky nav
-	// $(window).on('scroll', function () {
-	// 	if ($(this).scrollTop() > 1) {
-	// 		$('.header').addClass("sticky");
-	// 	} else {
-	// 		$('.header').removeClass("sticky");
-	// 	}
-	// });
+	// Sticky nav
+	$(window).on('scroll', function () {
+		if ($(this).scrollTop() > 1) {
+			$('.header').addClass("sticky");
+		} else {
+			$('.header').removeClass("sticky");
+		}
+	});
 	
-	// // Sticky sidebar
-	// $('#sidebar').theiaStickySidebar({
-	// 	additionalMarginTop: 150
-	// });
+	// Sticky sidebar
+	$('#sidebar').theiaStickySidebar({
+		additionalMarginTop: 150
+	});
 
-	// // Sticky titles
-	// $('.fixed_title').theiaStickySidebar({
-	// 	additionalMarginTop: 180
-	// });
+	// Sticky titles
+	$('.fixed_title').theiaStickySidebar({
+		additionalMarginTop: 180
+	});
 	
-	// // Mobile Mmenu
-	// var $menu = $("nav#menu").mmenu({
-	// 	"extensions": ["pagedim-black"],
-	// 	counters: true,
-	// 	keyboardNavigation: {
-	// 		enable: true,
-	// 		enhance: true
-	// 	},
-	// 	navbar: {
-	// 		title: 'MENU'
-	// 	},
-	// 	navbars: [{position:'bottom',content: ['<a href="#0">© 2020 Panagea</a>']}]}, 
-	// 	{
-	// 	// configuration
-	// 	clone: true,
-	// 	classNames: {
-	// 		fixedElements: {
-	// 			fixed: "menu_fixed",
-	// 			sticky: "sticky"
-	// 		}
-	// 	}
-	// });
-	// var $icon = $("#hamburger");
-	// var API = $menu.data("mmenu");
-	// $icon.on("click", function () {
-	// 	API.open();
-	// });
-	// API.bind("open:finish", function () {
-	// 	setTimeout(function () {
-	// 		$icon.addClass("is-active");
-	// 	}, 100);
-	// });
-	// API.bind("close:finish", function () {
-	// 	setTimeout(function () {
-	// 		$icon.removeClass("is-active");
-	// 	}, 100);
-	// });
+	// Mobile Mmenu
+	var $menu = $("nav#menu").mmenu({
+		"extensions": ["pagedim-black"],
+		counters: true,
+		keyboardNavigation: {
+			enable: true,
+			enhance: true
+		},
+		navbar: {
+			title: 'MENU'
+		},
+		navbars: [{position:'bottom',content: ['<a href="#0">© 2020 Panagea</a>']}]}, 
+		{
+		// configuration
+		clone: true,
+		classNames: {
+			fixedElements: {
+				fixed: "menu_fixed",
+				sticky: "sticky"
+			}
+		}
+	});
+	var $icon = $("#hamburger");
+	var API = $menu.data("mmenu");
+	$icon.on("click", function () {
+		API.open();
+	});
+	API.bind("open:finish", function () {
+		setTimeout(function () {
+			$icon.addClass("is-active");
+		}, 100);
+	});
+	API.bind("close:finish", function () {
+		setTimeout(function () {
+			$icon.removeClass("is-active");
+		}, 100);
+	});
 	
 	// WoW - animation on scroll
 	var wow = new WOW(

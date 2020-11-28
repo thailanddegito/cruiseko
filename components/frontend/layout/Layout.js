@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
 import Header from './Header';
-import HeaderNew from './HeaderNew';
 import usescript from '../../../utils/UseScript'
 // import Footer from '../layout/Footer'
 
@@ -41,8 +40,7 @@ const Layout = (props) => {
       
       </Head>
       
-      {/* <Header loading={loading} /> */}
-      <HeaderNew loading={loading} />
+      <Header loading={loading} />
       <div className='main-layout'>
         {/* {loading && <Loading />} */}
         {children}
