@@ -301,6 +301,7 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .custom-search-input-2 .select {
   border-right: 1px solid #d2d8dd;
 }
+
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
@@ -310,6 +311,11 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
   }
 }
 
+@media (max-width: 991px) {
+  .nice-select.wide {
+    margin-bottom: 5px;
+  }
+}
 @media (max-width: 767px) {
   .main-layout {
     margin: 54px 0;
