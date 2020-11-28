@@ -9,7 +9,7 @@ const PaymentMethod = (props) => {
     packages ? (
       <>
         <div className="form_title">
-          <h3><strong>1</strong>Payment Information</h3>
+          <h3><strong>2</strong>Payment Information</h3>
           <p>
             Mussum ipsum cacilds, vidis litro abertis.
           </p>
