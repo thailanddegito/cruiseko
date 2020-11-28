@@ -34,7 +34,7 @@ const Payment = (props) => {
   }
 
   return (
-    <Layout loading={loading} title="Payment" page={'payment'}>
+    <Layout loading={loading} title="Checkout" page={'checkout'}>
       <main>
         <div className="bg_color_1">
           <div className="container margin_60_35">

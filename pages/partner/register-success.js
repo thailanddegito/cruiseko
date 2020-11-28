@@ -5,7 +5,7 @@ const RegisterSuccess = (props) => {
   const [loading, setLodding] = useState(false);
 
   return (
-    <Layout loading={loading} title="Home" page={'partner_register_success'}>
+    <Layout loading={loading} title="Register Success" page={'partner_register_success'}>
       <div className="container">
         <div className="row">
           <div className="col-12">
