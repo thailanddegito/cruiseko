@@ -21,6 +21,8 @@ const ColumsBody = (props) => {
     
     {
       name: 'Drafting',
+      sortable: true,
+      selector: 'equal_draft',
       cell : row => (
         row.equal_draft == 1 ? 'No' : 'Yes'
       )
