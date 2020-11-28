@@ -14,19 +14,23 @@ module.exports = (sequelize, type) => {
       allowNull : false
 
     },
-    user_company_type_name : type.STRING,
+    // user_company_type_name : type.STRING,
     user_type : type.STRING(20),
+    user_firstname : type.STRING,
+    user_lastname : type.STRING,
+    user_email : type.STRING,
+    user_phone : type.STRING(50),
     total_person : {
       type : type.INTEGER,
       allowNull : false,
       defaultValue : 0
     },
-    adult_amt : {
+    adult : {
       type : type.INTEGER,
       allowNull : false,
       defaultValue : 0
     },
-    children_amt : {
+    children : {
       type : type.INTEGER,
       allowNull : false,
       defaultValue : 0
@@ -36,6 +40,7 @@ module.exports = (sequelize, type) => {
       allowNull : false,
       defaultValue : 0
     },
+    payment_status : type.INTEGER,
     payment_date : type.DATE,
     //CREDIT, TRANSFER
     payment_type : type.STRING,
@@ -48,7 +53,9 @@ module.exports = (sequelize, type) => {
   })
 
   Booking.associate = function(models) {
-    Booking.hasMany(models.Boat,{foreignKey : 'cate_id',constraints: false})
+    Booking.hasMany(models.BookingBoat,{foreignKey : 'booking_id',constraints: false})
+    Booking.hasMany(models.BookingDetail,{foreignKey : 'booking_id',constraints: false})
+    Booking.hasOne(models.BookingAddress,{foreignKey : 'booking_id',constraints: false})
   };
   return Booking
 }

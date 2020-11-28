@@ -48,5 +48,6 @@ export default {
     //Package
     getPackage : (params) => service.get(`/products`, {params}),
     getPackageOne : (id) => service.get(`/products/${id}`),
+    checkout : (data) => service.post(`/booking`,data)
 
 }

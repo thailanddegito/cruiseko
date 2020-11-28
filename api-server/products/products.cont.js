@@ -550,7 +550,7 @@ async function equalizeProduct({draft_id,live_id,transaction}){
   await createEvents(events,live_id,null,transaction)
   await ProductBoat.bulkCreate(products_boats,{transaction})
 }
-
+exports.getOneProduct = getOneProduct;
 async function getOneProduct(product_id,transaction){
   const price_include = [
     {model : PriceCompanyType , include : [PriceDateDetail]}
