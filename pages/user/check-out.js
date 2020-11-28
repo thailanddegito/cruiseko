@@ -4,7 +4,7 @@ import Address from '../../components/frontend/payment/Address'
 import PaymentMethod from '../../components/frontend/payment/PaymentMethod'
 import BillingAddress from '../../components/frontend/payment/BillingAddress'
 import CancellationPolicy from '../../components/frontend/payment/CancellationPolicy'
-import Summayry from '../../components/frontend/payment/Summayry'
+import Summayry from '../../components/frontend/payment/Summary'
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
