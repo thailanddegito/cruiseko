@@ -28,7 +28,7 @@ const SelectStyle = (props) => {
         <select className="wide d-none" name={name} value={option_val}>
           {
             options ? options.map((val, index) => (
-              <option value={val.cate_id} key={index}>{val.name}</option>	      
+              <option value={val.value} key={index}>{val.name}</option>	      
             )) : null
           }
         </select>
@@ -37,7 +37,7 @@ const SelectStyle = (props) => {
           <ul className="list">
             {
               options ? options.map((val, index) => (   
-              <li data-value={val.cate_id} key={index} className={`option ${textOptions == val.name ? "selected focus" : ''}`} onClick={() => handleChange(val.cate_id, val.name)}>{val.name}</li>
+              <li data-value={val.value} key={index} className={`option ${textOptions == val.name ? "selected focus" : ''}`} onClick={() => handleChange(val.value, val.name)}>{val.name}</li>
               )) : null
             }
           </ul>

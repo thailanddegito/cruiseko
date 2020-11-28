@@ -85,7 +85,8 @@ const Banner = (props) => {
     api.getActivities()
     .then(res=>{
       const data = res.data;
-      setActivities(data);
+      var temp = data.map(val => ({...val,value : val.cate_id})  )
+      setActivities(temp);
       if(data) {
         setTextOption(data[0].name);
         setOptionVal(data[0].cate_id);
