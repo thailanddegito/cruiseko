@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Layout from '../../../components/frontend/layout/Layout';
-import PaymentMethod from '../../../components/frontend/payment/PaymentMethod'
-import BillingAddress from '../../../components/frontend/payment/BillingAddress'
-import CancellationPolicy from '../../../components/frontend/payment/CancellationPolicy'
-import Summayry from '../../../components/frontend/payment/Summayry'
+import Layout from '../../components/frontend/layout/Layout';
+import PaymentMethod from '../../components/frontend/payment/PaymentMethod'
+import BillingAddress from '../../components/frontend/payment/BillingAddress'
+import CancellationPolicy from '../../components/frontend/payment/CancellationPolicy'
+import Summayry from '../../components/frontend/payment/Summayry'
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
