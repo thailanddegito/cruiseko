@@ -10,7 +10,7 @@ const Payment = (props) => {
   const [loading, setLodding] = useState(false);
 
   return (
-    <Layout loading={loading} title="Payment" page={'payment'}>
+    <Layout loading={loading} title="Checkout" page={'checkout'}>
       <main>
         <div className="bg_color_1">
           <div className="container margin_60_35">
