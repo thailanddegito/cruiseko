@@ -1,4 +1,5 @@
 
+import Router from 'next/router';
 import React, {useEffect,useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 
@@ -65,6 +66,9 @@ const Price = (props) => {
     setState({...state,[key] :newVal })
   }
 
+  const handlePay = () => {
+    Router.push('/user/check-out');
+  }
   
 
 
@@ -83,7 +87,7 @@ const Price = (props) => {
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
 
-        <button type="button" disabled={price === -1} className="btn_1 full-width purchase">Purchase</button>
+        <button type="button" disabled={price === -1} className="btn_1 full-width purchase" onClick={() => handlePay()}>Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       
