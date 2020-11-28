@@ -301,7 +301,11 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .custom-search-input-2 .select {
   border-right: 1px solid #d2d8dd;
 }
-
+.custom-search-input-2 {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
