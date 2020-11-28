@@ -20,8 +20,8 @@ const BillingAddress = (props) => {
               <div className="form-group">
                 <label>Country</label>
                 <div className="custom-select-form">
-                <select className="wide add_bottom_15" name="country" id="country">
-                  <option value="" selected>Select your country</option>
+                <select className="wide add_bottom_15" name="country" id="country" defaultValue=""  >
+                  <option value="" >Select your country</option>
                   <option value="Europe">Europe</option>
                   <option value="United states">United states</option>
                   <option value="South America">South America</option>

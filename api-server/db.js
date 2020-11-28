@@ -42,6 +42,8 @@ const models = {
     Event : require('./products/event.model')(sequelize,Sequelize),
     Booking : require('./booking/booking.model')(sequelize,Sequelize),
     BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
+    BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
+    BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
     // PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
     
 }

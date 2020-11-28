@@ -1,5 +1,5 @@
 module.exports = (sequelize, type) => {
-  var Booking  = sequelize.define('booking', {
+  var BookingDetail  = sequelize.define('booking_detail', {
     id : {
       type: type.INTEGER,
       primaryKey: true,
@@ -13,6 +13,10 @@ module.exports = (sequelize, type) => {
       type: type.INTEGER,
       allowNull : false
     },
+    price : {
+      type : type.DECIMAL(18,2),
+      defaultValue : 0
+    }
     
     
   },
@@ -21,8 +25,8 @@ module.exports = (sequelize, type) => {
       freezeTableName: true
   })
 
-  Booking.associate = function(models) {
-    Booking.hasMany(models.Boat,{foreignKey : 'cate_id',constraints: false})
+  BookingDetail.associate = function(models) {
+    // BookingDetail.hasMany(models.Boat,{foreignKey : 'cate_id',constraints: false})
   };
-  return Booking
+  return BookingDetail
 }

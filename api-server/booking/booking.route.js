@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 const booking = require('./booking.cont')
 // const backend = require('./backend.cont')
-// const mw = require('../../middlewares/auth')
+const mw = require('../middlewares/auth')
 
-const protect_method = ['post','put','delete']
-protect_method.forEach(val => router[val]('/*',mw.jwt('admin')))
+const protect_method_admin = ['get','delete']
+protect_method_admin.forEach(val => router[val]('/*',mw.jwt('admin')))
+
+const protect_method = ['post']
+protect_method.forEach(val => router[val]('/*',mw.jwt('user')))
 
 router.get('/',booking.getAll)
 
