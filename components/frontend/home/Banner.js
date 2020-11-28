@@ -7,7 +7,8 @@ const Banner = (props) => {
   const {data} = props;
   const [active, setActive] = useState(false);
   const [state, setState] = useState({
-    date : toDateISO(new Date()),
+    start_date : toDateISO(new Date()),
+    end_date : toDateISO(new Date()),
     adult : 1,
     children : 0
   })
@@ -16,7 +17,7 @@ const Banner = (props) => {
     event.preventDefault();
     var data = new FormData(event.target);
     var activities = data.get('activities');
-    var dates = data.get('dates');
+    var dates = state.start_date+'>'+state.end_date;
     var adult = state.adult;
     var children = state.children;
     Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);

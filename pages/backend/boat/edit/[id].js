@@ -87,6 +87,14 @@ const EditRole = ({query}) => {
             <form onSubmit={handleSave} encType="multipart/form-data">
               <div className="row justify-content-center">
                   <div className="col-lg-8 col-12">
+                    <InputLabel inputProps={{ 
+                      className:'form-control', type : 'text',
+                      name : 'name', required : true,
+                      defaultValue : boats.name
+                    }} 
+                    labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
+                  </div>
+                  <div className="col-lg-4 col-12">
                     <SelectLabel 
                     inputProps={{ 
                       className:'form-control select', 
@@ -94,14 +102,6 @@ const EditRole = ({query}) => {
                       defaultValue : boats.cate_id
                     }} 
                     labelName="Boat Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
-                  </div>
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'name', required : true,
-                      defaultValue : boats.name
-                    }} 
-                    labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 

@@ -7,22 +7,25 @@ import ProductCard from '../components/frontend/product/ProductCard'
 import ProductCardLandscape from '../components/frontend/product/ProductCardLandscape'
 import SearchPackage from '../components/frontend/product/SearchPackage';
 import { toDateISO } from '../utils/tools';
-import Router from 'next/router';
+import Router, {useRouter } from 'next/router';
 
-const Home = (props) => {
+const SearchPackageIndex = ({query}) => {
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState();
   const [showGrid, setShowGrid] = useState(1);
   const [active, setActive] = useState(false);
   const [state, setState] = useState({
-    date : toDateISO(new Date()),
+    start_date : toDateISO(new Date()),
+    end_date : toDateISO(new Date()),
     adult : 1,
     children : 0
   })
+
+  console.log(query);
   
-  const fecthPackage = () => {
+  const fecthPackage = (params) => {
     setLodding(true);
-    api.getPackage({is_draft : 0 , publish_status : 1})
+    api.getPackage({...params, is_draft : 0 , publish_status : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);
@@ -33,16 +36,27 @@ const Home = (props) => {
       console.log(err.response);
     })
   }
-  
+
   useEffect(() => {
-    fecthPackage();
-  }, [])
+    var params = {};
+    if(query.activities) params.cate_id = query.activities;
+    if(query.dates) {
+      var date = query.dates.split('>');
+      params.price_start_date = date[0];
+      params.price_end_date = date[1];
+    }
+    fecthPackage(params);
+  }, [query])
+  
+  // useEffect(() => {
+  //   fecthPackage();
+  // }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault();
     var data = new FormData(event.target);
     var activities = data.get('activities');
-    var dates = data.get('dates');
+    var dates = state.start_date+'>'+state.end_date;
     var adult = state.adult;
     var children = state.children;
     Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
@@ -96,5 +110,8 @@ const Home = (props) => {
     </Layout>
   )
 }
-export default Home
 
+SearchPackageIndex.getInitialProps = ({query}) => {
+  return {query}; //has to be like an object
+}
+export default SearchPackageIndex

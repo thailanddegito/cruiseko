@@ -29,7 +29,11 @@ const SearchPackage = (props) => {
 		  }
 	  });
 	  $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-		  $(this).val(picker.startDate.format('MM-DD-YY') + '>' + picker.endDate.format('MM-DD-YY'));
+      $(this).val(picker.startDate.format('MM-DD-YY') + '>' + picker.endDate.format('MM-DD-YY'));
+      setState({...state,
+        start_date : picker.startDate.format('YYYY-MM-DD'),
+        end_date : picker.endDate.format('YYYY-MM-DD'),
+      })
 	  });
 	  $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
 		  $(this).val('');
