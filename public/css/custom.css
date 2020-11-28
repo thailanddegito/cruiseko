@@ -298,6 +298,9 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 .panel-dropdown a {
   color: #495057 !important;
 }
+.custom-search-input-2 .select {
+  border-right: 1px solid #d2d8dd;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

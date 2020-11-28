@@ -49,4 +49,7 @@ export default {
     getPackage : (params) => service.get(`/products`, {params}),
     getPackageOne : (id) => service.get(`/products/${id}`),
 
+    //Activities
+    getActivities : (params) => service.get(`/boat-category`, {params}),
+
 }

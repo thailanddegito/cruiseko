@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 import {toDateISO} from '../../../utils/tools'
+import SelectStyle from '../../widget/SelectStyle'
+import api from '../../../utils/api'
+import Router from 'next/router';
 
 const Banner = (props) => {
   const {data} = props;
@@ -10,6 +13,8 @@ const Banner = (props) => {
     adult : 1,
     children : 0
   })
+
+  
 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
@@ -33,7 +38,7 @@ const Banner = (props) => {
 		  }
 	  });
 	  $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-		  $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+		  $(this).val(picker.startDate.format('MM-DD-YY') + '>' + picker.endDate.format('MM-DD-YY'));
 	  });
 	  $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
 		  $(this).val('');
@@ -70,6 +75,41 @@ const Banner = (props) => {
     setState({...state,[key] :newVal })
   }
 
+
+  const [open, setOpen] = useState(false);
+  const [activities, setActivities] = useState();
+  const [textOptions, setTextOption] = useState("All Activities");
+  const [option_val, setOptionVal] = useState();
+
+  const fecthBoatCate = () => {
+    api.getActivities()
+    .then(res=>{
+      const data = res.data;
+      setActivities(data);
+      if(data) {
+        setTextOption(data[0].name);
+        setOptionVal(data[0].cate_id);
+      }
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  
+  useEffect(() => {
+    fecthBoatCate();
+  },[]);
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var activities = data.get('activities');
+    var dates = data.get('dates');
+    var adult = state.adult;
+    var children = state.children;
+    Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
+  }
+
  
   return (
     data ? (
@@ -79,17 +119,22 @@ const Banner = (props) => {
             <div class="container">
               <h3>Book unique experiences</h3>
               <p>Expolore top rated tours, hotels and restaurants around the world</p>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div class="row no-gutters custom-search-input-2">
-                  <div class="col-lg-4">
+                  <SelectStyle name="activities" col="col-lg-4" 
+                  textOptions={textOptions} setTextOption={setTextOption}
+                  options={activities}
+                  setOptionVal={setOptionVal} option_val={option_val}
+                  setOpen={setOpen} open={open} />
+                  {/* <div class="col-lg-4">
                     <div class="form-group">
-                      <input class="form-control" type="text" placeholder="Hotel, City..." />
+                      <input class="form-control" type="text" placeholder="Hotel, City..." required />
                       <i class="icon_pin_alt"></i>
                     </div>
-                  </div>
+                  </div> */}
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <input class="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" />
+                      <input class="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" required />
                       <i class="icon_calendar"></i>
                     </div>
                   </div>
