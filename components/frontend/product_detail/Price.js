@@ -19,40 +19,7 @@ const Price = (props) => {
     cardQty.innerHTML = tot;
   } 
   
-  useEffect(() => {
-    qtySum();
-    // $(".qtyButtons input").after('<div class="qtyInc"></div>');
-    // $(".qtyButtons input").before('<div class="qtyDec"></div>');
-    $(".qtyDec, .qtyInc").on("click", function() {
-
-     var $button = $(this);
-     var oldValue = $button.parent().find("input").val();
-     var key = $button.parent().attr('id') === 'adults' ? 'adult' : 'children'
-     
-     if ($button.hasClass('qtyInc')) {
-      var newVal = parseFloat(oldValue) + 1;
-     } else {
-      // don't allow decrementing below zero
-      if (oldValue > 0) {
-       var newVal = parseFloat(oldValue) - 1;
-      } else {
-       newVal = 1;
-      }
-     }
-     setState({...state,[key] :newVal })
-    //  alert(newVal)
-
-     $button.parent().find("input").val(newVal);
-     qtySum();
-     $(".qtyTotal").addClass("rotate-x");
-
-    });
-
-    function removeAnimation() { $(".qtyTotal").removeClass("rotate-x"); }
-    const counter = document.querySelector(".qtyTotal");
-    counter.addEventListener("animationend", removeAnimation);
-  }, [])
-
+  
   useEffect(() => {
     $('input[name="dates"]').daterangepicker({
 		  autoUpdateInput: true,
@@ -70,24 +37,30 @@ const Price = (props) => {
 		    // console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')');
 		  });
   },[]);
-
   useEffect(() => {
-    $("#adults .qtyDec").on("click", function() {
-    
-    });
-    $("#adults .qtyInc").on("click", function() {
-     
-    });
-    $("#childrens .qtyDec").on("click", function() {
-    
-    });
-    $("#childrens .qtyInc").on("click", function() {
-     
-    });
-  },[]);
+    qtySum();
+    function removeAnimation() { $(".qtyTotal").removeClass("rotate-x"); }
+    const counter = document.querySelector(".qtyTotal");
+    counter.addEventListener("animationend", removeAnimation);
+  },[state.adult, state.children]);
 
 
-  
+  const handleButton = (key, btn) => {
+    $(".qtyTotal").addClass("rotate-x");
+    var oldValue = state[key];
+    if (btn == 'plus') {
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      if (oldValue > 0) {
+        var newVal = parseFloat(oldValue) - 1;
+      } else {
+        newVal = 1;
+      }
+    }
+    setState({...state,[key] :newVal })
+    
+  }
+
   
 
 
@@ -102,7 +75,7 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        <SelectAmount active={active} setActive={setActive} />
+        <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         {/* <div className="panel-dropdown active">
           <a>Guests <span className="qtyTotal">1</span></a>
           <div className="panel-dropdown-content right">

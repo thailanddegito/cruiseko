@@ -2,7 +2,9 @@
 import React, {useEffect} from 'react';
   
 const SelectAmount = (props) => {
-  const {active, setActive} = props;
+  const {active, setActive, handleButton, state} = props;
+
+  
   return (
     <>
       <div className={`panel-dropdown ${active ? 'active' : ''}`}>
@@ -10,15 +12,15 @@ const SelectAmount = (props) => {
         <div className="panel-dropdown-content right">
           <div className="qtyButtons" id="adults">
             <label>Adults</label>
-            <div className="qtyDec"></div>
-            <input type="text" name="qtyInput" id="adults_input" value="1" />
-            <div className="qtyInc"></div>
+            <div className="qtyDec" onClick={() => handleButton('adult', 'minus')}></div>
+            <input type="text" name="qtyInput" id="adults_input" value={state.adult} />
+            <div className="qtyInc" onClick={() => handleButton('adult', 'plus')}></div>
           </div>
           <div className="qtyButtons" id="childrens">
             <label>Childrens</label>
-            <div className="qtyDec"></div>
-            <input type="text" name="qtyInput" id="childrens_input" value="0"/>
-            <div className="qtyInc"></div>
+            <div className="qtyDec" onClick={() => handleButton('children', 'minus')}></div>
+            <input type="text" name="qtyInput" id="childrens_input" value={state.children} />
+            <div className="qtyInc" onClick={() => handleButton('children', 'minus')}></div>
           </div>
         </div>
       </div>
