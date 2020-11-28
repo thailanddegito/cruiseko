@@ -9,7 +9,7 @@ const BillingAddress = (props) => {
     packages ? (
       <>
         <div className="form_title">
-          <h3><strong>3</strong>Billing Address</h3>
+          <h3><strong>1</strong>Your Details</h3>
           <p>
             Mussum ipsum cacilds, vidis litro abertis.
           </p>
