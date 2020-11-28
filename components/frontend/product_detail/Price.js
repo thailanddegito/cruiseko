@@ -4,7 +4,7 @@ import React, {useEffect,useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 
 const Price = (props) => {
-  const {error,state,setState} = props;
+  const {error,state,setState,checkout} = props;
   const [active, setActive] = useState(false);
   // const [date,setDate] = useState()
   const {price,unit} = props.priceData; 
@@ -66,10 +66,7 @@ const Price = (props) => {
     setState({...state,[key] :newVal })
   }
 
-  const handlePay = () => {
-    Router.push('/user/check-out');
-  }
-  
+
 
 
   return (
@@ -87,7 +84,7 @@ const Price = (props) => {
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
 
-        <button type="button" disabled={price === -1} className="btn_1 full-width purchase" onClick={() => handlePay()}>Purchase</button>
+        <button type="button" disabled={price === -1} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       
