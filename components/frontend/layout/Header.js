@@ -17,12 +17,14 @@ const Header = (props) => {
   return (
     <>
       <header class="header menu_fixed">
-        {loading && <Loading loading={loading} />}
+        {/* {loading && <Loading loading={loading} />} */}
         <div id="logo">
           <Link href="/">
             <a>
-              <img src="/template/img/logo.svg" width="150" height="36" alt="" class="logo_normal" />
-              <img src="/template/img/logo_sticky.svg" width="150" height="36" alt="" class="logo_sticky" />
+              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+              <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
+              {/* <img src="/template/img/logo.svg" width="150" height="36" alt="" class="logo_normal" />
+              <img src="/template/img/logo_sticky.svg" width="150" height="36" alt="" class="logo_sticky" /> */}
             </a>
           </Link>
         </div>
