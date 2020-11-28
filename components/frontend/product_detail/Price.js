@@ -58,7 +58,6 @@ const Price = (props) => {
       }
     }
     setState({...state,[key] :newVal })
-    
   }
 
   
@@ -75,29 +74,13 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
-        {/* <div className="panel-dropdown active">
-          <a>Guests <span className="qtyTotal">1</span></a>
-          <div className="panel-dropdown-content right">
-            <div className="qtyButtons" id="adults">
-              <label>Adults</label>
-              <input type="text" name="qtyInput" id="adults_input" value="1" />
-            </div>
-            <div className="qtyButtons" id="childrens">
-              <label>Childrens</label>
-              <input type="text" name="qtyInput" id="childrens_input" value="0" />
-            </div>
-          </div>
-        </div> */}
+        <div>
+          <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
+        </div>
         <a href="cart-1.html" className="btn_1 full-width purchase">Purchase</a>
-        {/* <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart"></i> Add to wishlist</a> */}
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
-      {/* <ul className="share-buttons">
-        <li><a className="fb-share" href="#0"><i className="social_facebook"></i> Share</a></li>
-        <li><a className="twitter-share" href="#0"><i className="social_twitter"></i> Tweet</a></li>
-        <li><a className="gplus-share" href="#0"><i className="social_googleplus"></i> Share</a></li>
-      </ul> */}
+      
     </>
   )
 }
