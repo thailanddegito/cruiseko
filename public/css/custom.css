@@ -1,8 +1,8 @@
 .main-layout {
-  margin: 112px 0;
+  /* margin: 112px 0; */
 }
 header {
-  z-index: 999;
+  padding: 20px 30px;
 }
 .btn, .btn.btn_1.rounded {
   min-width: 140px !important;
@@ -22,7 +22,7 @@ header.header.sticky .menu-two {
   padding: 20px 30px;
 }
 header.header.sticky {
-  padding: 0;
+  padding: 15px 20px;
   border: none;
 }
 a.show-color {

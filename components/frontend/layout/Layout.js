@@ -1,10 +1,14 @@
 import Head from 'next/head';
 import React from 'react';
 import Header from './Header';
+import HeaderNew from './HeaderNew';
+import usescript from '../../../utils/UseScript'
 // import Footer from '../layout/Footer'
 
 const Layout = (props) => {
   const {title, loading, children} = props;
+
+  usescript();
 
   return (
     <>
@@ -37,7 +41,8 @@ const Layout = (props) => {
       
       </Head>
       
-      <Header loading={loading} />
+      {/* <Header loading={loading} /> */}
+      <HeaderNew loading={loading} />
       <div className='main-layout'>
         {/* {loading && <Loading />} */}
         {children}
