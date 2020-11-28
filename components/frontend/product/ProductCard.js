@@ -8,7 +8,9 @@ const ProductCard = (props) => {
   const {packages} = props;
   const { user } = useContext(UserContext);
 
-  // console.log('price',calPackagePriceCard(packages,user))
+  console.log('pkg',packages)
+  console.log('price',calPackagePriceCard(packages,user))
+  
   const {price,unit} = calPackagePriceCard(packages,user)
 
 

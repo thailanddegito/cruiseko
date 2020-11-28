@@ -68,11 +68,14 @@ export const sortImages = (images,order) =>{
   })
 }
 
-export const calPackagePriceCard =(pkg,user)=>{
+export const calPackagePriceCard =(pkg,user,total_person=1)=>{
   var result = {price : -1 ,unit : 'person'}
   if(!pkg ) return result;
   if(!pkg.price_dates.length) return result;
 
+  const {is_boat,products_boats} = pkg;
+  if(!products_boats.length) return result;
+  const {boat} = products_boats[0];
   var price_date = pkg.price_dates[0]
   var {pricing_type} = price_date;
   // console.log('pkg.price_dates',pkg.price_dates)
@@ -98,22 +101,38 @@ export const calPackagePriceCard =(pkg,user)=>{
     // return price_date_detail ? price_date_detail.price : result;
   }
   else{
-    var price_date_detail = com_type.price_date_details.reduce((maxItem ,current) =>{
-      if(!maxItem) return current;
-      if(current.range_end >= maxItem.range_end) return current;
-      else return maxItem
-    })
 
-    if(!price_date_detail) return result;
+    if(is_boat == 0){
+      var price_date_detail = com_type.price_date_details.reduce((maxItem ,current) =>{
+        if(!maxItem) return current;
+        if(current.range_end >= maxItem.range_end) return current;
+        else return maxItem
+      })
+  
+      if(!price_date_detail) return result;
+  
+      const {commission,range_end,price} = price_date_detail;
+      var net_price = parseFloat(commission)
+      var normal_price = parseFloat(price)
+      result.price =  user_type === 'fit' && net_price ? net_price/range_end : parseInt(normal_price / range_end) 
+    }
+    else{
+      var price_date_detail = com_type.price_date_details[0]
+      if(!price_date_detail) return result;
+  
+      const {commission,range_end,price} = price_date_detail;
+      var net_price = parseFloat(commission)
+      var normal_price = parseFloat(price)
+      const real_price = parseFloat(commission) || parseFloat(price)
+      const boat_amt = Math.ceil(total_person / boat.capacity) 
+      result.price =  real_price*boat_amt
+      result.normal_price = normal_price;
+      result.unit = 'hour'
+      result.boat_amt = boat_amt;
+    }
+    
 
-    const {commission,range_end,price} = price_date_detail;
-    var net_price = parseFloat(commission)
-    // console.log('price_date_detail',price_date_detail)
-
-    var normal_price = parseInt(parseFloat(price) / range_end) 
-
-
-    result.price =  user_type === 'fit' && net_price ? net_price/range_end : normal_price
+    
     
   }
 
@@ -126,6 +145,10 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
   var result = {price : -1 ,unit : 'person'}
   if(!pkg ) return result;
   if(!pkg.price_dates.length) return result;
+
+  const {is_boat,products_boats} = pkg;
+  if(!products_boats.length) return result;
+  const {boat} = products_boats[0];
 
   var total_person = adult+children;
   if(!total_person) total_person = 1;
@@ -176,11 +199,21 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
     // console.log('price_date_detail',total_person,price_date_detail)
 
     var normal_price = parseFloat(price) 
-
-
+    const real_price = parseFloat(commission) || parseFloat(price)
     result.normal_price = normal_price
-    result.price =  net_price ? net_price : normal_price
-    result.per_person = net_price ? net_price/total_person : normal_price/total_person
+    if(is_boat == 0){
+      result.price =  real_price
+      result.per_person = real_price/total_person
+    }
+    else{
+      const boat_amt = Math.ceil(total_person / boat.capacity) 
+      result.price =  real_price*boat_amt
+      result.unit = 'hour'
+      result.boat_amt = boat_amt;
+    }
+
+    
+    
     
   }
 

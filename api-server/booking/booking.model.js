@@ -56,6 +56,7 @@ module.exports = (sequelize, type) => {
     Booking.hasMany(models.BookingBoat,{foreignKey : 'booking_id',constraints: false})
     Booking.hasMany(models.BookingDetail,{foreignKey : 'booking_id',constraints: false})
     Booking.hasOne(models.BookingAddress,{foreignKey : 'booking_id',constraints: false})
+    Booking.belongsTo(models.User,{foreignKey : 'user_id',constraints: false})
   };
   return Booking
 }

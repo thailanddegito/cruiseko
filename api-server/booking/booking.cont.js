@@ -63,7 +63,7 @@ exports.create = async(req,res,next)=>{
 
     const {products_boats} = product
 
-    // const boats = await Boat.findAll({where : {boat_id : products_boats.map(val=> val.boat_id) }})
+    const boats = await Boat.findAll({where : {boat_id : products_boats.map(val=> val.boat_id) }})
 
     transaction = await sequelize.transaction()
 

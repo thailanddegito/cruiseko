@@ -74,12 +74,12 @@ exports.getAll = async(req,res,next)=>{
       {model : PriceDate ,include :price_include,where : where_date,required:required_price },
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
-      
+      {model : ProductBoat, include : boat_include,required:true }
     ]
 
-    if(cate_id){
-      include.push({model : ProductBoat, include : boat_include,required:true })
-    }
+    // if(cate_id){
+    //   include.push({model : ProductBoat, include : boat_include,required:true })
+    // }
 
     const attributes = {exclude : ['meta_title','meta_description','meta_keyword','meta_image']}
 
@@ -97,11 +97,14 @@ exports.getOne = async(req,res,next)=>{
     const price_include = [
       {model : PriceCompanyType , include : [PriceDateDetail,CompanyType]}
     ]
+    const boat_include = [
+      {model : Boat ,/*  include : [{model : BoatCategory ,attributes :['cate_id'],where:where_cate,required:true}] */}
+    ]
     const include = [
       {model : PriceDate ,include :price_include},
       {model : ProductImage , attributes:['id','image','type','order']},
       {model : Event},
-      {model : ProductBoat}
+      {model : ProductBoat,include : boat_include}
     ]
     var where = {id,deleted : 0}
     var order =  [
@@ -189,8 +192,8 @@ exports.update = async(req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.meta_image = tools.genFileUrl(fileName,'images')
     }
-
-    var product_boats = await ProductBoat.findAll({where : {product_id},raw:true}) 
+    const pkg = await Product.findOne({where : {id},raw:true})
+    var product_boats = await ProductBoat.findAll({where : {product_id},attributes:{exclude:['id'] },raw:true}) 
     product_boats = product_boats.map(val => ({...val,id:undefined}))
     
 
@@ -249,10 +252,16 @@ exports.update = async(req,res,next)=>{
     // data.publish_status = method === 'publish' ? 1 : 0;
 
     if(method === 'publish'){
-      data.equal_draft = 1;
-      data.publish_status = 1;
+      var prep = {
+        ...pkg,
+        ...data,
+        equal_draft : 1,
+        publish_status : 1,
+      }
+      // data.equal_draft = 1;
+      // data.publish_status = 1;
       if(!pkg_live){
-        pkg_live = await createProduct({isDraft:false,data,price_date_list,transaction,draft_ref:id})
+        pkg_live = await createProduct({isDraft:false,prep,price_date_list,transaction,draft_ref:id})
       }
       else {
         // console.log('ttttt')
@@ -430,6 +439,7 @@ async function createPriceData (price_date_list,product_id,transaction) {
         let task = [];
         for(const item of details){
           task.push(PriceDateDetail.create(item,{transaction}))
+          await tools.delay(20)
         }
         await Promise.all(task)
       }
@@ -460,6 +470,7 @@ async function createEvents(events,product_id,files,transaction){
   let task = []
   for(const item of events){
     task.push(Event.create(item,{transaction}))
+    await tools.delay(20)
   }
   await Promise.all(task)
   // await Event.bulkCreate(events,{transaction})
@@ -497,6 +508,7 @@ async function copyPriceProduct(product_id,price_dates,transaction){
       let task = [];
       for(const item of detail){
         task.push(PriceDateDetail.create(item,{transaction}))
+        await tools.delay(20)
       }
       await Promise.all(task)
     }
