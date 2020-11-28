@@ -230,6 +230,33 @@ const PackagePrice = memo((props) => {
     setData(init)
   }
 
+  const checkValidForm = ()=>{
+    if(!data.start_date || !data.end_date) return false;
+    
+    if(data.pricing_type === 'tier'){
+      for(let i = 0 ; i < data.user_type.length ;i++){
+        for(let j = 0 ; j < data.user_type[i].tiers.length ; j++){
+          const item = data.user_type[i].tiers[j]
+          if(!item.number || !item.price){
+            return false;
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < data.user_type.length ;i++){
+        for(let j = 0 ; j < data.user_type[i].price_list.length ; j++){
+          const item = data.user_type[i].price_list[j]
+          if( !item.price){
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
   // const handleAddTier = () => {
   //   setAddDataTier(true);
   // }
@@ -319,7 +346,8 @@ const PackagePrice = memo((props) => {
         ) : null
       }
       <div className="text-center">
-        <Button _type="button" _name={!editData ? "Add" : "Save"} _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
+        <Button _type="button" _name={!editData ? "Add" : "Save"} _disabled={!checkValidForm()}
+        _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
         <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
       </div>
     </>
