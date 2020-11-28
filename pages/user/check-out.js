@@ -4,8 +4,8 @@ import Address from '../../components/frontend/payment/Address'
 import PaymentMethod from '../../components/frontend/payment/PaymentMethod'
 import BillingAddress from '../../components/frontend/payment/BillingAddress'
 import CancellationPolicy from '../../components/frontend/payment/CancellationPolicy'
-import Summayry from '../../components/frontend/payment/Summayry'
 import Router from 'next/router'
+import Summary from '../../components/frontend/payment/Summary'
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
@@ -43,7 +43,7 @@ const Payment = (props) => {
               
               <aside className="col-lg-4" id="sidebar">
                 <div className="box_detail">
-                  <Summayry packages={true} />
+                  <Summary packages={true} />
                 </div>
               </aside>
             </div>

@@ -12,8 +12,7 @@ const Summayry = (props) => {
           Total <span className="float-right">69.00$</span>
         </div>
         <ul className="cart_details">
-          <li>From <span>02-11-18</span></li>
-          <li>To <span>04-11-18</span></li>
+          <li>Date <span>02-11-18</span></li>
           <li>Adults <span>2</span></li>
           <li>Childs <span>1</span></li>
         </ul>
