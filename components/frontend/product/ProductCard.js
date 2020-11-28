@@ -19,7 +19,7 @@ const ProductCard = (props) => {
           <div class="box_grid">
             <figure>
               {/* <a href="#0" class="wish_bt"></a> */}
-              {/* <Link href={`/product-details/${packages.id}`}> */}
+              {/* <Link href={`/product-details/[id]`} as={`/product-details/${packages.id}`}> */}
                 <a href={`/product-details/${packages.id}`}>
                   <img src={packages.picture ? packages.picture : "/template/img/tour_1.jpg"} class="img-fluid" alt="" width="800" height="533"/>
                   <div class="read_more"><span>Read more</span></div>
