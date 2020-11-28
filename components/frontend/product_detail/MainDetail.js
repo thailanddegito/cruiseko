@@ -1,5 +1,6 @@
 
 import React,{useState,useMemo,useContext} from 'react';
+import Router from 'next/router'
 import EditorData from './EditorData';
 import ImageGallery from './ImageGallery';
 import MainEvent from './MainEvent';
@@ -23,6 +24,10 @@ const Detail = (props) => {
   const priceData = useMemo(() =>{
     return calPackagePrice(packages,user,state.date,state.adult,state.children)
   },[packages,state,user])
+
+  const checkout = () => {
+    Router.push('/user/check-out');
+  }
 
   console.log('state',state)
   console.log('priceData',priceData)
@@ -58,7 +63,7 @@ const Detail = (props) => {
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
-              <Price state={state} setState={setState} priceData={priceData} />
+              <Price state={state} setState={setState} priceData={priceData} checkout={checkout} />
             </aside>
           </div>
         </div>
