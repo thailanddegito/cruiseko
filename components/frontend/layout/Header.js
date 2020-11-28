@@ -37,10 +37,10 @@ const Header = (props) => {
                   <div className="float-right">
                     <nav className="main-menu">
                       <ul>
-                        <li><span><a href="/">Help</a></span></li>
+                        <li><span><Link href="/"><a>Help</a></Link></span></li>
                         {
                           !!!user && (
-                            <li><span><a href="/partner/login">Patner Login</a></span></li>
+                            <li><span><Link href="/partner/login"><a>Patner Login</a></Link></span></li>
                           ) 
                         }
                       </ul>
@@ -55,10 +55,12 @@ const Header = (props) => {
               <div className="row">
                 <div className="col-12">
                   <div id="logo">
-                      <a href="/">
-                        <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
-                        <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
-                      </a>
+                      <Link href="/">
+                        <a>
+                          <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+                          <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
+                        </a>
+                      </Link>
                   </div>
                   <a href="#menu" className="btn_mobile">
                     <div className="hamburger hamburger--spin" id="hamburger">
@@ -77,7 +79,7 @@ const Header = (props) => {
                             </ul>
                           </li>
                         ): (
-                          <li><span><a href="/login">Login</a></span></li>
+                          <li><span><Link  href="/login"><a>Login</a></Link></span></li>
                         ) 
                       }
                     </ul>

@@ -295,6 +295,9 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
   color: #000;
   cursor: pointer;
 }
+.panel-dropdown a {
+  color: #495057 !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

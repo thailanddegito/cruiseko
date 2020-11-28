@@ -1,8 +1,10 @@
 
 import React, {useEffect,useState} from 'react';
+import SelectAmount from '../../widget/SelectAmount'
 
 const Price = (props) => {
   const {error,state,setState} = props;
+  const [active, setActive] = useState(false);
   // const [date,setDate] = useState()
   const {price,unit} = props.priceData; 
   const qtySum = () => {
@@ -19,8 +21,8 @@ const Price = (props) => {
   
   useEffect(() => {
     qtySum();
-    $(".qtyButtons input").after('<div class="qtyInc"></div>');
-    $(".qtyButtons input").before('<div class="qtyDec"></div>');
+    // $(".qtyButtons input").after('<div class="qtyInc"></div>');
+    // $(".qtyButtons input").before('<div class="qtyDec"></div>');
     $(".qtyDec, .qtyInc").on("click", function() {
 
      var $button = $(this);
@@ -100,7 +102,8 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        <div className="panel-dropdown">
+        <SelectAmount active={active} setActive={setActive} />
+        {/* <div className="panel-dropdown active">
           <a>Guests <span className="qtyTotal">1</span></a>
           <div className="panel-dropdown-content right">
             <div className="qtyButtons" id="adults">
@@ -112,7 +115,7 @@ const Price = (props) => {
               <input type="text" name="qtyInput" id="childrens_input" value="0" />
             </div>
           </div>
-        </div>
+        </div> */}
         <a href="cart-1.html" className="btn_1 full-width purchase">Purchase</a>
         {/* <a href="wishlist.html" className="btn_1 full-width outline wishlist"><i className="icon_heart"></i> Add to wishlist</a> */}
         <div className="text-center"><small>No money charged in this step</small></div>

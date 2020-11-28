@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import SelectAmount from '../../widget/SelectAmount'
 
 const Banner = (props) => {
   const {data} = props;
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     'use strict';
@@ -22,8 +24,8 @@ const Banner = (props) => {
 
   useEffect(() => {
 
-    $(".qtyButtons input").after('<div class="qtyInc"></div>');
-    $(".qtyButtons input").before('<div class="qtyDec"></div>');
+    // $(".qtyButtons input").after('<div class="qtyInc"></div>');
+    // $(".qtyButtons input").before('<div class="qtyDec"></div>');
     $(".qtyDec, .qtyInc").on("click", function() {
 
     var $button = $(this);
@@ -87,19 +89,7 @@ const Banner = (props) => {
                     </div>
                   </div>
                   <div class="col-lg-3">
-                    <div class="panel-dropdown">
-                      <a href="#">Guests <span class="qtyTotal">1</span></a>
-                      <div class="panel-dropdown-content">
-                        <div class="qtyButtons">
-                          <label>Adults</label>
-                          <input type="text" name="qtyInput" value="1" />
-                        </div>
-                        <div class="qtyButtons">
-                          <label>Childrens</label>
-                          <input type="text" name="qtyInput" value="0" />
-                        </div>
-                      </div>
-                    </div>
+                    <SelectAmount active={active} setActive={setActive} />
                   </div>
                   <div class="col-lg-2">
                     <input type="submit" class="btn_search" value="Search" />
