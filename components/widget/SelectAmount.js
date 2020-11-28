@@ -20,7 +20,7 @@ const SelectAmount = (props) => {
             <label>Childrens</label>
             <div className="qtyDec" onClick={() => handleButton('children', 'minus')}></div>
             <input type="text" name="qtyInput" id="childrens_input" value={state.children} />
-            <div className="qtyInc" onClick={() => handleButton('children', 'minus')}></div>
+            <div className="qtyInc" onClick={() => handleButton('children', 'plus')}></div>
           </div>
         </div>
       </div>
