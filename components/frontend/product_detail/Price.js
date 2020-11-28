@@ -58,11 +58,13 @@ const Price = (props) => {
         var newVal = parseInt(oldValue) - 1;
       } 
       else {
-        newVal = 1;
+        newVal = 0;
       }
     }
     if(key === 'adult' && newVal === 0)
       newVal = 1;
+    if(key === 'children' && newVal === 0)
+      newVal = 0;
     setState({...state,[key] :newVal })
   }
 

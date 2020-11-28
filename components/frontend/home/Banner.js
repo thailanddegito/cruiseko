@@ -1,10 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
+import {toDateISO} from '../../../utils/tools'
 
 const Banner = (props) => {
   const {data} = props;
   const [active, setActive] = useState(false);
+  const [state,setState] = useState({
+    date : toDateISO(new Date()),
+    adult : 1,
+    children : 0
+  })
 
+  const qtySum = () => {
+    var arr = document.getElementsByName('qtyInput');
+    var tot=0;
+    for(var i=0;i<arr.length;i++){
+        if(parseInt(arr[i].value))
+            tot += parseInt(arr[i].value);
+    }
+
+    var cardQty = document.querySelector(".qtyTotal");
+    cardQty.innerHTML = tot;
+  } 
+  
   useEffect(() => {
     'use strict';
 	  $('input[name="dates"]').daterangepicker({
@@ -21,6 +39,36 @@ const Banner = (props) => {
 		  $(this).val('');
 	  });
   }, [])
+
+  useEffect(() => {
+    qtySum();
+    function removeAnimation() { $(".qtyTotal").removeClass("rotate-x"); }
+    const counter = document.querySelector(".qtyTotal");
+    counter.addEventListener("animationend", removeAnimation);
+  },[state.adult, state.children]);
+
+
+  const handleButton = (key, btn) => {
+    $(".qtyTotal").addClass("rotate-x");
+    var oldValue = state[key];
+    // alert(btn)
+    if (btn == 'plus') {
+      var newVal = parseInt(oldValue) + 1;
+    } 
+    else {
+      if (oldValue > 0) {
+        var newVal = parseInt(oldValue) - 1;
+      } 
+      else {
+        newVal = 0;
+      }
+    }
+    if(key === 'adult' && newVal === 0)
+      newVal = 1;
+    if(key === 'children' && newVal === 0)
+      newVal = 0;
+    setState({...state,[key] :newVal })
+  }
 
  
   return (
@@ -46,7 +94,7 @@ const Banner = (props) => {
                     </div>
                   </div>
                   <div class="col-lg-3">
-                    {/* <SelectAmount active={active} setActive={setActive} /> */}
+                    <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
                   </div>
                   <div class="col-lg-2">
                     <input type="submit" class="btn_search" value="Search" />
