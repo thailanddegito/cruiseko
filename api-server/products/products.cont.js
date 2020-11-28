@@ -105,7 +105,8 @@ exports.getOne = async(req,res,next)=>{
     ]
     var where = {id,deleted : 0}
     var order =  [
-      [ProductImage, 'order', 'asc']
+      [ProductImage, 'order', 'asc'],
+      [PriceDate ,'start_date','asc']
     ]
     const product = await Product.findOne({where,include,order})
     res.json(product)
@@ -415,7 +416,7 @@ async function createPriceData (price_date_list,product_id,transaction) {
           
           details = tiers.map((val,i) => {
             const {number} = val;
-            var range_start = i === 0 ? tier_start : tiers[i-1].number;
+            var range_start = i === 0 ? tier_start : parseInt(tiers[i-1].number) +1 ;
             var range_end = number;
             return {...val,range_start,range_end,price_date_id,price_company_type_id,company_type_id,id : null}
           })

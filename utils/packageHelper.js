@@ -166,13 +166,14 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
     }
   }
   else{
-    var price_date_detail = com_type.price_date_details.find(val => val.range_start >= total_person && total_person <= val.range_end)
+    //1 <= 2 && 2 <= 
+    var price_date_detail = com_type.price_date_details.find(val => val.range_start <= total_person && total_person <= val.range_end)
 
     if(!price_date_detail) return result;
 
     const {commission,price} = price_date_detail;
     var net_price = parseFloat(commission)
-    // console.log('price_date_detail',price_date_detail)
+    console.log('price_date_detail',total_person,price_date_detail)
 
     var normal_price = parseFloat(price) 
 

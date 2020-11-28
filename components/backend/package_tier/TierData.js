@@ -19,7 +19,7 @@ const PriceData = memo((props) => {
                 value : props.number,
                 onChange : (e) => onChange(e,'number')
               }} 
-              labelName={`Tier ${prev_tier.number || '?'} - ${props.number || '?'} `} iconProps={{className : 'fa icon icon-email'}}  />
+              labelName={`Tier ${parseInt(prev_tier.number)+1  || '?'} - ${props.number || '?'} `} iconProps={{className : 'fa icon icon-email'}}  />
             </div>
             <div className="col-lg-2 col-12">
               <InputLabel inputProps={{ 
