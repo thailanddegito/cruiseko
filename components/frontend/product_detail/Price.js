@@ -48,15 +48,20 @@ const Price = (props) => {
   const handleButton = (key, btn) => {
     $(".qtyTotal").addClass("rotate-x");
     var oldValue = state[key];
+    // alert(btn)
     if (btn == 'plus') {
-      var newVal = parseFloat(oldValue) + 1;
-    } else {
+      var newVal = parseInt(oldValue) + 1;
+    } 
+    else {
       if (oldValue > 0) {
-        var newVal = parseFloat(oldValue) - 1;
-      } else {
+        var newVal = parseInt(oldValue) - 1;
+      } 
+      else {
         newVal = 1;
       }
     }
+    if(key === 'adult' && newVal === 0)
+      newVal = 1;
     setState({...state,[key] :newVal })
   }
 
@@ -77,7 +82,8 @@ const Price = (props) => {
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
-        <a href="cart-1.html" className="btn_1 full-width purchase">Purchase</a>
+
+        <button type="button" disabled={price === -1} className="btn_1 full-width purchase">Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       
