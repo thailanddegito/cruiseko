@@ -39,7 +39,13 @@ exports.getOne = async (req,res,next)=>{
 }
 exports.create = async (req,res,next)=>{
   var data = req.body;
+  var files = req.files || {}
   try{
+    if(files.picture && files.picture){
+      let file = files.picture;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.picture = tools.genFileUrl(fileName,'images')
+    }
     await Blog.create(data)
     res.json({success : true})
   }
@@ -50,7 +56,13 @@ exports.create = async (req,res,next)=>{
 exports.update = async (req,res,next)=>{
   const id = req.params.id
   var data = req.body;
+  var files = req.files || {}
   try{
+    if(files.picture && files.picture){
+      let file = files.picture;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.picture = tools.genFileUrl(fileName,'images')
+    }
     await Blog.update(data,{where : {id : id}})
     res.json({success : true})
   }
