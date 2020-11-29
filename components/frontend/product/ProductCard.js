@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   
   const {price,unit} = calPackagePriceCard(packages,user)
 
-  console.log(packages);
+  // console.log(packages);
   return (
     packages ? (
       <>
@@ -27,7 +27,7 @@ const ProductCard = (props) => {
                   <div class="read_more"><span>Read more</span></div>
                 </a>
               </Link>
-              <small>Historic</small>
+              <small>{packages.products_category?.name}</small>
             </figure>
             <div class="wrapper">
               <h3>

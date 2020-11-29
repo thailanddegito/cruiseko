@@ -15,7 +15,7 @@ const ProductCardLandscape = (props) => {
 					<div className="row no-gutters">
 						<div className="col-lg-5">
 							<figure>
-								<small>Museum</small>
+              	<small>{packages.products_category?.name}</small>
 								<Link href={`/product-details/[id]`} as={`/product-details/${packages.id}`}>
                 	<a>
 										<img src={packages.picture ? packages.picture : "/template/img/tour_3.jpg"} className="img-fluid" alt="" width="800" height="533" />
