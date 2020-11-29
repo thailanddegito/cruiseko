@@ -74,7 +74,7 @@ exports.delete = async (req,res,next)=>{
 
 exports.getAllCate = async (req,res,next)=>{
   try{
-    const items = BlogCategory.findAll({where : {deleted : 0}})
+    const items = await BlogCategory.findAll({where : {deleted : 0}})
     res.json(items)
   }
   catch(err){
