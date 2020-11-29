@@ -99,23 +99,23 @@ const SearchPackage = (props) => {
   return (
   <>
     <form onSubmit={handleSubmit}>
-      <div class="row no-gutters custom-search-input-2">
+      <div className="row no-gutters custom-search-input-2">
         <SelectStyle name="activities" col="col-lg-4" 
         textOptions={textOptions} setTextOption={setTextOption}
         options={activities}
         setOptionVal={setOptionVal} option_val={option_val}
         setOpen={setOpen} open={open} />
-        <div class="col-lg-3">
-          <div class="form-group">
-            <input class="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" required />
-            <i class="icon_calendar"></i>
+        <div className="col-lg-3">
+          <div className="form-group">
+            <input className="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" required />
+            <i className="icon_calendar"></i>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div className="col-lg-3">
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
-        <div class="col-lg-2">
-          <input type="submit" class="btn_search" value="Search" />
+        <div className="col-lg-2">
+          <input type="submit" className="btn_search" value="Search" />
         </div>
       </div>
     </form>
