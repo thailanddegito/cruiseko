@@ -27,7 +27,7 @@ const TableBooking = (props) => {
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = bookings ? bookings.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  const filteredItems = bookings ? bookings.rows.filter(item => item.id && item.id.toString().toLowerCase().includes(filterText.toLowerCase())) : [];
   
   const columns = ColumnTable();
 
