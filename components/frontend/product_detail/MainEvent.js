@@ -16,7 +16,7 @@ const MainEvent = (props) => {
           <ul className="cbp_tmtimeline">
             {
                packages.events.map((val, index) => (
-                <Event number={index+1} data={val} />
+                <Event number={index+1} data={val} key={index} />
                ))
             }
           </ul>

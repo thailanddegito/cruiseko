@@ -13,7 +13,7 @@ const EventShow = memo((props) => {
       </div>
       <div>
         {events.map((val,index) => (
-          <EventShowData {...val} index={index} handleDelete={handleDelete} handleClickEdit={handleClickEdit} />
+          <EventShowData {...val} key={index} index={index} handleDelete={handleDelete} handleClickEdit={handleClickEdit} />
         ) )}
       </div>
     </>
