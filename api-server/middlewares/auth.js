@@ -1,5 +1,6 @@
 const exjwt = require('express-jwt');
-// var passport = require('passport');
+var passport = require('passport');
+const FacebookTokenStrategy = require('passport-facebook-token');
 // var FacebookStrategy = require('passport-facebook').Strategy;
 
 // passport.use(new FacebookStrategy({
@@ -15,6 +16,16 @@ const exjwt = require('express-jwt');
 //     // providers.
 //     return cb(null, profile);
 // }));
+
+passport.use(new FacebookTokenStrategy({
+    clientID: process.env['FACEBOOK_CLIENT_ID'],
+    clientSecret: process.env['FACEBOOK_CLIENT_SECRET'],
+    
+}, function(accessToken, refreshToken, profile, done) {
+    profile = {...profile._json , provider : profile.provider,picture : profile.photos[0].value}
+    return done(null,profile);
+}
+));
 
 function tokenUserFromHeader (req) {
     // return req.headers.token_u
@@ -51,6 +62,22 @@ exports.jwt = (user_type) =>{
         default:
             throw new Error('Invalid user type')
     }
+}
+
+exports.facebook = (req,res,next)=>{
+    passport.authenticate('facebook-token', { session: false }, function(err, user, info) { 
+        
+        if (err) { 
+            
+            return next(err); 
+        } 
+        if (!user) { 
+            return res.status(401).json({error:"Unauthorized"}).end(); 
+        } 
+
+        req.user = user;   // Forward user information to the next middleware
+        next();
+    })(req, res, next);
 }
 
 // exports.passport = passport
