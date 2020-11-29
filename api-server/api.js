@@ -23,6 +23,7 @@ app.use('/backend',require('./backend/backend.route'))
 app.use('/boat',require('./products/boat/boat.route'))
 app.use('/boat-category',require('./products/boat/boat_category.route'))
 app.use('/auth',require('./auth/auth.route'))
+app.use('/blog',require('./blog/blog.route'))
 
 app.get('/test',(req,res) => res.send('test'))
 
