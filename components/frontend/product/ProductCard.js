@@ -13,7 +13,7 @@ const ProductCard = (props) => {
   
   const {price,unit} = calPackagePriceCard(packages,user)
 
-
+  console.log(packages);
   return (
     packages ? (
       <>

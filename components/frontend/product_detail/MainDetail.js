@@ -70,7 +70,7 @@ const Detail = (props) => {
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
-              <Price state={state} setState={setState} priceData={priceData} checkout={checkout} />
+              <Price state={state} setState={setState} priceData={priceData} checkout={checkout}  is_boat={packages?.is_boat} />
             </aside>
           </div>
         </div>
