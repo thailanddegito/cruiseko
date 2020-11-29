@@ -69,6 +69,7 @@ const EditRole = ({query}) => {
     })
   }
 
+  
  
 
 
@@ -104,6 +105,35 @@ const EditRole = ({query}) => {
                     labelName="Blog Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
                   </div>
                 </div>
+
+                <div className="row"> 
+                  <div className="col-12">
+                    <div className="form-group mb-4">
+                      <label>Short Description</label>
+                      <textarea className="form-control" name="short_description" required defaultValue={boats.short_description}></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-12">
+                    <div className="form-group mb-4">
+                      <label>Description</label>
+                      <Editor name="description" height="200px" required data={boats.description} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row justify-content-start">
+                  <div className="col-lg-6 col-12">
+                    <div className="form-group">
+                      <label>Picture : </label>
+                      <ImageBoxBackend _text="Picture" _img={boats.picture} _name="picture" _id="picture" required={true} />
+                    </div>
+                  </div>
+                </div>   
+
+
                 <div className="row justify-content-center mt-4">
                   <div className="col-6">
                     <div className="text-center">
