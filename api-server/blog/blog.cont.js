@@ -9,7 +9,12 @@ exports.getAll = async (req,res,next)=>{
   try{
     var where = {}
     if(cate_id) where.cate_id = cate_id
-    var options = {where/* ,logging:console.log */}
+
+    const include =[
+      {model:BlogCategory}
+    ]
+
+    var options = {where,include/* ,logging:console.log */}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
       
