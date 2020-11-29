@@ -348,7 +348,7 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
 }
 @media (max-width: 767px) {
   .main-layout {
-    margin: 54px 0;
+    /* margin: 54px 0; */
   }
   .container, .container-sm {
     max-width: 100%;

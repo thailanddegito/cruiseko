@@ -34,7 +34,7 @@
 }
 @media (max-width : 991px) {
   header {
-    padding: 0 !important;
+    padding: 15px 15px 5px 15px !important;
   }
   .header-mobile {
     position: relative;

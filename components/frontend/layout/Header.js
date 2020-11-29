@@ -32,7 +32,10 @@ const Header = (props) => {
         <ul id="top_menu">
           {
             !user ? (
+              <>
+              <li><a href="#" className="cart-menu-btn d-none" title="Cart"><strong>4</strong></a></li>
               <li><a href="#" className="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li>
+              </>
             ) : null 
           }
         </ul>
