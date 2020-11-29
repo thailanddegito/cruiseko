@@ -1,6 +1,6 @@
 module.exports = (sequelize, type) => {
   var BlogCategory  = sequelize.define('blog_category', {
-    id : {
+    cate_id : {
       type: type.INTEGER,
       primaryKey: true,
       autoIncrement: true
