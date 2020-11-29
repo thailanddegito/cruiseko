@@ -1,6 +1,6 @@
 const { Product,ProductImage,sequelize,PriceDate,
   CompanyType,ProductBoat,Event,
-  PriceCompanyType,PriceDateDetail, Boat, BoatCategory} = require('../db')
+  PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
@@ -74,7 +74,9 @@ exports.getAll = async(req,res,next)=>{
       {model : PriceDate ,include :price_include,where : where_date,required:required_price },
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
-      {model : ProductBoat, include : boat_include,required:true }
+      {model : ProductBoat, include : boat_include,required:true },
+      {model : ProductCategory}
+      
     ]
 
     // if(cate_id){
