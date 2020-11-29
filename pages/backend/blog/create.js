@@ -17,6 +17,7 @@ const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: 
 const Create = (props) => {  
   const [modalSuccess, setModalSuccess] = useState(false);
   const [types, setType] = useState();
+  const [chkImg, setChkimg]  = useState(false);
 
   const fecthBlogCate = () => {
     api.getBlogCate()
@@ -75,6 +76,33 @@ const Create = (props) => {
                 name : 'cate_id', required : true,
               }} 
               labelName="Blog Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
+            </div>
+          </div>
+
+          <div className="row"> 
+            <div className="col-12">
+              <div className="form-group mb-4">
+                <label>Short Description</label>
+                <textarea className="form-control" name="short_description" required></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-12">
+              <div className="form-group mb-4">
+                <label>Description</label>
+                <Editor name="description" height="200px" required />
+              </div>
+            </div>
+          </div>
+
+          <div className="row justify-content-start">
+            <div className="col-lg-6 col-12">
+              <div className="form-group">
+                <label>Picture  </label>
+                <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
+              </div>
             </div>
           </div>
 
