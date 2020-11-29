@@ -39,7 +39,7 @@ exports.getOne = async(req,res,next)=>{
 
 exports.create = async(req,res,next)=>{
   var data = req.body;
-  var {name,cate_id} = data;
+  var {name,cate_id,min_hr} = data;
   var files = req.files || {}
   var image_urls = []
   var transaction;
@@ -63,6 +63,10 @@ exports.create = async(req,res,next)=>{
         let fileName = await tools.moveFileWithPath(file,'images')
         if(fileName) image_urls.push(tools.genFileUrl(fileName,'images'))
       }
+    }
+
+    if(min_hr && parseInt(min_hr) % 30 !== 0 ){
+      data.min_hr = parseInt(parseInt(value)  / 30) *30   ;
     }
 
     const boat_cate = await BoatCategory.findOne({where :{ cate_id},attributes:['type']})
@@ -103,6 +107,7 @@ exports.create = async(req,res,next)=>{
 exports.update = async(req,res,next)=>{
   const boat_id = req.params.id
   var data = req.body;
+  var {min_hr} = data;
   var files = req.files || {}
   var image_urls = []
   var transaction;
@@ -116,6 +121,11 @@ exports.update = async(req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
     }
+
+    if(min_hr && parseInt(min_hr) % 30 !== 0 ){
+      data.min_hr = parseInt(parseInt(value)  / 30) *30   ;
+    }
+
     transaction = await sequelize.transaction()
     await Boat.update(data,{where : {boat_id},transaction})
     await transaction.commit()
