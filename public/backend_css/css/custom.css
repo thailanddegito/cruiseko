@@ -496,6 +496,13 @@ span.nav-link-text {
 .package-scroll.scrolled {
   opacity: 1;
 }
+.slick-next, .slick-prev {
+  background: #EEE;
+  border-radius: 50%;
+}
+.slick-next:before, .slick-prev:before {
+  color: #000;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
