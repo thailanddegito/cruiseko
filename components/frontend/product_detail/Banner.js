@@ -19,9 +19,13 @@ const Banner = (props) => {
             <div className="container">
               <h1 className="fadeInUp"><span></span>{packages.name ? packages.name : null}</h1>
             </div>
-            <span className="magnific-gallery">
-              <a href="#" className="btn_photos" title="Photo title"  onClick={() => setIsOpen(true)}>View photos</a>
-            </span>
+            {
+              images.length ? (
+                <span className="magnific-gallery">
+                  <a href="#" className="btn_photos" title="Photo title"  onClick={() => setIsOpen(true)}>View photos</a>
+                </span>
+              ) : null
+            }
           </div>
           <style jsx>
           {`
