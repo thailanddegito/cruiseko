@@ -69,7 +69,14 @@ const EditRole = ({query}) => {
     })
   }
 
- 
+  const validMinHour = (e)=>{
+    var {value} = e.target;
+    if(parseInt(value) % 30 !== 0 ){
+      e.target.value = parseInt(parseInt(value)  / 30) *30   ;
+      // alert('555')
+    }
+  }
+  
 
 
   return (
@@ -145,7 +152,8 @@ const EditRole = ({query}) => {
                     <InputLabel inputProps={{ 
                       className:'form-control', type : 'text',
                       name : 'min_hr', required : true,
-                      defaultValue : boats.min_hr
+                      defaultValue : boats.min_hr,
+                      onBlur : validMinHour
                     }} 
                     labelName="Minimum Hour  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>

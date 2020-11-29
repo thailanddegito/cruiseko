@@ -18,7 +18,7 @@ module.exports = (sequelize, type) => {
         defaultValue : 0
       },
       min_hr :{
-        type : type.DECIMAL(12,2),
+        type : type.INTEGER,
         defaultValue : 0
       },
       amount : {
