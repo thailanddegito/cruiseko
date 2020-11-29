@@ -66,7 +66,7 @@ const Sidenav = (props) => {
       }
     }
   }
-  // console.log('counts', counts);
+  console.log('counts', counts);
 
   return (
     <>
@@ -92,7 +92,10 @@ const Sidenav = (props) => {
                       <Link href="/backend/booking">
                         <a className="nav-link">
                           <i className="fa fa-fw fa-calendar-check-o"></i>
-                          <span className="nav-link-text">Bookings <span className="badge badge-pill badge-primary">6 New</span></span>
+                          <span className="nav-link-text">
+                            Bookings 
+                            {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null}
+                          </span>
                         </a>
                       </Link>
                     </li>
@@ -170,7 +173,10 @@ const Sidenav = (props) => {
                           (admin.role_id == 0 || checkMenu(6)) && (
                             <li>
                               <Link href="/backend/users">
-                                <a>Users</a>
+                                <a>
+                                  Users
+                                  {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null}
+                                </a>
                               </Link>
                             </li>
                           )
