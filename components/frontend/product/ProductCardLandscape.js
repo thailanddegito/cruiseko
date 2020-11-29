@@ -2,10 +2,13 @@
 import React,{useContext} from 'react';
 import Link from 'next/link';
 import UserContext from '../../../contexts/UserContext';
+import {calPackagePriceCard} from '../../../utils/packageHelper'
 
 const ProductCardLandscape = (props) => {
   const {packages} = props;
   const { user } = useContext(UserContext);
+
+	const {price,unit} = calPackagePriceCard(packages,user)
 
   
   return (
@@ -32,7 +35,12 @@ const ProductCardLandscape = (props) => {
 									</Link>
 								</h3>
 								<p className="short-land-description">{packages.short_description ? packages.short_description : null}</p>
-								<span className="price">From <strong>$45</strong> /per person</span>
+								{
+									price !== -1 ? (
+										<span className="price"> From <strong> {parseInt(price) } </strong> /per {unit} </span>
+									)
+									: <span className="price"></span>
+								}
 							</div>
 							<ul>
 								<li><i className="icon_clock_alt"></i> 1h 30min</li>
