@@ -84,14 +84,14 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        {
+        {/* {
           is_boat ? (
             <div className="form-group input-dates">
               <input className="form-control" type="text" name="dates" placeholder="When.." />
               <i className="icon_calendar"></i>
             </div>    
           ) : null
-        }
+        } */}
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
