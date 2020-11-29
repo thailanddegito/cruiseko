@@ -10,9 +10,9 @@ protect_method_admin.forEach(val => router[val]('/*',mw.jwt('admin')))
 router.get('/category',blog.getAllCate)
 
 router.post('/category',blog.createCate)
-router.get('/category/:id',blog.getOneCate)
-router.put('/category/:id',blog.updateCate)
-router.delete('/category/:id',blog.deleteCate)
+router.get('/category/:cate_id',blog.getOneCate)
+router.put('/category/:cate_id',blog.updateCate)
+router.delete('/category/:cate_id',blog.deleteCate)
 
 
 router.get('/',blog.getAll)

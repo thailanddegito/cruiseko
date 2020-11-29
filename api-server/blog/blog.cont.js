@@ -84,7 +84,7 @@ exports.getAllCate = async (req,res,next)=>{
 exports.getOneCate = async (req,res,next)=>{
   const cate_id = req.params.cate_id
   try{
-    const item = await BlogCategory.findOne({where : {id : cate_id}})
+    const item = await BlogCategory.findOne({where : { cate_id}})
     res.json(item)
   }
   catch(err){
@@ -105,7 +105,7 @@ exports.updateCate = async (req,res,next)=>{
   const cate_id = req.params.cate_id
   var data = req.body;
   try{
-    await BlogCategory.update(data,{where : {id : cate_id}})
+    await BlogCategory.update(data,{where : {cate_id}})
     res.json({success : true})
   }
   catch(err){
@@ -115,7 +115,7 @@ exports.updateCate = async (req,res,next)=>{
 exports.deleteCate = async (req,res,next)=>{
   const cate_id = req.params.cate_id
   try{
-    await BlogCategory.update({deleted : 1},{where : {id : cate_id}})
+    await BlogCategory.update({deleted : 1},{where : {cate_id}})
     res.json({success : true})
   }
   catch(err){
