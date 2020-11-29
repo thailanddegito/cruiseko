@@ -41,7 +41,7 @@ const Detail = (props) => {
   return (
     <>
       <div className="bg_color_1">
-        <nav className="secondary_nav sticky_horizontal">
+        {/* <nav className="secondary_nav sticky_horizontal">
           <div className="container">
             <ul className="clearfix">
               <li><a href="#description" className="active">Description</a></li>
@@ -49,7 +49,7 @@ const Detail = (props) => {
               <li><a href="#sidebar">Booking</a></li>
             </ul>
           </div>
-        </nav>
+        </nav> */}
         <div className="container margin_60_35">
           <div className="row">
             <div className="col-lg-8">

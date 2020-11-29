@@ -6,7 +6,7 @@ import AuthService from '../../../utils/AuthService';
 import LoginModal from '../../../components/frontend/login/LoginModal';
 
 const Header = (props) => {
-  const {loading} = props;
+  const {loading, banner = true} = props;
   const { user, fetchUser } = useContext(UserContext);
 
   const handleLogout = () => {
@@ -16,7 +16,7 @@ const Header = (props) => {
 
   return (
     <>
-      <header class="header menu_fixed">
+      <header class={`header menu_fixed ${banner ? '' : 'no-banner'}`}>
         {/* {loading && <Loading loading={loading} />} */}
         <div id="logo">
           <Link href="/">

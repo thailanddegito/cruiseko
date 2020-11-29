@@ -37,8 +37,8 @@ const Login = ({ t }) => {
   }
   
   return (
-    <Layout loading={loading} title="Login" page={'partner_login'}>
-      <div className="container" id="login">
+    <Layout loading={loading} title="Login" page={'partner_login'} banner={false}>
+      <div className="container start-content" id="login">
         <aside className="main-content">
           <form id="login-form" onSubmit={login}>
             <FormLogin error={error} isPartner={true} />

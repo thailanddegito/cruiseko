@@ -1,8 +1,17 @@
 .main-layout {
   /* margin: 112px 0; */
 }
+.start-content {
+  margin-top: 112px;
+}
+.end-content {
+  margin-bottom: 112px;
+}
 header {
   padding: 20px 30px;
+}
+header.no-banner {
+  background-color: #000;
 }
 .btn, .btn.btn_1.rounded {
   min-width: 140px !important;

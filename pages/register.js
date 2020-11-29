@@ -54,9 +54,9 @@ const Register = ({ t }) => {
   }
 
   return (
-    <Layout loading={loading} title="Register" page={'register'}>
+    <Layout loading={loading} title="Register" page={'register'} banner={false}>
       <main>
-        <div className="container">
+        <div className="container start-content">
           <div className="row">
             <div className="col-12">
               <div className="bs-wizard step clearfix">
