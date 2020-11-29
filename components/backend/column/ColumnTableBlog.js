@@ -13,31 +13,6 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
-      name: 'Code',
-      selector: 'code',
-      sortable: true,
-    },
-    {
-      name: 'Company',
-      selector: 'company',
-      sortable: true,
-    },
-    {
-      name: 'Amount',
-      selector: 'amount',
-      sortable: true,
-    },
-    {
-      name: 'Capacity',
-      selector: 'capacity',
-      sortable: true,
-    },
-    {
-      name: 'Time',
-      selector: 'time',
-      sortable: true,
-    },
-    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

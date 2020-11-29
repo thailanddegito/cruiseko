@@ -8,15 +8,15 @@ import SubHeaderComponent from './SubHeaderComponent'
 import ColumnTable from '../column/ColumnTableBlog'
 
 
-const TableBoat = (props) => {
+const TableBlog = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [boats, setBoat] = useState();
+  const [blogs, setBlog] = useState();
 
-  const fecthBoat = () => {
-    api.getBoat()
+  const fecthBlog = () => {
+    api.getBlog()
     .then(res=>{
       const data = res.data;
-      setBoat(data);
+      setBlog(data);
     })
     .catch(err => {
       console.log(err.response);
@@ -24,7 +24,7 @@ const TableBoat = (props) => {
   }
   
   useEffect(() => {
-    fecthBoat();
+    fecthBlog();
   },[]);
   
   const [ref_id, setrefID] = useState();
@@ -35,10 +35,10 @@ const TableBoat = (props) => {
 
   const onConfirm = ()=>{
     if(!ref_id) return;
-    api.delBoat(ref_id)
+    api.delBlog(ref_id)
     .then(res=>{
       const data = res.data;
-      fecthBoat();
+      fecthBlog();
       setModalConfirm(false);
     })
     .catch(err => {
@@ -48,7 +48,7 @@ const TableBoat = (props) => {
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = boats ? boats.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  const filteredItems = blogs ? blogs.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
   const columns = ColumnTable({delData});
 
@@ -81,4 +81,4 @@ const TableBoat = (props) => {
     </>
   )
 }
-export default TableBoat
+export default TableBlog
