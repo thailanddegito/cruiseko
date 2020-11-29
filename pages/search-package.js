@@ -107,6 +107,7 @@ const SearchPackageIndex = ({query}) => {
           </div>
 				</main>
 			</aside>
+      <div className="end-content"></div>
     </Layout>
   )
 }

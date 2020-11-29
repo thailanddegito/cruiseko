@@ -15,6 +15,7 @@ const RegisterSuccess = (props) => {
           </div>
         </div>
       </div>
+      <div className="end-content"></div>
     </Layout>
   )
 }

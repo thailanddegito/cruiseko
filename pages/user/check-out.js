@@ -55,9 +55,9 @@ const Payment = (props) => {
   }
 
   return (
-    <Layout loading={loading} title="Checkout" page={'checkout'}>
+    <Layout loading={loading} title="Checkout" page={'checkout'} banner={false}>
       <main>
-        <div className="bg_color_1">
+        <div className="bg_color_1 start-content">
           <form id="checkout-form" >
             <div className="container margin_60_35">
               <div className="row">
@@ -80,6 +80,7 @@ const Payment = (props) => {
           </form>
         </div>
       </main>
+      <div className="end-content"></div>
     </Layout>
   )
 }
