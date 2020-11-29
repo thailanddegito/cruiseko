@@ -332,6 +332,87 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+button.social_bt.facebook {
+  background-color: #3B5998;
+}
+button.social_bt:hover {
+  -webkit-filter: brightness(115%);
+  filter: brightness(115%);
+}
+button.social_bt.facebook {
+  background-color: #3B5998;
+}
+button.social_bt:hover {
+  -webkit-filter: brightness(115%);
+  filter: brightness(115%);
+}
+button.social_bt {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+  color: #fff;
+  min-width: 200px;
+  margin-bottom: 15px;
+  display: block;
+  padding: 12px;
+  line-height: 1;
+  position: relative;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+button.social_bt {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+  color: #fff;
+  min-width: 200px;
+  margin-bottom: 10px;
+  display: block;
+  padding: 12px;
+  line-height: 1;
+  position: relative;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+button.social_bt.facebook:before {
+  content: "\e093";
+}
+button.social_bt.facebook:before, button.social_bt.google:before, button.social_bt.linkedin:before {
+  font-family: 'ElegantIcons';
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 1rem;
+  color: #fff;
+}
+button.social_bt.facebook:before {
+  content: "\e093";
+}
+button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedin:before {
+  font-family: 'ElegantIcons';
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  font-size: 16px;
+  font-size: 1rem;
+  color: #fff;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
