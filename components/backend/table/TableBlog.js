@@ -46,6 +46,8 @@ const TableBlog = (props) => {
     })
   }
 
+  console.log(blogs);
+
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = blogs ? blogs.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];

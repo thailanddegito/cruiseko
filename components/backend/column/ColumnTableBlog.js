@@ -13,6 +13,15 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
+      name: 'Blog Category',
+      selector: 'cate_id. ',
+      cell : row => (
+        <span>
+          {row.blog_category.name}
+        </span>
+      )
+    },
+    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

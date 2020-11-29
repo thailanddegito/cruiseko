@@ -110,7 +110,7 @@ const EditRole = ({query}) => {
                   <div className="col-12">
                     <div className="form-group mb-4">
                       <label>Short Description</label>
-                      <textarea className="form-control" name="short_description" required defaultValue={boats.short_description}></textarea>
+                      <textarea className="form-control" name="short_description" required defaultValue={blogs.short_description}></textarea>
                     </div>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ const EditRole = ({query}) => {
                   <div className="col-12">
                     <div className="form-group mb-4">
                       <label>Description</label>
-                      <Editor name="description" height="200px" required data={boats.description} />
+                      <Editor name="description" height="200px" required data={blogs.description} />
                     </div>
                   </div>
                 </div>
@@ -128,7 +128,7 @@ const EditRole = ({query}) => {
                   <div className="col-lg-6 col-12">
                     <div className="form-group">
                       <label>Picture : </label>
-                      <ImageBoxBackend _text="Picture" _img={boats.picture} _name="picture" _id="picture" required={true} />
+                      <ImageBoxBackend _text="Picture" _img={blogs.picture} _name="picture" _id="picture" required={true} />
                     </div>
                   </div>
                 </div>   
