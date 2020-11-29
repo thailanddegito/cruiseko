@@ -37,7 +37,7 @@ const Header = (props) => {
                 </ul>
               </li>
             ): (
-              <li><Link href="/partner/login"><a class="login" title="Sign In">Sign In</a></Link></li>
+              <li><Link href="/login"><a class="login" title="Sign In">Sign In</a></Link></li>
             ) 
           }
         </ul>
