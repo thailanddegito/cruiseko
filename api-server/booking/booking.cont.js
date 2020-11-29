@@ -12,9 +12,20 @@ const {calPackagePrice} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  
+  var {page=1,limit=25} = req.query
   try{
-
+    var where = {}
+    var options = {where/* ,logging:console.log */}
+    if(!isNaN(page) && page > 1){
+      options.offset = (page-1)*limit;
+      
+      options.limit = limit;
+    }
+    if(!isNaN(limit)){
+        options.limit = parseInt(limit);
+    }
+    const bookings = await Booking.findAndCountAll(options)
+    res.json(bookings)
   } 
   catch(err){
     next(err);
