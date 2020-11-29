@@ -16,7 +16,7 @@ const ProductCardLandscape = (props) => {
 						<div className="col-lg-5">
 							<figure>
               	<small>{packages.products_category?.name}</small>
-								<Link href={`/product-details/[id]`} as={`/product-details/${packages.id}-${packages.name}`}>
+								<Link href={`/package-details/[id]`} as={`/package-details/${packages.id}-${packages.name}`}>
                 	<a>
 										<img src={packages.picture ? packages.picture : "/template/img/tour_3.jpg"} className="img-fluid" alt="" width="800" height="533" />
 										<div className="read_more"><span>Read more</span></div>
@@ -27,7 +27,7 @@ const ProductCardLandscape = (props) => {
 						<div className="col-lg-7">
 							<div className="wrapper">
 								<h3>
-									<Link href={`/product-details/[id]`} as={`/product-details/${packages.id}-${packages.name}`}>
+									<Link href={`/package-details/[id]`} as={`/package-details/${packages.id}-${packages.name}`}>
 										<a className="show-color">{packages.name ? packages.name : null}</a>
 									</Link>
 								</h3>
