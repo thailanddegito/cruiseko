@@ -17,10 +17,9 @@ const Editor = dynamic(() => import('../../../components/widget/Editor'),{ ssr: 
 const Create = (props) => {  
   const [modalSuccess, setModalSuccess] = useState(false);
   const [types, setType] = useState();
-  const [chkImg, setChkimg]  = useState(false);
 
-  const fecthBoatCate = () => {
-    api.getBoatCate()
+  const fecthBlogCate = () => {
+    api.getBlogCate()
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,val : val.cate_id})  )
@@ -32,13 +31,13 @@ const Create = (props) => {
   }
   
   useEffect(() => {
-    fecthBoatCate();
+    fecthBlogCate();
   },[]);
  
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    api.insertBoat(data)
+    api.insertBlog(data)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
@@ -51,10 +50,10 @@ const Create = (props) => {
 
   return (
     <>
-      <Layout title="Create Boat" page_name="Boat" sub_page="Create" main_link="boat">
+      <Layout title="Create Blog" page_name="Blog" sub_page="Create" main_link="blog">
         <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Create Boat</h4>
+            <h4>Create Blog</h4>
           </div>
         </div>
         <div className="divider"></div>
@@ -68,74 +67,14 @@ const Create = (props) => {
               }} 
               labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
             </div>
+
             <div className="col-lg-4 col-12">
               <SelectLabel 
               inputProps={{ 
                 className:'form-control select', 
                 name : 'cate_id', required : true,
               }} 
-              labelName="Boat Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
-            </div>
-          </div>
-
-          
-
-          <div className="row justify-content-center">
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'code', required : true
-              }} 
-              labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'company', required : true
-              }} 
-              labelName="Company " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'amount', required : true
-              }} 
-              labelName="Allotment " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-          </div>
-
-          <div className="row justify-content-start">
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'capacity', required : true
-              }} 
-              labelName="Capacity  " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-            <div className="col-lg-4 col-12">
-              <InputLabel inputProps={{ 
-                className:'form-control', type : 'text',
-                name : 'min_hr', required : true
-              }} 
-              labelName="Minimum Hour " iconProps={{className : 'fa icon icon-home'}} />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-12">
-              <div className="form-group mb-4">
-                <label>Description</label>
-                <Editor name="description" height="200px" required />
-              </div>
-            </div>
-          </div>
-
-          <div className="row justify-content-start">
-            <div className="col-lg-6 col-12">
-              <div className="form-group">
-                <label>Picture  </label>
-                <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
-              </div>
+              labelName="Blog Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
             </div>
           </div>
 
@@ -146,7 +85,7 @@ const Create = (props) => {
             <div className="col-6">
               <div className="text-center">
                 <Button _type="submit" _name="Submit" _class="btn-primary" />
-                <Link href="/backend/boat">
+                <Link href="/backend/blog">
                   <a>
                     <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                   </a>
@@ -159,7 +98,7 @@ const Create = (props) => {
         <SuccessDialog show={modalSuccess}
           text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
-          route={"/backend/boat"} />
+          route={"/backend/blog"} />
 
       </Layout>
     </>

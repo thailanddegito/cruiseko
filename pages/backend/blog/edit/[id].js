@@ -18,13 +18,13 @@ const Editor = dynamic(() => import('../../../../components/widget/Editor'),{ ss
 const EditRole = ({query}) => {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [types, setType] = useState();
-  const [boats, setBoat] = useState();
+  const [blogs, setBlog] = useState();
 
   const router = useRouter();
   const id = router.query.id
 
-  const fecthBoatCate = () => {
-    api.getBoatCate()
+  const fecthBlogCate = () => {
+    api.getBlogCate()
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,val : val.cate_id})  )
@@ -36,14 +36,14 @@ const EditRole = ({query}) => {
   }
   
   useEffect(() => {
-    fecthBoatCate();
+    fecthBlogCate();
   },[]);
 
-  const fecthBoat = () => {
-    api.getBoatOne(id)
+  const fecthBlog = () => {
+    api.getBlogOne(id)
     .then(res=>{
       const data = res.data;
-      setBoat(data);
+      setBlog(data);
     })
     .catch(err => {
       console.log(err.response);
@@ -52,14 +52,14 @@ const EditRole = ({query}) => {
 
   useEffect(() => {
     if(!id) return
-    fecthBoat();
+    fecthBlog();
   },[id]);
 
 
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    api.updateBoat(id, data)
+    api.updateBlog(id, data)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
@@ -74,23 +74,23 @@ const EditRole = ({query}) => {
 
   return (
     <>
-      <Layout title="Edit Boat" page_name="Boat" sub_page="Edit" main_link="boat">
+      <Layout title="Edit Blog" page_name="Blog" sub_page="Edit" main_link="blog">
       <div className="row justify-content-start">
           <div className="col-12">
-            <h4>Edit Boat</h4>
+            <h4>Edit Blog</h4>
           </div>
         </div>
         <div className="divider"></div>
 
         {
-          !!boats ? (
+          !!blogs ? (
             <form onSubmit={handleSave} encType="multipart/form-data">
               <div className="row justify-content-center">
                   <div className="col-lg-8 col-12">
                     <InputLabel inputProps={{ 
                       className:'form-control', type : 'text',
                       name : 'name', required : true,
-                      defaultValue : boats.name
+                      defaultValue : blogs.name
                     }} 
                     labelName="Name  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
@@ -99,84 +99,16 @@ const EditRole = ({query}) => {
                     inputProps={{ 
                       className:'form-control select', 
                       name : 'cate_id', required : true, 
-                      defaultValue : boats.cate_id
+                      defaultValue : blogs.cate_id
                     }} 
-                    labelName="Boat Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
+                    labelName="Blog Category" iconProps={{className : 'fa icon icon-home'}} options={types} />
                   </div>
                 </div>
-
-                <div className="row justify-content-center">
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'code', required : true,
-                      defaultValue : boats.code
-                    }} 
-                    labelName="Code  " iconProps={{className : 'fa icon icon-home'}} />
-                  </div>
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'company', required : true,
-                      defaultValue : boats.company
-                    }} 
-                    labelName="Company  " iconProps={{className : 'fa icon icon-home'}} />
-                  </div>
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'amount', required : true,
-                      defaultValue : boats.amount
-                    }} 
-                    labelName="Allotment  " iconProps={{className : 'fa icon icon-home'}} />
-                  </div>
-                </div>
-
-                <div className="row justify-content-start">
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'capacity', required : true,
-                      defaultValue : boats.capacity
-                    }} 
-                    labelName="Capacity  " iconProps={{className : 'fa icon icon-home'}} />
-                  </div>
-                  <div className="col-lg-4 col-12">
-                    <InputLabel inputProps={{ 
-                      className:'form-control', type : 'text',
-                      name : 'min_hr', required : true,
-                      defaultValue : boats.min_hr
-                    }} 
-                    labelName="Minimum Hour  " iconProps={{className : 'fa icon icon-home'}} />
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-12">
-                    <div className="form-group mb-4">
-                      <label>Description</label>
-                      <Editor name="description" height="200px" required data={boats.description} />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="row justify-content-start">
-                  <div className="col-lg-6 col-12">
-                    <div className="form-group">
-                      <label>Picture : </label>
-                      <ImageBoxBackend _text="Picture" _img={boats.picture} _name="picture" _id="picture" required={true} />
-                    </div>
-                  </div>
-                </div>
-
-              
-
-
                 <div className="row justify-content-center mt-4">
                   <div className="col-6">
                     <div className="text-center">
                       <Button _type="submit" _name="Save" _class="btn-primary" />
-                      <Link href="/backend/boat">
+                      <Link href="/backend/blog">
                         <a>
                           <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" />
                         </a>
@@ -192,7 +124,7 @@ const EditRole = ({query}) => {
         <SuccessDialog show={modalSuccess}
           text="Successfully saved data !!!"
           size="md" onHide={() => setModalSuccess(false)}
-          route={"/backend/boat"} />
+          route={"/backend/blog"} />
       
       </Layout>
     </>

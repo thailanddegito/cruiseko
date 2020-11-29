@@ -8,7 +8,7 @@ import SubHeaderComponent from './SubHeaderComponent'
 import ColumnTable from '../column/ColumnTableBlogCate'
 
 
-const TableBoatCategory = (props) => {
+const TableBlogCategory = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
   const [types, setType] = useState();
 
@@ -80,4 +80,4 @@ const TableBoatCategory = (props) => {
     </>
   )
 }
-export default TableBoatCategory
+export default TableBlogCategory

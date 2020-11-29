@@ -113,11 +113,11 @@ export default {
 
 
     //Blog
-    // getBlog : (params) => service.get(`/boat`, {params}),
-    // getBlogOne : (id) => service.get(`/boat/${id}`),
-    // insertBlog : (data) => service.post('/boat',data) ,
-    // updateBlog : (id, data) => service.put(`/boat/${id}`,data) ,
-    // delBlog : (id) => service.delete(`/boat/${id}`),
+    getBlog : (params) => service.get(`/blog`, {params}),
+    getBlogOne : (id) => service.get(`/blog/${id}`),
+    insertBlog : (data) => service.post('/blog',data) ,
+    updateBlog : (id, data) => service.put(`/blog/${id}`,data) ,
+    delBlog : (id) => service.delete(`/blog/${id}`),
  
     //Blog Category
     getBlogCate : (params) => service.get(`/blog/category`, {params}),
