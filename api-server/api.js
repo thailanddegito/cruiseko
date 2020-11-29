@@ -36,7 +36,7 @@ app.post('/ck-upload',async (req,res)=>{
     //     return res.json({error :{uploaded: 0,message : 'Upload file error'}} )
     // }
     // var fileName = `${Date.now()}.${names[names.length-1]}`;
-    console.log('uploading file...')
+    // console.log('uploading file...')
     try{
         const file = req.files.upload;
         let fileName = await tools.moveFileWithPath(file,'upload/images')
@@ -44,7 +44,7 @@ app.post('/ck-upload',async (req,res)=>{
         res.json({url})
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
         res.json({
             error: {
                 message: err.name || err.message
@@ -63,7 +63,7 @@ app.get('*',(req,res)=>{
 app.use(function (err, req, res, next) {
     // console.log(process.env.NODE_ENV)
     if(process.env.NODE_ENV !== 'test')
-        console.log(err);
+        // console.log(err);
     if(err.name)
         res.status(400).json({ success : false , error : err.name})
     else
