@@ -319,9 +319,9 @@ figure:hover .caption-content i, figure:hover .caption-content  p{
   header .main-menu {
     top: 8px;
   }
-  header.sticky .main-menu > ul > li span > a {
+  /* header.sticky .main-menu > ul > li span > a {
     color: #FFF;
-  }
+  } */
 }
 
 @media (max-width: 991px) {
