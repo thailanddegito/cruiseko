@@ -166,7 +166,7 @@ const Sidenav = (props) => {
                   (admin.role_id == 0 || checkMainMenu(6,7)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Blog">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Blog" || page_name == "Blog Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBlog" data-parent="#Blog">
-                        <i className="fa fa-fw fa-ship"></i>
+                        <i className="fa fa-fw fa-newspaper-o"></i>
                         <span className="nav-link-text">Blog</span>
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Blog" || page_name == "Blog Category") ? 'show' : ''}`} id="collapseBlog">
