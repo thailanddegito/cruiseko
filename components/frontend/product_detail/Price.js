@@ -75,7 +75,7 @@ const Price = (props) => {
     <>
       <div className="box_detail booking">
         <div className="price">
-          {price !== -1 && <span> {price} ฿ /{unit} </span>}
+          {price !== -1 && <span> {price} ฿ <small>{unit}</small> </span>}
           <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
         </div>
         {boat_amt && <div> Boat amount : {boat_amt} </div> }
