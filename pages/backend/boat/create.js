@@ -47,6 +47,14 @@ const Create = (props) => {
       console.log(err.response);
     })
   }
+
+  const validMinHour = (e)=>{
+    var {value} = e.target;
+    if(parseInt(value) % 30 !== 0 ){
+      e.target.value = parseInt(parseInt(value)  / 30) *30   ;
+      // alert('555')
+    }
+  }
   
 
   return (
@@ -115,9 +123,10 @@ const Create = (props) => {
             <div className="col-lg-4 col-12">
               <InputLabel inputProps={{ 
                 className:'form-control', type : 'text',
-                name : 'min_hr', required : true
+                name : 'min_hr', required : true,
+                onBlur : validMinHour
               }} 
-              labelName="Minimum Hour " iconProps={{className : 'fa icon icon-home'}} />
+              labelName="Minimum Minutes " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
 
