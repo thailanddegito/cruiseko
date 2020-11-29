@@ -109,4 +109,21 @@ export default {
 
     //Bookings
     getBooking : (params) => service.get(`/booking`, {params}),
+
+
+
+    //Blog
+    // getBlog : (params) => service.get(`/boat`, {params}),
+    // getBlogOne : (id) => service.get(`/boat/${id}`),
+    // insertBlog : (data) => service.post('/boat',data) ,
+    // updateBlog : (id, data) => service.put(`/boat/${id}`,data) ,
+    // delBlog : (id) => service.delete(`/boat/${id}`),
+ 
+    //Blog Category
+    getBlogCate : (params) => service.get(`/blog/category`, {params}),
+    getBlogCateOne : (id) => service.get(`/blog/category/${id}`),
+    insertBlogCate : (data) => service.post('/blog/category',data) ,
+    updateBlogCate : (id, data) => service.put(`/blog/category/${id}`,data) ,
+    delBlogCate : (id) => service.delete(`/blog/category/${id}`),
+ 
 }
