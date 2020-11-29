@@ -17,33 +17,33 @@ const Header = (props) => {
 
   return (
     <>
-      <header class={`header menu_fixed ${banner ? '' : 'no-banner'}`}>
+      <header className={`header menu_fixed ${banner ? '' : 'no-banner'}`}>
         {/* {loading && <Loading loading={loading} />} */}
         <div id="logo">
           <Link href="/">
             <a>
               <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
               <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
-              {/* <img src="/template/img/logo.svg" width="150" height="36" alt="" class="logo_normal" />
-              <img src="/template/img/logo_sticky.svg" width="150" height="36" alt="" class="logo_sticky" /> */}
+              {/* <img src="/template/img/logo.svg" width="150" height="36" alt="" className="logo_normal" />
+              <img src="/template/img/logo_sticky.svg" width="150" height="36" alt="" className="logo_sticky" /> */}
             </a>
           </Link>
         </div>
         <ul id="top_menu">
           {
             !user ? (
-              <li><a href="#" class="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li>
+              <li><a href="#" className="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li>
             ) : null 
           }
         </ul>
-        <a href="#menu" class="btn_mobile">
-          <div class="hamburger hamburger--spin" id="hamburger">
-            <div class="hamburger-box">
-              <div class="hamburger-inner"></div>
+        <a href="#menu" className="btn_mobile">
+          <div className="hamburger hamburger--spin" id="hamburger">
+            <div className="hamburger-box">
+              <div className="hamburger-inner"></div>
             </div>
           </div>
         </a>
-        <nav id="menu" class="main-menu">
+        <nav id="menu" className="main-menu">
           <ul>
             {
               !!!user ? (

@@ -106,5 +106,7 @@ export default {
     insertPackage : (data) => service.post('/products',data) ,
     delPackage : (id) => service.delete(`/products/${id}`),
    
- 
+
+    //Bookings
+    getBooking : (params) => service.get(`/booking`, {params}),
 }
