@@ -3,11 +3,12 @@ import React, {useContext, useState} from 'react';
 import Loading from '../../widget/Loading' 
 import UserContext from '../../../contexts/UserContext';
 import AuthService from '../../../utils/AuthService';
-import LoginModal from '../../../components/frontend/login/LoginModal';
+import LoginModal from '../../../components/frontend/login/Modal';
 
 const Header = (props) => {
   const {loading, banner = true} = props;
   const { user, fetchUser } = useContext(UserContext);
+  const [showLogin, setShowLogin] = useState(false);
 
   const handleLogout = () => {
     AuthService.logout();
@@ -30,15 +31,9 @@ const Header = (props) => {
         </div>
         <ul id="top_menu">
           {
-            user ? (
-              <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
-                <ul>
-                  <li><a href="#" onClick={() => handleLogout()}>Logout</a></li>
-                </ul>
-              </li>
-            ): (
-              <li><Link href="/login"><a class="login" title="Sign In">Sign In</a></Link></li>
-            ) 
+            !user ? (
+              <li><a href="#" class="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li>
+            ) : null 
           }
         </ul>
         <a href="#menu" class="btn_mobile">
@@ -51,14 +46,22 @@ const Header = (props) => {
         <nav id="menu" class="main-menu">
           <ul>
             {
-              !!!user && (
+              !!!user ? (
                 <li><span><Link href="/partner/login"><a>Pathner Login</a></Link></span></li>
+              ) : (
+                <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
+                  <ul>
+                    <li><a href="#" onClick={() => handleLogout()}>Logout</a></li>
+                  </ul>
+                </li>
               ) 
             }
+           
           </ul>
         </nav>
 
-        <LoginModal />
+        <LoginModal show={showLogin}
+          size="md" onHide={() => setShowLogin(false)}/>
         
       </header>
     </>

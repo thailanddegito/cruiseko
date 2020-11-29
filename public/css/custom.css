@@ -14,6 +14,22 @@ header {
 header.no-banner {
   background-color: #000;
 }
+#sign-in-dialog {
+  padding: 0;
+  background: transparent;
+  margin: 20px auto;
+}
+#sign-in-dialog .modal-content {
+  border: none;
+}
+#sign-in-dialog .small-dialog-header {
+  left: -15px;
+  width: calc(100% + 30px);
+}
+#sign-in-dialog .modal-body {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
 .btn, .btn.btn_1.rounded {
   min-width: 140px !important;
   border-radius: 25px !important;
