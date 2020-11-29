@@ -106,7 +106,8 @@ exports.getOne = async(req,res,next)=>{
       {model : PriceDate ,include :price_include},
       {model : ProductImage , attributes:['id','image','type','order']},
       {model : Event},
-      {model : ProductBoat,include : boat_include}
+      {model : ProductBoat,include : boat_include},
+      {model : ProductCategory}
     ]
     var where = {id,deleted : 0}
     var order =  [
