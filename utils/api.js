@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthService from './AuthService'
 const BASE = `${process.env.HOST}/api`; 
-const service = axios.create({baseURL :'/api' })
+const service = axios.create({baseURL :BASE })
 
 // axios.interceptors.response.use((response) => {
 //     if(response.status === 401) {
