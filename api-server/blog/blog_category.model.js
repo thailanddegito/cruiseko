@@ -22,7 +22,7 @@ module.exports = (sequelize, type) => {
     
   },
   {
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true
   })
 
