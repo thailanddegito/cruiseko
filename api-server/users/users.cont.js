@@ -176,6 +176,16 @@ exports.register = async(req,res,next)=>{
     }
 }
 
+exports.loginFacebook = async(req,res,next)=>{
+    var _user = req.user;
+    try{
+
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 // bcrypt.hash('123456', saltRounds).then(result => console.log(result))
 
 
