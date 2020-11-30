@@ -1,0 +1,84 @@
+.form-switch .custom-control label {
+  padding-left: 40px;
+  padding-top: 4px;
+}
+.form-switch .custom-switch .custom-control-label::before {
+  width: 64px;
+  height: 24px;
+  border-radius: 16px;
+}
+
+.form-switch .custom-switch .custom-control-label::after {
+  width: 18px;
+  height: 18px;
+  top: calc(0.3rem + 2px);
+  left: calc(-2rem + 0px);
+  border-radius: 50%;
+}
+.custom-control-input:checked~.custom-control-label::before {
+  color: #fff;
+  border-color: #007bff;
+  background-color: #007bff;
+}
+.custom-control-label::before {
+  position: absolute;
+  top: .25rem;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  content: "";
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
+  outline: 0;
+}
+.form-switch .custom-switch .custom-control-input:checked~.custom-control-label::after {
+  background-color: #fff;
+  transform: translateX(2.5rem);
+}
+.form-switch .custom-switch .custom-control-label::after {
+  width: 18px;
+  height: 18px;
+  top: calc(0.3rem + 2px);
+  left: calc(0rem + 4px);
+  border-radius: 50%;
+}
+.custom-control-label::before {
+  position: absolute;
+  top: .25rem;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  content: "";
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
+  outline: 0;
+}
+.custom-switch .custom-control-label::before {
+  left: 0rem;
+  width: 1.75rem;
+  pointer-events: all;
+  border-radius: 0.5rem;
+}
+.custom-switch .custom-control-label::after {
+  top: calc(0.25rem + 2px);
+  left: calc(-2.25rem + 2px);
+  width: calc(1rem - 4px);
+  height: calc(1rem - 4px);
+  background-color: #B9B9B9;
+  border-radius: 0.5rem;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

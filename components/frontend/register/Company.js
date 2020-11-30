@@ -9,7 +9,7 @@ import SelectAddress from '../../widget/SelectAddress';
 import api from '../../../utils/api'
 
 const Company = (props) => {
-  const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange} = props;
+  const {show, setShow, chkImg, setChkimg, index, setIndex,inputData,handleChange,setInputData} = props;
   const [companies, setCompany] = useState();
 
   const fechCompany = () => {
@@ -17,6 +17,7 @@ const Company = (props) => {
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,val : val.id})  )
+      setInputData({...inputData,company_type_id : temp[0]?.val})
       setCompany(temp);
     })
     .catch(err => {
@@ -50,7 +51,7 @@ const Company = (props) => {
                   <SelectLabel 
                   inputProps={{ 
                     className:'form-control', 
-                    name : 'company_type', required : true,
+                    name : 'company_type_id', required : true,
                     value :inputData.company_type ,
                     onChange:handleChange
                   }} 

@@ -46,6 +46,19 @@ export const toDateISO = (date) => {
   ].join('-')
 }
 
+export const formToObject = (formData)=>{
+  var object = {};
+  formData.forEach((value, key) => {
+    if(object[key])
+      object[key] = [...object[key],value];
+    else
+      object[key] = value;
+  });
+    // console.log('object', object);
+  return object;
+
+}
+
 export default {
   formatDate,
   formatNum,

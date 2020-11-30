@@ -102,8 +102,28 @@ export default {
     getPackage : (params) => service.get(`/products`, {params}),
     getPackageOne : (id,params) => service.get(`/products/${id}`,{params}),
     updatePackageOne : (id,data) => service.put(`/products/${id}`,data),
+    updatePackagePublish : (data) => service.post(`/products/publish`,data),
     insertPackage : (data) => service.post('/products',data) ,
     delPackage : (id) => service.delete(`/products/${id}`),
    
+
+    //Bookings
+    getBooking : (params) => service.get(`/booking`, {params}),
+
+
+
+    //Blog
+    getBlog : (params) => service.get(`/blog`, {params}),
+    getBlogOne : (id) => service.get(`/blog/${id}`),
+    insertBlog : (data) => service.post('/blog',data) ,
+    updateBlog : (id, data) => service.put(`/blog/${id}`,data) ,
+    delBlog : (id) => service.delete(`/blog/${id}`),
+ 
+    //Blog Category
+    getBlogCate : (params) => service.get(`/blog/category`, {params}),
+    getBlogCateOne : (id) => service.get(`/blog/category/${id}`),
+    insertBlogCate : (data) => service.post('/blog/category',data) ,
+    updateBlogCate : (id, data) => service.put(`/blog/category/${id}`,data) ,
+    delBlogCate : (id) => service.delete(`/blog/category/${id}`),
  
 }

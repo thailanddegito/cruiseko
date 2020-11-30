@@ -55,10 +55,10 @@ const PriceData = memo((props) => {
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
             name : 'name', required : true,
-            value : props.commission, readOnly:name === 'FIT',
-            onChange : (e) => onChange(e,'commission')
+            value : props.commission,
+            onChange : (e) => onChange(e, 'commission')
           }} 
-          labelName="Commission" iconProps={{className : 'fa icon icon-email'}}  />
+          labelName={name === 'FIT' ? `Promotion Price` : "Net Price"} iconProps={{className : 'fa icon icon-email'}}  />
         </div>
       </div>
 

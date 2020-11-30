@@ -7,8 +7,10 @@ const mw = require('../middlewares/auth')
 
 router.get('/',product.getAll)
 router.post('/',product.create)
+router.post('/publish',product.updatePublishStatus)
 router.get('/:id',product.getOne)
 router.put('/:id',product.update)
+
 router.delete('/:id',product.delete)
 
 module.exports = router;

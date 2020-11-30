@@ -16,6 +16,7 @@ const PackageDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
   const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
+  const [img, setImg] = useState("/template/img/tour_1.jpg");
 
   const fecthPackageCate = () => {
     api.getPackageCate()
@@ -45,6 +46,8 @@ const PackageDetail = memo((props) => {
     console.log(item)
     setSelectData({...selectData,[key] : item})
   }
+
+
   
   useEffect(() => {
     fecthBoat();
@@ -55,26 +58,33 @@ const PackageDetail = memo((props) => {
     if(!pkg || !boats || !types) return;
 
     const cate = types.find(val => val.value === pkg.cate_id )
-    const boat = boats.find(val => val.vlue === pkg.boat_id)
-    
-    setSelectData({cate,boat})
+    const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
+    // console.log('boat',boat)
+    // console.log('cate',cate)
+    setSelectData({cate,boat_id})
   }, [pkg,types,boats]);
+  useEffect(() => {
+    if(!pkg) return;
+    setImg(pkg.picture ? pkg.picture : "/template/img/tour_1.jpg");
+  },[pkg]);
 
-
-  
-  // var defaultCate = pkg && types ? types.find(val => val.value === pkg.cate_id) : undefined;
-  // console.log('defaultCate',defaultCate)
+  const handleChange = (event) => {
+    if(!event.target.files[0]) {
+      return;
+    }
+    setImg(URL.createObjectURL(event.target.files[0]));
+  }
 
   return (
     <>
-      <div className="row">
+      <div className="row" >
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
             name : 'name', required : true,
             defaultValue : pkg ? pkg.name : undefined
           }} 
-          labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  />
+          labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  /> 
         </div>
         <div className="col-lg-4 col-12">
           <div className="form-group select2">
@@ -93,15 +103,41 @@ const PackageDetail = memo((props) => {
         </div>
       </div>
 
+      <div className="row"> 
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Short Description</label>
+            <textarea className="form-control" name="short_description" required defaultValue={pkg ? pkg.short_description : ''}></textarea>
+          </div>
+        </div>
+      </div>
 
       <div className="row">
         <div className="col-12">
           <div className="form-group mb-4">
-            <label>Detail</label>
+            <label>Description</label>
             <Editor name="description" height="200px" required data={pkg ? pkg.description : ''} />
           </div>
         </div>
       </div>
+
+      {/* <div className="row">
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Highlight</label>
+            <Editor name="highlight" height="200px" required data={pkg ? pkg.highlight : ''} />
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-12">
+          <div className="form-group mb-4">
+            <label>Itinerary</label>
+            <Editor name="itinerary" height="200px" required data={pkg ? pkg.itinerary : ''} />
+          </div>
+        </div>
+      </div> */}
 
       <div className="row">
         <div className="col-lg-8 col-12">
@@ -124,9 +160,22 @@ const PackageDetail = memo((props) => {
               options={boats}
               value={selectData.boat_id }
               onChange={ (e) => handleSelectChange('boat_id',e) }
-
-              // onChange={(e) => handleChange(e)}
             /> 
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-lg-4 col-12">
+          <div className="form-group">
+            <label>Thumbnail</label>
+            <div className="default-picture">
+              <div>
+                <img src={img} className="mw-100" />
+              </div>
+              {/* <label className="mt-3">file</label> */}
+              <input type="file" name="picture" id="picture" className="form-control"  onChange={handleChange} accept="image/png, image/jpeg, image/gif, image/jpg, image/svg"  />
+            </div>
           </div>
         </div>
       </div>

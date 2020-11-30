@@ -8,7 +8,7 @@ import AdminAuthService from '../../../utils/AdminAuthService';
 import api from '../../../utils/api-admin';
 
 const Sidenav = (props) => {
-  const {children, page_name, sub_page, main_link, admin, no_class} = props;
+  const {children, page_name, sub_page, main_link, admin, no_class, headerScroll} = props;
   const [toggle, setToggle] = useState(false);
   const [counts, setCounts] = useState(false);
 
@@ -66,7 +66,7 @@ const Sidenav = (props) => {
       }
     }
   }
-  // console.log('counts', counts);
+  console.log('counts', counts);
 
   return (
     <>
@@ -87,7 +87,22 @@ const Sidenav = (props) => {
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
                 {
-                  (admin.role_id == 0 || checkMainMenu(1,2)) && (
+                  (admin.role_id == 0 || checkMenu(1)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Bookings">
+                      <Link href="/backend/booking">
+                        <a className="nav-link">
+                          <i className="fa fa-fw fa-calendar-check-o"></i>
+                          <span className="nav-link-text">
+                            Bookings 
+                            {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null}
+                          </span>
+                        </a>
+                      </Link>
+                    </li>
+                  )
+                }
+                {
+                  (admin.role_id == 0 || checkMainMenu(2,3)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Package">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Package" || page_name == "Package Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseCategory" data-parent="#Category">
                         <i className="fa fa-fw fa-bug"></i>
@@ -95,7 +110,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Package" || page_name == "Package Category") ? 'show' : ''}`} id="collapseCategory">
                         {
-                          (admin.role_id == 0 || checkMenu(1)) && (
+                          (admin.role_id == 0 || checkMenu(2)) && (
                             <li>
                               <Link href="/backend/package">
                                 <a>Package</a>
@@ -104,7 +119,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(2)) && (
+                          (admin.role_id == 0 || checkMenu(3)) && (
                             <li>
                               <Link href="/backend/package_category">
                                 <a>Package Category</a>
@@ -117,7 +132,7 @@ const Sidenav = (props) => {
                   )
                 }
                 {
-                  (admin.role_id == 0 || checkMainMenu(3,4)) && (
+                  (admin.role_id == 0 || checkMainMenu(4,5)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Boat">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Boat" || page_name == "Boat Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBoat" data-parent="#Boat">
                         <i className="fa fa-fw fa-ship"></i>
@@ -125,7 +140,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Boat" || page_name == "Boat Category") ? 'show' : ''}`} id="collapseBoat">
                         {
-                          (admin.role_id == 0 || checkMenu(3)) && (
+                          (admin.role_id == 0 || checkMenu(4)) && (
                             <li>
                               <Link href="/backend/boat">
                                 <a>Boat</a>
@@ -134,7 +149,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(4)) && (
+                          (admin.role_id == 0 || checkMenu(5)) && (
                             <li>
                               <Link href="/backend/boat_category">
                                 <a>Boat Category</a>
@@ -146,8 +161,40 @@ const Sidenav = (props) => {
                     </li>
                   )
                 }
+
                 {
-                  (admin.role_id == 0 || checkMainMenu(5,6)) && (
+                  (admin.role_id == 0 || checkMainMenu(6,7)) && (
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Blog">
+                      <a className={`nav-link nav-link-collapse ${(page_name == "Blog" || page_name == "Blog Category") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseBlog" data-parent="#Blog">
+                        <i className="fa fa-fw fa-newspaper-o"></i>
+                        <span className="nav-link-text">Blog</span>
+                      </a>
+                      <ul className={`sidenav-second-level collapse ${(page_name == "Blog" || page_name == "Blog Category") ? 'show' : ''}`} id="collapseBlog">
+                        {
+                          (admin.role_id == 0 || checkMenu(6)) && (
+                            <li>
+                              <Link href="/backend/blog">
+                                <a>Blog</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                        {
+                          (admin.role_id == 0 || checkMenu(7)) && (
+                            <li>
+                              <Link href="/backend/blog_category">
+                                <a>Blog Category</a>
+                              </Link>
+                            </li>
+                          )
+                        }
+                      </ul>
+                    </li>
+                  )
+                }
+
+                {
+                  (admin.role_id == 0 || checkMainMenu(8,9)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Users">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Users" || page_name == "Company Type") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-user"></i>
@@ -155,16 +202,19 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Users" || page_name == "Company Type") ? 'show' : ''}`} id="collapseUsers">
                         {
-                          (admin.role_id == 0 || checkMenu(5)) && (
+                          (admin.role_id == 0 || checkMenu(8)) && (
                             <li>
                               <Link href="/backend/users">
-                                <a>Users</a>
+                                <a>
+                                  Users
+                                  {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null}
+                                </a>
                               </Link>
                             </li>
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(6)) && (
+                          (admin.role_id == 0 || checkMenu(9)) && (
                             <li>
                               <Link href="/backend/company_type">
                                 <a>Company Type</a>
@@ -177,7 +227,7 @@ const Sidenav = (props) => {
                   )
                 }
                 {
-                  (admin.role_id == 0 || checkMainMenu(7,8)) && (
+                  (admin.role_id == 0 || checkMainMenu(10,11)) && (
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="AdminUsers">
                       <a className={`nav-link nav-link-collapse ${(page_name == "Admin" || page_name == "Admin Role") ? '' : 'collapsed'}`} data-toggle="collapse" href="#collapseAdminUsers" data-parent="#AdminUsers">
                         <i className="fa fa-fw fa-users"></i>
@@ -185,7 +235,7 @@ const Sidenav = (props) => {
                       </a>
                       <ul className={`sidenav-second-level collapse ${(page_name == "Admin" || page_name == "Admin Role") ? 'show' : ''}`} id="collapseAdminUsers">
                         {
-                          (admin.role_id == 0 || checkMenu(7)) && (
+                          (admin.role_id == 0 || checkMenu(10)) && (
                             <li>
                               <Link href="/backend/admin">
                                 <a>Admins</a>
@@ -194,7 +244,7 @@ const Sidenav = (props) => {
                           )
                         }
                         {
-                          (admin.role_id == 0 || checkMenu(8)) && (
+                          (admin.role_id == 0 || checkMenu(11)) && (
                             <li>
                               <Link href="/backend/roles">
                                 <a>Admin roles</a>
@@ -223,7 +273,7 @@ const Sidenav = (props) => {
             </div>
           </nav>
 
-          <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} />
+          <Topnav children={children} page_name={page_name} sub_page={sub_page} main_link={main_link} no_class={no_class} headerScroll={headerScroll} />
           <Modal handleClick={() => handleLogout()} />
         </>
       )

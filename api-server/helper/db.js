@@ -7,9 +7,9 @@ if(mode === 'test'){
 }
 
 require('dotenv').config(config)
-const {sequelize} = require('../db')
-
-
+const DB = require('../db')
+const {sequelize} = DB
+const {Booking,BookingAddress,BookingDetail,BookingBoat} = DB
 
 
 exports.syncDB = async({alter}) =>{
@@ -27,12 +27,31 @@ exports.syncDB = async({alter}) =>{
     }
    
 }
+exports.clearBooking = async() =>{
+    try{
+        console.log('clearing booking data')
+        await Promise.all([
+            Booking.sync({force:true}),
+            BookingAddress.sync({force:true}),
+            BookingDetail.sync({force:true}),
+            BookingBoat.sync({force:true})
+        ])
+        console.log('clear booking success')
+    }
+    catch(err){
+        console.log(err);
+        process.exit(1)
+    }
+}
 
 if(method === 'sync'){
     this.syncDB().then(() => process.exit(0))
 }
 else if(method === 'sync-alter'){
     this.syncDB({alter : true}).then(() => process.exit(0))
+}
+else if(method === 'clear-booking'){
+    this.clearBooking().then(() => process.exit(0))
 }
 else {
     console.log('method required')

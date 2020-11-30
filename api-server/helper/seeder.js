@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {Admin,Permission} = require('../db')
+const {Admin,Permission,BoatCategory} = require('../db')
 
 
 
@@ -30,10 +30,13 @@ exports.initAdmin = async () => {
 exports.initPermission = async() =>{
   try{
     const data = [
+      {name : 'Bookings' , key : 'bookings' },
       {name : 'Package' , key : 'package' },
       {name : 'Package Category' , key : 'package_category'},
       {name : 'Boat' , key : 'boat' },
       {name : 'Boat Category' , key : 'boat_category'},
+      {name : 'Blog' , key : 'blog' },
+      {name : 'Blog Category' , key : 'blog_category'},
       {name : 'Users' , key : 'users' },
       {name : 'Company Type' , key : 'company_type'},
       {name : 'Admin' , key : 'admin'},
@@ -41,9 +44,44 @@ exports.initPermission = async() =>{
     ]
 
     await Permission.sync({force : true})
-    console.log('Create permission successfully!')
+    
 
     await Permission.bulkCreate(data)
+    console.log('Create permission successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+exports.initBoatActivities = async() =>{
+  try{
+    const data = [
+      {name : 'Dinner cruise' , code : 'DC' },
+      {name : 'Long Tail Boat' , code : 'LT',type:'charter'},
+      {name : 'Charter Yacht' , code : 'CY' ,type:'charter'},
+      {name : 'Rice Bargue Boat' , code : 'RB',type:'charter'},
+      {name : 'Dive Trip' , code : 'DT' },
+      {name : 'Water Sports' , code : 'WS'},
+    ]
+
+    await BoatCategory.sync({force : true})
+    
+
+    await BoatCategory.bulkCreate(data)
+    console.log('Create boat activities successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+exports.initDefault = async() =>{
+  try{
+    await this.initAdmin()
+    await this.initPermission();
+    await this.initBoatActivities();
+    console.log('seeded successfully!')
   }
   catch(err){
     console.log(err)
@@ -57,4 +95,11 @@ if(method === 'admin'){
 }
 else if(method === 'per'){
   this.initPermission().then(() => process.exit(0))
+}
+else if(method === 'all'){
+  this.initDefault().then(() => process.exit(0))
+}
+else {
+  var methods = ['admin','per','all']
+  console.log('method required ',methods)
 }

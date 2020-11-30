@@ -13,6 +13,7 @@ module.exports = (sequelize, type) => {
       type : type.STRING(20),
       defaultValue : 'normal'
     },
+    cost : type.DECIMAL(18,2),
     // price : type.DECIMAL(18,2),
     
   },

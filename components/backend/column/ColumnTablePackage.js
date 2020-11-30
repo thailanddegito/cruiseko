@@ -2,9 +2,10 @@
 import React from 'react';
 import Link from 'next/link'
 import {toDateISO} from '../../../utils/tools'
+import Switch from '../../widget/Switch'
 
 const ColumsBody = (props) => {
-  const {delData} = props;
+  const {delData, handleFunction} = props;
 
   const columns = [
     {
@@ -17,6 +18,39 @@ const ColumsBody = (props) => {
     //   selector: 'code',
     //   sortable: true,
     // },
+    
+    {
+      name: 'Drafting',
+      sortable: true,
+      selector: 'equal_draft',
+      cell : row => (
+        row.equal_draft == 1 ? 'No' : 'Yes'
+      )
+    },
+    {
+      name: 'Today Pricing Type',
+      cell : row => {
+        if(row.price_dates[0]) {
+          if(row.price_dates[0].pricing_type == 'normal') {
+            return 'Tour';
+          }else if(row.price_dates[0].pricing_type == 'tier') {
+            return 'Private Tour';
+          }else{
+            return 'Charter'
+          }
+        }else{
+          return 'No Data';
+        }
+      }
+    },
+    {
+      name: 'Publish status',
+      cell : row => (
+        (row.publish_status >= 0) ? (
+          <Switch name="publish_status" id={`publish_status${row.id}`} checked={row.publish_status == 1 ? true : false} handleFunction={() => handleFunction(row.publish_status , row.id)} />
+        ) : null
+      )
+    },
     {
       name: 'Created date',
       selector: 'createdAt',

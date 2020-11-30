@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../../../components/backend/layout/Layout';
 import Button from '../../../../components/widget/Button';
 import InputLabel from '../../../../components/widget/InputLabel';
+import SelectLabel from '../../../../components/widget/SelectLabel';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import WarningDialog from '../../../../components/widget/ModalWarningDialog';
 import api from '../../../../utils/api-admin';
@@ -47,7 +48,6 @@ const EditRole = ({query}) => {
     })
   }
 
- 
 
 
   return (
@@ -82,6 +82,19 @@ const EditRole = ({query}) => {
               labelName="Code " iconProps={{className : 'fa icon icon-home'}} />
             </div>
           </div>
+            
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-12">
+              <SelectLabel 
+              inputProps={{ 
+                className:'form-control select', 
+                name : 'type', required : true,
+                defaultValue : types?.type
+              }} 
+              labelName="Type" options={[{name : 'Tour',val : 'tour'},{name : 'Charter',val : 'charter'}]} />
+            </div>
+          </div>
+          
 
          
 
@@ -110,7 +123,7 @@ const EditRole = ({query}) => {
   )
 }
 
-EditRole.getInitialProps = ({query}) => {
-  return {query}; //has to be like an object
-}
+// EditRole.getInitialProps = ({query}) => {
+//   return {query}; //has to be like an object
+// }
 export default EditRole

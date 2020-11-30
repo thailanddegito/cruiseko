@@ -25,7 +25,9 @@ const Login = ({ t }) => {
       AuthService.setToken(res.data.token)
       AuthService.setProfile({user_id : res.data.user_id})
       fetchUser()
-      Router.push('/')
+      // Router.push('/')
+      window.location = '/'
+
     })
     .catch(err => {
       if(!err.response) return;
@@ -35,14 +37,15 @@ const Login = ({ t }) => {
   }
   
   return (
-    <Layout loading={loading} title="Login">
-      <div className="container" id="login">
+    <Layout loading={loading} title="Login" page={'login'} banner={false}>
+      <div className="container start-content" id="login">
         <aside className="main-content">
           <form id="login-form" onSubmit={login}>
             <FormLogin error={error} />
           </form>
         </aside>
       </div>
+      <div className="end-content"></div>
     </Layout>
   )
 }
