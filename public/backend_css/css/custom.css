@@ -12,6 +12,16 @@ body {
   background-color: #007bff;
   border-color: #007bff;
 }
+.btn-outline-default {
+  color: #000;
+  background-color: #FFF;
+  border-color: #000;
+}
+.btn-outline-default:hover {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000;
+}
 .btn-previous {
   min-width: 80px !important;
   border-radius: 8px !important;
@@ -420,6 +430,79 @@ span.nav-link-text {
   width: 40px;
   margin-left: 15px;
 }
+.drag {
+  display: inline-flex;
+}
+.drag-box {
+  display: block;
+  border-radius: 2px;
+  border: 1px solid rgb(234, 234, 234);
+  margin-bottom: 8px;
+  margin-right: 8px;
+  width: 100px;
+  height: 100px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.drag-box img {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.drag-text-del {
+  text-align: center;
+  margin-right: 8px;
+}
+.drag-del {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.drag-del:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+.div-table {
+  align-items: center;
+  padding: 10px 0;
+}
+.div-table:nth-child(odd) {
+  background-color: #EEE;
+}
+.div-table:nth-child(even) {
+  background-color: #FFF;
+}
+.package-scroll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  width: calc(100% - 200px);  
+  height: 64px;
+  padding-top: 0;
+  background-color: #FFF;
+  padding-right: 24px;
+  top: 62px;
+  margin-left: -15px;
+  padding-left: 47px;
+  padding-right: 45px;
+  opacity: 0;
+  transition: 0.3 ease-in;
+}
+.package-scroll.scrolled {
+  opacity: 1;
+}
+.slick-next, .slick-prev {
+  background: #EEE;
+  border-radius: 50%;
+}
+.slick-next:before, .slick-prev:before {
+  color: #000;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
@@ -428,5 +511,11 @@ span.nav-link-text {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a, #mainNav .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
     padding: 10px;
     padding-left: 2.75em;
+  }
+}
+@media (max-width: 991px) {
+  .package-scroll {
+    width: calc(100% - 0px) !important;  
+
   }
 }

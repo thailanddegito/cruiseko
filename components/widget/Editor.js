@@ -27,8 +27,8 @@ const Editor = (props) =>{
       'blockQuote',
       'insertTable',
   
-      'undo',
-      'redo'
+      // 'undo',
+      // 'redo'
     ],
     removePlugins: [ 'ImageCaption' ],
     image: {
@@ -67,12 +67,13 @@ const Editor = (props) =>{
   // const [data, setData] = useState('')
   const [inputData,setInputData] = useState('')
   useEffect(()=>{
-    setInputData(data)
+    setInputData(data || '')
   },[data])
   const onEditorChange =(event, editor )=>{
     const data = editor.getData();
     setInputData(data)
   }
+  // console.log('data',data)
 
   return (
     <div style={{position:'relative'}}>
@@ -85,10 +86,10 @@ const Editor = (props) =>{
       <CKEditor
         editor = {ClassicEditor}
         config = {config}
-        data = {data}
+        data = {data || ''}
         onInit = { 
           editor => {
-            console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
+            // console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
             editor.editing.view.change( writer => {
               writer.setStyle( 'min-height', height, editor.editing.view.document.getRoot() );
             });

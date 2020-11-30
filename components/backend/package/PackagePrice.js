@@ -24,6 +24,7 @@ const price_list = [
 const initStateTypeNormal = {
     start_date:null,end_date : null,
     pricing_type : 'normal',
+    cost : null,
     user_type : [ {name : 'FIT',company_type_id : 0  ,price_list }  ]
 }
 
@@ -31,6 +32,7 @@ const initFirstTier = {number : 2,price :null,deposit_rate:0,commission_rate: 0,
 
 const initStateTypeTier = {
     start_date:null,end_date : null,
+    cost : null,
     pricing_type : 'tier',
     user_type : [ {name : 'FIT',company_type_id : 0 , tier_start : 1 , tiers : [initFirstTier] }  ]
   
@@ -40,7 +42,7 @@ const PackagePrice = memo((props) => {
   // const [startDate, setStartDate] = useState(null);
   // const [endDate, setEndDate] = useState(null);
   const [companies, setCompany] = useState();
-  const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave} = props
+  const {handleAdd,handleCancel,lasted ,editData ,handlePriceSave,isBoat=false} = props
 
   const [data,setData] = useState(editData || initStateTypeNormal)
 
@@ -81,6 +83,13 @@ const PackagePrice = memo((props) => {
 
   useEffect(() => editData && setData(editData) ,[editData]  )
 
+
+  useEffect(() => {
+    if(!editData && isBoat){
+      setData(initStateTypeTier)
+    }
+    
+  }, [isBoat]);
 
 
 
@@ -210,6 +219,9 @@ const PackagePrice = memo((props) => {
 
 
   var options = [{ value: 'normal', label: 'Tour'}, { value: 'tier', label: 'Private Tour'}];
+  if(isBoat){
+    options = [{ value: 'tier', label: 'Charter'}]
+  }
   // const [priceTypes, setPriceType] = useState('');
   const [addDataTier, setAddDataTier] = useState(false);
   const handleChange = (e) => {
@@ -218,11 +230,38 @@ const PackagePrice = memo((props) => {
     setData(init)
   }
 
+  const checkValidForm = ()=>{
+    if(!data.start_date || !data.end_date) return false;
+    
+    if(data.pricing_type === 'tier'){
+      for(let i = 0 ; i < data.user_type.length ;i++){
+        for(let j = 0 ; j < data.user_type[i].tiers.length ; j++){
+          const item = data.user_type[i].tiers[j]
+          if(!item.number || !item.price){
+            return false;
+          }
+        }
+      }
+    }
+    else{
+      for(let i = 0 ; i < data.user_type.length ;i++){
+        for(let j = 0 ; j < data.user_type[i].price_list.length ; j++){
+          const item = data.user_type[i].price_list[j]
+          if( !item.price){
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
   // const handleAddTier = () => {
   //   setAddDataTier(true);
   // }
-  console.log('data',data)
-  console.log('lasted',lasted)
+  // console.log('data',data)
+  // console.log('lasted',lasted)
 
   return (
     <>
@@ -238,7 +277,8 @@ const PackagePrice = memo((props) => {
                 name={"pricing_type"}
                 options={options}
                 onChange={(e) => handleChange(e)}
-                defaultValue={{ label: "Tour", value: 'normal' }}
+                value={options.find(val => val.value === data.pricing_type) }
+                // defaultValue={{ label: "Tour", value: 'normal' }}
               /> 
           </div>
         </div>
@@ -252,6 +292,7 @@ const PackagePrice = memo((props) => {
             value={data.start_date}
             inputProps={{ name: 'start_date', required: true, autoComplete: 'off' }} 
             isValidDate={lasted? validStartDate : undefined}
+            initialViewDate={lasted ? lasted.end_date : undefined }
              />
           </div>
         </div>
@@ -264,13 +305,16 @@ const PackagePrice = memo((props) => {
             onChange={(e) => { showendDate(e) }}
             value={data.end_date}
             inputProps={{ name: 'end_date', required: true, autoComplete: 'off' }}
-            isValidDate={validEndDate} />
+            isValidDate={validEndDate} 
+            initialViewDate={lasted ? lasted.end_date : undefined }
+            />
           </div>
         </div>
         <div className="col-lg-3 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
-            name: 'cost'
+            name: 'cost',value : data.cost,
+            onChange : e => setData({...data,cost : e.target.value })
           }} 
           labelName="Cost" iconProps={{className : 'fa icon icon-email'}}  />
         </div>
@@ -302,7 +346,8 @@ const PackagePrice = memo((props) => {
         ) : null
       }
       <div className="text-center">
-        <Button _type="button" _name={!editData ? "Add" : "Save"} _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
+        <Button _type="button" _name={!editData ? "Add" : "Save"} _disabled={!checkValidForm()}
+        _class="btn-primary" _click={() => !editData ? handleAdd(data) : handlePriceSave(data,editData.index)} />
         <Button _type="button" _name="Cancel" _class="btn-outline-primary ml-4" _click={onCancel} />
       </div>
     </>

@@ -1,10 +1,13 @@
 import Head from 'next/head';
 import React from 'react';
 import Header from './Header';
+import usescript from '../../../utils/UseScript'
 // import Footer from '../layout/Footer'
 
 const Layout = (props) => {
-  const {title, loading, children} = props;
+  const {title, loading, children, banner} = props;
+
+  usescript();
 
   return (
     <>
@@ -32,11 +35,12 @@ const Layout = (props) => {
         <script src="/template/js/common_scripts.js"></script>
         <script src="/template/js/main.js"></script>
         <script src="/template/assets/validate.js"></script>
-        
+        <script src="/template/js/isotope.min.js"></script>
+
       
       </Head>
       
-      <Header loading={loading} />
+      <Header loading={loading} banner={banner} />
       <div className='main-layout'>
         {/* {loading && <Loading />} */}
         {children}

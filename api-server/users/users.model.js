@@ -24,7 +24,7 @@ module.exports = (sequelize, type) => {
         },
 
         image_logo : type.STRING,
-        company_type : type.STRING,
+        company_type_id : type.STRING,
         company_name_en : type.STRING,
         company_name_th : type.STRING,
         license_no : type.STRING,
@@ -69,9 +69,9 @@ module.exports = (sequelize, type) => {
         paranoid : true
     })
 
-    // User.associate = function(models) {
-    //     User.belongsToMany(models.Physician, { through: "Appointment", foreignKey: "patientId" });
-    // };
+    User.associate = function(models) {
+        User.belongsTo(models.CompanyType, { foreignKey: "company_type_id",constraints: false });
+    };
 
     return User;
 }

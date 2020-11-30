@@ -18,7 +18,7 @@ const User = (props) => {
       }
 
       if(inputData.company_type){
-        res = await api.genUserId({company_type_id : inputData.company_type ,company_name_en :inputData.company_name_en})
+        res = await api.genUserId({company_type_id : inputData.company_type_id ,company_name_en :inputData.company_name_en})
         if(res.data.id){
           setInputData && setInputData({...inputData,id :res.data.id })
           setShow(3);

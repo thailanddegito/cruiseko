@@ -9,6 +9,7 @@ const errors = require('../errors')
 const {DefaultError} = errors
 const {Op} = require('sequelize');
 const  async =  require('async') ;
+const { CompanyType } = require('../db');
 
 exports.index = async(req,res,next)=>{
     var {page,limit,user_type,approve_status,search} = req.query;
@@ -27,10 +28,14 @@ exports.index = async(req,res,next)=>{
         if(approve_status) where.approve_status = approve_status;
 
 
+        const include = [
+            {model : CompanyType}
+        ]
+
         var order = [['license_expired_date','asc']]
 
 
-        var options = {where,attributes: {exclude: ['password']},order}
+        var options = {where,attributes: {exclude: ['password']},order,include}
 
         if(!isNaN(page) && page > 1){
             options.offset = (page-1)*limit;
@@ -150,7 +155,7 @@ exports.register = async(req,res,next)=>{
 
         if(user_type === 'fit'){
             data.id = await tools.genUserId(user_type)
-            data.accept_status = 1;
+            data.approve_status = 1;
         }
 
 
@@ -171,6 +176,16 @@ exports.register = async(req,res,next)=>{
     }
 }
 
+exports.loginFacebook = async(req,res,next)=>{
+    var _user = req.user;
+    try{
+
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 // bcrypt.hash('123456', saltRounds).then(result => console.log(result))
 
 
@@ -178,7 +193,10 @@ exports.register = async(req,res,next)=>{
 exports.profile = async(req,res,next)=>{
     const user = req.user;
     try{
-        const _user = await User.findOne({where : { id : user.id},attributes: {exclude: ['password']} })
+        const include = [
+            {model : CompanyType}
+        ]
+        const _user = await User.findOne({where : { id : user.id},attributes: {exclude: ['password']},include })
         res.json(_user)
     }
     catch(err){

@@ -50,7 +50,9 @@ const Register = ({ t }) => {
 
     api.register(form_success).then(res => {
       alert('Success')
-      Router.push('/partner/register-success')
+      window.location = '/partner/register-success'
+
+      // Router.push('/partner/register-success')
       
     })
     .catch(err => {
@@ -61,9 +63,9 @@ const Register = ({ t }) => {
   }
 
   return (
-    <Layout loading={loading} title="Register">
+    <Layout loading={loading} title="Register" page={'partnaer_register'} banner={false}>
       <main>
-        <div className="container">
+        <div className="container start-content">
           <div className="row">
             <div className="col-12">
               <div className="bs-wizard step clearfix">
@@ -78,7 +80,8 @@ const Register = ({ t }) => {
         <div className="container" id="register">
           <aside className="main-content">
 
-              <Company setShow={setShow} show={show == 1} inputData={inputData} handleChange={handleChange} />
+              <Company setShow={setShow} show={show == 1} inputData={inputData} setInputData={setInputData}
+              handleChange={handleChange} />
               
               <User setShow={setShow} show={show == 2} 
               setInputData={setInputData}
@@ -95,6 +98,7 @@ const Register = ({ t }) => {
           </aside>
         </div>
       </main>
+      <div className="end-content"></div>
     </Layout>
   )
 }

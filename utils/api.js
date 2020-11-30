@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthService from './AuthService'
 const BASE = `${process.env.HOST}/api`; 
-const service = axios.create({baseURL :'/api' })
+const service = axios.create({baseURL :BASE })
 
 // axios.interceptors.response.use((response) => {
 //     if(response.status === 401) {
@@ -48,5 +48,9 @@ export default {
     //Package
     getPackage : (params) => service.get(`/products`, {params}),
     getPackageOne : (id) => service.get(`/products/${id}`),
+    checkout : (data) => service.post(`/booking`,data),
+
+    //Activities
+    getActivities : (params) => service.get(`/boat-category`, {params}),
 
 }

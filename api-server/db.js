@@ -12,7 +12,6 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
 });
 
 
-
 // (async () =>{
 //     try {
 //         await sequelize.authenticate();
@@ -38,7 +37,15 @@ const models = {
     PriceDate : require('./products/price_date.model')(sequelize,Sequelize),
     PriceCompanyType : require('./products/price_company_type.model')(sequelize,Sequelize),
     PriceDateDetail : require('./products/price_date_detail.model')(sequelize,Sequelize),
-    // PriceTier : require('./products/price_tier.model')(sequelize,Sequelize),
+    ProductBoat : require('./products/products_boat.model')(sequelize,Sequelize),
+    Event : require('./products/event.model')(sequelize,Sequelize),
+    Booking : require('./booking/booking.model')(sequelize,Sequelize),
+    BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
+    BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
+    BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
+
+    BlogCategory : require('./blog/blog_category.model')(sequelize,Sequelize),
+    Blog : require('./blog/blog.model')(sequelize,Sequelize),
     
 }
 
@@ -56,21 +63,6 @@ for (var key of Object.keys(models)) {
 // sequelize.sync({alter:true})
 // .then(() => console.log('Sync db success') )
 
-
-//Create super admin
-// (async ()=>{
-//     const bcrypt = require('bcrypt');
-//     var data = {
-//         username : 'superadmin',
-//         name : 'Superadmin',
-//         email : 'superadmin@cruiseko.app',
-//         password : 'secret1234',
-//         role_id : 0
-//     }
-//     data.password = await bcrypt.hash(data.password, 11)
-//     await models.Admin.create(data)
-//     console.log('Create superadmin successfully!')
-// } )()
 
 module.exports = {
     sequelize,

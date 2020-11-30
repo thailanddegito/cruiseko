@@ -19,7 +19,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
     <div className="row w-100 justify-content-end">
       <div className="col-lg-3 col-md-6 col-12 px-0">
         <div className="d-flex">
-          <Input inputProps={{id : 'search', className : "form-control",  type : "text", placeholder : "Filter By Company Name English", value : filterText, onChange : onFilter }} />
+          <Input inputProps={{id : 'search', className : "form-control",  type : "text", placeholder : "Filter By Name", value : filterText, onChange : onFilter }} />
           <Button _type="button" _class="btn-reset"  _click={onClear} _name="X" />
         </div>
       </div>

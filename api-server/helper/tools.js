@@ -77,4 +77,14 @@ module.exports = {
     genFileUrl : (fileName,path)=>{
         return fileName ? `/storage/${path}/${fileName}` : null
     },
+    delay : (time) => {
+        
+        return new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                // console.log('time', time);
+                resolve(time);
+            }, time);
+        });
+        
+    }
 }
