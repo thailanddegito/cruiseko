@@ -431,6 +431,18 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .select-time {
   width: 64px;
   border-radius: 16px;
+  background-color: #66676b;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  line-height: 18px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 2px;
+  height: 18px;
 }
 .panel-dropdown .panel-dropdown-content.time {
   padding: 0 15px;

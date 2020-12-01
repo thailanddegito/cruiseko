@@ -72,8 +72,8 @@ const Price = (props) => {
     setState({...state,[key] :newVal })
   }
 
-  const onTimeChange = (e) =>{
-    console.log(e)
+  const onTimeChange = (key, val) =>{
+    setState({...state,[key] : val })
   }
 
 
@@ -95,8 +95,8 @@ const Price = (props) => {
         {
           is_boat ? (
             <div className="d-flex">
-              <SelectTime active={activeFrom} setActive={setActiveFrom} handleButton={handleButton} state={state} />
-              <SelectTime active={activeTo} setActive={setActiveTo} handleButton={handleButton} state={state} />
+              <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} state={state} name={'start_time'} />
+              <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} state={state} name={'end_time'} />
             </div>
           ) : null
         }
