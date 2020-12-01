@@ -72,6 +72,10 @@ const Price = (props) => {
     setState({...state,[key] :newVal })
   }
 
+  const onTimeChange = (e) =>{
+    console.log(e)
+  }
+
 
 
 
