@@ -54,10 +54,14 @@ exports.calPackagePriceCard =(pkg,user)=>{
 
 }
 
-exports.calPackagePrice =(pkg,user,date,adult,children)=>{
+exports.calPackagePrice =(pkg,user,date,adult,children,duration)=>{
   var result = {price : -1 ,unit : 'person'}
   if(!pkg ) return result;
   if(!pkg.price_dates.length) return result;
+
+  const {is_boat,products_boats} = pkg;
+  if(!products_boats.length) return result;
+  const {boat} = products_boats[0];
 
   var total_person = adult+children;
   if(!total_person) total_person = 1;
@@ -108,15 +112,35 @@ exports.calPackagePrice =(pkg,user,date,adult,children)=>{
     // console.log('price_date_detail',total_person,price_date_detail)
 
     var normal_price = parseFloat(price) 
-
-
+    const real_price = parseFloat(commission) || parseFloat(price)
     result.normal_price = normal_price
-    result.price =  net_price ? net_price : normal_price
-    result.per_person = net_price ? net_price/total_person : normal_price/total_person
+    if(is_boat == 0){
+      result.price =  real_price
+      result.per_person = real_price/total_person
+    }
+    else{
+      const min_hour = Math.ceil(boat.min_hr / 60) 
+      if(duration < min_hour) return result;
+
+      const boat_amt = Math.ceil(total_person / boat.capacity) 
+      result.price =  real_price*boat_amt*parseInt(duration)
+      result.unit = 'boat'
+      result.boat_amt = boat_amt;
+    }
+
+    
+    
     
   }
 
   return result;
   
 
+}
+
+exports.calDuration = (start_time,end_time)=>{
+  var [hour_start,min_start] = start_time.split(':')
+  var [hour_end,min_end] = end_time.split(':')
+  if(hour_end == 0) hour_end = parseInt(hour_end) + 24
+  return  Math.abs((parseInt(hour_end)*60 +  parseInt(min_end)) - (parseInt(hour_start)*60 +  parseInt(min_start)))  / 60
 }

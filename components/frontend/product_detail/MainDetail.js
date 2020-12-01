@@ -17,7 +17,9 @@ const Detail = (props) => {
   const [state,setState] = useState({
     date : toDateISO(new Date()),
     adult : 1,
-    children : 0
+    children : 0,
+    start_time :null,
+    end_time : null,
   })
   const { user } = useContext(UserContext);
 
