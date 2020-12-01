@@ -586,7 +586,7 @@ async function getOneProduct(product_id,transaction){
     {model : PriceDate ,include :price_include, attributes:{exclude : ['id']}},
     {model : ProductImage , attributes:{exclude : ['id']}},
     {model : Event},
-    {model : ProductBoat , attributes:{exclude : ['id']}}
+    {model : ProductBoat , attributes:{exclude : ['id']},include : [Boat]}
   ]
   const draft = await Product.findOne({where : {id : product_id},include,transaction})
 

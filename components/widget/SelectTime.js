@@ -14,15 +14,17 @@ const SelectTime = (props) => {
   const handleChange = (e, type) => {
     if(type == 'hour') {
       setHour(e.target.value);
+      onTimeChange && onTimeChange(name, `${e.target.value}:${minute}`)
     }
-    if(type == 'minute') {
+    else if(type == 'minute') {
       setMinute(e.target.value);
+      onTimeChange && onTimeChange(name, `${hour}:${e.target.value}`)
     }
   }
 
-  useEffect(() => {
-    onTimeChange && onTimeChange(name, `${hour}:${minute}`)
-  }, [hour, minute])
+  // useEffect(() => {
+  //   onTimeChange && onTimeChange(name, `${hour}:${minute}`)
+  // }, [hour, minute])
 
   
   return (

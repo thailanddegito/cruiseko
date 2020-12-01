@@ -1,5 +1,5 @@
 
-import React,{useState,useMemo,useContext} from 'react';
+import React,{useState,useMemo,useContext, useEffect} from 'react';
 import Router from 'next/router'
 import EditorData from './EditorData';
 import ImageGallery from './ImageGallery';
@@ -8,8 +8,9 @@ import Review from './Review';
 import Price from './Price';
 import Remark from './Remark';
 import {toDateISO} from '../../../utils/tools'
-import {calPackagePrice} from '../../../utils/packageHelper'
+import {calPackagePrice,calDuration} from '../../../utils/packageHelper'
 import UserContext from '../../../contexts/UserContext';
+import api from '../../../utils/api'
 
 
 const Detail = (props) => {
@@ -18,25 +19,57 @@ const Detail = (props) => {
     date : toDateISO(new Date()),
     adult : 1,
     children : 0,
-    start_time :null,
-    end_time : null,
+    start_time :'00:00',
+    end_time : '01:00',
+    canBook : true,
+    available_boat : -1
   })
   const { user } = useContext(UserContext);
 
   const priceData = useMemo(() =>{
-    return calPackagePrice(packages,user,state.date,state.adult,state.children)
+    return calPackagePrice(packages,user,state.date,state.adult,state.children,
+      calDuration(state.start_time,state.end_time)
+    )
   },[packages,state,user])
+  
 
   const checkout = () => {
     var checkout_dt = {
       product_id : packages.id,
+      is_boat : packages.is_boat,
       ...state,
       price : priceData.price,
-      expired_at : (new Date()).getTime() + 15 * 60 * 1000 
+      expired_at : (new Date()).getTime() + 15 * 60 * 1000 ,
+      duration : packages.is_boat ? calDuration(state.start_time,state.end_time) : ''
     }
     localStorage.setItem('checkout_dt',JSON.stringify(checkout_dt))
     Router.push('/user/check-out');
   }
+
+  useEffect(()=>{
+    if(!state.date || !state.start_time || !state.end_time || !packages) return
+    if(packages.is_boat != 1) return;
+
+    const {date,start_time,end_time} = state;
+    var [hour_start,min_start] = start_time.split(':')
+    var [hour_end,min_end] = end_time.split(':')
+    var rental_start = new Date(date) 
+    var rental_end = new Date(date) 
+    rental_start.setHours(hour_start,min_start)
+    rental_end.setHours(hour_end,min_end)
+    api.checkAvailableBoat({boat_id:packages.products_boats[0]?.boat_id ,date,
+      start_time:rental_start,end_time :rental_end
+    })
+    .then(res => {
+      // console.log(res.data)
+      const {available_boat} = res.data
+      setState({...state,canBook : !!available_boat,available_boat})
+    })
+    .catch(err=>{
+      console.log(err.response)
+    })
+
+  },[packages,state.date,state.end_time,state.start_time])
 
   console.log('state',state)
   console.log('priceData',priceData)

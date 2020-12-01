@@ -53,9 +53,10 @@ exports.create = async(req,res,next)=>{
   var {product_id,adult,children,date} = data;
   var {user_firstname,user_lastname,user_email,user_phone} = data;
   var {address,district,city,province,country,post_code} = data;
-  var {isBoat,start_time,end_time} = data;
+  var {start_time,end_time} = data;
   const _user = req.user;
   var transaction;
+  console.log('booking ->',data)
   try{
 
     if(!_user){
@@ -68,10 +69,10 @@ exports.create = async(req,res,next)=>{
     if(!product || !user){
       throw new DefaultError(errors.INVALID_INPUT);
     }
-    const {products_boats} = product
+    const {products_boats,is_boat} = product
 
     var duration ,rental_start,rental_end,booking_boat_data;
-    if(isBoat == 1){
+    if(is_boat == 1){
       if(!start_time || !end_time){
         throw new DefaultError(errors.FILEDS_INCOMPLETE);
       }
@@ -91,6 +92,7 @@ exports.create = async(req,res,next)=>{
 
       const ua_boat = await BookingBoat.findAll({where  : {
         boat_id : products_boats[0].boat_id,
+        status : 1,
         [Op.or] : [
           {[Op.and] : [{rental_start : {[Op.lte] : rental_start}  },{rental_end : {[Op.gte] : rental_start}  }] },
           {[Op.and] : [{rental_start : {[Op.lte] : rental_end}  },{rental_end : {[Op.gte] : rental_end}  }] }
@@ -108,7 +110,7 @@ exports.create = async(req,res,next)=>{
       booking_boat_data ={
         boat_id : products_boats[0].boat_id,
         rental_start,
-        rental_end
+        rental_end,
       }
     }
 
@@ -142,10 +144,15 @@ exports.create = async(req,res,next)=>{
 
     }
 
+    console.log('result',booking_data)
+
+    // throw new Error();
+
     const booking = await Booking.create(booking_data,{transaction})
 
     if(booking_boat_data){
       booking_boat_data.booking_id = booking.id;
+      booking_boat_data.amount = boat_amt;
       await BookingBoat.create(booking_boat_data,{transaction})
     }
 
@@ -172,6 +179,44 @@ exports.update = async(req,res,next)=>{
   const id  = req.params.id;
   try{
 
+  }
+  catch(err){
+    next(err);
+  }
+}
+
+exports.checkAvailableBoat = async(req,res,next)=>{
+  var {boat_id,date,start_time,end_time} = req.query;
+  try{
+
+    if(!boat_id || !start_time || !end_time ){
+      throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+    const boat = await Boat.findOne({where : {boat_id}})
+
+    if(!boat){
+      throw new DefaultError(errors.NOT_FOUND);
+    }
+    // var [hour_start,min_start] = start_time.split(':')
+    // var [hour_end,min_end] = end_time.split(':')
+    var rental_start = new Date(start_time) 
+    var rental_end = new Date(end_time) 
+    // rental_start.setHours(hour_start,min_start)
+    // rental_end.setHours(hour_end,min_end)
+    const ua_boat = await BookingBoat.findAll({where  : {
+      boat_id : boat.boat_id,
+      status : 1,
+      [Op.or] : [
+        {[Op.and] : [{rental_start : {[Op.lte] : rental_start}  },{rental_end : {[Op.gte] : rental_start}  }] },
+        {[Op.and] : [{rental_start : {[Op.lte] : rental_end}  },{rental_end : {[Op.gte] : rental_end}  }] }
+      ]
+    },attributes:['boat_id','amount'] ,raw:true})
+
+    const unavailable_boat = ua_boat.reduce((total,item) => total+item.amount ,0 )
+    console.log('Unavailable Boat',unavailable_boat)
+    const available_boat = boat.amount - unavailable_boat;
+
+    res.json({success:true,available_boat})
   }
   catch(err){
     next(err);

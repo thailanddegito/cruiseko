@@ -103,8 +103,8 @@ const Price = (props) => {
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
-
-        <button type="button" disabled={price === -1} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+         {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+        <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       
