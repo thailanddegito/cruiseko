@@ -263,6 +263,13 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.blog-short-description {
+  height: 66px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 .short-land-description {
   height: 110px;
   overflow: hidden;
