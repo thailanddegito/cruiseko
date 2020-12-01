@@ -55,7 +55,7 @@ const SearchCharter = ({query}) => {
           <div className="row row-height">
             <div className="col-lg-5 content-left order-md-last order-sm-last order-last">
 
-            <ResultSearch />
+            <ResultSearch packages={packages} />
             
             <Filter />
 

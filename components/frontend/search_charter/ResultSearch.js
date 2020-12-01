@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const ResultSearch = (props) => {
-  const {data} = props;
+  const {packages} = props;
 
   return (
     <>
@@ -11,7 +11,7 @@ const ResultSearch = (props) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-10">
-              <h4><strong>145</strong> results</h4>
+            <h4><strong>{packages?.count}</strong> results</h4>
             </div>
             <div className="col-2">
               <a href="#0" className="search_map btn_search_map_view"></a> 
