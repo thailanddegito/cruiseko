@@ -3,8 +3,8 @@ import Layout from '../components/frontend/layout/Layout';
 import Banner from '../components/frontend/home/Banner'
 import ProductCard from '../components/frontend/product/ProductCard'
 import api from '../utils/api'
-import BlogCard from '../components/widget/BlogCard'
-import ItemCarousel from '../components/widget/ItemCarousel'
+import BlogCard from '../components/frontend/blog/BlogCard'
+import Link from 'next/link'
 
 const Home = (props) => {
   const [loading, setLodding] = useState(false);
@@ -29,7 +29,6 @@ const Home = (props) => {
     api.getBlog()
     .then(res=>{
       const data = res.data;
-      console.log(data)
       setBlog(data);
     })
     .catch(err => {
@@ -37,13 +36,11 @@ const Home = (props) => {
     })
   }
   
-  
   useEffect(() => {
     fecthPackage();
     fecthBlog();
   }, [])
 
-  // console.log(blogs);
 
   return (
     <Layout loading={loading} title="Home" page={'home'}>
@@ -64,20 +61,6 @@ const Home = (props) => {
             </div>
           </div>
 
-          {/* <div className="container container-custom margin_80_0">
-            <div className="main_title_2">
-              <span><em></em></span>
-              <h2>Our Popular Tours</h2>
-              <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
-            </div>
-            <div id="reccomended" className="owl-carousel owl-theme">
-              <ItemCarousel />
-            </div>
-            <p className="btn_home_align"><a href="tours-grid-isotope.html" className="btn_1 rounded">View all Tours</a></p>
-            <hr className="large" />
-          </div>      
- */}
-
           {
             (blogs && blogs.count > 0) ? (
               <div className="bg_color_1">
@@ -94,7 +77,7 @@ const Home = (props) => {
                       )) : null
                     }
                   </div>
-                  <p className="btn_home_align"><a className="btn_1 rounded">View all news</a></p>
+                  <p className="btn_home_align"><Link href="/blog"><a className="btn_1 rounded">View all news</a></Link></p>
                 </div>
               </div>      
             ) : null

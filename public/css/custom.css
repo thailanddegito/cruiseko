@@ -270,6 +270,14 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.blog-lan-short-description {
+  height: 224px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0;
+}
 .short-land-description {
   height: 110px;
   overflow: hidden;
@@ -432,6 +440,12 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 @media (max-width: 991px) {
   .nice-select.wide {
     margin-bottom: 5px;
+  }
+  .blog-lan-short-description {
+    height: auto;
+    display: -webkit-box;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: vertical;
   }
 }
 @media (max-width: 767px) {

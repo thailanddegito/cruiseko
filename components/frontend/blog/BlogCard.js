@@ -1,5 +1,5 @@
 import React from 'react';
-import { toDateISO } from '../../utils/tools';
+import { toDateISO } from '../../../utils/tools';
 
 const BlogCard = (props) => {
   const {col, blogs} = props;
