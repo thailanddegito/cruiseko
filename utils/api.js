@@ -55,5 +55,6 @@ export default {
 
     //Blog
     getBlog : (params) => service.get(`/blog`, {params}),
+    getBlogOne : (id) => service.get(`/blog/${id}`),
 
 }

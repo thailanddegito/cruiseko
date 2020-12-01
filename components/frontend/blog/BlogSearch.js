@@ -1,5 +1,6 @@
 import React from 'react';
 import { toDateISO } from '../../../utils/tools';
+import Link from 'next/link'
 
 const BlogSearch = (props) => {
   const {news} = props;
@@ -24,10 +25,10 @@ const BlogSearch = (props) => {
               (news && news.count > 0) ? news.rows.map((val, index) => (
                 <li key={index}>
                   <div className="alignleft">
-                    <a href="#0"><img src={val.picture ? val.picture : "/template/img/blog-5.jpg"} alt="" /></a>
+                    <Link href={`/blog-details/[id]`} as={`/blog-details/${val.id}-${val.name}`}><a><img src={val.picture ? val.picture : "/template/img/blog-5.jpg"} alt="" /></a></Link>
                   </div>
                   <small>{toDateISO(new Date(val.publish_date))}</small>
-                  <h3><a href="#" title="">{val.name}</a></h3>
+                  <h3><Link href={`/blog-details/[id]`} as={`/blog-details/${val.id}-${val.name}`}><a title="">{val.name}</a></Link></h3>
                 </li>
               )) : null
             }
