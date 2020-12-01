@@ -28,17 +28,17 @@ const SelectTime = (props) => {
   return (
     <>
       <div className={`panel-dropdown w-50 ${active ? 'active' : ''}`}>
-        <a onClick={() => setActive(!active)}><span className="select-time">00.00</span></a>
+        <a onClick={() => setActive(!active)}><span className="select-time">{hour}:{minute}</span></a>
         <div className="panel-dropdown-content time right">
           <div className="select-option-time">
             <label>Hour</label>
-            <select className="form-control" onChange={(e) => handleChange(e, 'hour')}>
+            <select className="form-control" value={hour} onChange={(e) => handleChange(e, 'hour')}>
               {option_hours}
             </select>
           </div>
           <div className="select-option-time">
             <label>Minute</label>
-            <select className="form-control" onChange={(e) => handleChange(e, 'minute')}>
+            <select className="form-control" value={minute} onChange={(e) => handleChange(e, 'minute')}>
               <option>00</option>
               <option>30</option>
             </select>
