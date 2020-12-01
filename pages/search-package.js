@@ -21,7 +21,7 @@ const SearchPackageIndex = ({query}) => {
     children : 0
   })
 
-  console.log(query);
+  // console.log(query);
   
   const fecthPackage = (params) => {
     setLodding(true);
