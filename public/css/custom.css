@@ -428,6 +428,23 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   font-size: 1rem;
   color: #fff;
 }
+.select-time {
+  width: 64px;
+  border-radius: 16px;
+}
+.panel-dropdown .panel-dropdown-content.time {
+  padding: 0 15px;
+}
+.select-option-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+.select-option-time select {
+  width: 100px;
+  display: inline-block;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

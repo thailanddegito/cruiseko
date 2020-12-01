@@ -2,10 +2,14 @@
 import Router from 'next/router';
 import React, {useEffect,useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
+import SelectTime from '../../widget/SelectTime'
 
 const Price = (props) => {
   const {error,state,setState,checkout, is_boat} = props;
   const [active, setActive] = useState(false);
+  const [activeFrom, setActiveFrom] = useState(false);
+  const [activeTo, setActiveTo] = useState(false);
+
   // const [date,setDate] = useState()
   const {price,unit,boat_amt} = props.priceData; 
   const qtySum = () => {
@@ -84,14 +88,14 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        {/* {
+        {
           is_boat ? (
-            <div className="form-group input-dates">
-              <input className="form-control" type="text" name="dates" placeholder="When.." />
-              <i className="icon_calendar"></i>
-            </div>    
+            <div className="d-flex">
+              <SelectTime active={activeFrom} setActive={setActiveFrom} handleButton={handleButton} state={state} />
+              <SelectTime active={activeTo} setActive={setActiveTo} handleButton={handleButton} state={state} />
+            </div>
           ) : null
-        } */}
+        }
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
