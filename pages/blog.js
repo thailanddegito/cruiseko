@@ -31,7 +31,7 @@ const Blog = ({query}) => {
   }
 
   const fecthNews = () => {
-    api.getBlog({limit : 5, order_by : 'createdAt'})
+    api.getBlog({limit : 5})
     .then(res=>{
       const data = res.data;
       setNews(data);
