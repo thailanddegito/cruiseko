@@ -22,6 +22,12 @@ module.exports = (sequelize, type) => {
       meta_description : type.TEXT,
       meta_keyword : type.TEXT,
       meta_image : type.STRING,
+
+      pickup_location : type.STRING,
+      dropoff_location : type.STRING,
+      start_time : type.STRING,
+      end_time : type.STRING,
+
       is_draft : {
         type : type.INTEGER,
         defaultValue : 1
