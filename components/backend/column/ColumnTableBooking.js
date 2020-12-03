@@ -28,7 +28,7 @@ const ColumsBody = (props) => {
       selector: 'payment_status',
       sortable: true,
       cell : row => (
-        <span>{row.payment_status == 1 ? 'Pending' : 'Success'}</span>
+        row.payment_status == 1 ? <span className="text-warning">Pending</span> : <span className="text-success">Success</span>
       )
     },
     {
