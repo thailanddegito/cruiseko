@@ -80,7 +80,8 @@ const SearchPackageIndex = ({query}) => {
               <div className="col-12">
                 <SearchPackage handleSubmit={handleSubmit}
                   setActive={setActive} active={active}
-                  setState={setState} state={state} />
+                  setState={setState} state={state}
+                  query={query} />
               </div>
             </div>
             {

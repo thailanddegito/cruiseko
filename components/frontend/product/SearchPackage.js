@@ -5,7 +5,7 @@ import SelectAmount from '../../widget/SelectAmount';
 import SelectStyle from '../../widget/SelectStyle';
 
 const SearchPackage = (props) => {
-  const {handleSubmit, setActive, active, state, setState} = props;
+  const {handleSubmit, setActive, active, state, setState, query} = props;
 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
@@ -75,25 +75,50 @@ const SearchPackage = (props) => {
   const [textOptions, setTextOption] = useState("All Activities");
   const [option_val, setOptionVal] = useState();
 
-  const fecthBoatCate = () => {
+  const fecthBoatCate = (params) => {
+    console.log('params', params);
     api.getActivities()
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,value : val.cate_id})  )
       setActivities(temp);
       if(data) {
-        setTextOption(data[0].name);
-        setOptionVal(data[0].cate_id);
+        setTextOption(params?.text || data[0].name);
+        setOptionVal(params?.cate_id || data[0].cate_id);
       }
     })
     .catch(err => {
       console.log(err.response);
     })
   }
-  
+
+  const [date_show , setDateShow] = useState(null);
   useEffect(() => {
-    fecthBoatCate();
-  },[]);
+    if(query.dates) {
+      var date = query.dates.split('>');
+      var start = date[0].split('-');
+      var start_day = start[2];
+      var start_month = start[1];
+      var start_year = (new Date(date[0]).getFullYear().toString().substr(-2));
+      var setdate = start_month+'-'+start_day+'-'+start_year;
+
+      var end = date[1].split('-');
+      var end_day = end[2];
+      var end_month = end[1];
+      var end_year = (new Date(date[1]).getFullYear().toString().substr(-2));
+      var setend = end_month+'-'+end_day+'-'+end_year;
+      setDateShow(setdate+'>'+setend)
+    }
+    if(query.activities) {
+      var text = activities && activities.find((val) => val.cate_id == query.activities).name;
+    }
+    fecthBoatCate({cate_id : query.activities, text});
+
+    if(query.adult && query.children) {
+      setState({adult : query.adult, children : query.children})
+    }
+  }, [query])
+
 
 
   return (
@@ -107,7 +132,7 @@ const SearchPackage = (props) => {
         setOpen={setOpen} open={open} />
         <div className="col-lg-3">
           <div className="form-group">
-            <input className="form-control" type="text" name="dates" placeholder="When.." autoComplete="off" required />
+            <input className="form-control" type="text" name="dates" defaultValue={date_show} placeholder="When.." autoComplete="off" required />
             <i className="icon_calendar"></i>
           </div>
         </div>
