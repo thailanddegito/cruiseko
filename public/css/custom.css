@@ -457,6 +457,51 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   width: 100px;
   display: inline-block;
 }
+
+
+
+/* Pagination */
+.previous, .next {
+  color: #007bff;
+}
+.previous.disabled a, .next.disabled a{
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border: 1px solid #dee2e6;
+  position: relative;
+  display: block;
+}
+.pagination li a {
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  position: relative;
+  display: block;
+  margin-left: -1px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+.pagination li.active a {
+  color: #007bff;
+}
+.pagination li:first-child a {
+  border-top-left-radius: .2rem;
+  border-bottom-left-radius: .2rem;
+}
+.pagination li:last-child a {
+  border-top-right-radius: .2rem;
+  border-bottom-right-radius: .2rem;
+}
+.min-width-auto {
+  min-width: auto !important;
+}
+
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
