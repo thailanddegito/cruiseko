@@ -75,16 +75,15 @@ const SearchPackage = (props) => {
   const [textOptions, setTextOption] = useState("All Activities");
   const [option_val, setOptionVal] = useState();
 
-  const fecthBoatCate = (params) => {
-    console.log('params', params);
+  const fecthBoatCate = () => {
     api.getActivities()
     .then(res=>{
       const data = res.data;
       var temp = data.map(val => ({...val,value : val.cate_id})  )
       setActivities(temp);
-      
-      setTextOption(params?.text || data[0]?.name);
-      setOptionVal(params?.cate_id || data[0]?.cate_id);
+      var text = data && data.find((val) => val.cate_id == query.activities).name;
+      setTextOption(text || data[0]?.name);
+      setOptionVal(query?.activities || data[0]?.cate_id);
       
     })
     .catch(err => {
@@ -93,10 +92,7 @@ const SearchPackage = (props) => {
   }
 
   useEffect(() => {
-    if(query.activities) {
-      var text = activities && activities.find((val) => val.cate_id == query.activities).name;
-    }
-    fecthBoatCate({cate_id : query.activities, text});
+    fecthBoatCate();
   }, [query])
 
 

@@ -37,6 +37,7 @@ const SearchPackageIndex = ({query}) => {
     })
   }
 
+  const [date_show , setDateShow] = useState(null);
   useEffect(() => {
     var params = {};
     if(query.activities) params.cate_id = query.activities;
@@ -44,6 +45,23 @@ const SearchPackageIndex = ({query}) => {
       var date = query.dates.split('>');
       params.price_start_date = date[0];
       params.price_end_date = date[1];
+
+      var date = query.dates.split('>');
+      var start = date[0].split('-');
+      var start_day = start[2];
+      var start_month = start[1];
+      var start_year = (new Date(date[0]).getFullYear().toString().substr(-2));
+      var setdate = start_month+'-'+start_day+'-'+start_year;
+
+      var end = date[1].split('-');
+      var end_day = end[2];
+      var end_month = end[1];
+      var end_year = (new Date(date[1]).getFullYear().toString().substr(-2));
+      var setend = end_month+'-'+end_day+'-'+end_year;
+      setDateShow(setdate+'>'+setend)
+    }
+    if(query.adult && query.children) {
+      setState({adult : query.adult, children : query.children})
     }
     fecthPackage(params);
   }, [query])
@@ -61,29 +79,6 @@ const SearchPackageIndex = ({query}) => {
     var children = state.children;
     Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
   }
-
-  const [date_show , setDateShow] = useState(null);
-  useEffect(() => {
-    if(query.dates) {
-      var date = query.dates.split('>');
-      var start = date[0].split('-');
-      var start_day = start[2];
-      var start_month = start[1];
-      var start_year = (new Date(date[0]).getFullYear().toString().substr(-2));
-      var setdate = start_month+'-'+start_day+'-'+start_year;
-
-      var end = date[1].split('-');
-      var end_day = end[2];
-      var end_month = end[1];
-      var end_year = (new Date(date[1]).getFullYear().toString().substr(-2));
-      var setend = end_month+'-'+end_day+'-'+end_year;
-      setDateShow(setdate+'>'+setend)
-    }
-
-    if(query.adult && query.children) {
-      setState({adult : query.adult, children : query.children})
-    }
-  }, [query])
 
   // console.log(packages);
 
