@@ -19,10 +19,10 @@ const Map = (props) => {
 }
 export default scriptLoader(
   [
-    'http://maps.googleapis.com/maps/api/js',
-    '/template/js/markerclusterer.js',
-    '/template/js/map_tours_half_screen.js',
-    '/template/js/infobox.js'
+    'http://maps.googleapis.com/maps/api/js'  
   ],
+  '/template/js/markerclusterer.js',
+  '/template/js/map_tours_half_screen.js',
+  '/template/js/infobox.js'
  
 )(Map)
