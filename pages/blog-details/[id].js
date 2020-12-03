@@ -2,11 +2,13 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/frontend/layout/Layout';
 import Banner from '../../components/frontend/blog_detail/Banner';
+import Maindetail from '../../components/frontend/blog_detail/Maindetail'
 import api from '../../utils/api'
 
 const BlogDetail = (props) => {
   const [loading, setLodding] = useState(false);
   const [blogs, setBlog] = useState(props.blogs);
+  const [news, setNews] = useState();
 
 	const router = useRouter();
 	const id = router.query.id;
@@ -24,11 +26,24 @@ const BlogDetail = (props) => {
       setLodding(false);
       console.log(err.response);
     })
-	}
+  }
+  
+  const fecthNews = () => {
+    api.getBlog()
+    .then(res=>{
+      const data = res.data;
+      setNews(data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  
 
 	
   useEffect(() => {
     fecthBlogOne();
+    fecthNews();
   }, [props.query.id])
 
   
@@ -39,7 +54,9 @@ const BlogDetail = (props) => {
 					<div>
 						<Banner data={true} />
 					</div>
-					
+					<div>
+            <Maindetail blogs={blogs} news={news} />
+          </div>
 				</main>
 			</aside>
       <div className="end-content"></div>
