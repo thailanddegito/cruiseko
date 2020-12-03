@@ -9,7 +9,7 @@ const {Op} = require('sequelize')
 exports.getAll = async(req,res,next)=>{
   var {page,limit,is_draft=1,publish_status,is_boat,price_today=1} = req.query
   var {price_start_date,price_end_date,total_person,active} = req.query
-  var {cate_id} = req.query
+  var {cate_id,search} = req.query
 
   try{
 
@@ -29,6 +29,9 @@ exports.getAll = async(req,res,next)=>{
       //   {start_date : {[Op.lte] : now}  },
       //   {end_date : {[Op.gte] : now}  }
       // ]
+    }
+    if(search){
+      where.name = {[Op.like] : `%${search}%` }
     }
 
 
