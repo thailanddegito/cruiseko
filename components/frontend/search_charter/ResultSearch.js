@@ -1,9 +1,10 @@
 
 import React from 'react';
+import SearchPackage from '../product/SearchPackage'
 
 
 const ResultSearch = (props) => {
-  const {packages} = props;
+  const {packages, handleSubmit, setActive, active, setState, state, query, setDateShow, date_show, setType, charter} = props;
 
   return (
     <>
@@ -18,7 +19,15 @@ const ResultSearch = (props) => {
             </div>
           </div>
           <div className="search_map_wp">
-            <div className="custom-search-input-2 map_view">
+            <SearchPackage handleSubmit={handleSubmit}
+              setActive={setActive} active={active}
+              setState={setState} state={state}
+              query={query}
+              setDateShow={setDateShow} date_show={date_show}
+              setType={setType}
+              charter={charter}
+              boat_type={'charter'} />
+            {/* <div className="custom-search-input-2 map_view">
               <div className="form-group">
                 <input className="form-control" type="text" placeholder="What are you looking for..." />
                 <i className="icon_search"></i>
@@ -37,7 +46,7 @@ const ResultSearch = (props) => {
                 <option>Fitness</option>
               </select>
               <input type="submit" value="Search" />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

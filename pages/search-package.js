@@ -69,6 +69,7 @@ const SearchPackageIndex = ({query}) => {
   // useEffect(() => {
   //   fecthPackage();
   // }, [])
+  const [type, setType] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -100,7 +101,9 @@ const SearchPackageIndex = ({query}) => {
                   setActive={setActive} active={active}
                   setState={setState} state={state}
                   query={query}
-                  setDateShow={setDateShow} date_show={date_show} />
+                  setDateShow={setDateShow} date_show={date_show}
+                  setType={setType}
+                  boat_type={'tour'} />
               </div>
             </div>
             {

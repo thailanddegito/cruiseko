@@ -504,7 +504,19 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .min-width-100px {
   min-width: 100px !important;
 }
-
+.col-select {
+  margin-bottom: 16px;
+}
+.bg-tranparent {
+  background-color: transparent;
+}
+.panel-dropdown {
+  position: relative;
+  text-align: left;
+  padding: 14px;
+  border-radius: 3px;
+  background-color: #FFF;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
