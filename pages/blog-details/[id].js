@@ -47,6 +47,8 @@ const BlogDetail = (props) => {
   }, [props.query.id])
 
   
+
+  
   return (
     <Layout loading={loading} title={'Blog Details'} page={'blog_details'}>
 			<aside className="main-content">
