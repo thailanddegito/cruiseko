@@ -25,8 +25,8 @@ const BlogSearch = (props) => {
             <div className="form-group">
               <input type="text" name="search" id="search" className="form-control" value={search} placeholder="Search..." required onChange={(e) => setSearch(e.target.value)} />
             </div>
-            <button type="submit" id="submit" className="btn btn-primary min-width-auto"> Search</button>
-            <button type="button" className="btn btn-outline-primary min-width-auto ml-4" onClick={() => reset()}> Reset</button>
+            <button type="submit" id="submit" className="btn btn-primary min-width-100px"> Search</button>
+            <button type="button" className="btn btn-outline-primary min-width-100px ml-3" onClick={() => reset()}> Reset</button>
           </form>
         </div>
         <div className="widget">

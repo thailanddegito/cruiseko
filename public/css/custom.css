@@ -501,6 +501,9 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .min-width-auto {
   min-width: auto !important;
 }
+.min-width-100px {
+  min-width: 100px !important;
+}
 
 @media only screen and (min-width: 992px) {
   header .main-menu {
