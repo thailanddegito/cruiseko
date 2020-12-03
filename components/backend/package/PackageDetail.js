@@ -18,8 +18,8 @@ const PackageDetail = memo((props) => {
   const [boats, setBoat] = useState();
   const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
   const [img, setImg] = useState("/template/img/tour_1.jpg");
-  const [startDate, setStartDate] = useState(pkg && pkg.start_time ? pkg.start_time : null);
-  const [endDate, setEndDate] = useState(pkg && pkg.end_time ? pkg.end_time : null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const fecthPackageCate = () => {
     api.getPackageCate()
@@ -69,6 +69,8 @@ const PackageDetail = memo((props) => {
   useEffect(() => {
     if(!pkg) return;
     setImg(pkg.picture ? pkg.picture : "/template/img/tour_1.jpg");
+    setStartDate(pkg.start_time ? pkg.start_time : null);
+    setEndDate(pkg.end_time ? pkg.end_time : null);
   },[pkg]);
 
   const handleChange = (event) => {
@@ -168,7 +170,7 @@ const PackageDetail = memo((props) => {
             timeFormat={'HH:mm'}
             onChange={(e)=> {showendDate(e)}}
             value={endDate ? endDate : ''}
-            inputProps={{ name: 'End_time', required : true, autoComplete : 'off' }} />
+            inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
           </div>
         </div>
       </div>
