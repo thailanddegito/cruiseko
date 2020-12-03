@@ -5,7 +5,7 @@ import SelectAmount from '../../widget/SelectAmount';
 import SelectStyle from '../../widget/SelectStyle';
 
 const SearchPackage = (props) => {
-  const {handleSubmit, setActive, active, state, setState, query, date_show} = props;
+  const {handleSubmit, setActive, active, state, setState, query, date_show, home = false} = props;
 
   const qtySum = () => {
     var arr = document.getElementsByName('qtyInput');
@@ -79,7 +79,11 @@ const SearchPackage = (props) => {
     api.getActivities()
     .then(res=>{
       const data = res.data;
-      var temp = data.map(val => ({...val,value : val.cate_id})  )
+      if(home) {
+        var temp = data.map(val => ({...val,value : val.cate_id}))
+      }else{
+        var temp = data.filter((item) => item.type != 'charter').map(val => ({...val,value : val.cate_id}))
+      }
       setActivities(temp);
       var text = data && data.find((val) => val.cate_id == query.activities).name;
       setTextOption(text || data[0]?.name);

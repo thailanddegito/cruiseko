@@ -42,11 +42,11 @@ const SearchPackageIndex = ({query}) => {
     var params = {};
     if(query.activities) params.cate_id = query.activities;
     if(query.dates) {
+      console.log(query.dates);
       var date = query.dates.split('>');
       params.price_start_date = date[0];
       params.price_end_date = date[1];
 
-      var date = query.dates.split('>');
       var start = date[0].split('-');
       var start_day = start[2];
       var start_month = start[1];
@@ -61,7 +61,7 @@ const SearchPackageIndex = ({query}) => {
       setDateShow(setdate+'>'+setend)
     }
     if(query.adult && query.children) {
-      setState({adult : query.adult, children : query.children})
+      setState({...query, adult : query.adult, children : query.children})
     }
     fecthPackage(params);
   }, [query])

@@ -34,7 +34,7 @@ const Banner = (props) => {
               <p>Expolore top rated tours, hotels and restaurants around the world</p>
               <SearchPackage handleSubmit={handleSubmit}
               setActive={setActive} active={active}
-              setState={setState} state={state} />
+              setState={setState} state={state} home={true} />
             </div>
           </div>
         </section>
