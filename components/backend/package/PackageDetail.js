@@ -5,6 +5,7 @@ import makeAnimated from 'react-select/animated';
 import api from '../../../utils/api-admin';
 import DivLoad from '../../widget/DivLoad';
 import InputLabel from '../../widget/InputLabel';
+import Datetime from 'react-datetime';
 
 const animatedComponents = makeAnimated();
 
@@ -17,6 +18,8 @@ const PackageDetail = memo((props) => {
   const [boats, setBoat] = useState();
   const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
   const [img, setImg] = useState("/template/img/tour_1.jpg");
+  const [startDate, setStartDate] = useState(pkg && pkg.start_time ? pkg.start_time : null);
+  const [endDate, setEndDate] = useState(pkg && pkg.end_time ? pkg.end_time : null);
 
   const fecthPackageCate = () => {
     api.getPackageCate()
@@ -75,6 +78,20 @@ const PackageDetail = memo((props) => {
     setImg(URL.createObjectURL(event.target.files[0]));
   }
 
+  const showstartDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setStartDate(data);
+  }
+
+  const showendDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setEndDate(data);
+  }
+
   return (
     <>
       <div className="row" >
@@ -112,6 +129,50 @@ const PackageDetail = memo((props) => {
         </div>
       </div>
 
+      <div className="row" >
+        <div className="col-lg-6 col-12">
+          <InputLabel inputProps={{ 
+            className:'form-control', type : 'text',
+            name : 'pickup_location', required : true,
+            defaultValue : pkg ? pkg.pickup_location : undefined
+          }} 
+          labelName="Pickup Location" iconProps={{className : 'fa icon icon-email'}}  /> 
+        </div>
+        <div className="col-lg-6 col-12">
+          <InputLabel inputProps={{ 
+            className:'form-control', type : 'text',
+            name : 'dropoff_location', required : true,
+            defaultValue : pkg ? pkg.dropoff_location : undefined
+          }} 
+          labelName="Dropoff Location" iconProps={{className : 'fa icon icon-email'}}  /> 
+        </div>
+      </div>
+
+      <div className="row" >
+        <div className="col-lg-3 col-12">
+          <div className="form-group mb-4">
+            <label>Start Time</label>
+            <Datetime 
+            dateFormat={false} 
+            timeFormat={'HH:mm'}
+            onChange={(e)=> {showstartDate(e)}}
+            value={startDate ? startDate : ''}
+            inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
+          </div>
+        </div>
+        <div className="col-lg-3 col-12">
+          <div className="form-group mb-4">
+            <label>End Time</label>
+            <Datetime 
+            dateFormat={false} 
+            timeFormat={'HH:mm'}
+            onChange={(e)=> {showendDate(e)}}
+            value={endDate ? endDate : ''}
+            inputProps={{ name: 'End_time', required : true, autoComplete : 'off' }} />
+          </div>
+        </div>
+      </div>
+
       <div className="row">
         <div className="col-12">
           <div className="form-group mb-4">
@@ -120,6 +181,9 @@ const PackageDetail = memo((props) => {
           </div>
         </div>
       </div>
+
+
+      
 
       {/* <div className="row">
         <div className="col-12">
