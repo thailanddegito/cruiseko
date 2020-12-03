@@ -5,17 +5,25 @@ import BlogSearch from '../components/frontend/blog/BlogSearch';
 import Layout from '../components/frontend/layout/Layout';
 import api from '../utils/api';
 import Router from 'next/router';
+import Paginate from 'react-paginate';
 
 const Blog = ({query}) => {
   const [loading, setLodding] = useState(false);
   const [blogs, setBlog] = useState();
   const [news, setNews] = useState();
 
+  const [pageCount,setPageCount] = useState(1)
+  const [pageNumber, setPagenumber] = useState(0);
+  const LIMIT = 10;
+
   const fecthBlog = (params) => {
+    params.page = params.page || 1;
+    params.limit = params.limit || LIMIT;
     api.getBlog(params)
     .then(res=>{
       const data = res.data;
       setBlog(data);
+      setPageCount(Math.ceil(data.count / LIMIT));
     })
     .catch(err => {
       console.log(err.response);
@@ -23,7 +31,7 @@ const Blog = ({query}) => {
   }
 
   const fecthNews = () => {
-    api.getBlog()
+    api.getBlog({limit : 5})
     .then(res=>{
       const data = res.data;
       setNews(data);
@@ -38,6 +46,9 @@ const Blog = ({query}) => {
     if(query.search) {
       params.search = query.search;
     }
+    if(query.page) {
+      params.page = query.page;
+    }
     fecthBlog(params);
     fecthNews();
   }, [query]);
@@ -48,6 +59,14 @@ const Blog = ({query}) => {
     var data = new FormData(event.target);
     var search = data.get('search');
     Router.push('/blog?search='+search, '/blog?search='+search);
+  }
+
+  const handlePageClick = (data) =>{
+    let selected = data.selected;
+    Router.push({
+      pathname: '/blog',
+      query : {...query,page :selected+1  }
+    })
   }
 
 
@@ -70,19 +89,26 @@ const Blog = ({query}) => {
                   )) : null
                 }
 
-                <nav aria-label="...">
-                  <ul className="pagination pagination-sm">
-                    <li className="page-item disabled">
-                      <a className="page-link" href="#" tabIndex="-1">Previous</a>
-                    </li>
-                    <li className="page-item"><a className="page-link" href="#">1</a></li>
-                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                    <li className="page-item">
-                      <a className="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-                </nav>
+                {(blogs && blogs.count > LIMIT) &&  (
+                  <div className="d-flex w-100 justify-content-start mt-4">
+                    <div className="float-left">
+                      <Paginate
+                        previousLabel={'Previous'}
+                        nextLabel={'Next'}
+                        breakLabel={'...'}
+                        breakClassName={'break-me'}
+                        pageCount={pageCount}
+                        forcePage={pageNumber}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={'pagination'}
+                        subContainerClassName={'pages pagination'}
+                        activeClassName={'active'}
+                      />
+                    </div>
+                  </div> 
+                )}  
               </div>
 
               <BlogSearch news={news} handleSearch={handleSearch} query={query} />
