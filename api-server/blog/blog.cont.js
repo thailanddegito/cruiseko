@@ -11,7 +11,7 @@ exports.getAll = async (req,res,next)=>{
     if(cate_id) where.cate_id = cate_id
 
     if(search){
-      where.name = {[Op.like] : `%${search}%` }
+      where.name = {[Op.like] : `%${search.toLowerCase()}%` }
     }
 
     const include =[
