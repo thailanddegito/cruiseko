@@ -58,7 +58,7 @@ exports.create = async(req,res,next)=>{
   var transaction;
   console.log('booking ->',data)
   try{
-    if(!date || !product_id){
+    if(!date || (!product_id && product_id !== 0)){
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 

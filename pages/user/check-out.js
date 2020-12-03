@@ -8,6 +8,13 @@ import Router from 'next/router'
 import Summary from '../../components/frontend/payment/Summary'
 import {formToObject} from '../../utils/tools'
 import api from '../../utils/api'
+// import Paypal from '../../components/widget/Paypal'
+import dynamic from 'next/dynamic'
+
+const Paypal = dynamic(
+  () => import('../../components/widget/Paypal'),
+  { ssr: false }
+)
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
@@ -67,6 +74,7 @@ const Payment = (props) => {
                     <PaymentMethod packages={true} />
                     <BillingAddress packages={true} />
                     <CancellationPolicy packages={true} />
+                    <Paypal/>
                   </div>
                 </div>
                 

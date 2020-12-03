@@ -33,6 +33,7 @@
     "passport": "^0.4.1",
     "passport-facebook-token": "^4.0.0",
     "react": "17.0.1",
+    "react-async-script-loader": "^0.3.0",
     "react-bootstrap": "^1.4.0",
     "react-data-table-component": "^6.11.5",
     "react-datetime": "^3.0.4",
