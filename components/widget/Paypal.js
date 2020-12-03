@@ -46,6 +46,8 @@ class PaypalButton extends React.Component {
   }
 
   createOrder = (data, actions) => {
+    console.log("createOrder data: ", data);
+    
     return actions.order.create({
       purchase_units: [
         {
@@ -55,7 +57,8 @@ class PaypalButton extends React.Component {
             value: 200
           }
         }
-      ]
+      ],
+      invoice_id:'test'
     });
   };
 
@@ -65,7 +68,8 @@ class PaypalButton extends React.Component {
         payerID: data.payerID,
         orderID: data.orderID
       };
-      console.log("Payment Approved: ", paymentData);
+      console.log("Payment Approved: ", details);
+      console.log("Payment data: ", data);
       this.setState({ showButtons: false, paid: true });
     });
   };
