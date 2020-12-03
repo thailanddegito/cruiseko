@@ -27,26 +27,6 @@ const ResultSearch = (props) => {
               setType={setType}
               charter={charter}
               boat_type={'charter'} />
-            {/* <div className="custom-search-input-2 map_view">
-              <div className="form-group">
-                <input className="form-control" type="text" placeholder="What are you looking for..." />
-                <i className="icon_search"></i>
-              </div>
-              <div className="form-group">
-                <input className="form-control" type="text" placeholder="Where" />
-                <i className="icon_pin_alt"></i>
-              </div>
-              <select className="wide">
-                <option>All Categories</option>	
-                <option>Shops</option>
-                <option>Hotels</option>
-                <option>Restaurants</option>
-                <option>Bars</option>
-                <option>Events</option>
-                <option>Fitness</option>
-              </select>
-              <input type="submit" value="Search" />
-            </div> */}
           </div>
         </div>
       </div>

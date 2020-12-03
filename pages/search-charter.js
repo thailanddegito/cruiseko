@@ -22,7 +22,7 @@ const SearchCharter = ({query}) => {
   
   const fecthPackage = (params) => {
     setLodding(true);
-    api.getPackage({...params, is_draft : 0 , publish_status : 1})
+    api.getPackage({...params, is_draft : 0 , publish_status : 1, is_boat : 1})
     .then(res=>{
       const data = res.data;
       setPackage(data);
@@ -83,7 +83,7 @@ const SearchCharter = ({query}) => {
       <main>
         <div className="container-fluid full-height mt-3">
           <div className="row row-height">
-            <div className="col-lg-5 content-left order-md-last order-sm-last order-last">
+            <div className="col-lg-5 content-left order-md-last order-sm-last order-last new-search">
 
             <ResultSearch packages={packages} handleSubmit={handleSubmit} 
               setActive={setActive} active={active}

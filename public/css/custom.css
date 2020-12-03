@@ -517,6 +517,9 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   border-radius: 3px;
   background-color: #FFF;
 }
+.new-search {
+  min-height: calc(100vh - 78px) !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

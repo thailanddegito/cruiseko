@@ -25,7 +25,7 @@ const SearchPackageIndex = ({query}) => {
   
   const fecthPackage = (params) => {
     setLodding(true);
-    api.getPackage({...params, is_draft : 0 , publish_status : 1})
+    api.getPackage({...params, is_draft : 0 , publish_status : 1, is_boat : 0})
     .then(res=>{
       const data = res.data;
       setPackage(data);

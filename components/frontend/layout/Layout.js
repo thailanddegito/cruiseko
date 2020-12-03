@@ -38,10 +38,10 @@ const Layout = (props) => {
         <script src="/template/assets/validate.js"></script>
         <script src="/template/js/isotope.min.js"></script>
 
-        <script src="http://maps.googleapis.com/maps/api/js"></script>
+        {/* <script src="http://maps.googleapis.com/maps/api/js"></script>
         <script src="/template/js/markerclusterer.js"></script>
         <script src="/template/js/map_tours_half_screen.js"></script>
-        <script src="/template/js/infobox.js"></script>
+        <script src="/template/js/infobox.js"></script> */}
 
       
       </Head>

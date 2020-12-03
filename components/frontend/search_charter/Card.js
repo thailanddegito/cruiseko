@@ -28,7 +28,7 @@ const ProductCard = (props) => {
               </div>
               <ul>
                 <li>
-                  <a href="#0" onClick="onHtmlClick('Marker',2)" className="address">On Map</a>
+                  <a href="#0" className="address">On Map</a>
                 </li>
                 <li>
                   <div className="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>

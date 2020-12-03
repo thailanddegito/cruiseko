@@ -1,9 +1,13 @@
 
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import scriptLoader from 'react-async-script-loader'
 
 const Map = (props) => {
   const {data} = props;
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <>
@@ -13,4 +17,12 @@ const Map = (props) => {
     </>
   )
 }
-export default Map
+export default scriptLoader(
+  [
+    'http://maps.googleapis.com/maps/api/js',
+    '/template/js/markerclusterer.js',
+    '/template/js/map_tours_half_screen.js',
+    '/template/js/infobox.js'
+  ],
+ 
+)(Map)
