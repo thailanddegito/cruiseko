@@ -113,7 +113,9 @@ exports.calPackagePrice =(pkg,user,date,adult,children,duration)=>{
 
     var normal_price = parseFloat(price) 
     const real_price = parseFloat(commission) || parseFloat(price)
+    const boat_amt = Math.ceil(total_person / boat.capacity) 
     result.normal_price = normal_price
+    result.boat_amt = boat_amt;
     if(is_boat == 0){
       result.price =  real_price
       result.per_person = real_price/total_person
@@ -121,11 +123,9 @@ exports.calPackagePrice =(pkg,user,date,adult,children,duration)=>{
     else{
       const min_hour = Math.ceil(boat.min_hr / 60) 
       if(duration < min_hour) return result;
-
-      const boat_amt = Math.ceil(total_person / boat.capacity) 
       result.price =  real_price*boat_amt*parseInt(duration)
       result.unit = 'boat'
-      result.boat_amt = boat_amt;
+      
     }
 
     
