@@ -62,6 +62,29 @@ const SearchPackageIndex = ({query}) => {
     Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
   }
 
+  const [date_show , setDateShow] = useState(null);
+  useEffect(() => {
+    if(query.dates) {
+      var date = query.dates.split('>');
+      var start = date[0].split('-');
+      var start_day = start[2];
+      var start_month = start[1];
+      var start_year = (new Date(date[0]).getFullYear().toString().substr(-2));
+      var setdate = start_month+'-'+start_day+'-'+start_year;
+
+      var end = date[1].split('-');
+      var end_day = end[2];
+      var end_month = end[1];
+      var end_year = (new Date(date[1]).getFullYear().toString().substr(-2));
+      var setend = end_month+'-'+end_day+'-'+end_year;
+      setDateShow(setdate+'>'+setend)
+    }
+
+    if(query.adult && query.children) {
+      setState({adult : query.adult, children : query.children})
+    }
+  }, [query])
+
   // console.log(packages);
 
   return (
@@ -81,7 +104,8 @@ const SearchPackageIndex = ({query}) => {
                 <SearchPackage handleSubmit={handleSubmit}
                   setActive={setActive} active={active}
                   setState={setState} state={state}
-                  query={query} />
+                  query={query}
+                  setDateShow={setDateShow} date_show={date_show} />
               </div>
             </div>
             {
