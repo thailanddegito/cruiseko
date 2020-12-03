@@ -3,15 +3,15 @@ import { toDateISO } from '../../../utils/tools';
 import Link from 'next/link'
 
 const BlogSearch = (props) => {
-  const {news} = props;
+  const {news, handleSearch, query} = props;
 
   return (
     <>
       <aside className="col-lg-3">
         <div className="widget">
-          <form>
+          <form onSubmit={handleSearch}>
             <div className="form-group">
-              <input type="text" name="search" id="search" className="form-control" placeholder="Search..." />
+              <input type="text" name="search" id="search" className="form-control" defaultValue={query?.search} placeholder="Search..." required />
             </div>
             <button type="submit" id="submit" className="btn_1 rounded"> Search</button>
           </form>

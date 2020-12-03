@@ -1,9 +1,17 @@
 import React from 'react';
 import BlogSearch from '../blog/BlogSearch'
 import EditorData from '../product_detail/EditorData';
+import Router from 'next/router';
 
 const Maindetail = (props) => {
   const {blogs, news} = props;
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var search = data.get('search');
+    Router.push('/blog?search='+search, '/blog?search='+search);
+  }
 
   return (
     blogs ? (
@@ -15,7 +23,7 @@ const Maindetail = (props) => {
                 <EditorData name={blogs?.name} data={blogs?.description} />
               </div>
             </div>
-            <BlogSearch news={news} />
+            <BlogSearch news={news} handleSearch={handleSearch} />
           </div>
         </div>
       </>

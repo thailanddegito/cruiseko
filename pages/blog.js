@@ -4,14 +4,15 @@ import BlogLandscape from '../components/frontend/blog/BlogLandscape';
 import BlogSearch from '../components/frontend/blog/BlogSearch';
 import Layout from '../components/frontend/layout/Layout';
 import api from '../utils/api';
+import Router from 'next/router';
 
-const Blog = (props) => {
+const Blog = ({query}) => {
   const [loading, setLodding] = useState(false);
   const [blogs, setBlog] = useState();
   const [news, setNews] = useState();
 
-  const fecthBlog = () => {
-    api.getBlog()
+  const fecthBlog = (params) => {
+    api.getBlog(params)
     .then(res=>{
       const data = res.data;
       setBlog(data);
@@ -33,9 +34,21 @@ const Blog = (props) => {
   }
   
   useEffect(() => {
-    fecthBlog();
+    var params = {};
+    if(query.search) {
+      params.search = query.search;
+    }
+    fecthBlog(params);
     fecthNews();
-  }, [])
+  }, [query]);
+
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    var data = new FormData(event.target);
+    var search = data.get('search');
+    Router.push('/blog?search='+search, '/blog?search='+search);
+  }
 
 
   return (
@@ -72,7 +85,7 @@ const Blog = (props) => {
                 </nav>
               </div>
 
-              <BlogSearch news={news} />
+              <BlogSearch news={news} handleSearch={handleSearch} query={query} />
               
             </div>
           </div>
@@ -83,6 +96,10 @@ const Blog = (props) => {
       <div className="end-content"></div>
     </Layout>
   )
+}
+
+Blog.getInitialProps = ({query}) => {
+  return {query}; //has to be like an object
 }
 export default Blog
 
