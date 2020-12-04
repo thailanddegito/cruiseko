@@ -10,7 +10,17 @@ module.exports = (sequelize, type) => {
       allowNull : false
     },
     boat_id : type.INTEGER,
-    
+    rental_start : type.DATE,
+    rental_end : type.DATE,
+    amount : {
+      type : type.INTEGER,
+      defaultValue : 0
+    },
+    status : {
+      // 0 is cancel
+      type : type.INTEGER,
+      defaultValue : 1
+    }
     
     
   },

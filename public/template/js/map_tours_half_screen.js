@@ -4,156 +4,36 @@
 		markers = [],
 		markersData = {
 			'Marker': [
-			{
-				type_point: 'Historic',
-				name: 'Open Bus',
-				location_latitude: 48.865633, 
-				location_longitude: 2.321236,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Open Bus',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'Senna River Tour',
-				location_latitude: 48.854183,
-				location_longitude: 2.354808,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Senna River Tour',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Museum',
-				name: 'Louvre',
-				location_latitude: 48.863893, 
-				location_longitude: 2.342348,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Louvre',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Museum',
-				name: 'Pompidou ',
-				location_latitude: 48.860642,
-				location_longitude: 2.352245,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Pompidou',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'Tour Eiffel',
-				location_latitude: 48.858370, 
-				location_longitude: 2.294481,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Tour Eiffel',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'Montparnasse',
-				location_latitude: 48.837273,
-				location_longitude: 2.335387,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Montparnasse',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Museum',
-				name: 'Beaubourg',
-				location_latitude: 48.860819, 
-				location_longitude: 2.354507,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Beaubourg',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'St. Germain des Prés',
-				location_latitude: 48.853798,
-				location_longitude: 2.333328,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'St. Germain des Prés',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'Trocadero',
-				location_latitude: 48.862880, 
-				location_longitude: 2.287205,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Trocadero',
-				get_directions_start_address: '',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Walking',
-				name: 'Champs-Élysées',
-				location_latitude: 48.865784,
-				location_longitude: 2.307314,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Champs-Élysées',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Historic',
-				name: 'Notre Dame',
-				location_latitude: 48.852729, 
-				location_longitude: 2.350564,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Notre Dame',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			},
-			{
-				type_point: 'Historic',
-				name: 'Madeleine',
-				location_latitude: 48.870587, 
-				location_longitude: 2.318943,
-				map_image_url: 'img/thumb_map_single_tour.jpg',
-				rate: 'Superb | 7.5',
-				name_point: 'Madeleine',
-				get_directions_start_address: '',
-				phone: '+3934245255',
-				url_point: 'tour-detail.html'
-			}
+				{
+					type_point: 'Historic',
+					name: 'Open Bus',
+					location_latitude: 48.865633, 
+					location_longitude: 2.321236,
+					map_image_url: 'img/thumb_map_single_tour.jpg',
+					rate: 'Superb | 7.5',
+					name_point: 'Open Bus',
+					get_directions_start_address: '',
+					phone: '+3934245255',
+					url_point: 'tour-detail.html'
+				},
+				{
+					type_point: 'Historic',
+					name: 'Madeleine',
+					location_latitude: 48.870587, 
+					location_longitude: 2.318943,
+					map_image_url: 'img/thumb_map_single_tour.jpg',
+					rate: 'Superb | 7.5',
+					name_point: 'Madeleine',
+					get_directions_start_address: '',
+					phone: '+3934245255',
+					url_point: 'tour-detail.html'
+				}
 			]
-
 		};
 
 			var mapOptions = {
 				zoom: 14,
-				center: new google.maps.LatLng(48.865633, 2.321236),
+				center: new google.maps.LatLng(13.736717, 100.523186),
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 
 				mapTypeControl: false,

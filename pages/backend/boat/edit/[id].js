@@ -155,7 +155,7 @@ const EditRole = ({query}) => {
                       defaultValue : boats.min_hr,
                       onBlur : validMinHour
                     }} 
-                    labelName="Minimum Hour  " iconProps={{className : 'fa icon icon-home'}} />
+                    labelName="Minimum Minutes  " iconProps={{className : 'fa icon icon-home'}} />
                   </div>
                 </div>
 

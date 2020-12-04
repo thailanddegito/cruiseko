@@ -8,16 +8,31 @@ const {Op} = require('sequelize')
 
 exports.getAll = async(req,res,next)=>{
   var {page,limit,is_draft=1,publish_status,is_boat,price_today=1} = req.query
-  var {price_start_date,price_end_date,total_person} = req.query
-  var {cate_id} = req.query
+  var {price_start_date,price_end_date,total_person,active} = req.query
+  var {cate_id,search} = req.query
 
   try{
 
     var where = {deleted : 0}
+    var where_date = {}
+    var required_price = false;
 
     if(is_draft) where.is_draft = is_draft; 
     if(publish_status) where.publish_status = publish_status;
     if(is_boat !== undefined) where.is_boat = is_boat;
+
+    if(active == 1){
+      where.publish_status = 1;
+      where.is_draft = 0;
+      required_price= true;
+      // where_date[Op.and] = [
+      //   {start_date : {[Op.lte] : now}  },
+      //   {end_date : {[Op.gte] : now}  }
+      // ]
+    }
+    if(search){
+      where.name = {[Op.like] : `%${search}%` }
+    }
 
 
 
@@ -33,8 +48,8 @@ exports.getAll = async(req,res,next)=>{
 
     
     const now = new Date();
-    var where_date = {}
-    var required_price = false;
+    
+    
     if(price_today == 1){
       where_date[Op.and] = [
         {start_date : {[Op.lte] : now}  },
@@ -574,7 +589,7 @@ async function getOneProduct(product_id,transaction){
     {model : PriceDate ,include :price_include, attributes:{exclude : ['id']}},
     {model : ProductImage , attributes:{exclude : ['id']}},
     {model : Event},
-    {model : ProductBoat , attributes:{exclude : ['id']}}
+    {model : ProductBoat , attributes:{exclude : ['id']},include : [Boat]}
   ]
   const draft = await Product.findOne({where : {id : product_id},include,transaction})
 

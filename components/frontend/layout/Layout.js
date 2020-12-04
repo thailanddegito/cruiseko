@@ -25,6 +25,7 @@ const Layout = (props) => {
         <link href="/template/css/style.css" rel="stylesheet" />
         <link href="/template/css/vendors.css" rel="stylesheet" />
         <link href="/css/sidenav.css" rel="stylesheet" />
+        <link href="/template/css/blog.css" rel="stylesheet" />
         <link href="/css/custom.css" rel="stylesheet" />
         <link href="/css/content-styles.css" rel="stylesheet" />
 
@@ -36,6 +37,11 @@ const Layout = (props) => {
         <script src="/template/js/main.js"></script>
         <script src="/template/assets/validate.js"></script>
         <script src="/template/js/isotope.min.js"></script>
+
+        {/* <script src="http://maps.googleapis.com/maps/api/js"></script>
+        <script src="/template/js/markerclusterer.js"></script>
+        <script src="/template/js/map_tours_half_screen.js"></script>
+        <script src="/template/js/infobox.js"></script> */}
 
       
       </Head>

@@ -63,7 +63,7 @@ app.get('*',(req,res)=>{
 app.use(function (err, req, res, next) {
     // console.log(process.env.NODE_ENV)
     if(process.env.NODE_ENV !== 'test')
-        // console.log(err);
+        console.log(err);
     if(err.name)
         res.status(400).json({ success : false , error : err.name})
     else

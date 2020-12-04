@@ -5,10 +5,14 @@ const {DefaultError} = errors
 const {Op} = require('sequelize')
 
 exports.getAll = async (req,res,next)=>{
-  var {page=1,limit=25,cate_id} = req.query
+  var {page=1,limit=25,cate_id,search,order_by,op} = req.query
   try{
     var where = {}
     if(cate_id) where.cate_id = cate_id
+
+    if(search){
+      where.name = {[Op.like] : `%${search.toLowerCase()}%` }
+    }
 
     const include =[
       {model:BlogCategory}

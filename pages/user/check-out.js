@@ -8,10 +8,18 @@ import Router from 'next/router'
 import Summary from '../../components/frontend/payment/Summary'
 import {formToObject} from '../../utils/tools'
 import api from '../../utils/api'
+// import Paypal from '../../components/widget/Paypal'
+import dynamic from 'next/dynamic'
+
+const Paypal = dynamic(
+  () => import('../../components/widget/Paypal'),
+  { ssr: false }
+)
 
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
   const [data,setData] = useState();
+  const [booking,setBooking] = useState();
 
   useEffect(() => {
     const _data =  localStorage.getItem('checkout_dt')
@@ -54,6 +62,10 @@ const Payment = (props) => {
 
   }
 
+  const onPaypalSuccess = (paypal_order_id)=>{
+    
+  }
+
   return (
     <Layout loading={loading} title="Checkout" page={'checkout'} banner={false}>
       <main>
@@ -67,6 +79,10 @@ const Payment = (props) => {
                     <PaymentMethod packages={true} />
                     <BillingAddress packages={true} />
                     <CancellationPolicy packages={true} />
+                    <Paypal   
+                      onPaypalSuccess={onPaypalSuccess} 
+                      booking={booking}
+                    />
                   </div>
                 </div>
                 

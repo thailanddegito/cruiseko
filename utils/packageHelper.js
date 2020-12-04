@@ -141,7 +141,7 @@ export const calPackagePriceCard =(pkg,user,total_person=1)=>{
 
 }
 
-export const calPackagePrice =(pkg,user,date,adult,children)=>{
+export const calPackagePrice =(pkg,user,date,adult,children,duration)=>{
   var result = {price : -1 ,unit : 'person'}
   if(!pkg ) return result;
   if(!pkg.price_dates.length) return result;
@@ -200,16 +200,19 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
 
     var normal_price = parseFloat(price) 
     const real_price = parseFloat(commission) || parseFloat(price)
+    const boat_amt = Math.ceil(total_person / boat.capacity) 
     result.normal_price = normal_price
+    result.boat_amt = boat_amt;
     if(is_boat == 0){
       result.price =  real_price
       result.per_person = real_price/total_person
     }
     else{
-      const boat_amt = Math.ceil(total_person / boat.capacity) 
-      result.price =  real_price*boat_amt
+      const min_hour = Math.ceil(boat.min_hr / 60) 
+      if(duration < min_hour) return result;
+      result.price =  real_price*boat_amt*parseInt(duration)
       result.unit = 'boat'
-      result.boat_amt = boat_amt;
+      
     }
 
     
@@ -220,4 +223,11 @@ export const calPackagePrice =(pkg,user,date,adult,children)=>{
   return result;
   
 
+}
+
+export const calDuration = (start_time,end_time)=>{
+  var [hour_start,min_start] = start_time.split(':')
+  var [hour_end,min_end] = end_time.split(':')
+  if(hour_end == 0) hour_end = parseInt(hour_end) + 24
+  return  Math.abs((parseInt(hour_end)*60 +  parseInt(min_end)) - (parseInt(hour_start)*60 +  parseInt(min_start)))  / 60
 }

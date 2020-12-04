@@ -3,19 +3,6 @@ import React, {useEffect, useRef} from 'react';
   
 const SelectAmount = (props) => {
   const {active, setActive, handleButton, state} = props;
-
-  // const boxEl = useRef(null)
-	// const onClickOut = (e) => {
-	// 	if(!boxEl.current.contains(e.target)){
-	// 		if(active) setActive(!active)
-	// 	}	
-	// }
-  // useEffect(() => {
-	// 	active && document.addEventListener('mousedown' , onClickOut)
-	// 	return () => {
-	// 		document.removeEventListener('mousedown' , onClickOut)
-	// 	}
-	// },[active])
   
   return (
     <>
