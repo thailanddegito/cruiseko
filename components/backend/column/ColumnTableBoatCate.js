@@ -18,6 +18,11 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
+      name: 'Type',
+      selector: 'type',
+      sortable: true,
+    },
+    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

@@ -13,6 +13,14 @@ const Summayry = (props) => {
         </div>
         <ul className="cart_details">
           <li>Date <span> {data.date} </span></li>
+          {
+            data.is_boat == 1 && (
+              <>
+              <li>Time <span> {data.start_time} - {data.end_time} </span></li>
+              <li>duration <span> {data.duration} hour(s) </span></li>
+              </>
+            )
+          }
           <li>Adults <span> {data.adult} </span></li>
           <li>Childs <span>{data.children}</span></li>
         </ul>

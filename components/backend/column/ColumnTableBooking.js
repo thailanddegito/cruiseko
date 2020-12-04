@@ -24,6 +24,14 @@ const ColumsBody = (props) => {
       sortable: true,
     },
     {
+      name: 'Payment Status',
+      selector: 'payment_status',
+      sortable: true,
+      cell : row => (
+        row.payment_status == 1 ? <span className="text-warning">Pending</span> : <span className="text-success">Success</span>
+      )
+    },
+    {
       name: 'Created date',
       selector: 'createdAt',
       sortable: true,

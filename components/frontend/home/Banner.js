@@ -6,6 +6,7 @@ import SearchPackage from '../product/SearchPackage';
 const Banner = (props) => {
   const {data} = props;
   const [active, setActive] = useState(false);
+  const [type, setType] = useState('');
   const [state, setState] = useState({
     start_date : toDateISO(new Date()),
     end_date : toDateISO(new Date()),
@@ -17,10 +18,16 @@ const Banner = (props) => {
     event.preventDefault();
     var data = new FormData(event.target);
     var activities = data.get('activities');
+    var type = data.get('type');
     var dates = state.start_date+'>'+state.end_date;
     var adult = state.adult;
     var children = state.children;
-    Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
+    console.log(type);
+    if(type == 'tour') {
+      Router.push(`/search-package?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
+    }else{
+      Router.push(`/search-charter?activities=${activities}&dates=${dates}&adult=${adult}&children=${children}`);
+    }
   }
 
  
@@ -34,7 +41,8 @@ const Banner = (props) => {
               <p>Expolore top rated tours, hotels and restaurants around the world</p>
               <SearchPackage handleSubmit={handleSubmit}
               setActive={setActive} active={active}
-              setState={setState} state={state} />
+              setState={setState} state={state} home={true}
+              setType={setType} type={type} />
             </div>
           </div>
         </section>

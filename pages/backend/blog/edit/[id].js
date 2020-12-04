@@ -8,6 +8,7 @@ import SelectLabel from '../../../../components/widget/SelectLabel';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 import ImageBoxBackend from '../../../../components/widget/ImageBoxBackend';
+import Datetime from 'react-datetime';
 
 import dynamic from 'next/dynamic';
 import DivLoad from '../../../../components/widget/DivLoad';
@@ -19,6 +20,7 @@ const EditRole = ({query}) => {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [types, setType] = useState();
   const [blogs, setBlog] = useState();
+  const [startDate, setStartDate] = useState(null);
 
   const router = useRouter();
   const id = router.query.id
@@ -43,6 +45,10 @@ const EditRole = ({query}) => {
     api.getBlogOne(id)
     .then(res=>{
       const data = res.data;
+      console.log(data);
+      if(data.publish_date) {
+        setStartDate(new Date(data.publish_date))
+      }
       setBlog(data);
     })
     .catch(err => {
@@ -67,6 +73,13 @@ const EditRole = ({query}) => {
     .catch(err => {
       console.log(err.response);
     })
+  }
+
+  const showstartDate = (e) => {
+    var today = e._i;
+    var data = e._d;
+    // var da = setD(data);
+    setStartDate(data);
   }
 
   
@@ -107,10 +120,21 @@ const EditRole = ({query}) => {
                 </div>
 
                 <div className="row"> 
-                  <div className="col-12">
+                  <div className="col-8">
                     <div className="form-group mb-4">
                       <label>Short Description</label>
                       <textarea className="form-control" name="short_description" required defaultValue={blogs.short_description}></textarea>
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <div className="form-group">
+                      <label>Publish Date</label>
+                      <Datetime 
+                      dateFormat="YYYY-MM-DD" 
+                      timeFormat={false}
+                      onChange={(e)=> {showstartDate(e)}}
+                      value={startDate ? startDate : ''}
+                      inputProps={{ name: 'publish_date', required : true, autoComplete : 'off' }} />
                     </div>
                   </div>
                 </div>

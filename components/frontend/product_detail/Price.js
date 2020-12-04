@@ -2,10 +2,14 @@
 import Router from 'next/router';
 import React, {useEffect,useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
+import SelectTime from '../../widget/SelectTime'
 
 const Price = (props) => {
   const {error,state,setState,checkout, is_boat} = props;
   const [active, setActive] = useState(false);
+  const [activeFrom, setActiveFrom] = useState(false);
+  const [activeTo, setActiveTo] = useState(false);
+
   // const [date,setDate] = useState()
   const {price,unit,boat_amt} = props.priceData; 
   const qtySum = () => {
@@ -68,6 +72,10 @@ const Price = (props) => {
     setState({...state,[key] :newVal })
   }
 
+  const onTimeChange = (key, val) =>{
+    setState({...state,[key] : val })
+  }
+
 
 
 
@@ -84,19 +92,19 @@ const Price = (props) => {
           <input className="form-control" type="text" name="dates" placeholder="When.." />
           <i className="icon_calendar"></i>
         </div>
-        {/* {
+        {
           is_boat ? (
-            <div className="form-group input-dates">
-              <input className="form-control" type="text" name="dates" placeholder="When.." />
-              <i className="icon_calendar"></i>
-            </div>    
+            <div className="d-flex">
+              <SelectTime active={activeFrom} setActive={setActiveFrom} onTimeChange={onTimeChange} state={state} name={'start_time'} />
+              <SelectTime active={activeTo} setActive={setActiveTo} onTimeChange={onTimeChange} state={state} name={'end_time'} />
+            </div>
           ) : null
-        } */}
+        }
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
-
-        <button type="button" disabled={price === -1} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+         {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+        <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
       

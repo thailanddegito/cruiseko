@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
   
 const SelectStyle = (props) => {
-  const {open, setOpen, name, col = "col-lg-3", textOptions, setTextOption, options, setOptionVal, option_val} = props;
+  const {open, setOpen, name, col = "col-lg-3", textOptions, setTextOption, options, setOptionVal, option_val, setType} = props;
 
   const boxEl = useRef(null)
 	const onClickOut = (e) => {
@@ -16,9 +16,10 @@ const SelectStyle = (props) => {
 		}
   },[open])
   
-  const handleChange = (val, text) => {
+  const handleChange = (val, text, type) => {
     setTextOption(text);
     setOptionVal(val);
+    setType(type);
   }
   
 
@@ -32,12 +33,12 @@ const SelectStyle = (props) => {
             )) : null
           }
         </select>
-        <div className={`nice-select wide ${open ? 'open' : ''}`} tabIndex="0">
+        <div className={`nice-select wide ${open ? 'open' : ''} mb-0`} tabIndex="0">
           <span className="current">{textOptions}</span>
           <ul className="list">
             {
               options ? options.map((val, index) => (   
-              <li data-value={val.value} key={index} className={`option ${textOptions == val.name ? "selected focus" : ''}`} onClick={() => handleChange(val.value, val.name)}>{val.name}</li>
+              <li data-value={val.value} key={index} className={`option ${textOptions == val.name ? "selected focus" : ''}`} onClick={() => handleChange(val.value, val.name, val.type)}>{val.name}</li>
               )) : null
             }
           </ul>
