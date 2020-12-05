@@ -38,6 +38,7 @@ const Detail = (props) => {
       product_id : packages.id,
       is_boat : packages.is_boat,
       ...state,
+      name : packages.name,
       price : priceData.price,
       expired_at : (new Date()).getTime() + 15 * 60 * 1000 ,
       duration : packages.is_boat ? calDuration(state.start_time,state.end_time) : ''

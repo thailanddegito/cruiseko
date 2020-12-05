@@ -44,6 +44,8 @@ const models = {
     BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
     BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
 
+    PaypalHist :require('./booking/paypal_hist.model')(sequelize,Sequelize),
+
     BlogCategory : require('./blog/blog_category.model')(sequelize,Sequelize),
     Blog : require('./blog/blog.model')(sequelize,Sequelize),
     

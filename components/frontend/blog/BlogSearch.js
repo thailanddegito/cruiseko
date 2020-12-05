@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Router from 'next/router';
 
 const BlogSearch = (props) => {
-  const {news, handleSearch, query} = props;
+  const {news, handleSearch, query, btn_reset = false} = props;
   const [search, setSearch] = useState('');
 
   const reset = () => {
@@ -26,7 +26,7 @@ const BlogSearch = (props) => {
               <input type="text" name="search" id="search" className="form-control" value={search} placeholder="Search..." required onChange={(e) => setSearch(e.target.value)} />
             </div>
             <button type="submit" id="submit" className="btn btn-primary min-width-100px"> Search</button>
-            <button type="button" className="btn btn-outline-primary min-width-100px ml-3" onClick={() => reset()}> Reset</button>
+            {btn_reset && <button type="button" className="btn btn-outline-primary min-width-100px ml-3" onClick={() => reset()}> Reset</button>}
           </form>
         </div>
         <div className="widget">
