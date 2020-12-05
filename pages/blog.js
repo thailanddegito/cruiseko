@@ -111,7 +111,7 @@ const Blog = ({query}) => {
                 )}  
               </div>
 
-              <BlogSearch news={news} handleSearch={handleSearch} query={query} />
+              <BlogSearch news={news} handleSearch={handleSearch} query={query} btn_reset={true} />
               
             </div>
           </div>

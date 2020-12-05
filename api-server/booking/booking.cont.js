@@ -151,9 +151,9 @@ exports.create = async(req,res,next)=>{
       user_email,
       user_phone,
       net_price : price,
-      payment_status : 2,
-      payment_type : 'CREDIT',
-      payment_date : new Date(),
+      payment_status : 1,
+      // payment_type : 'CREDIT',
+      // payment_date : new Date(),
 
     }
 
@@ -179,7 +179,7 @@ exports.create = async(req,res,next)=>{
     await BookingDetail.create(booking_detail,{transaction})
 
     await transaction.commit()
-    res.json({success : true})
+    res.json({success : true,booking : {...booking.toJSON(),name : product.name}})
   }
   catch(err){
     next(err);

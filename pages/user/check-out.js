@@ -19,18 +19,19 @@ const Paypal = dynamic(
 const Payment = (props) => {
   const [loading, setLodding] = useState(false);
   const [data,setData] = useState();
+  const [showPaypal,setShowPaypal] = useState(false)
   const [booking,setBooking] = useState();
 
   useEffect(() => {
     const _data =  localStorage.getItem('checkout_dt')
     if(!_data){
-      Router.push('/')
+      Router.replace('/')
       return;
     }
     var json = JSON.parse(_data);
     if(json.expired_at <= new Date().getTime() ){
       localStorage.removeItem('checkout_dt')
-      Router.push('/')
+      Router.replace('/')
       return;
     }
     setData(JSON.parse(_data))
@@ -52,8 +53,10 @@ const Payment = (props) => {
     console.log(prep)
 
     api.checkout(prep).then(res => {
-      localStorage.removeItem('checkout_dt')
-      Router.push('/order-success')
+      setBooking(res.data.booking)
+      // localStorage.removeItem('checkout_dt')
+      setShowPaypal(true)
+      // Router.push('/order-success')
     })
     .catch(err => {
       alert('Error!')
@@ -63,7 +66,9 @@ const Payment = (props) => {
   }
 
   const onPaypalSuccess = (paypal_order_id)=>{
-    
+    // localStorage.removeItem('checkout_dt')
+    // Router.push('/order-success')
+    alert('success')
   }
 
   return (
@@ -79,16 +84,20 @@ const Payment = (props) => {
                     <PaymentMethod packages={true} />
                     <BillingAddress packages={true} />
                     <CancellationPolicy packages={true} />
-                    <Paypal   
-                      onPaypalSuccess={onPaypalSuccess} 
-                      booking={booking}
-                    />
+                    
                   </div>
                 </div>
                 
                 <aside className="col-lg-4" id="sidebar">
                   <div className="box_detail">
-                    <Summary data={data} purchase={purchase} />
+                    <Summary data={data} purchase={purchase} showButton={!showPaypal} />
+                    {showPaypal && 
+                      <Paypal   
+                        onPaypalSuccess={onPaypalSuccess} 
+                        booking={booking}
+                      />
+                    }
+                    
                   </div>
                 </aside>
               </div>
