@@ -3,12 +3,13 @@ const { Product,sequelize,PriceDate,
   BookingBoat} = require('../db')
 
 var paypal = require('paypal-rest-sdk')
-
-paypal.configure({
+const config = {
   mode: process.env.NODE_ENV === 'dev' ? 'sandbox' : 'sandbox', //sandbox or live
   client_id: process.env.PAYPAL_CLIENT_ID,
   client_secret: process.env.PAYPAL_CLIENT_SECRET
-});
+}
+
+paypal.configure(config);
 
 
 exports.paypalApprove = async(req,res,next)=>{
@@ -22,7 +23,7 @@ exports.paypalApprove = async(req,res,next)=>{
     res.json({success:true})
   }
   catch(err){
-    await PaypalHist.create({text : JSON.stringify({err})})
+    await PaypalHist.create({text : JSON.stringify({err,config})})
     next(err);
   }
 }
