@@ -52,7 +52,7 @@ exports.paypalApprove = async(req,res,next)=>{
     res.json({success:true})
   }
   catch(err){
-    await PaypalHist.create({text : JSON.stringify({err,config})})
+    await PaypalHist.create({text : JSON.stringify({err,config,test:'asdasd'})})
     next(err);
   }
 }
