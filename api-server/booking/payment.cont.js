@@ -17,10 +17,12 @@ exports.paypalApprove = async(req,res,next)=>{
   try{
 
     const result = await verifyEvent(JSON.stringify(data) )
+    console.log(result)
     await PaypalHist.create({text : JSON.stringify({...data, verify_result : result })})
     res.json({success:true})
   }
   catch(err){
+    await PaypalHist.create({text : JSON.stringify({err})})
     next(err);
   }
 }
