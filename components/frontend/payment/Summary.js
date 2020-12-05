@@ -3,8 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const Summayry = (props) => {
-  const {data,purchase,showPaypal} = props;
-
+  const {data,purchase,showButton} = props;
   return (
     data ? (
       <>
@@ -24,7 +23,7 @@ const Summayry = (props) => {
           <li>Adults <span> {data.adult} </span></li>
           <li>Childs <span>{data.children}</span></li>
         </ul>
-        {showPaypal && <button type="button" className="btn_1 full-width purchase" onClick={purchase} >Purchase </button>}
+        {showButton && <button type="button" className="btn_1 full-width purchase" onClick={purchase} >Purchase </button>}
         
         {/* <a href="cart-3.html" className="btn_1 full-width purchase">Purchase</a> */}
         {/* <div className="text-center"><small>No money charged in this step</small></div> */}
