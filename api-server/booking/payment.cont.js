@@ -31,6 +31,8 @@ exports.paypalApprove = async(req,res,next)=>{
     const {purchase_units} = resource
     const booking_id = purchase_units[0].invoice_id;
 
+    console.log('booking_id',booking_id)
+
     const result = await verifyEvent(JSON.stringify(data) )
 
     if(!result){
@@ -48,7 +50,7 @@ exports.paypalApprove = async(req,res,next)=>{
       return res.json({success:true})
     }
 
-    await Booking.update({ payment_status : 2,payment_date : new Date(),payment_type : 'PAYPAL' },{id : booking_id})
+    await Booking.update({ payment_status : 2,payment_date : new Date(),payment_type : 'PAYPAL' },{where : {id : booking_id}})
 
     await PaypalHist.create({text : JSON.stringify({...data, verify_result : result })})
     res.json({success:true})
