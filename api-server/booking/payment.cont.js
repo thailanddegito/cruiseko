@@ -31,13 +31,15 @@ exports.paypalApprove = async(req,res,next)=>{
     const {purchase_units} = resource
     const booking_id = purchase_units[0].invoice_id;
 
+    const result = await verifyEvent(JSON.stringify(data) )
 
-    const [result,booking] = await Promise.all([
-      verifyEvent(JSON.stringify(data) ),
-      Booking.findOne({where : {id : booking_id}})
-    ])
+    if(!result){
+      throw new DefaultError(errors.INVALID_INPUT);
+    }
 
-    if(!result || !booking){
+    const booking = await Booking.findOne({where : {id : booking_id}})
+
+    if(!booking){
       throw new DefaultError(errors.INVALID_INPUT);
     }
 
@@ -52,7 +54,7 @@ exports.paypalApprove = async(req,res,next)=>{
     res.json({success:true})
   }
   catch(err){
-    await PaypalHist.create({text : JSON.stringify({err,config,test:'asdasd'})})
+    await PaypalHist.create({text : JSON.stringify({err,config,test:'asdasd2'})})
     next(err);
   }
 }
