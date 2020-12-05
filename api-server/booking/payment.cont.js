@@ -31,10 +31,10 @@ exports.paypalApprove = async(req,res,next)=>{
     const {purchase_units} = resource
     const booking_id = purchase_units[0].invoice_id;
 
-    const result = await verifyEvent(JSON.stringify(data));
 
-    const [booking] = await Promise.all([
-      Booking.findAll({where : {id : booking_id}})
+    const [result,booking] = await Promise.all([
+      verifyEvent(JSON.stringify(data) ),
+      Booking.findOne({where : {id : booking_id}})
     ])
 
     if(!result || !booking){
