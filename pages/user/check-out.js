@@ -54,6 +54,7 @@ const Payment = (props) => {
 
     api.checkout(prep).then(res => {
       setBooking(res.data.booking)
+      console.log(res.data.booking)
       // localStorage.removeItem('checkout_dt')
       setShowPaypal(true)
       // Router.push('/order-success')
