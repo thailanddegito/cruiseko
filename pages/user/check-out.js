@@ -67,9 +67,9 @@ const Payment = (props) => {
   }
 
   const onPaypalSuccess = (paypal_order_id)=>{
-    // localStorage.removeItem('checkout_dt')
-    // Router.push('/order-success')
-    alert('success')
+    localStorage.removeItem('checkout_dt')
+    Router.push('/order-success')
+    // alert('success')
   }
 
   return (
