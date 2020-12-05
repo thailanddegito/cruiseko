@@ -13,13 +13,16 @@ paypal.configure({
 
 exports.paypalApprove = async(req,res,next)=>{
   var data = req.body;
+  console.log('data',data)
   try{
 
-    const result = await verifyEvent(data)
+    const result = await verifyEvent(JSON.stringify(data) )
+    console.log(result)
     await PaypalHist.create({text : JSON.stringify({...data, verify_result : result })})
     res.json({success:true})
   }
   catch(err){
+    await PaypalHist.create({text : JSON.stringify({err})})
     next(err);
   }
 }
@@ -29,7 +32,7 @@ async function verifyEvent(eventBody){
   return new Promise((resolve,reject) =>{
     paypal.notification.webhookEvent.getAndVerify(eventBody, async function (error, response) {
       if (error) {
-          reject(err)
+          reject(error)
       } else {
           resolve(response)
       }
