@@ -24,7 +24,7 @@ exports.paypalApprove = async(req,res,next)=>{
       throw new DefaultError(errors.FILEDS_INCOMPLETE);
     }
 
-    if(event_type !== 'CHECKOUT.ORDER.APPROVED'){
+    if(event_type != 'CHECKOUT.ORDER.APPROVED'){
       return res.json({success:true})
     }
 
