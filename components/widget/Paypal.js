@@ -47,18 +47,19 @@ class PaypalButton extends React.Component {
 
   createOrder = (data, actions) => {
     console.log("createOrder data: ", data);
+    const {booking} = this.props
     
     return actions.order.create({
       purchase_units: [
         {
-          description: "Mercedes G-Wagon",
+          invoice_id : booking.id,
+          description: booking.name,
           amount: {
             currency_code: "THB",
-            value: 200
+            value: booking.net_price
           }
         }
       ],
-      invoice_id:'test'
     });
   };
 
@@ -70,12 +71,14 @@ class PaypalButton extends React.Component {
       };
       console.log("Payment Approved: ", details);
       console.log("Payment data: ", data);
+      this.props.onPaypalSuccess?.()
       this.setState({ showButtons: false, paid: true });
     });
   };
 
   render() {
     const { showButtons, loading, paid } = this.state;
+    
 
     return (
       <div className="main">
