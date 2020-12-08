@@ -58,9 +58,9 @@ exports.getAll = async(req,res,next)=>{
     }
     var where_price_detail ={}
     if(price_start_date && price_end_date){
-      where_date[Op.and] = [
-        {start_date : {[Op.lte] : price_start_date}  },
-        {end_date : {[Op.gte] : price_end_date}  }
+      where_date[Op.or] = [
+        {[Op.and] : [{start_date : {[Op.lte] : price_start_date}  },{end_date : {[Op.gte] : price_start_date}  } ]},
+        {[Op.and] : [{start_date : {[Op.lte] : price_end_date}  },{end_date : {[Op.gte] : price_end_date}  } ]},
       ]
       required_price = true;
 
