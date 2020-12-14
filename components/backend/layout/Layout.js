@@ -36,7 +36,8 @@ const Layout = (props) => {
         <link href="/backend_css/css/custom_xxl.css" rel="stylesheet" />
         <link href="/backend_css/css/collapse.css" rel="stylesheet" />
         <link href="/backend_css/css/custom_control.css" rel="stylesheet" />
-      
+        <link href="/backend_css/css/style.css" rel="stylesheet" />
+
         <script src="/backend_css/vendor/jquery/jquery.min.js"></script>
         <script src="/backend_css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/backend_css/vendor/jquery-easing/jquery.easing.min.js"></script>
