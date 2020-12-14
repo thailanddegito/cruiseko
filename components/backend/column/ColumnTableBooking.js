@@ -36,23 +36,23 @@ const ColumsBody = (props) => {
       selector: 'createdAt',
       sortable: true,
     },
-    // {
-    //   name: '',
-    //   sortable: true,
-    //   width : '200px',
-    //   right : true,
-    //   cell : row => (
-    //     <span>
-    //       <ul className="buttons manage">
-    //         <li>
-    //           <Link href="/backend/booking/manage/[id]" as={`/backend/booking/manage/${row.boat_id}`}>
-    //             <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Manage</span></button>
-    //           </Link>
-    //         </li>
-    //       </ul>
-    //     </span>
-    //   )
-    // },
+    {
+      name: '',
+      sortable: true,
+      width : '200px',
+      right : true,
+      cell : row => (
+        <span>
+          <ul className="buttons manage">
+            <li>
+              <Link href="/backend/booking/detail/[id]" as={`/backend/booking/detail/${row.id}`}>
+                <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Detail</span></button>
+              </Link>
+            </li>
+          </ul>
+        </span>
+      )
+    },
   ];
 
   return columns;
