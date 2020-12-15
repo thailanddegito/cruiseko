@@ -112,7 +112,7 @@ const PackageDetail = memo((props) => {
   return (
     <>
       <div className="row" >
-        <div className="col-lg-8 col-12">
+        <div className={`${(!edit || (pkg && !pkg.is_boat)) ? 'col-lg-8 ' : 'col-12'} col-12`}>
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
             name : 'name', required : true,
@@ -120,21 +120,25 @@ const PackageDetail = memo((props) => {
           }} 
           labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  /> 
         </div>
-        <div className="col-lg-4 col-12">
-          <div className="form-group select2">
-            <label className="">Category</label>
-            <Select
-              closeMenuOnSelect={false}
-              components={animatedComponents}
-              isMulti={false}
-              placeholder="-- Please Select Category --"
-              name="cate_id"
-              options={types}
-              value={selectData.cate }
-              onChange={ (e) => handleSelectChange('cate',e) }
-            /> 
-          </div>
-        </div>
+        {
+          (!edit || (pkg && !pkg.is_boat)) ? (
+            <div className="col-lg-4 col-12">
+              <div className="form-group select2">
+                <label className="">Category</label>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti={false}
+                  placeholder="-- Please Select Category --"
+                  name="cate_id"
+                  options={types}
+                  value={selectData.cate }
+                  onChange={ (e) => handleSelectChange('cate',e) }
+                /> 
+              </div>
+            </div>
+          ) : null
+        }
       </div>
 
       <div className="row"> 
@@ -167,7 +171,7 @@ const PackageDetail = memo((props) => {
 
       <div className="row" >
         <div className="col-lg-6 col-12">
-          <div className="form-group select2">
+          <div className="form-group select2 mb-4">
             <label className="">Location</label>
             <Select
               closeMenuOnSelect={false}
@@ -182,33 +186,33 @@ const PackageDetail = memo((props) => {
           </div>
         </div>
         {
-            (!edit || (pkg && !pkg.is_boat)) ? (
-              <>
-                <div className="col-lg-3 col-12">
-                  <div className="form-group mb-4">
-                    <label>Start Time</label>
-                    <Datetime 
-                    dateFormat={false} 
-                    timeFormat={'HH:mm'}
-                    onChange={(e)=> {showstartDate(e)}}
-                    value={startDate ? startDate : ''}
-                    inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
-                  </div>
+          (!edit || (pkg && !pkg.is_boat)) ? (
+            <>
+              <div className="col-lg-3 col-12">
+                <div className="form-group mb-4">
+                  <label>Start Time</label>
+                  <Datetime 
+                  dateFormat={false} 
+                  timeFormat={'HH:mm'}
+                  onChange={(e)=> {showstartDate(e)}}
+                  value={startDate ? startDate : ''}
+                  inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
                 </div>
-                <div className="col-lg-3 col-12">
-                  <div className="form-group mb-4">
-                    <label>End Time</label>
-                    <Datetime 
-                    dateFormat={false} 
-                    timeFormat={'HH:mm'}
-                    onChange={(e)=> {showendDate(e)}}
-                    value={endDate ? endDate : ''}
-                    inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
-                  </div>
+              </div>
+              <div className="col-lg-3 col-12">
+                <div className="form-group mb-4">
+                  <label>End Time</label>
+                  <Datetime 
+                  dateFormat={false} 
+                  timeFormat={'HH:mm'}
+                  onChange={(e)=> {showendDate(e)}}
+                  value={endDate ? endDate : ''}
+                  inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
                 </div>
-              </>
-            ) : null
-          }
+              </div>
+            </>
+          ) : null
+        }
         
 
 
