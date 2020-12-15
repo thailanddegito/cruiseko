@@ -13,7 +13,7 @@ const Loading = <div className="position-relative" style={{height : '200px'}}><D
 const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const PackageDetail = memo((props) => {
-  const {pkg} = props;
+  const {pkg, edit = false} = props;
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
   const [locations, setLocation] = useState();
@@ -179,28 +179,37 @@ const PackageDetail = memo((props) => {
             /> 
           </div>
         </div>
-        <div className="col-lg-3 col-12">
-          <div className="form-group mb-4">
-            <label>Start Time</label>
-            <Datetime 
-            dateFormat={false} 
-            timeFormat={'HH:mm'}
-            onChange={(e)=> {showstartDate(e)}}
-            value={startDate ? startDate : ''}
-            inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
-          </div>
-        </div>
-        <div className="col-lg-3 col-12">
-          <div className="form-group mb-4">
-            <label>End Time</label>
-            <Datetime 
-            dateFormat={false} 
-            timeFormat={'HH:mm'}
-            onChange={(e)=> {showendDate(e)}}
-            value={endDate ? endDate : ''}
-            inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
-          </div>
-        </div>
+        {
+            (!edit || (pkg && !pkg.is_boat)) ? (
+              <>
+                <div className="col-lg-3 col-12">
+                  <div className="form-group mb-4">
+                    <label>Start Time</label>
+                    <Datetime 
+                    dateFormat={false} 
+                    timeFormat={'HH:mm'}
+                    onChange={(e)=> {showstartDate(e)}}
+                    value={startDate ? startDate : ''}
+                    inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
+                  </div>
+                </div>
+                <div className="col-lg-3 col-12">
+                  <div className="form-group mb-4">
+                    <label>End Time</label>
+                    <Datetime 
+                    dateFormat={false} 
+                    timeFormat={'HH:mm'}
+                    onChange={(e)=> {showendDate(e)}}
+                    value={endDate ? endDate : ''}
+                    inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
+                  </div>
+                </div>
+              </>
+            ) : null
+          }
+        
+
+
       </div>
 
       <div className="row">

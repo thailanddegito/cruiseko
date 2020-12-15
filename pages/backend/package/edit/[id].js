@@ -187,7 +187,7 @@ const Index = (props) => {
           <div className="tab-content">
             <div className="tab-pane active" id="details">
               <div>
-                <PackageDetail pkg={pkg} />
+                <PackageDetail pkg={pkg} edit={true} />
               </div>
             </div>
             <div className="tab-pane fade" id="images">
