@@ -104,7 +104,7 @@ const SearchCharter = ({query}) => {
             <p className="text-center add_top_30"><a href="#0" className="btn_1 rounded"><strong>Load more</strong></a></p>
             </div>
 
-            <Map />
+            <Map packages={packages} />
            
 
 

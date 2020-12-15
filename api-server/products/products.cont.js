@@ -92,7 +92,6 @@ exports.getAll = async(req,res,next)=>{
       {model : ProductBoat, include : boat_include,required:true },
       {model : ProductCategory},
       {model : Location , as :'pickup' },
-      {model : Location , as :'dropoff' }
       
     ]
 
@@ -126,7 +125,6 @@ exports.getOne = async(req,res,next)=>{
       {model : ProductBoat,include : boat_include},
       {model : ProductCategory},
       {model : Location , as :'pickup' },
-      {model : Location , as :'dropoff' }
     ]
     var where = {id,deleted : 0}
     var order =  [
