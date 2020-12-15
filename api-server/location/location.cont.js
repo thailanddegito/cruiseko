@@ -47,9 +47,9 @@ exports.update = async(req,res,next)=>{
 }
 
 exports.delete = async(req,res,next)=>{
-  const cate_id = req.params.id
+  const id = req.params.id
   try{
-    await Location.update({deleted : 1},{where : {cate_id}})
+    await Location.update({deleted : 1},{where : {id}})
     res.json({success:true})
   }
   catch(err){
