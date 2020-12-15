@@ -71,7 +71,7 @@ const PackageDetail = memo((props) => {
   },[]);
 
   useEffect(() => {
-    if(!pkg || !boats || !types || !pickup_location_id) return;
+    if(!pkg || !boats || !types || !locations) return;
 
     const cate = types.find(val => val.value === pkg.cate_id )
     const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
@@ -80,7 +80,7 @@ const PackageDetail = memo((props) => {
     // console.log('boat',boat)
     // console.log('cate',cate)
     setSelectData({cate,boat_id,pickup_location_id})
-  }, [pkg,types,boats]);
+  }, [pkg,types,boats,locations]);
   useEffect(() => {
     if(!pkg) return;
     setImg(pkg.picture ? pkg.picture : "/template/img/tour_1.jpg");
