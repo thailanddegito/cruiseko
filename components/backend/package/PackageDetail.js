@@ -16,7 +16,8 @@ const PackageDetail = memo((props) => {
   const {pkg} = props;
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
-  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
+  const [locations, setLocation] = useState();
+  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined, location : undefined })
   const [img, setImg] = useState("/template/img/tour_1.jpg");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -27,6 +28,17 @@ const PackageDetail = memo((props) => {
       const data = res.data;
       var temp = data.map(val => ({...val,value : val.cate_id,label : val.name})  )
       setType(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  const fechLocation = () => {
+    api.getLocation()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,value : val.id,label : val.name})  )
+      setLocation(temp);
     })
     .catch(err => {
       console.log(err.response);
@@ -55,6 +67,7 @@ const PackageDetail = memo((props) => {
   useEffect(() => {
     fecthBoat();
     fecthPackageCate();
+    fechLocation();
   },[]);
 
   useEffect(() => {
@@ -64,7 +77,7 @@ const PackageDetail = memo((props) => {
     const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
     // console.log('boat',boat)
     // console.log('cate',cate)
-    setSelectData({cate,boat_id})
+    setSelectData({cate,boat_id,location})
   }, [pkg,types,boats]);
   useEffect(() => {
     if(!pkg) return;
@@ -151,6 +164,21 @@ const PackageDetail = memo((props) => {
       </div>
 
       <div className="row" >
+        <div className="col-lg-6 col-12">
+          <div className="form-group select2">
+            <label className="">Location</label>
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti={false}
+              placeholder="-- Please Select Location --"
+              name="location"
+              options={locations}
+              value={selectData.location }
+              onChange={ (e) => handleSelectChange('location',e) }
+            /> 
+          </div>
+        </div>
         <div className="col-lg-3 col-12">
           <div className="form-group mb-4">
             <label>Start Time</label>

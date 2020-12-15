@@ -15,10 +15,6 @@ const Create = (props) => {
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    if(!data.get('permission')){
-      setModalWarning(true);
-      return false
-    }
     api.insertLocation(data)
     .then(res=>{
       const data = res.data;

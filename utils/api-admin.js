@@ -129,10 +129,10 @@ export default {
 
 
      //Location
-     getLocation : () => service.get(`backend//location`),
-     getLocationOne : (id) => service.get(`/backend//location/${id}`),
-     insertLocation : (data) => service.post(`/backend//location`,data),
-     updateLocation : (data) => service.post(`/backend//location/update`,data),
-     delLocation : (id) => service.delete(`/backend//location/${id}`),
+     getLocation : () => service.get(`/location`),
+     getLocationOne : (id) => service.get(`/location/${id}`),
+     insertLocation : (data) => service.post(`/location`,data),
+     updateLocation : (data, id) => service.put(`/location/${id}`,data),
+     delLocation : (id) => service.delete(`/location/${id}`),
  
 }

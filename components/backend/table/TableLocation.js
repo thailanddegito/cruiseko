@@ -16,6 +16,7 @@ const TableLocation = (props) => {
     api.getLocation()
     .then(res=>{
       const data = res.data;
+      console.log(data);
       setLocation(data);
     })
     .catch(err => {

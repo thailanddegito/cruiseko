@@ -39,11 +39,7 @@ const EditLocation = ({query}) => {
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    if(!data.get('permission')){
-      setModalWarning(true);
-      return false
-    }
-    api.updateLocation(data)
+    api.updateLocation(data, id)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
