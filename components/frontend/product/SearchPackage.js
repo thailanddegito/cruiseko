@@ -103,9 +103,8 @@ const SearchPackage = (props) => {
   }
 
   useEffect(() => {
-    if(query)
     fecthBoatCate();
-  }, [query])
+  }, [])
 
 
   // console.log(true);
