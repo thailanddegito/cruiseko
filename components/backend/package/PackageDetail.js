@@ -17,7 +17,7 @@ const PackageDetail = memo((props) => {
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
   const [locations, setLocation] = useState();
-  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined, location : undefined })
+  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined, pickup_location_id : undefined })
   const [img, setImg] = useState("/template/img/tour_1.jpg");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -77,7 +77,7 @@ const PackageDetail = memo((props) => {
     const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
     // console.log('boat',boat)
     // console.log('cate',cate)
-    setSelectData({cate,boat_id,location})
+    setSelectData({cate,boat_id,pickup_location_id})
   }, [pkg,types,boats]);
   useEffect(() => {
     if(!pkg) return;
@@ -172,10 +172,10 @@ const PackageDetail = memo((props) => {
               components={animatedComponents}
               isMulti={false}
               placeholder="-- Please Select Location --"
-              name="location"
+              name="pickup_location_id"
               options={locations}
-              value={selectData.location }
-              onChange={ (e) => handleSelectChange('location',e) }
+              value={selectData.pickup_location_id }
+              onChange={ (e) => handleSelectChange('pickup_location_id',e) }
             /> 
           </div>
         </div>
