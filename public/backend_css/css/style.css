@@ -48,3 +48,5 @@
 .text-14{
     font-size: 14px !important;
 }
+@page {
+    size: a3; }
