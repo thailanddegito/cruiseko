@@ -126,5 +126,13 @@ export default {
     insertBlogCate : (data) => service.post('/blog/category',data) ,
     updateBlogCate : (id, data) => service.put(`/blog/category/${id}`,data) ,
     delBlogCate : (id) => service.delete(`/blog/category/${id}`),
+
+
+     //Location
+     getLocation : () => service.get(`/location`),
+     getLocationOne : (id) => service.get(`/location/${id}`),
+     insertLocation : (data) => service.post(`/location`,data),
+     updateLocation : (data, id) => service.put(`/location/${id}`,data),
+     delLocation : (id) => service.delete(`/location/${id}`),
  
 }

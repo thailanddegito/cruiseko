@@ -13,10 +13,11 @@ const Loading = <div className="position-relative" style={{height : '200px'}}><D
 const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const PackageDetail = memo((props) => {
-  const {pkg} = props;
+  const {pkg, edit = false} = props;
   const [types, setType] = useState();
   const [boats, setBoat] = useState();
-  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined })
+  const [locations, setLocation] = useState();
+  const [selectData,setSelectData] = useState({cate : undefined ,boat_id : undefined, pickup_location_id : undefined })
   const [img, setImg] = useState("/template/img/tour_1.jpg");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -27,6 +28,17 @@ const PackageDetail = memo((props) => {
       const data = res.data;
       var temp = data.map(val => ({...val,value : val.cate_id,label : val.name})  )
       setType(temp);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+  const fechLocation = () => {
+    api.getLocation()
+    .then(res=>{
+      const data = res.data;
+      var temp = data.map(val => ({...val,value : val.id,label : val.name})  )
+      setLocation(temp);
     })
     .catch(err => {
       console.log(err.response);
@@ -55,17 +67,20 @@ const PackageDetail = memo((props) => {
   useEffect(() => {
     fecthBoat();
     fecthPackageCate();
+    fechLocation();
   },[]);
 
   useEffect(() => {
-    if(!pkg || !boats || !types) return;
+    if(!pkg || !boats || !types || !locations) return;
 
     const cate = types.find(val => val.value === pkg.cate_id )
     const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
+    const pickup_location_id = locations.find(val => val.value === pkg.pickup_location_id )
+
     // console.log('boat',boat)
     // console.log('cate',cate)
-    setSelectData({cate,boat_id})
-  }, [pkg,types,boats]);
+    setSelectData({cate,boat_id,pickup_location_id})
+  }, [pkg,types,boats,locations]);
   useEffect(() => {
     if(!pkg) return;
     setImg(pkg.picture ? pkg.picture : "/template/img/tour_1.jpg");
@@ -97,7 +112,7 @@ const PackageDetail = memo((props) => {
   return (
     <>
       <div className="row" >
-        <div className="col-lg-8 col-12">
+        <div className={`${(!edit || (pkg && !pkg.is_boat)) ? 'col-lg-8 ' : 'col-12'} col-12`}>
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
             name : 'name', required : true,
@@ -105,21 +120,25 @@ const PackageDetail = memo((props) => {
           }} 
           labelName="Package Name" iconProps={{className : 'fa icon icon-email'}}  /> 
         </div>
-        <div className="col-lg-4 col-12">
-          <div className="form-group select2">
-            <label className="">Category</label>
-            <Select
-              closeMenuOnSelect={false}
-              components={animatedComponents}
-              isMulti={false}
-              placeholder="-- Please Select Category --"
-              name="cate_id"
-              options={types}
-              value={selectData.cate }
-              onChange={ (e) => handleSelectChange('cate',e) }
-            /> 
-          </div>
-        </div>
+        {
+          (!edit || (pkg && !pkg.is_boat)) ? (
+            <div className="col-lg-4 col-12">
+              <div className="form-group select2">
+                <label className="">Category</label>
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti={false}
+                  placeholder="-- Please Select Category --"
+                  name="cate_id"
+                  options={types}
+                  value={selectData.cate }
+                  onChange={ (e) => handleSelectChange('cate',e) }
+                /> 
+              </div>
+            </div>
+          ) : null
+        }
       </div>
 
       <div className="row"> 
@@ -151,28 +170,52 @@ const PackageDetail = memo((props) => {
       </div>
 
       <div className="row" >
-        <div className="col-lg-3 col-12">
-          <div className="form-group mb-4">
-            <label>Start Time</label>
-            <Datetime 
-            dateFormat={false} 
-            timeFormat={'HH:mm'}
-            onChange={(e)=> {showstartDate(e)}}
-            value={startDate ? startDate : ''}
-            inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
+        <div className="col-lg-6 col-12">
+          <div className="form-group select2 mb-4">
+            <label className="">Location</label>
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti={false}
+              placeholder="-- Please Select Location --"
+              name="pickup_location_id"
+              options={locations}
+              value={selectData.pickup_location_id }
+              onChange={ (e) => handleSelectChange('pickup_location_id',e) }
+            /> 
           </div>
         </div>
-        <div className="col-lg-3 col-12">
-          <div className="form-group mb-4">
-            <label>End Time</label>
-            <Datetime 
-            dateFormat={false} 
-            timeFormat={'HH:mm'}
-            onChange={(e)=> {showendDate(e)}}
-            value={endDate ? endDate : ''}
-            inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
-          </div>
-        </div>
+        {
+          (!edit || (pkg && !pkg.is_boat)) ? (
+            <>
+              <div className="col-lg-3 col-12">
+                <div className="form-group mb-4">
+                  <label>Start Time</label>
+                  <Datetime 
+                  dateFormat={false} 
+                  timeFormat={'HH:mm'}
+                  onChange={(e)=> {showstartDate(e)}}
+                  value={startDate ? startDate : ''}
+                  inputProps={{ name: 'start_time', required : true, autoComplete : 'off' }} />
+                </div>
+              </div>
+              <div className="col-lg-3 col-12">
+                <div className="form-group mb-4">
+                  <label>End Time</label>
+                  <Datetime 
+                  dateFormat={false} 
+                  timeFormat={'HH:mm'}
+                  onChange={(e)=> {showendDate(e)}}
+                  value={endDate ? endDate : ''}
+                  inputProps={{ name: 'end_time', required : true, autoComplete : 'off' }} />
+                </div>
+              </div>
+            </>
+          ) : null
+        }
+        
+
+
       </div>
 
       <div className="row">
