@@ -75,7 +75,7 @@ const PackageDetail = memo((props) => {
 
     const cate = types.find(val => val.value === pkg.cate_id )
     const boat_id = boats.find(val => val.value === pkg.products_boats[0]?.boat_id)
-    const pickup_location_id = types.find(val => val.value === pkg.pickup_location_id )
+    const pickup_location_id = locations.find(val => val.value === pkg.pickup_location_id )
 
     // console.log('boat',boat)
     // console.log('cate',cate)
