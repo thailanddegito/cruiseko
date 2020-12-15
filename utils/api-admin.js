@@ -109,6 +109,7 @@ export default {
 
     //Bookings
     getBooking : (params) => service.get(`/booking`, {params}),
+    getBookingOne : (id) => service.get(`/booking/${id}`),
 
 
 

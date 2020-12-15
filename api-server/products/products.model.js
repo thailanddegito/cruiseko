@@ -25,6 +25,8 @@ module.exports = (sequelize, type) => {
 
       pickup_location : type.STRING,
       dropoff_location : type.STRING,
+      pickup_location_id : type.INTEGER,
+      // dropoff_location_id : type.INTEGER,
       start_time : type.STRING,
       end_time : type.STRING,
 
@@ -62,6 +64,8 @@ module.exports = (sequelize, type) => {
     Product.associate = function(models) {
         Product.belongsTo(models.ProductCategory,{foreignKey : 'cate_id',constraints: false});
         Product.belongsTo(models.Boat,{foreignKey : 'by_boat_id',constraints: false});
+        Product.belongsTo(models.Location,{foreignKey : 'pickup_location_id',as : 'pickup',constraints: false});
+        Product.belongsTo(models.Location,{foreignKey : 'dropoff_location_id',as : 'dropoff',constraints: false});
         Product.hasMany(models.PriceDate,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.ProductImage,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.Event,{foreignKey : 'product_id',constraints: false})

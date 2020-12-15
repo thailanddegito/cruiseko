@@ -36,8 +36,15 @@ exports.getOne = async(req,res,next)=>{
   const id  = req.params.id;
   try{
 
+    const detail_inc = [
+      {model : Product}
+    ]
+    const boat_inc = [
+      {model : Boat ,include : [BoatCategory]}
+    ]
     const include = [
-      {model : BookingDetail}
+      {model : BookingDetail ,include : detail_inc},
+      {model : BookingBoat ,include : boat_inc}
     ]
 
     const booking = await Booking.findOne({where : {id},include})
@@ -152,6 +159,9 @@ exports.create = async(req,res,next)=>{
       user_phone,
       net_price : price,
       payment_status : 1,
+      start_date : rental_start,
+      end_date : rental_end,
+      duration,
       // payment_type : 'CREDIT',
       // payment_date : new Date(),
 

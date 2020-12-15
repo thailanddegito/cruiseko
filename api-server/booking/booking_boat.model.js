@@ -31,6 +31,7 @@ module.exports = (sequelize, type) => {
 
   BookingBoat.associate = function(models) {
     BookingBoat.belongsTo(models.Booking,{foreignKey : 'booking_id',constraints: false})
+    BookingBoat.belongsTo(models.Boat,{foreignKey : 'boat_id',constraints: false})
   };
   return BookingBoat
 }

@@ -40,8 +40,15 @@ module.exports = (sequelize, type) => {
       allowNull : false,
       defaultValue : 0
     },
+    duration : {
+      type : type.INTEGER,
+      allowNull : false,
+      defaultValue : 0
+    },
     payment_status : type.INTEGER,
     payment_date : type.DATE,
+    start_date : type.DATE,
+    end_date : type.DATE,
     //CREDIT, TRANSFER
     payment_type : type.STRING,
     trasaction_id : type.STRING,

@@ -1,5 +1,5 @@
 const { Product,ProductImage,sequelize,PriceDate,
-  CompanyType,ProductBoat,Event,
+  CompanyType,ProductBoat,Event,Location,
   PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
@@ -90,7 +90,9 @@ exports.getAll = async(req,res,next)=>{
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
       {model : ProductBoat, include : boat_include,required:true },
-      {model : ProductCategory}
+      {model : ProductCategory},
+      {model : Location , as :'pickup' },
+      {model : Location , as :'dropoff' }
       
     ]
 
@@ -122,7 +124,9 @@ exports.getOne = async(req,res,next)=>{
       {model : ProductImage , attributes:['id','image','type','order']},
       {model : Event},
       {model : ProductBoat,include : boat_include},
-      {model : ProductCategory}
+      {model : ProductCategory},
+      {model : Location , as :'pickup' },
+      {model : Location , as :'dropoff' }
     ]
     var where = {id,deleted : 0}
     var order =  [

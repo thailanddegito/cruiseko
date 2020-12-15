@@ -4,8 +4,26 @@ import ReactToPrint from "react-to-print";
 
 class ComponentToPrint extends React.Component {
   
-  render() {
+    getTimePeriod = () =>{
+        var str = ''
+        if(!this.props.data) str
+        const data = this.props.data
+        var start_date = new Date(data.start_date)
+        var end_date = new Date(data.end_date)
+        var start_hour = start_date.getHours().toString().padStart(2,'0')
+        var start_minute = start_date.getMinutes().toString().padStart(2,'0')
+        var end_hour = end_date.getHours().toString().padStart(2,'0')
+        var end_minute = end_date.getMinutes().toString().padStart(2,'0')
+        var start_time = start_hour + '.' + start_minute
+        var end_time = end_hour + '.' + end_minute
+        return [start_time,end_time].join('-')
+    }
 
+  render() {
+    const {data} = this.props
+    const {booking_boats,booking_details} = data;
+    const type = (booking_boats[0]?.boat?.boat_category?.code ?? '') + '-' +  
+    (booking_boats[0]?.boat?.boat_category?.name ?? '')
     return (
       <div className="container">
         <div className="row border-p ">
@@ -37,7 +55,9 @@ class ComponentToPrint extends React.Component {
                         
                     </div>
                     <div className="col-5 border-p-b border-p-r align-items-end d-flex justify-content-center px-3 py-2">
-                        <p className="mb-0">27 November 2020</p>
+                        <p className="mb-0">
+                            {data.createdAt ? new Date(data.createdAt).toLocaleDateString('en') : '-'  } 
+                        </p>
                     </div>
                     <div className="col-2"></div>
                 </div>
@@ -55,7 +75,7 @@ class ComponentToPrint extends React.Component {
                         <p className="text-bold mb-0">Type:</p>
                     </div>
                     <div className="col-5 border-p-b border-p-r align-items-end d-flex justify-content-center px-3 py-2">
-                        <p className="mb-0">DC-Dinner Cruise</p>
+                        <p className="mb-0"> {type} </p>
                     </div>
                     <div className="col-2"></div>
                 </div>
@@ -66,7 +86,7 @@ class ComponentToPrint extends React.Component {
                         <p className="text-bold mb-0 ">Client ลูกค้า </p>
                     </div>
                     <div className="col-8 border-p-b align-items-end d-flex px-3 py-2">
-                        <p className="mb-0">หทัยทิพย์</p>
+                        <p className="mb-0"> {data.user_firstname} {data.user_lastname}</p>
                     </div>
                 </div>
 
@@ -84,7 +104,7 @@ class ComponentToPrint extends React.Component {
                         <p className="text-bold mb-0 ">Tel โทร </p>
                     </div>
                     <div className="col-8 border-p-b align-items-end d-flex px-3 py-2">
-                        <p className="mb-0">081 753 1165</p>
+                        <p className="mb-0"> {data.user_phone} </p>
                     </div>
                 </div>
 
@@ -93,7 +113,7 @@ class ComponentToPrint extends React.Component {
                         <p className="text-bold mb-0">Email อีเมลล์</p>
                     </div>
                     <div className="col-8 border-p-b align-items-end d-flex px-3 py-2">
-                        
+                        {data.user_email}
                     </div>
                 </div>
 
@@ -112,13 +132,13 @@ class ComponentToPrint extends React.Component {
                 <p className="text-bold mb-0 ">Date Use วันที่ใช้</p>
             </div>
             <div className="col-2 border-p-r d-flex align-items-end px-3 py-2">
-                <p className="mb-0">15 December 2020</p>
+                <p className="mb-0"> { new Date(data.start_date).toLocaleDateString()} </p>
             </div>
             <div className="col-2 border-p-r d-flex align-items-end px-3 py-2">
                 <p className="text-bold mb-0">Period เวลา</p>
             </div>
             <div className="col-4 border-p-r d-flex align-items-end px-3 py-2">
-                <p className="mb-0">19.30-22.00</p>
+                <p className="mb-0"> {this.getTimePeriod()}  </p>
             </div>
             <div className="col-2">
 
@@ -130,7 +150,7 @@ class ComponentToPrint extends React.Component {
                 <p className="text-bold mb-0 ">เรื่อที่จอง</p></div>
             </div>
             <div className="col-4 border-p-r d-flex align-items-end justify-content-center px-3 py-2">
-                <h5 className="mb-0">Wonderful Pearl</h5>
+                <h5 className="mb-0"> {booking_boats.map(val => val.boat?.name ?? 'Unknown').join(',')} </h5>
             </div>
             <div className="col-2">
                 <div className="row border-p-b border-p-r d-flex align-items-end px-3 py-2">
@@ -142,10 +162,10 @@ class ComponentToPrint extends React.Component {
             </div>
             <div className="col-4">
                 <div className="row border-p-b d-flex align-items-end px-3 py-2">
-                    <p className="mb-0">19.30 River City (Check in 18.00-19.00)</p>
+                    <p className="mb-0">{booking_details[0]?.product?.pickup_location ?? '-'}</p>
                 </div>
                 <div className="row d-flex align-items-end px-3 py-2">
-                    <p className="mb-0">21.30 Wonderful Pearl</p>
+                    <p className="mb-0">{booking_details[0]?.product?.dropoff_location ?? '-'}</p>
                 </div>
             </div>
         </div>
@@ -155,7 +175,7 @@ class ComponentToPrint extends React.Component {
                 <p className="text-bold mb-0">รายการทัวร์</p></div>
             </div>
             <div className="col-6 border-p-r d-flex align-items-center px-3 py-2">
-                <p className="text-red text-bold mb-0">ชั้นดาดฟ้า ผู้ใหญ่ 28*850= 23,800 (เด็กแยก 600*4+FOC 1 3ขวบ)</p>
+                <p className="text-red text-bold mb-0"> {booking_details[0]?.product?.name ?? '-'} </p>
             </div>
             
             <div className="col-4">
@@ -215,7 +235,7 @@ class ComponentToPrint extends React.Component {
                 <div className="row">
                     <div className="col-12 px-3 py-2">
                     
-                        <h5 className="mb-0">ซื้อแล้วไม่คืนเงิน เปลี่ยนวันได้แต่ขึ้นอยู่กับที่ว่างของเรือ ภายใน 12 ธค</h5>
+                        <h5 className="mb-0">{booking_details[0]?.product?.remark ?? '-'}</h5>
         
                     </div>
                 </div>
@@ -235,7 +255,7 @@ class ComponentToPrint extends React.Component {
                         </div>
                     </div>
                     <div className="col-4 border-p-r d-flex justify-content-center px-3 py-2">
-                        <h4 className="mb-0 text-bold align-self-end">23,800</h4>
+                        <h4 className="mb-0 text-bold align-self-end">{data.net_price}</h4>
                     </div>
                     <div className="col-4 d-flex justify-content-center px-3 py-2">
                         <h5 className="mb-0 text-bold align-self-end">THB บาท</h5>
@@ -385,9 +405,10 @@ const Pint = (props) =>{
         //   onBeforePrint={_click}
 
         />
-        <div 
-        style={{ display: "none" }}
-        ><ComponentToPrint  ref={componentRef} /></div>
+        <div style={{ display: "none" }}>
+            {!!props.data && <ComponentToPrint  data={props.data} ref={componentRef} /> }
+            
+        </div>
     </div>
   )
 }

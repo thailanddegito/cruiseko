@@ -32,6 +32,7 @@ const models = {
     Product : require('./products/products.model')(sequelize,Sequelize),
     ProductImage : require('./products/products_images.model')(sequelize,Sequelize),
     Boat : require('./products/boat/boat.model')(sequelize,Sequelize),
+    
     BoatImage : require('./products/boat/boat_images.model')(sequelize,Sequelize),
     BoatCategory : require('./products/boat/boat_category.model')(sequelize,Sequelize),
     PriceDate : require('./products/price_date.model')(sequelize,Sequelize),
@@ -43,6 +44,8 @@ const models = {
     BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
     BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
     BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
+
+    Location : require('./location/location.model')(sequelize,Sequelize),
 
     PaypalHist :require('./booking/paypal_hist.model')(sequelize,Sequelize),
 

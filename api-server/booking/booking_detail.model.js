@@ -26,7 +26,7 @@ module.exports = (sequelize, type) => {
   })
 
   BookingDetail.associate = function(models) {
-    // BookingDetail.hasMany(models.Boat,{foreignKey : 'cate_id',constraints: false})
+    BookingDetail.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
   };
   return BookingDetail
 }
