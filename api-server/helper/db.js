@@ -45,7 +45,7 @@ exports.clearBooking = async() =>{
 }
 
 if(method === 'sync'){
-    this.syncDB().then(() => process.exit(0))
+    this.syncDB({}).then(() => process.exit(0))
 }
 else if(method === 'sync-alter'){
     this.syncDB({alter : true}).then(() => process.exit(0))
