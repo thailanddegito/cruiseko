@@ -47,6 +47,8 @@ const models = {
 
     Location : require('./location/location.model')(sequelize,Sequelize),
 
+    ProductAddon : require('./products/products_addon.model')(sequelize,Sequelize),
+
     PaypalHist :require('./booking/paypal_hist.model')(sequelize,Sequelize),
 
     BlogCategory : require('./blog/blog_category.model')(sequelize,Sequelize),
