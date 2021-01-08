@@ -73,8 +73,8 @@ const Create = ({query}) => {
               </div>
               <div className="divider"></div>
               <form onSubmit={handleSave} encType="multipart/form-data" >
-                <input type="text" name="page_id" value={widgets.page_id} />
-                <input type="text" name="widget_type" value={widgets.widget_type} />
+                <input type="hidden" name="page_id" value={widgets.page_id} />
+                <input type="hidden" name="widget_type" value={widgets.widget_type} />
 
                 <MainWidget widget_type={widgets.widget_type} data={widgets} />
 
