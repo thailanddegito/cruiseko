@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Layout from '../../../../../components/backend/layout/Layout';
-import TablePage from '../../../../../components/backend/table/TablePage';
+import TableWidget from '../../../../../components/backend/table/TableWidget';
 import ModalWidget from '../../../../../components/backend/page/ModalWidget'
 import { useRouter } from 'next/router';
 import api from '../../../../../utils/api-admin'
@@ -45,7 +45,7 @@ const Customize = (props) => {
         </div>
         <div className="divider"></div>
         <div>
-          {/* <TablePage /> */}
+          <TableWidget page_id={page_id} />
         </div>
 
         <ModalWidget show={show}

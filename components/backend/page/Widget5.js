@@ -8,6 +8,8 @@ const Loading = <div className="position-relative" style={{height : '200px'}}><D
 const Editor = dynamic(() => import('../../widget/Editor'),{ ssr: false, loading: () => Loading })
 
 const MainWidget = (props) => {
+  const {data} = props;
+
   const [chkImg, setChkimg]  = useState(false);
 
   return (
@@ -16,6 +18,7 @@ const MainWidget = (props) => {
         <div className="col-lg-8 col-12">
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
+            defaultValue : data ? data.widget_name: '',
             name : 'widget_name', required : true
           }} 
           labelName="Widget Name  " iconProps={{className : 'fa icon icon-home'}} />
@@ -25,10 +28,11 @@ const MainWidget = (props) => {
         <div className="col-lg-4 col-12">
           <div className="form-group">
             <label>Picture  </label>
-            <ImageBoxBackend _text="Picture" _name="image1" _id="image1" chkImg={chkImg} required={true} classBox={'img-box-full'} />
+            <ImageBoxBackend _text="Picture" _img={data ? data.image1 : null} _name="image1" _id="image1" chkImg={chkImg} required={true} classBox={'img-box-full'} />
           </div>
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
+            defaultValue : data ? data.alt1: '',
             name : 'alt1', required : true
           }} 
           labelName="ALT  " iconProps={{className : 'fa icon icon-home'}} />
@@ -36,10 +40,11 @@ const MainWidget = (props) => {
         <div className="col-lg-4 col-12">
           <div className="form-group">
             <label>Picture  </label>
-            <ImageBoxBackend _text="Picture" _name="image2" _id="image2" chkImg={chkImg} required={true} classBox={'img-box-full'} />
+            <ImageBoxBackend _text="Picture" _img={data ? data.image2 : null} _name="image2" _id="image2" chkImg={chkImg} required={true} classBox={'img-box-full'} />
           </div>
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
+            defaultValue : data ? data.alt2: '',
             name : 'alt2', required : true
           }} 
           labelName="ALT  " iconProps={{className : 'fa icon icon-home'}} />

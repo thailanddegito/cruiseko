@@ -7,16 +7,16 @@ import Widget5 from './Widget5'
 import Widget6 from './Widget6'
 
 const MainWidget = (props) => {
-  const {widget_type} = props;
+  const {widget_type, data = null} = props;
 
   return (
     <>
-      {widget_type == 1 && <Widget1 />}
-      {widget_type == 2 && <Widget2 />}
-      {widget_type == 3 && <Widget3 />}
-      {widget_type == 4 && <Widget4 />}
-      {widget_type == 5 && <Widget5 />}
-      {widget_type == 6 && <Widget6 />}
+      {widget_type == 1 && <Widget1 data={data} />}
+      {widget_type == 2 && <Widget2 data={data} />}
+      {widget_type == 3 && <Widget3 data={data} />}
+      {widget_type == 4 && <Widget4 data={data} />}
+      {widget_type == 5 && <Widget5 data={data} />}
+      {widget_type == 6 && <Widget6 data={data} />}
 
     </>
   )

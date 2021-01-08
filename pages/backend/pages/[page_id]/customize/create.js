@@ -17,16 +17,16 @@ const Create = ({query}) => {
 
  
   const handleSave = (event) => {
-    // event.preventDefault()
-    // const data = new FormData(event.target)
-    // api.insertPage(data)
-    // .then(res=>{
-    //   const data = res.data;
-    //   setModalSuccess(true);
-    // })
-    // .catch(err => {
-    //   console.log(err.response);
-    // })
+    event.preventDefault()
+    const data = new FormData(event.target)
+    api.insertPageWidget(data)
+    .then(res=>{
+      const data = res.data;
+      setModalSuccess(true);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
   }
 
   const handleSublink = () => {
@@ -52,6 +52,7 @@ const Create = ({query}) => {
         </div>
         <div className="divider"></div>
         <form onSubmit={handleSave} encType="multipart/form-data" >
+          <input type="hidden" name="page_id" value={page_id} />
           <input type="hidden" name="widget_type" value={widget_type} />
 
           <MainWidget widget_type={widget_type} />
