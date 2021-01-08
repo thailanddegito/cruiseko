@@ -53,7 +53,7 @@ const Header = (props) => {
               !!!user ? (
                 <>
                   <li><span><Link href="/partner/login"><a>Pathner Login</a></Link></span></li>
-                  <li><span><Link href="/login"><a>Login</a></Link></span></li>
+                  <li><span><a className="a-click" onClick={() => setShowLogin(true)}>Login</a></span></li>
                 </>
               ) : (
                 <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
