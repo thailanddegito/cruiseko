@@ -86,7 +86,7 @@ const Price = (props) => {
           {price !== -1 && <span> {price} ฿ <small>{unit}</small> </span>}
           <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
         </div>
-        {boat_amt && <div> Boat amount : {boat_amt} </div> }
+        {boat_amt && <div className="mb-2"> <span>Boat amount : </span>{boat_amt} </div> }
         
         <div className="form-group input-dates">
           <input className="form-control" type="text" name="dates" placeholder="When.." />
@@ -103,6 +103,37 @@ const Price = (props) => {
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
+
+        <div>
+          <span>Addons</span>
+          <div className="mt-2">
+            <div class="clearfix">
+              <div class="checkboxes float-left w-100">
+                <label class="container_check">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                  <div className="d-flex justify-content-between">
+                    <label>Name</label>
+                    <label>10</label>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="clearfix">
+              <div class="checkboxes float-left w-100">
+                <label class="container_check">
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                  <div className="d-flex justify-content-between">
+                    <label>Name</label>
+                    <label>20</label>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
          {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
         <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
         <div className="text-center"><small>No money charged in this step</small></div>
