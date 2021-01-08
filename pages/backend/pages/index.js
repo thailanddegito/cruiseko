@@ -12,13 +12,13 @@ const Index = (props) => {
           <div className="col-6">
             <h4>Pages</h4>
           </div>
-          <div className="col-6">
+          {/* <div className="col-6">
             <div className="text-right">
               <Link href="/backend/pages/create">
                 <a className="btn btn-primary">Create</a>
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="divider"></div>
         <div>
