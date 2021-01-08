@@ -68,7 +68,7 @@ const TablePage = (props) => {
         subHeaderComponent={
           <SubHeaderComponent 
             setResetPaginationToggle={setResetPaginationToggle} resetPaginationToggle={resetPaginationToggle} 
-            setFilterText={setFilterText} filterText={filterText}
+            setFilterText={setFilterText} filterText={filterText} placeholder={"Filter By Title"}
           />
         }
       />

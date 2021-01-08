@@ -21,7 +21,7 @@ const EditRole = ({query}) => {
 
 
 
-  const fecthPageCate = () => {
+  const fecthPage = () => {
     api.getPageOne(id)
     .then(res=>{
       const data = res.data;
@@ -34,7 +34,7 @@ const EditRole = ({query}) => {
 
   useEffect(() => {
     if(!id) return
-    fecthPageCate();
+    fecthPage();
   },[id]);
 
 
