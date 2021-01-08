@@ -1,9 +1,9 @@
 module.exports = (sequelize, type) => {
   var Booking  = sequelize.define('booking', {
     id : {
-      type: type.INTEGER,
+      type: type.STRING,
       primaryKey: true,
-      autoIncrement: true
+      // autoIncrement: true
     },
     // product_id : {
     //   type: type.INTEGER,

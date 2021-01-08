@@ -12,7 +12,7 @@ const {calPackagePrice,calDuration} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25} = req.query
+  var {page=1,limit=25,orderby ,op} = req.query
   try{
     var where = {}
     var options = {where/* ,logging:console.log */}
@@ -48,7 +48,8 @@ exports.getOne = async(req,res,next)=>{
     const include = [
       {model : BookingDetail ,include : detail_inc},
       {model : BookingBoat ,include : boat_inc},
-      {model : BookingAddon ,include : addon_inc}
+      {model : BookingAddon ,include : addon_inc},
+      {model : User}
     ]
 
     const booking = await Booking.findOne({where : {id},include})
@@ -158,10 +159,12 @@ exports.create = async(req,res,next)=>{
     // const boats = await Boat.findAll({where : {boat_id : products_boats.map(val=> val.boat_id) }})
 
     
+    const booking_id = await tools.genBookingId()
 
     transaction = await sequelize.transaction()
 
     var booking_data = {
+      id : booking_id,
       adult,
       children,
       total_person : parseInt(adult) + parseInt(children),
