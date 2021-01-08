@@ -25,7 +25,7 @@ const MainWidget = (props) => {
         <div className="col-lg-8 col-12">
           <div className="form-group">
             <label>Picture  </label>
-            <ImageBoxBackend _text="Picture" _name="images1" _id="images1" chkImg={chkImg} required={true} classBox={'img-box-full'} />
+            <ImageBoxBackend _text="Picture" _name="image1" _id="image1" chkImg={chkImg} required={true} classBox={'img-box-full'} />
           </div>
           <InputLabel inputProps={{ 
             className:'form-control', type : 'text',
