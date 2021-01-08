@@ -13,6 +13,7 @@ module.exports = (sequelize, type) => {
         unique : true
       },
       image : type.STRING,
+      banner : type.STRING,
       deleted : {
         type : type.INTEGER,
         defaultValue : 0
