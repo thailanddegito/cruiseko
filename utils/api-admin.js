@@ -135,4 +135,12 @@ export default {
      updateLocation : (data, id) => service.put(`/location/${id}`,data),
      delLocation : (id) => service.delete(`/location/${id}`),
  
+
+     //Page
+    getPage : (params) => service.get(`/pages`, {params}),
+    getPageOne : (id) => service.get(`/pages/${id}`),
+    insertPage : (data) => service.post(`/pages`,data),
+    updatePage : (id, data) => service.put(`/pages/${id}`,data) ,
+
+
 }
