@@ -15,13 +15,15 @@ import api from '../../../../utils/api-admin';
 import { toPriceListState } from '../../../../utils/packageHelper';
 import AddAddons from '../../../../components/backend/package/AddAddons';
 import ShowAddon from '../../../../components/backend/package/ShowAddons';
+import AddonMain from '../../../../components/backend/package/AddonMain';
 
 const Index = (props) => {
   const [show, setShow] = useState(true);
-  const [showAddons, setShowAddons] = useState(false);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [events,setEvents] = useState([]);
+  const [addons,setAddons] = useState([]);
+
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
   const [galleryOrder,setGalleryOrder] = useState()
@@ -50,6 +52,7 @@ const Index = (props) => {
       // console.log('transform',toPriceListState(data.price_dates))
       setPriceList(toPriceListState(data.price_dates))
       setEvents(data.events)
+      setAddons(data.products_addons || [])
     })
     .catch(err=>{
       console.log(err.response || err)
@@ -98,6 +101,7 @@ const Index = (props) => {
     }
     formData.append('price_date_list',JSON.stringify(priceList))
     formData.append('events',JSON.stringify(events))
+    formData.append('addons',JSON.stringify(addons))
     formData.append('method',method)
 
     if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
@@ -135,17 +139,6 @@ const Index = (props) => {
 
   const headerScroll = <HeaderScrollPackage name="Edit Package" saving={saving} handleSubmit={handleSubmit} is_publish={true} />;
 
-  const handleShowAddon = () => {
-    setShowAddons(true);
-  }
-
-  const onCancelAddons = () => {
-    setShowAddons(false);
-  }
-
-  const handleAddonSave = () => {
-    setShowAddons(false);
-  }
 
   return (
     <>
@@ -257,29 +250,7 @@ const Index = (props) => {
               <MetaTag pkg={pkg} />
             </div>
             <div className="tab-pane fade" id="addons">
-              <div className="row">
-                <div className="col-12">
-                  <div className="text-right">
-                    {!showAddons ?<Button _type="button" _name="Add" _class="btn-primary" _click={() => handleShowAddon()} /> :null}
-                  </div>
-                </div>
-              </div>
-
-              {
-                showAddons ? (
-                  <>
-                    <div>
-                      <AddAddons handleAddonSave={handleAddonSave} onCancel={onCancelAddons} />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <ShowAddon data={''} />
-                    </div>
-                  </>
-                )
-              }
+              <AddonMain addons={addons} setAddons={setAddons} />
 
             </div>
           </div>
