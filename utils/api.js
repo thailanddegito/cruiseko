@@ -58,4 +58,8 @@ export default {
     getBlog : (params) => service.get(`/blog`, {params}),
     getBlogOne : (id) => service.get(`/blog/${id}`),
 
+    //Page
+    getPageOne : (path) => service.get(`/pages/${path}`),
+
+
 }

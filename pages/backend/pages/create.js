@@ -95,7 +95,7 @@ const Create = (props) => {
                 <div className="col-12">
                   <div className="form-group">
                     <label>Picture  </label>
-                    <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
+                    <ImageBoxBackend _text="Picture" _name="image" _id="image" chkImg={chkImg} required={true} />
                   </div>
                 </div>
               </div>

@@ -51,6 +51,8 @@ const EditRole = ({query}) => {
     })
   }
 
+  console.log(pages);
+
   return (
     <>
       <Layout title="Edit Pages" page_name="Page" sub_page="Edit" main_link="pages">
@@ -60,7 +62,7 @@ const EditRole = ({query}) => {
           </div>
         </div>
         <div className="divider"></div>
-        <form onSubmit={handleSave} >
+        <form onSubmit={handleSave} encType="multipart/form-data" >
 
           <div className="row justify-content-center mx-0">
             <div className="col-lg-8 col-12 pl-0">
@@ -107,7 +109,7 @@ const EditRole = ({query}) => {
                 <div className="col-12">
                   <div className="form-group">
                     <label>Picture  </label>
-                    <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
+                    <ImageBoxBackend _text="Picture" _img={pages?.image} _name="image" _id="image" chkImg={chkImg}  />
                   </div>
                 </div>
               </div>
