@@ -33,8 +33,8 @@ const Header = (props) => {
           {
             !user ? (
               <>
-              <li><a href="#" className="cart-menu-btn d-none" title="Cart"><strong>4</strong></a></li>
-              <li><a href="#" className="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li>
+              {/* <li><a href="#" className="cart-menu-btn d-none" title="Cart"><strong>4</strong></a></li>
+              <li><a href="#" className="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li> */}
               </>
             ) : null 
           }
@@ -48,9 +48,13 @@ const Header = (props) => {
         </a>
         <nav id="menu" className="main-menu">
           <ul>
+            <li className="d-block d-lg-none"><span><Link href="/"><a>Home</a></Link></span></li>
             {
               !!!user ? (
-                <li><span><Link href="/partner/login"><a>Pathner Login</a></Link></span></li>
+                <>
+                  <li><span><Link href="/partner/login"><a>Pathner Login</a></Link></span></li>
+                  <li><span><Link href="/login"><a>Login</a></Link></span></li>
+                </>
               ) : (
                 <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
                   <ul>
