@@ -15,7 +15,7 @@ module.exports = (sequelize, type) => {
     })
   
     ProductAddon.associate = function(models) {
-        ProductAddon.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
+      ProductAddon.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
       // ProductBoat.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
     };
     return ProductAddon
