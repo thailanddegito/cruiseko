@@ -520,6 +520,9 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .new-search {
   min-height: calc(100vh - 78px) !important;
 }
+.border-r8px {
+  border-radius: 8px;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
