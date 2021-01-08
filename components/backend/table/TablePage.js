@@ -50,10 +50,8 @@ const TablePage = (props) => {
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  // const filteredItems = pages ? pages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
-
-  const filteredItems =[];
-  
+  const filteredItems = pages ? pages.filter(item => item.title && item.title.toLowerCase().includes(filterText.toLowerCase())) : [];
+ 
   const columns = ColumnTable({delData});
 
 

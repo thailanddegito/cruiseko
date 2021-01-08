@@ -7,6 +7,7 @@ import BlogCard from '../components/frontend/blog/BlogCard'
 import Link from 'next/link'
 
 const Home = (props) => {
+  const {query,pages} = props;
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState();
   const [blogs, setBlog] = useState();
@@ -40,6 +41,8 @@ const Home = (props) => {
     fecthPackage();
     fecthBlog();
   }, [])
+
+  console.log(pages);
 
 
   return (
@@ -90,6 +93,13 @@ const Home = (props) => {
       <div className="end-content"></div>
     </Layout>
   )
+}
+Home.getInitialProps = async ({query}) => {
+  const [pages_res] = await Promise.all([
+    api.getPageOne('home'),
+  ])
+  const pages = pages_res.data
+  return {query,pages}
 }
 export default Home
 
