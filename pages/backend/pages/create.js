@@ -80,6 +80,14 @@ const Create = (props) => {
                   </div>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-12">
+                  <div className="form-group">
+                    <label>SEO Image  </label>
+                    <ImageBoxBackend _text="SEO Image" _name="image" _id="image" chkImg={chkImg} required={true} />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-lg-4 col-12 pr-0">
               <div className="row">
@@ -94,8 +102,8 @@ const Create = (props) => {
               <div className="row">
                 <div className="col-12">
                   <div className="form-group">
-                    <label>Picture  </label>
-                    <ImageBoxBackend _text="Picture" _name="image" _id="image" chkImg={chkImg} required={true} />
+                    <label>Banner  </label>
+                    <ImageBoxBackend _text="Picture" _name="banner" _id="banner" chkImg={chkImg} required={true} classBox={'img-box-full'} />
                   </div>
                 </div>
               </div>

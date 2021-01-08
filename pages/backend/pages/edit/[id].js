@@ -92,6 +92,14 @@ const EditRole = ({query}) => {
                   </div>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-12">
+                  <div className="form-group">
+                    <label>SEO Image  </label>
+                    <ImageBoxBackend _text="SEO Image" _img={pages ? pages.image : null} _name="image" _id="image" chkImg={chkImg}  />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-lg-4 col-12 pr-0">
               <div className="row">
@@ -108,8 +116,8 @@ const EditRole = ({query}) => {
               <div className="row">
                 <div className="col-12">
                   <div className="form-group">
-                    <label>Picture  </label>
-                    <ImageBoxBackend _text="Picture" _img={pages ? pages.image : null} _name="image" _id="image" chkImg={chkImg}  />
+                    <label>Banner  </label>
+                    <ImageBoxBackend _text="Banner" _img={pages ? pages.banner : null} _name="banner" _id="banner" chkImg={chkImg} classBox={'img-box-full'}  />
                   </div>
                 </div>
               </div>
