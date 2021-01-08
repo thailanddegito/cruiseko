@@ -1,15 +1,20 @@
 
 import Router from 'next/router';
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useContext} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 import SelectTime from '../../widget/SelectTime'
 import Checkbox from '../../widget/Checkbox'
+import UserContext from '../../../contexts/UserContext';
+import AuthService from '../../../utils/AuthService';
+import LoginModal from '../../../components/frontend/login/Modal';
 
 const Price = (props) => {
   const {error,state,setState,checkout, is_boat} = props;
   const [active, setActive] = useState(false);
   const [activeFrom, setActiveFrom] = useState(false);
   const [activeTo, setActiveTo] = useState(false);
+  const { user, fetchUser } = useContext(UserContext);
+  const [showLogin, setShowLogin] = useState(false);
 
   // const [date,setDate] = useState()
   const {price,unit,boat_amt} = props.priceData; 
@@ -114,10 +119,18 @@ const Price = (props) => {
         </div>
 
          {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
-        <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+        {
+          AuthService.isLoggin() ? (
+            <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+          ) : (
+            <button type="button" className="btn_1 full-width purchase" onClick={() => setShowLogin(true)}>Purchase</button>
+          )
+        }
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
-      
+
+      <LoginModal show={showLogin}
+          size="md" onHide={() => setShowLogin(false)}/>
     </>
   )
 }
