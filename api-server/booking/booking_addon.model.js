@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
       primaryKey: true,
       autoIncrement: true
     },
-    booking_id : type.INTEGER,
+    booking_id : type.STRING,
     product_id : type.INTEGER,
     addon_id : type.INTEGER,
     price : type.DECIMAL(18,2)
