@@ -1,5 +1,6 @@
 const {Page} = require('../db')
-
+const tools = require('../helper/tools')
+const {Op} = require('sequelize')
 
 exports.getAll = async(req,res,next)=>{
   try{
@@ -14,7 +15,7 @@ exports.getAll = async(req,res,next)=>{
 exports.getOne = async(req,res,next)=>{
   const id = req.params.id
   try{
-      const page = await Page.findOne({where : {id}});
+      const page = await Page.findOne({where : {[Op.or] : [{id},{path : id}] }});
       res.json(page)
   }
   catch(err){
@@ -24,8 +25,15 @@ exports.getOne = async(req,res,next)=>{
 
 exports.create = async(req,res,next)=>{
   var data = req.body;
-  var {} = data;
+  var files = req.files || {}
   try{
+
+    if(files.image && files.image.name){
+      //console.log(req.files);
+      let file = files.image;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image = tools.genFileUrl(fileName,'images')
+    }
     await Page.create(data)
     res.json({success:true})
   }
@@ -37,7 +45,14 @@ exports.create = async(req,res,next)=>{
 exports.update = async(req,res,next)=>{
   const id = req.params.id
   var data = req.body;
+  var files = req.files || {}
   try{
+    if(files.image && files.image.name){
+      //console.log(req.files);
+      let file = files.image;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image = tools.genFileUrl(fileName,'images')
+    }
     await Page.update(data,{where : {id}})
     res.json({success:true})
   }

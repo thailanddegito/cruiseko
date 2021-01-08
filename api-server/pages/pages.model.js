@@ -8,7 +8,10 @@ module.exports = (sequelize, type) => {
       title : type.STRING,
       description : type.TEXT,
       keyword : type.TEXT,
-      path : type.STRING,
+      path : {
+        type : type.STRING,
+        unique : true
+      },
       image : type.STRING,
       deleted : {
         type : type.INTEGER,
