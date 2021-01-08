@@ -32,12 +32,15 @@ useEffect(() => {
           <div className="">
             <h4>Booking Details</h4>
           </div>
+          <div className="">
+            <Print  data={booking} />
+          </div>
         </div>
         <div className="divider"></div>
 
         <div className="row justify-content-center">
           <div className="col-lg-12 col-12">
-            <Print  data={booking} />
+           
           </div>
         </div>
       </Layout>
