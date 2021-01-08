@@ -35,6 +35,12 @@ exports.create = async(req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.image = tools.genFileUrl(fileName,'images')
     }
+    if(files.banner && files.banner.name){
+      //console.log(req.files);
+      let file = files.banner;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.banner = tools.genFileUrl(fileName,'images')
+    }
     await Page.create(data)
     res.json({success:true})
   }
