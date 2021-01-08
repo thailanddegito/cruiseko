@@ -17,33 +17,34 @@ const Map = (props) => {
       		// name_point: 'Open Bus',
       		// get_directions_start_address: '',
       		// phone: '+3934245255',
-      		// url_point: 'tour-detail.html'
-      // window.initMap([
-      //   { 		
-      //     type_point: 'Historic',
-      // 		name: 'Open Bus',
-      // 		location_latitude: 48.865633, 
-      // 		location_longitude: 2.321236,
-      // 		map_image_url: '/template/img/thumb_map_single_tour.jpg',
-      // 		rate: 'Superb | 7.5',
-      // 		name_point: 'Open Bus',
-      // 		get_directions_start_address: '',
-      // 		phone: '+3934245255',
-      // 		url_point: 'tour-detail.html'
-      //   },
-      //   {
-      //     type_point: 'Historic',
-      //     name: 'Madeleine',
-      //     location_latitude: 48.865633, 
-      //     location_longitude: 4.321236,
-      //     map_image_url: 'img/thumb_map_single_tour.jpg',
-      //     rate: 'Superb | 7.5',
-      //     name_point: 'Madeleine',
-      //     get_directions_start_address: '',
-      //     phone: '+3934245255',
-      //     url_point: 'tour-detail.html'
-      //   }
-      // ]);
+          // url_point: 'tour-detail.html'
+      //13.775429, 100.465798
+      window.initMap([
+        { 		
+          type_point: 'Historic',
+      		name: 'Open Bus',
+      		location_latitude: 48.865633, 
+      		location_longitude: 2.321236,
+      		map_image_url: '/template/img/thumb_map_single_tour.jpg',
+      		rate: 'Superb | 7.5',
+      		name_point: 'Open Bus',
+      		get_directions_start_address: '',
+      		phone: '+3934245255',
+      		url_point: 'tour-detail.html'
+        },
+        {
+          type_point: 'Historic',
+          name: 'Madeleine',
+          location_latitude: 48.865633, 
+          location_longitude: 4.321236,
+          map_image_url: 'img/thumb_map_single_tour.jpg',
+          rate: 'Superb | 7.5',
+          name_point: 'Madeleine',
+          get_directions_start_address: '',
+          phone: '+3934245255',
+          url_point: 'tour-detail.html'
+        }
+      ]);
     }
   })
 
