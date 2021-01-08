@@ -83,7 +83,7 @@ const EditRole = ({query}) => {
   }
 
   
- 
+ console.log(blogs);
 
 
   return (

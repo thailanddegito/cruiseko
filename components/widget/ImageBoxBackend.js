@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
   
 const ImageBoxCircle = (props) => {
   const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required, classBox = ""} = props
@@ -10,6 +10,11 @@ const ImageBoxCircle = (props) => {
   const [type, setType] = useState(null);
   const [fileType, setFiletype] = useState(null);
   
+
+  useEffect(() => {
+    if(!_img) return;
+    setImg(_img);
+  }, [_img])
 
   const handleChange = (event) => {
     if(!event.target.files[0]) {
@@ -38,7 +43,8 @@ const ImageBoxCircle = (props) => {
     }
   }
 
-
+  console.log('_img', _img);
+  console.log('img', img);
   return (
     <>
       {

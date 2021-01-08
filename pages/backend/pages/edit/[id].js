@@ -56,7 +56,7 @@ const EditRole = ({query}) => {
   return (
     <>
       <Layout title="Edit Pages" page_name="Page" sub_page="Edit" main_link="pages">
-      <div className="row justify-content-start">
+        <div className="row justify-content-start">
           <div className="col-12">
             <h4>Edit Pages</h4>
           </div>
@@ -109,7 +109,7 @@ const EditRole = ({query}) => {
                 <div className="col-12">
                   <div className="form-group">
                     <label>Picture  </label>
-                    <ImageBoxBackend _text="Picture" _img={pages?.image} _name="image" _id="image" chkImg={chkImg}  />
+                    <ImageBoxBackend _text="Picture" _img={pages ? pages.image : null} _name="image" _id="image" chkImg={chkImg}  />
                   </div>
                 </div>
               </div>
