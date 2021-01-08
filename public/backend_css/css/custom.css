@@ -542,6 +542,9 @@ span.nav-link-text {
   font-weight: 400;
   font-size: 16px;
 }
+.detail p span {
+  font-weight: 500;
+}
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
     padding: 10px;
