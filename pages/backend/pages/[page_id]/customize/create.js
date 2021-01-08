@@ -16,17 +16,17 @@ const Create = ({query}) => {
   const widget_type = router.query.type
 
  
-  const handleSave = () => {
-    event.preventDefault()
-    const data = new FormData(event.target)
-    api.insertPage(data)
-    .then(res=>{
-      const data = res.data;
-      setModalSuccess(true);
-    })
-    .catch(err => {
-      console.log(err.response);
-    })
+  const handleSave = (event) => {
+    // event.preventDefault()
+    // const data = new FormData(event.target)
+    // api.insertPage(data)
+    // .then(res=>{
+    //   const data = res.data;
+    //   setModalSuccess(true);
+    // })
+    // .catch(err => {
+    //   console.log(err.response);
+    // })
   }
 
   const handleSublink = () => {
