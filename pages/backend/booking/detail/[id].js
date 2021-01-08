@@ -53,7 +53,7 @@ const Index = (props) => {
                   <div className="sum-text"><span>Date </span> <span>{bookings.start_date ? tools.formatDate(start_date,false,false) : null}</span></div>
                   <div className="sum-text"><span>Adults </span> <span>{bookings.adult}</span></div>
                   <div className="sum-text"><span>Childs </span> <span>{bookings.children}</span></div>
-
+                  
                 </div>
               </div>
             </>
