@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import Router from 'next/router';
 
 const Dialog = (props) => {
-  const {route, onHide} = props;
+  const {route, onHide, clickRoute} = props;
   const redirectPage = (e) => {
     if(route) {
       Router.push(route);
@@ -14,7 +14,7 @@ const Dialog = (props) => {
   }
 
   return (
-    <Modal className="modal-alert" centered show={props.show} onHide={redirectPage} size={props.size}>
+    <Modal className="modal-alert" centered show={props.show} onHide={clickRoute ? clickRoute : redirectPage} size={props.size}>
       <Modal.Body>
         <form>
           <div className="row mt-4 justify-content-center">
@@ -30,7 +30,7 @@ const Dialog = (props) => {
             </div>
             <div className="col-12 mb-4">
               <div className="text-center">
-                <button type="button" className="btn btn-primary" onClick={redirectPage}>OK</button>
+                <button type="button" className="btn btn-primary" onClick={clickRoute ? clickRoute : redirectPage}>OK</button>
               </div>
             </div>
           </div>

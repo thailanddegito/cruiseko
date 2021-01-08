@@ -31,6 +31,11 @@ const ColumsBody = (props) => {
         <span>
           <ul className="buttons manage">
             <li>
+              <Link href="/backend/pages/[page_id]/customize" as={`/backend/pages/${row.id}/customize`}>
+                <button className="a-manage info w-100px"><i className="fa fa-fw fa-pencil"></i> <span>Customize</span></button>
+              </Link>
+            </li>
+            <li>
               <Link href="/backend/pages/edit/[id]" as={`/backend/pages/edit/${row.id}`}>
                 <button className="a-manage warning"><i className="fa fa-fw fa-pencil"></i> <span>Edit</span></button>
               </Link>
