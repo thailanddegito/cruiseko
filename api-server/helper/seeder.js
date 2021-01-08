@@ -36,6 +36,7 @@ exports.initPermission = async() =>{
       {name : 'Package Location' , key : 'package_location'},
       {name : 'Boat' , key : 'boat' },
       {name : 'Boat Category' , key : 'boat_category'},
+      {name : 'Pages' , key : 'pages' },
       {name : 'Blog' , key : 'blog' },
       {name : 'Blog Category' , key : 'blog_category'},
       {name : 'Users' , key : 'users' },
