@@ -38,7 +38,7 @@ const ProductCard = (props) => {
               <p className="short-description">{packages.short_description ? packages.short_description : null}</p>
               {
                 price !== -1 ? (
-                  <span className="price"> From <strong> {parseInt(price) } </strong> /per {unit} </span>
+                  <span className="price"> From <strong> {parseInt(price) } </strong> / per {unit} </span>
                 )
                 : <span className="price"></span>
               }
@@ -46,7 +46,7 @@ const ProductCard = (props) => {
             </div>
             <ul>
               <li><i className="icon_clock_alt"></i> 1h 30min</li>
-              <li><div className="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div></li>
+              <li><div className="score"><span>Superb<em>350 Reviews</em></span><strong>5.0</strong></div></li>
             </ul>
           </div>
         </div>
