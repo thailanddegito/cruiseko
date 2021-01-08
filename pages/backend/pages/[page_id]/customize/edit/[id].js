@@ -35,7 +35,7 @@ const Create = ({query}) => {
   const handleSave = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
-    api.insertPageWidget(data)
+    api.updatePageWidget(id, data)
     .then(res=>{
       const data = res.data;
       setModalSuccess(true);
@@ -54,14 +54,14 @@ const Create = ({query}) => {
 
   return (
     <>
-      <Layout title="Create Pages" page_name="Pages" sub_page="Customize" main_link="pages" sub_link={handleSublink} chliden_page="Create">
+      <Layout title="Create Pages" page_name="Pages" sub_page="Customize" main_link="pages" sub_link={handleSublink} chliden_page="Edit">
         {
           !!widgets && (
             <>
               <div className="row justify-content-start">
                 <div className="col-12">
                   <h5>
-                    Create Page Widgets : 
+                    Edit Page Widgets : 
                     {widgets.widget_type == 1 && ' Text'}
                     {widgets.widget_type == 2 && ' Text-Left & Image-Right'}
                     {widgets.widget_type == 3 && ' Image-Left & Text-Right'}

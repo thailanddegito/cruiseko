@@ -51,7 +51,7 @@ const EditRole = ({query}) => {
     })
   }
 
-  console.log(pages);
+  // console.log(pages);
 
   return (
     <>

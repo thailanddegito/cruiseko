@@ -146,6 +146,7 @@ export default {
     getPageWidget : (params) => service.get(`/pages/widgets`, {params}),
     getPageWidgetOne : (id) => service.get(`/pages/widgets/${id}`),
     insertPageWidget : (data) => service.post(`/pages/widgets`,data),
+    updatePageWidget : (id, data) => service.put(`/pages/widgets/${id}`,data) ,
     delPageWidget : (id) => service.delete(`/pages/widgets/${id}`),
 
 
