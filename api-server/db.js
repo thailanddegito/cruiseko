@@ -53,6 +53,8 @@ const models = {
 
     BlogCategory : require('./blog/blog_category.model')(sequelize,Sequelize),
     Blog : require('./blog/blog.model')(sequelize,Sequelize),
+
+    Page : require('./pages/pages.model')(sequelize,Sequelize),
     
 }
 
