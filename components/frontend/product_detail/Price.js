@@ -3,6 +3,7 @@ import Router from 'next/router';
 import React, {useEffect,useState} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 import SelectTime from '../../widget/SelectTime'
+import Checkbox from '../../widget/Checkbox'
 
 const Price = (props) => {
   const {error,state,setState,checkout, is_boat} = props;
@@ -107,30 +108,8 @@ const Price = (props) => {
         <div>
           <span>Addons</span>
           <div className="mt-2">
-            <div class="clearfix">
-              <div class="checkboxes float-left w-100">
-                <label class="container_check">
-                  <input type="checkbox" />
-                  <span class="checkmark"></span>
-                  <div className="d-flex justify-content-between">
-                    <label>Name</label>
-                    <label>10</label>
-                  </div>
-                </label>
-              </div>
-            </div>
-            <div class="clearfix">
-              <div class="checkboxes float-left w-100">
-                <label class="container_check">
-                  <input type="checkbox" />
-                  <span class="checkmark"></span>
-                  <div className="d-flex justify-content-between">
-                    <label>Name</label>
-                    <label>20</label>
-                  </div>
-                </label>
-              </div>
-            </div>
+            <Checkbox />
+            <Checkbox />
           </div>
         </div>
 
