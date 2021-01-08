@@ -6,7 +6,7 @@ module.exports = (sequelize, type) => {
       autoIncrement: true
     },
     booking_id : {
-      type: type.INTEGER,
+      type: type.STRING,
       allowNull : false
     },
     address : type.STRING,
