@@ -44,6 +44,7 @@ const models = {
     BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
     BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
     BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
+    BookingAddon : require('./booking/booking_addon.model')(sequelize,Sequelize),
 
     Location : require('./location/location.model')(sequelize,Sequelize),
 

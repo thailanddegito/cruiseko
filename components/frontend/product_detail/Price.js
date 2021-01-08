@@ -9,7 +9,7 @@ import AuthService from '../../../utils/AuthService';
 import LoginModal from '../../../components/frontend/login/Modal';
 
 const Price = (props) => {
-  const {error,state,setState,checkout, is_boat} = props;
+  const {error,state,setState,checkout, is_boat,addons=[],total_price_addons} = props;
   const [active, setActive] = useState(false);
   const [activeFrom, setActiveFrom] = useState(false);
   const [activeTo, setActiveTo] = useState(false);
@@ -82,7 +82,30 @@ const Price = (props) => {
     setState({...state,[key] : val })
   }
 
+  const onAddonChange = (e) => {
+    var {name,checked} = e.target;
+    var id = name.split('-')[1]
+    if(!id) return;
+    var data = addons.find(val => val.id == id)
+    var tmp = [...state.addons]
+    let index = state.addons.findIndex(val => val.id == id)
+    if(checked){
+      if(index === -1){
+        tmp.push(data)
+      }
+    }
+    else{
+      if(index !== -1){
+        tmp.splice(index,1)
+      }
+    }
+    
+    setState({...state,addons:tmp})
+  }
 
+  
+
+  // console.log('addons',addons)
 
 
   return (
@@ -113,14 +136,26 @@ const Price = (props) => {
         <div>
           <span>Addons</span>
           <div className="mt-2">
-            <Checkbox />
-            <Checkbox />
+            {addons.map(val => <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} /> )}
+            
           </div>
         </div>
 
-         {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+          {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+
+          {
+          price !== -1 && 
+          (
+            <div className="my-2">
+              {<span>Net price {price+total_price_addons} ฿ </span>}
+            </div>
+          )
+          }
+          
+          
+
         {
-          AuthService.isLoggin() ? (
+          process.browser &&  AuthService.isLoggin() ? (
             <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
           ) : (
             <button type="button" className="btn_1 full-width purchase" onClick={() => setShowLogin(true)}>Purchase</button>

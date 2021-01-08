@@ -22,7 +22,8 @@ const Detail = (props) => {
     start_time :'00:00',
     end_time : '01:00',
     canBook : true,
-    available_boat : -1
+    available_boat : -1,
+    addons:[]
   })
   const { user } = useContext(UserContext);
 
@@ -31,6 +32,8 @@ const Detail = (props) => {
       calDuration(state.start_time,state.end_time)
     )
   },[packages,state,user])
+
+  const total_price_addons = state.addons.reduce((total,current) => total+ parseInt(current.price)*(state.adult+state.children)  , 0)
   
 
   const checkout = () => {
@@ -40,6 +43,7 @@ const Detail = (props) => {
       ...state,
       name : packages.name,
       price : priceData.price,
+      net_price : priceData.price + total_price_addons,
       expired_at : (new Date()).getTime() + 15 * 60 * 1000 ,
       duration : packages.is_boat ? calDuration(state.start_time,state.end_time) : ''
     }
@@ -74,6 +78,7 @@ const Detail = (props) => {
 
   console.log('state',state)
   console.log('priceData',priceData)
+  
   return (
     <>
       <div className="bg_color_1">
@@ -106,7 +111,10 @@ const Detail = (props) => {
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
-              <Price state={state} setState={setState} priceData={priceData} checkout={checkout}  is_boat={packages?.is_boat} />
+              <Price state={state} setState={setState} 
+              priceData={priceData} checkout={checkout} 
+              total_price_addons={total_price_addons}
+              addons={packages?.products_addons ?? []} is_boat={packages?.is_boat} />
             </aside>
           </div>
         </div>

@@ -7,8 +7,13 @@ const Summayry = (props) => {
   return (
     data ? (
       <>
+        {!!data.addons && 
+          (
+            data.addons.map(val =>  <div key={val.name}> {val.name}-{ parseInt(val.price)} </div> )
+          ) 
+        }
         <div id="total_cart">
-          Total <span className="float-right"> {parseFloat(data.price).toFixed(2) }฿</span>
+          Total <span className="float-right"> {parseFloat(data.net_price).toFixed(2) }฿</span>
         </div>
         <ul className="cart_details">
           <li>Date <span> {data.date} </span></li>
