@@ -25,7 +25,7 @@ const MainWidget = (props) => {
         <div className="col-lg-12 col-12">
           <div className="form-group mb-4">
             <label>Content</label>
-            <Editor name="content1" height="400px" required defaultValue={data ? data.content1: ''} />
+            <Editor name="content1" height="400px" required data={data ? data.content1: ''} />
           </div>
         </div>
       </div>

@@ -25,13 +25,13 @@ const MainWidget = (props) => {
         <div className="col-lg-6 col-12">
           <div className="form-group mb-4">
             <label>Content Left</label>
-            <Editor name="content1" height="400px" required defaultValue={data ? data.content1: ''} />
+            <Editor name="content1" height="400px" required data={data ? data.content1: ''} />
           </div>
         </div>
         <div className="col-lg-6 col-12">
           <div className="form-group mb-4">
             <label>Content Right</label>
-            <Editor name="content2" height="400px" required defaultValue={data ? data.content2: ''} />
+            <Editor name="content2" height="400px" required data={data ? data.content2: ''} />
           </div>
         </div>
       </div>
