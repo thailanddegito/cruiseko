@@ -73,7 +73,7 @@ const Home = (props) => {
       <aside className="main-content">
 				<main>
 					<div>
-            <Banner data={true} />
+            <Banner data={pages ? pages : null} />
 					</div>
 					<div className="container">
             <div className="wrapper-grid">
