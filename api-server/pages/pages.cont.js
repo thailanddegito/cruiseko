@@ -1,4 +1,4 @@
-const {Page} = require('../db')
+const {Page,PageWidget} = require('../db')
 const tools = require('../helper/tools')
 const {Op} = require('sequelize')
 
@@ -65,6 +65,96 @@ exports.delete = async(req,res,next)=>{
   const id = req.params.id
   try{
     await Page.update({deleted : 1},{where : {id}})
+    res.json({success:true})
+  }
+  catch(err){
+    next(err)
+  }
+}
+
+exports.getAllWidget = async(req,res,next)=>{
+  var {page_id} = req.query;
+  try{
+    var where = {}
+    if(page_id) where.page_id = page_id
+    const widgets = await PageWidget.findAll({where });
+    res.json(widgets)
+  }
+  catch(err){
+      next(err);
+  }
+}
+
+exports.getOneWidget = async(req,res,next)=>{
+  var id = req.params.wid
+  try{
+
+
+    await PageWidget.findOne({where : {id}})
+    res.json({success:true})
+  }
+  catch(err){
+    next(err);
+  }
+}
+
+exports.createWidget = async(req,res,next)=>{
+  var data = req.body;
+  var files = req.files || {}
+  try{
+
+    if(files.image1 && files.image1.name){
+      //console.log(req.files);
+      let file = files.image1;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image1 = tools.genFileUrl(fileName,'images')
+    }
+    if(files.image2 && files.image2.name){
+      //console.log(req.files);
+      let file = files.image2;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image2 = tools.genFileUrl(fileName,'images')
+    }
+
+    await PageWidget.create(data)
+    res.json({success:true})
+  }
+  catch(err){
+    next(err);
+  }
+}
+
+exports.updateWidget = async(req,res,next)=>{
+  var data = req.body;
+  var files = req.files || {}
+  var id = req.params.wid
+  try{
+
+    if(files.image1 && files.image1.name){
+      //console.log(req.files);
+      let file = files.image1;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image1 = tools.genFileUrl(fileName,'images')
+    }
+    if(files.image2 && files.image2.name){
+      //console.log(req.files);
+      let file = files.image2;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.image2 = tools.genFileUrl(fileName,'images')
+    }
+
+    await PageWidget.update(data,{where : {id}})
+    res.json({success:true})
+  }
+  catch(err){
+    next(err);
+  }
+}
+
+exports.deleteWidget = async(req,res,next)=>{
+  var id = req.params.wid
+  try{
+    await PageWidget.destroy({where : {id}})
     res.json({success:true})
   }
   catch(err){

@@ -25,7 +25,7 @@ module.exports = (sequelize, type) => {
     })
   
     Page.associate = function(models) {
-        // Page.belongsTo(models.PageWidget,{foreignKey : 'page_id',constraints: false})
+      Page.hasMany(models.PageWidget,{foreignKey : 'page_id',constraints: false})
       // ProductBoat.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
     };
     return Page
