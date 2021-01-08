@@ -6,6 +6,7 @@ import api from '../utils/api'
 import BlogCard from '../components/frontend/blog/BlogCard'
 import Link from 'next/link'
 import Head from 'next/head'
+import MainWidget from '../components/frontend/page/MainWidget'
 
 const Home = (props) => {
   const {query,pages} = props;
@@ -85,6 +86,15 @@ const Home = (props) => {
               </div>
             </div>
           </div>
+
+          {
+            pages && (pages.pages_widgets && pages.pages_widgets.length > 0) ? (
+              <div className="container show-widget">
+                <MainWidget data={pages.pages_widgets} />
+              </div>
+            ) :  null
+          }
+          
 
           {
             (blogs && blogs.count > 0) ? (

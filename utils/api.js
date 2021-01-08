@@ -61,5 +61,4 @@ export default {
     //Page
     getPageOne : (path) => service.get(`/pages/${path}`),
 
-
 }

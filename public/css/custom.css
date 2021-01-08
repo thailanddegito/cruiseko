@@ -523,6 +523,11 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .border-r8px {
   border-radius: 8px;
 }
+.show-widget {
+  background-color: #fff;
+  margin: 30px auto;
+  padding: 30px 15px;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
