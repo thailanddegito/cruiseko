@@ -5,24 +5,24 @@ import Print from '../../../../components/backend/report/print'
 import api from '../../../../utils/api-admin'
 
 const Index = (props) => {
-const [booking, setBooking] = useState();
-const router = useRouter()
-const {id} = router.query;
+  const [bookings, setBooking] = useState();
+  const router = useRouter()
+  const {id} = router.query;
 
-useEffect(() => {
-  if(!id) return;
-  api.getBookingOne(id)
-  .then(res => {
-    setBooking(res.data)
-    console.log('data',res.data)
-  })
-  .catch(err=>{
-    console.log(err.response || err)
-  })
+  useEffect(() => {
+    if(!id) return;
+    api.getBookingOne(id)
+    .then(res => {
+      setBooking(res.data)
+      // console.log('data',res.data)
+    })
+    .catch(err=>{
+      console.log(err.response || err)
+    })
 
-}, [id]);
+  }, [id]);
 
-  
+  console.log(bookings);
 
 
   return (
@@ -33,7 +33,7 @@ useEffect(() => {
             <h4>Booking Details</h4>
           </div>
           <div className="">
-            <Print  data={booking} />
+            <Print  data={bookings} />
           </div>
         </div>
         <div className="divider"></div>
