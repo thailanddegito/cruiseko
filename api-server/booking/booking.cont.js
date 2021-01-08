@@ -42,9 +42,13 @@ exports.getOne = async(req,res,next)=>{
     const boat_inc = [
       {model : Boat ,include : [BoatCategory]}
     ]
+    const addon_inc = [
+      {model : ProductAddon ,as :'addon'}
+    ]
     const include = [
       {model : BookingDetail ,include : detail_inc},
-      {model : BookingBoat ,include : boat_inc}
+      {model : BookingBoat ,include : boat_inc},
+      {model : BookingAddon ,include : addon_inc}
     ]
 
     const booking = await Booking.findOne({where : {id},include})

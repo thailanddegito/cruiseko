@@ -16,7 +16,7 @@ module.exports = (sequelize, type) => {
   })
 
   BookingAddon.associate = function(models) {
-    // BookingAddon.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
+    BookingAddon.belongsTo(models.ProductAddon,{foreignKey : 'addon_id',constraints: false , as :'addon'})
     // ProductBoat.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
   };
   return BookingAddon
