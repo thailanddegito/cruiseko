@@ -9,6 +9,7 @@ protect_method.forEach(val => router[val]('/*',mw.jwt('admin')))
 
 
 router.get('/widgets',page.getAllWidget)
+router.post('/widgets',page.createWidget)
 router.get('/widgets/:wid',page.getOneWidget)
 router.put('/widgets/:wid',page.updateWidget)
 router.delete('/widgets/:wid',page.deleteWidget)
