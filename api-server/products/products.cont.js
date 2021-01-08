@@ -283,7 +283,7 @@ exports.update = async(req,res,next)=>{
         equal_draft : 1,
         publish_status : 1,
       }
-      // data.equal_draft = 1;
+      data.equal_draft = 1;
       // data.publish_status = 1;
       if(!pkg_live){
         pkg_live = await createProduct({isDraft:false,prep,price_date_list,transaction,draft_ref:id})

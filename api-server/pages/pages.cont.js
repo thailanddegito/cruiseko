@@ -90,8 +90,8 @@ exports.getOneWidget = async(req,res,next)=>{
   try{
 
 
-    await PageWidget.findOne({where : {id}})
-    res.json({success:true})
+    const widget = await PageWidget.findOne({where : {id}})
+    res.json(widget)
   }
   catch(err){
     next(err);
