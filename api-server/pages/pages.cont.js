@@ -15,7 +15,8 @@ exports.getAll = async(req,res,next)=>{
 exports.getOne = async(req,res,next)=>{
   const id = req.params.id
   try{
-      const page = await Page.findOne({where : {[Op.or] : [{id},{path : id}] }});
+      const include = [{model : PageWidget}]
+      const page = await Page.findOne({where : {[Op.or] : [{id},{path : id}] },include});
       res.json(page)
   }
   catch(err){
