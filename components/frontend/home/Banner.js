@@ -49,7 +49,7 @@ const Banner = (props) => {
           </div>
           <style jsx>
           {`
-            ..hero_single.version_2:before {
+            .hero_single.version_2:before {
               background: url(${data.banner ? data.banner : '../img/home_section_1.jpg'}) center center no-repeat;
               background-size: cover;
             }
