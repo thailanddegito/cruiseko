@@ -13,9 +13,12 @@ import LoadingButton from '../../../../components/widget/LoadingButton';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 import { toPriceListState } from '../../../../utils/packageHelper';
+import AddAddons from '../../../../components/backend/package/AddAddons';
+import ShowAddon from '../../../../components/backend/package/ShowAddons';
 
 const Index = (props) => {
   const [show, setShow] = useState(true);
+  const [showAddons, setShowAddons] = useState(false);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [events,setEvents] = useState([]);
@@ -38,7 +41,7 @@ const Index = (props) => {
     setShow(false);
   }, [priceList]);
 
-  const fetchPackage = ()=>{
+   const fetchPackage = ()=>{
     api.getPackageOne(id)
     .then(res => {
       const data= res.data;
@@ -132,8 +135,17 @@ const Index = (props) => {
 
   const headerScroll = <HeaderScrollPackage name="Edit Package" saving={saving} handleSubmit={handleSubmit} is_publish={true} />;
 
-  console.log(pkg);
+  const handleShowAddon = () => {
+    setShowAddons(true);
+  }
 
+  const onCancelAddons = () => {
+    setShowAddons(false);
+  }
+
+  const handleAddonSave = () => {
+    setShowAddons(false);
+  }
 
   return (
     <>
@@ -181,6 +193,9 @@ const Index = (props) => {
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#tags">Meta Tags</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#addons">Addons</a>
           </li>
         </ul>
         <form  id="package-form" >
@@ -240,6 +255,32 @@ const Index = (props) => {
             </div>
             <div className="tab-pane fade" id="tags">
               <MetaTag pkg={pkg} />
+            </div>
+            <div className="tab-pane fade" id="addons">
+              <div className="row">
+                <div className="col-12">
+                  <div className="text-right">
+                    {!showAddons ?<Button _type="button" _name="Add" _class="btn-primary" _click={() => handleShowAddon()} /> :null}
+                  </div>
+                </div>
+              </div>
+
+              {
+                showAddons ? (
+                  <>
+                    <div>
+                      <AddAddons handleAddonSave={handleAddonSave} onCancel={onCancelAddons} />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <ShowAddon data={''} />
+                    </div>
+                  </>
+                )
+              }
+
             </div>
           </div>
           {/* <div className="row mt-4">
