@@ -44,8 +44,9 @@ const Home = (props) => {
     fecthBlog();
   }, [])
 
-  console.log(props);
-  console.log('url',process.env.URL)
+  useEffect(() => {
+    document.getElementsByClassName('main-container')[0].style.backgroundColor = "#FFFFFF";
+  }, []);
 
 
   return (
@@ -72,7 +73,7 @@ const Home = (props) => {
         )
       }
       <aside className="main-content">
-				<main>
+				<main className="main-container">
 					<div>
             <Banner data={pages ? pages : null} />
 					</div>
