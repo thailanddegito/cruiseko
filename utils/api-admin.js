@@ -106,6 +106,9 @@ export default {
     insertPackage : (data) => service.post('/products',data) ,
     delPackage : (id) => service.delete(`/products/${id}`),
    
+    //Duplicate Package
+    dupPackage : (id) => service.post(`/products/duplicate/${id}`),
+
 
     //Bookings
     getBooking : (params) => service.get(`/booking`, {params}),
