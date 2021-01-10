@@ -292,6 +292,10 @@ exports.update = async(req,res,next)=>{
       }
       else {
         // console.log('ttttt')
+        if(!data.picture){
+          data.picture = pkg.picture
+        }
+
         task.push(Product.update(data,{where : {draft_ref : id},transaction}))
         await clearPriceData(pkg_live.id,transaction)
         await clearEvents(pkg_live.id,transaction)
