@@ -13,9 +13,13 @@ const Event = (props) => {
           {number}
         </div>
         <div className="cbp_tmlabel">
-          <div className="hidden-xs">
-            <img src={data.image ? data.image : "/template/img/tour_plan_1.jpg"} alt="" className="rounded-circle thumb_visit"/>
-          </div>
+          {
+            data.image ? (
+              <div className="hidden-xs">
+                <img src={data.image ? data.image : "/template/img/tour_plan_1.jpg"} alt="" className="rounded-circle thumb_visit"/>
+              </div>
+            ) : null
+          }
           <h4>{data.title}</h4>
           <p>
             {data.description}
