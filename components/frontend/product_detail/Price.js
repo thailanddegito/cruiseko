@@ -133,13 +133,18 @@ const Price = (props) => {
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
 
-        <div>
-          <span>Addons</span>
-          <div className="mt-2">
-            {addons.map(val => <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} /> )}
-            
-          </div>
-        </div>
+        {
+          (addons && addons.length > 0) ? (
+            <div>
+              <span>Addons</span>
+              <div className="mt-2">
+                {addons.map(val => <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} /> )}
+                
+              </div>
+            </div>
+          ) : null
+        }
+        
 
           {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
 
@@ -147,7 +152,7 @@ const Price = (props) => {
           price !== -1 && 
           (
             <div className="my-2">
-              {<span>Net price {price+total_price_addons} ฿ </span>}
+              {<span className="font-24px">Net Price {price+total_price_addons} ฿ </span>}
             </div>
           )
           }

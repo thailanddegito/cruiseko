@@ -538,6 +538,10 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .magnific-gallery {
   text-align: left !important;
 }
+.font-24px {
+  font-size: 24px;
+  font-weight: 500;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
