@@ -3,6 +3,7 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
+import ModalDup from '../../widget/ModalConfirmDialog';
 
 import DataTable from 'react-data-table-component'
 import SubHeaderComponent from './SubHeaderComponent'
@@ -11,6 +12,7 @@ import ColumnTable from '../column/ColumnTablePackage'
 
 const TablePackage = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
+  const [modalDup, setModalDup] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const [packages, setPackage] = useState();
@@ -37,6 +39,11 @@ const TablePackage = (props) => {
     setModalConfirm(true);
   }
 
+  const dupData = (id) => {
+    setrefID(id);
+    setModalDup(true);
+  }
+
   const onConfirm = ()=>{
     if(!ref_id) return;
     api.delPackage(ref_id)
@@ -44,6 +51,19 @@ const TablePackage = (props) => {
       const data = res.data;
       fecthPackage();
       setModalConfirm(false);
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+  const onConfirmDuplicate = ()=>{
+    if(!ref_id) return;
+    api.dupPackage(ref_id)
+    .then(res=>{
+      const data = res.data;
+      fecthPackage();
+      setModalDup(false);
     })
     .catch(err => {
       console.log(err.response);
@@ -71,7 +91,7 @@ const TablePackage = (props) => {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = packages ? packages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
-  const columns = ColumnTable({delData, handleFunction});
+  const columns = ColumnTable({delData, handleFunction, dupData});
 
 
   return (
@@ -100,6 +120,14 @@ const TablePackage = (props) => {
           onConfirm={() => onConfirm()}
           ref_id={ref_id}
           onHide={() => setModalConfirm(false)} />
+
+      <ModalDup show={modalDup}
+        text={`Do you confirm to duplicate this ?`}
+        size="md" 
+        cancel_btn={true}
+        onConfirm={() => onConfirmDuplicate()}
+        ref_id={ref_id}
+        onHide={() => setModalDup(false)} />
 
       <SuccessDialog show={modalSuccess}
         text="Successfully saved data !!!"

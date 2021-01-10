@@ -36,6 +36,12 @@ const MainWidget = (props) => {
             name : 'alt1', required : true
           }} 
           labelName="ALT  " iconProps={{className : 'fa icon icon-home'}} />
+          <InputLabel inputProps={{ 
+            className:'form-control', type : 'text',
+            defaultValue : data ? data.link1: '',
+            name : 'link1', required : true
+          }} 
+          labelName="Link  " iconProps={{className : 'fa icon icon-home'}} />
         </div>
         <div className="col-lg-4 col-12">
           <div className="form-group">
@@ -48,6 +54,12 @@ const MainWidget = (props) => {
             name : 'alt2', required : true
           }} 
           labelName="ALT  " iconProps={{className : 'fa icon icon-home'}} />
+          <InputLabel inputProps={{ 
+            className:'form-control', type : 'text',
+            defaultValue : data ? data.link2: '',
+            name : 'link2', required : true
+          }} 
+          labelName="Link  " iconProps={{className : 'fa icon icon-home'}} />
         </div>
       </div>
     </>
