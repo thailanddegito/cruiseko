@@ -528,6 +528,10 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   margin: 30px auto;
   padding: 30px 15px;
 }
+.grid ul li figure img {
+  height: 110px !important;
+  object-fit: cover !important; 
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
