@@ -3,6 +3,7 @@ import React,{useContext, useEffect} from 'react';
 import Link from 'next/link';
 import UserContext from '../../../contexts/UserContext';
 import {calPackagePriceCard} from '../../../utils/packageHelper'
+import tools from '../../../utils/tools'
 
 const ProductCard = (props) => {
   const {packages} = props;
@@ -13,46 +14,24 @@ const ProductCard = (props) => {
   
   const {price,unit} = calPackagePriceCard(packages,user);
 
-  console.log(packages);
-
-  const calculate = (startTime, endTime) => {
-    var total_time = '';
-    var time1 = startTime.split(':'), 
-    time2 = endTime.split(':');
-    var hours1 = parseInt(time1[0], 10),
-    hours2 = parseInt(time2[0], 10),
-    
-    mins1 = parseInt(time1[1], 10),
-    mins2 = parseInt(time2[1], 10);
-    var hours = hours2 - hours1, mins = 0;
-    if (hours < 0) hours = 24 + hours;
-    if (mins2 >= mins1) {
-        mins = mins2 - mins1;
-    }
-    else {
-        mins = (mins2 + 60) - mins1;
-        hours--;
-    }
-
-    console.log('hours', hours);
-    console.log('mins', mins);
-    mins = mins / 60; // take percentage in 60
-    hours += mins;
-    hours = hours.toFixed(2);
-    total_time = hours;
-    return total_time;
-  }
-
-  var totalHours = '';
+  var text_time = '';
 
   if(packages){
-    var startTime = packages.start_time;
-    var endTime = packages.end_time;
-    totalHours = calculate(startTime, endTime);
+		var total;
+		var totalHours = '';
+		var totalMins = '';
+		if(packages.start_time && packages.end_time) {
+			var startTime = packages.start_time;
+			var endTime = packages.end_time;
+			total = tools.calculate(startTime, endTime);
+			var time = total.split(':');
+			totalHours = parseInt(time[0], 10);
+			totalMins = parseInt(time[1], 10);
+			var text_time = (totalHours > 0 ? totalHours+'h ' : '') +  (totalMins > 0 ? totalMins+'min' : '')
+		}else {
+			text_time = '';
+		}
   }
- 
-
-  console.log(totalHours);
 
   return (
     packages ? (
@@ -85,7 +64,7 @@ const ProductCard = (props) => {
               
             </div>
             <ul>
-              <li><i className="icon_clock_alt"></i> 1h 30min</li>
+              <li>{text_time ? (<><i className="icon_clock_alt"></i> {text_time}</>) : ''}</li>
               <li><div className="score"><span>Superb<em>350 Reviews</em></span><strong>5.0</strong></div></li>
             </ul>
           </div>

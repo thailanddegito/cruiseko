@@ -37,6 +37,34 @@ const formatNum = (num) => {
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     ) // use . as a separator
 }
+
+const calculate = (startTime, endTime) => {
+  if(!startTime || !endTime) return;
+  var total_time = '';
+  var time1 = startTime.split(':'), 
+  time2 = endTime.split(':');
+  var hours1 = parseInt(time1[0], 10),
+  hours2 = parseInt(time2[0], 10),
+  
+  mins1 = parseInt(time1[1], 10),
+  mins2 = parseInt(time2[1], 10);
+  var hours = hours2 - hours1, mins = 0;
+  if (hours < 0) hours = 24 + hours;
+  if (mins2 >= mins1) {
+      mins = mins2 - mins1;
+  }
+  else {
+      mins = (mins2 + 60) - mins1;
+      hours--;
+  }
+  // mins = mins / 60; // take percentage in 60
+  // hours += mins;
+  // hours = hours.toFixed(2);
+  // total_time = hours;
+  total_time = hours +':'+mins
+  return total_time;
+}
+
 export const toDateISO = (date) => {
   date = new Date(date);
   return [
@@ -62,5 +90,6 @@ export const formToObject = (formData)=>{
 export default {
   formatDate,
   formatNum,
-  toDateISO
+  toDateISO,
+  calculate
 }

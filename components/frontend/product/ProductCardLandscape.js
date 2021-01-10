@@ -3,6 +3,7 @@ import React,{useContext} from 'react';
 import Link from 'next/link';
 import UserContext from '../../../contexts/UserContext';
 import {calPackagePriceCard} from '../../../utils/packageHelper'
+import tools from '../../../utils/tools'
 
 const ProductCardLandscape = (props) => {
   const {packages} = props;
@@ -10,7 +11,28 @@ const ProductCardLandscape = (props) => {
 
 	const {price,unit} = calPackagePriceCard(packages,user)
 
-  
+	
+	var text_time = '';
+
+  if(packages){
+		var total;
+		var totalHours = '';
+		var totalMins = '';
+		if(packages.start_time && packages.end_time) {
+			var startTime = packages.start_time;
+			var endTime = packages.end_time;
+			total = tools.calculate(startTime, endTime);
+			var time = total.split(':');
+			totalHours = parseInt(time[0], 10);
+			totalMins = parseInt(time[1], 10);
+			var text_time = (totalHours > 0 ? totalHours+'h ' : '') +  (totalMins > 0 ? totalMins+'min' : '')
+		}else {
+			text_time = '';
+		}
+  }
+
+	
+
   return (
     packages ? (
       <>
@@ -43,7 +65,7 @@ const ProductCardLandscape = (props) => {
 								}
 							</div>
 							<ul>
-								<li><i className="icon_clock_alt"></i> 1h 30min</li>
+								<li>{text_time ? (<><i className="icon_clock_alt"></i> {text_time}</>) : ''}</li>
 								<li><div className="score"><span>Good<em>350 Reviews</em></span><strong>5.0</strong></div></li>
 							</ul>
 						</div>
