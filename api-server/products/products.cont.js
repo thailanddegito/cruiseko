@@ -1,6 +1,6 @@
 const { Product,ProductImage,sequelize,PriceDate,
   CompanyType,ProductBoat,Event,Location,
-  PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory} = require('../db')
+  PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory,ProductAddon} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
@@ -122,6 +122,7 @@ exports.getOne = async(req,res,next)=>{
       {model : PriceDate ,include :price_include},
       {model : ProductImage , attributes:['id','image','type','order']},
       {model : Event},
+      {model : ProductAddon},
       {model : ProductBoat,include : boat_include},
       {model : ProductCategory},
       {model : Location , as :'pickup' },
@@ -141,7 +142,7 @@ exports.getOne = async(req,res,next)=>{
 
 exports.create = async(req,res,next)=>{
   var data = req.body;
-  var {method = 'draft',price_date_list,events} = data;
+  var {method = 'draft',price_date_list,events,addons} = data;
   var files = req.files || {}
   console.log('data',data)
   console.log('files',files)
@@ -167,12 +168,12 @@ exports.create = async(req,res,next)=>{
     data.publish_status = method === 'publish' ? 1 : 0;
 
     const product_draft = await createProduct({isDraft : true,data,images_urls,
-      events,price_date_list,transaction,files,
+      events,price_date_list,transaction,files,addons
     })
     if(method === 'publish'){
       
       await createProduct({isDraft : false,data,images_urls,events,
-        price_date_list,transaction,draft_ref :product_draft.id, files,
+        price_date_list,transaction,draft_ref :product_draft.id, files,addons
       })
     }
 
@@ -190,7 +191,7 @@ exports.update = async(req,res,next)=>{
   const id = req.params.id
   const product_id = id;
   var data = req.body;
-  var {method = 'draft',price_date_list,images_order,images_deleted,events,boat_id} = data;
+  var {method = 'draft',price_date_list,images_order,images_deleted,events,boat_id,addons} = data;
   var files = req.files || {}
   var images_urls = []
   var transaction;
@@ -230,6 +231,10 @@ exports.update = async(req,res,next)=>{
     if(events){
       await clearEvents(id,transaction)
       await createEvents(events,id,files,transaction)
+    }
+    if(addons){
+      await clearAddons(id,transaction)
+      await createAddons(addons,id,transaction)
     }
     var new_boats = [...product_boats]
     
@@ -278,7 +283,7 @@ exports.update = async(req,res,next)=>{
         equal_draft : 1,
         publish_status : 1,
       }
-      // data.equal_draft = 1;
+      data.equal_draft = 1;
       // data.publish_status = 1;
       if(!pkg_live){
         pkg_live = await createProduct({isDraft:false,prep,price_date_list,transaction,draft_ref:id})
@@ -288,9 +293,11 @@ exports.update = async(req,res,next)=>{
         task.push(Product.update(data,{where : {draft_ref : id},transaction}))
         await clearPriceData(pkg_live.id,transaction)
         await clearEvents(pkg_live.id,transaction)
+        await clearAddons(pkg_live.id,transaction)
         await ProductBoat.destroy({where : {product_id  :pkg_live.id},transaction,logging:console.log})
         task.push(createPriceData(price_date_list,pkg_live.id,transaction))
         task.push(createEvents(events,pkg_live.id,files,transaction))
+        task.push(createAddons(addons,pkg_live.id,transaction))
         console.log(new_boats.map(val => ({...val,product_id : pkg_live.id})))
         task.push(ProductBoat.bulkCreate(new_boats.map(val => ({...val,product_id : pkg_live.id})),{transaction}))
       }
@@ -396,7 +403,7 @@ async function handleProductImages (files){
 }
 
 exports.createProduct = createProduct;
-async function createProduct({isDraft,data,images_urls,events,price_date_list,transaction,draft_ref,files}){
+async function createProduct({isDraft,data,images_urls,events,addons,price_date_list,transaction,draft_ref,files}){
     var _data ={...data}
     const {boat_id} = _data;
     if(!isDraft){
@@ -422,6 +429,7 @@ async function createProduct({isDraft,data,images_urls,events,price_date_list,tr
 
     await createPriceData(price_date_list,product_id,transaction)
     await createEvents(events,product_id,files,transaction)
+    await createAddons(addons,product_id,transaction)
 
     return product
 }
@@ -496,10 +504,30 @@ async function createEvents(events,product_id,files,transaction){
   // await Event.bulkCreate(events,{transaction})
 }
 
+async function createAddons(addons,product_id,transaction){
+  if(!addons) return;
+  if(typeof addons === 'string')
+    addons = JSON.parse(addons)
+  
+  addons = addons.map((val) => {
+
+    return {...val,product_id,id:null}
+  })
+  let task = []
+  for(const item of addons){
+    task.push(ProductAddon.create(item,{transaction}))
+    await tools.delay(20)
+  }
+  await Promise.all(task)
+}
+
 async function clearEvents(product_id,transaction){
   await Event.destroy({where : {product_id},transaction})
 }
 
+async function clearAddons(product_id,transaction){
+  await ProductAddon.destroy({where : {product_id},transaction})
+}
 
 async function clearPriceData(product_id,transaction){
   const price_dates = await PriceDate.findAll({where : {product_id},transaction,raw:true})
@@ -539,8 +567,9 @@ async function copyPriceProduct(product_id,price_dates,transaction){
 async function copyProduct({draft_id,transaction}){
   const draft = await getOneProduct(draft_id,transaction)
   const {products_images,price_dates,products_boats} = draft;
-  var {events} = draft
+  var {events,products_addons} = draft
   events = events.map(val => val.toJSON())
+  products_addons = products_addons.map(val => val.toJSON())
   var boat_id = products_boats.map(val => val.boat_id)
   var data = {...draft.toJSON(),id:null,draft_ref : draft_id,equal_draft:1,boat_id}
 
@@ -575,6 +604,7 @@ async function equalizeProduct({draft_id,live_id,transaction}){
   
   task.push(clearPriceData(live_id,transaction))
   task.push(clearEvents(live_id,transaction))
+  task.push(clearAddons(product_id,transaction))
   task.push(ProductBoat.destroy({where : {product_id},transaction}))
 
   await Promise.all(task)
@@ -591,7 +621,8 @@ async function getOneProduct(product_id,transaction){
     {model : PriceDate ,include :price_include, attributes:{exclude : ['id']}},
     {model : ProductImage , attributes:{exclude : ['id']}},
     {model : Event},
-    {model : ProductBoat , attributes:{exclude : ['id']},include : [Boat]}
+    {model : ProductBoat , attributes:{exclude : ['id']},include : [Boat]},
+    {model : ProductAddon}
   ]
   const draft = await Product.findOne({where : {id : product_id},include,transaction})
 

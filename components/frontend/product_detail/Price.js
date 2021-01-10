@@ -1,14 +1,20 @@
 
 import Router from 'next/router';
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useContext} from 'react';
 import SelectAmount from '../../widget/SelectAmount'
 import SelectTime from '../../widget/SelectTime'
+import Checkbox from '../../widget/Checkbox'
+import UserContext from '../../../contexts/UserContext';
+import AuthService from '../../../utils/AuthService';
+import LoginModal from '../../../components/frontend/login/Modal';
 
 const Price = (props) => {
-  const {error,state,setState,checkout, is_boat} = props;
+  const {error,state,setState,checkout, is_boat,addons=[],total_price_addons} = props;
   const [active, setActive] = useState(false);
   const [activeFrom, setActiveFrom] = useState(false);
   const [activeTo, setActiveTo] = useState(false);
+  const { user, fetchUser } = useContext(UserContext);
+  const [showLogin, setShowLogin] = useState(false);
 
   // const [date,setDate] = useState()
   const {price,unit,boat_amt} = props.priceData; 
@@ -76,7 +82,30 @@ const Price = (props) => {
     setState({...state,[key] : val })
   }
 
+  const onAddonChange = (e) => {
+    var {name,checked} = e.target;
+    var id = name.split('-')[1]
+    if(!id) return;
+    var data = addons.find(val => val.id == id)
+    var tmp = [...state.addons]
+    let index = state.addons.findIndex(val => val.id == id)
+    if(checked){
+      if(index === -1){
+        tmp.push(data)
+      }
+    }
+    else{
+      if(index !== -1){
+        tmp.splice(index,1)
+      }
+    }
+    
+    setState({...state,addons:tmp})
+  }
 
+  
+
+  // console.log('addons',addons)
 
 
   return (
@@ -86,7 +115,7 @@ const Price = (props) => {
           {price !== -1 && <span> {price} ฿ <small>{unit}</small> </span>}
           <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
         </div>
-        {boat_amt && <div> Boat amount : {boat_amt} </div> }
+        {boat_amt && <div className="mb-2"> <span>Boat amount : </span>{boat_amt} </div> }
         
         <div className="form-group input-dates">
           <input className="form-control" type="text" name="dates" placeholder="When.." />
@@ -103,11 +132,40 @@ const Price = (props) => {
         <div>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
-         {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
-        <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+
+        <div>
+          <span>Addons</span>
+          <div className="mt-2">
+            {addons.map(val => <Checkbox key={val.name} name={`addon-${val.id}`} value1={val.name} value2={parseInt(val.price) } onChange={onAddonChange} /> )}
+            
+          </div>
+        </div>
+
+          {state.available_boat === 0 && <small className="text-danger my-3" > Not enough boats </small>} 
+
+          {
+          price !== -1 && 
+          (
+            <div className="my-2">
+              {<span>Net price {price+total_price_addons} ฿ </span>}
+            </div>
+          )
+          }
+          
+          
+
+        {
+          process.browser &&  AuthService.isLoggin() ? (
+            <button type="button" disabled={price === -1 || !state.canBook} className="btn_1 full-width purchase" onClick={checkout}>Purchase</button>
+          ) : (
+            <button type="button" className="btn_1 full-width purchase" onClick={() => setShowLogin(true)}>Purchase</button>
+          )
+        }
         <div className="text-center"><small>No money charged in this step</small></div>
       </div>
-      
+
+      <LoginModal show={showLogin}
+          size="md" onHide={() => setShowLogin(false)}/>
     </>
   )
 }

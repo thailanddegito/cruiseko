@@ -1,12 +1,27 @@
 const fs = require('fs')
 const DB = require('../db')
 const { Op ,QueryTypes} = require('sequelize');
-const base_domain = process.env.HOST
+const base_domain = process.env.URL
 
 
 module.exports = {
     pad : (num,size) => num.toString().padStart(size,'0'),
 
+    genBookingId : async () =>{
+        //2021010800001
+        const now = new Date();
+        var date_str =  `${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0') }${(now.getDate()).toString().padStart(2,'0') }`
+
+        let max = await DB.Booking.max('id');
+
+        // console.log('max',max)
+        if(!max) return date_str+'00001'
+
+        let running = max.toString().substring(8)
+        let next = parseInt(running) + 1
+
+        return date_str+next.toString().padStart(5,'0')
+    },
     genUserId : async (type,company_name) => {
         var start_agent = 'AGTHX001'
         var start_hotel = 'HTTHX001'

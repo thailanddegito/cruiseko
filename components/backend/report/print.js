@@ -399,7 +399,7 @@ const Pint = (props) =>{
   return (
     <div>
         <ReactToPrint
-          trigger={() => <button href="javascript:void(0)" >พิมพ์</button>}
+          trigger={() => <button className="btn btn-outline-primary" href="javascript:void(0)" >พิมพ์</button>}
           content={() => componentRef.current}
           pageStyle="A4"
         //   onBeforePrint={_click}

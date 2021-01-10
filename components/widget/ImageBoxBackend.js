@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
   
 const ImageBoxCircle = (props) => {
-  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required} = props
+  const {show, _name, _text, _id, _img, index, setIndex, idx, chkImg,handleFile,adder,required, classBox = ""} = props
   const {onDelete} = props
   const [img, setImg] = useState(_img || null);
 
@@ -10,6 +10,11 @@ const ImageBoxCircle = (props) => {
   const [type, setType] = useState(null);
   const [fileType, setFiletype] = useState(null);
   
+
+  useEffect(() => {
+    if(!_img) return;
+    setImg(_img);
+  }, [_img])
 
   const handleChange = (event) => {
     if(!event.target.files[0]) {
@@ -38,20 +43,21 @@ const ImageBoxCircle = (props) => {
     }
   }
 
-
+  console.log('_img', _img);
+  console.log('img', img);
   return (
     <>
       {
         !img ? (
           <div className="box-img">
-            <label htmlFor={_id} className={classNames("img-box mb-0", chkImg && 'img-required')}>
+            <label htmlFor={_id} className={classNames("img-box mb-0", chkImg && 'img-required', classBox)}>
               <i className="fa fa-fw fa-plus-square middle font-24"></i>
             </label>
             <input id={_id} name={_name} type="file" onChange={handleChange} accept={`image/*`} className="input-require" required={required} />
           </div>
         ) : (
           <div className="box-img">
-            <label htmlFor={_id} className="img-box show mb-0">
+            <label htmlFor={_id} className={`img-box show mb-0, ${classBox}`}>
           
               <img src={img} className="middle" />
              

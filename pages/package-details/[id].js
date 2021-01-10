@@ -47,11 +47,11 @@ const ProductDetail = (props) => {
               <meta property="og:type" content="website" /> 
               <meta property="og:title" content={packages.meta_title ? packages.meta_title : packages.name} /> 
               <meta property="og:description" content={packages.meta_description ? packages.meta_description : packages.name} /> 
-              <meta property="og:image" content={packages.meta_image ? `${process.env.HOST}${packages.meta_image}` : ``} /> 
-              <meta property="og:url" content={`${process.env.HOST}/package-details/${packages.id}`} /> 
+              <meta property="og:image" content={packages.meta_image ? `${process.env.URL}${packages.meta_image}` : ``} /> 
+              <meta property="og:url" content={`${process.env.URL}/package-details/${packages.id}`} /> 
               <meta property="og:site_name" content="CRUISEKO" /> 
 
-              <meta name="twitter:image" content={packages.meta_image ? `${process.env.HOST}${packages.meta_image}` : ``} /> 
+              <meta name="twitter:image" content={packages.meta_image ? `${process.env.URL}${packages.meta_image}` : ``} /> 
               <meta name="twitter:title" content={packages.meta_title ? packages.meta_title : packages.name} /> 
               <meta name="twitter:description" content={packages.meta_description? packages.meta_description : packages.name} /> 
               <meta name="twitter:site" content="CRUISEKO" /> 

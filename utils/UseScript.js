@@ -43,7 +43,7 @@ const useScript = () => {
       navbar: {
         title: 'MENU'
       },
-      navbars: [{position:'bottom',content: ['<a href="#0">© 2020 Panagea</a>']}]}, 
+      navbars: [{position:'bottom',content: ['<a href="#0">© 2021 Cruiseko</a>']}]}, 
       {
       // configuration
       clone: true,

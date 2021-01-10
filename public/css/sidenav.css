@@ -1,3 +1,6 @@
+.mm-menu.mm-offcanvas {
+  z-index: 99;
+}
 .sidenav {
   height: 100%;
   width: 0;

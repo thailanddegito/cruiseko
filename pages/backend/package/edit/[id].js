@@ -13,12 +13,17 @@ import LoadingButton from '../../../../components/widget/LoadingButton';
 import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 import api from '../../../../utils/api-admin';
 import { toPriceListState } from '../../../../utils/packageHelper';
+import AddAddons from '../../../../components/backend/package/AddAddons';
+import ShowAddon from '../../../../components/backend/package/ShowAddons';
+import AddonMain from '../../../../components/backend/package/AddonMain';
 
 const Index = (props) => {
   const [show, setShow] = useState(true);
   const [pkg,setPkg] = useState();
   const [priceList, setPriceList] = useState([]);
   const [events,setEvents] = useState([]);
+  const [addons,setAddons] = useState([]);
+
   const [editData,setEditData] = useState()
   const [saving,setSaving] = useState(false)
   const [galleryOrder,setGalleryOrder] = useState()
@@ -38,7 +43,7 @@ const Index = (props) => {
     setShow(false);
   }, [priceList]);
 
-  const fetchPackage = ()=>{
+   const fetchPackage = ()=>{
     api.getPackageOne(id)
     .then(res => {
       const data= res.data;
@@ -47,6 +52,7 @@ const Index = (props) => {
       // console.log('transform',toPriceListState(data.price_dates))
       setPriceList(toPriceListState(data.price_dates))
       setEvents(data.events)
+      setAddons(data.products_addons || [])
     })
     .catch(err=>{
       console.log(err.response || err)
@@ -95,6 +101,7 @@ const Index = (props) => {
     }
     formData.append('price_date_list',JSON.stringify(priceList))
     formData.append('events',JSON.stringify(events))
+    formData.append('addons',JSON.stringify(addons))
     formData.append('method',method)
 
     if(galleryOrder) formData.append('images_order',JSON.stringify(galleryOrder))
@@ -131,8 +138,6 @@ const Index = (props) => {
   }
 
   const headerScroll = <HeaderScrollPackage name="Edit Package" saving={saving} handleSubmit={handleSubmit} is_publish={true} />;
-
-  console.log(pkg);
 
 
   return (
@@ -181,6 +186,9 @@ const Index = (props) => {
           </li>
           <li className="nav-item">
             <a className="nav-link" data-toggle="tab" href="#tags">Meta Tags</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#addons">Addons</a>
           </li>
         </ul>
         <form  id="package-form" >
@@ -240,6 +248,10 @@ const Index = (props) => {
             </div>
             <div className="tab-pane fade" id="tags">
               <MetaTag pkg={pkg} />
+            </div>
+            <div className="tab-pane fade" id="addons">
+              <AddonMain addons={addons} setAddons={setAddons} />
+
             </div>
           </div>
           {/* <div className="row mt-4">

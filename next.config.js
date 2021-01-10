@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    HOST: process.env.HOST,
+    URL: process.env.URL,
     PAYPAL_CLIENT_ID : process.env.PAYPAL_CLIENT_ID
   },
 }

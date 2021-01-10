@@ -5,8 +5,11 @@ import ProductCard from '../components/frontend/product/ProductCard'
 import api from '../utils/api'
 import BlogCard from '../components/frontend/blog/BlogCard'
 import Link from 'next/link'
+import Head from 'next/head'
+import MainWidget from '../components/frontend/page/MainWidget'
 
 const Home = (props) => {
+  const {query,pages} = props;
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState();
   const [blogs, setBlog] = useState();
@@ -41,13 +44,36 @@ const Home = (props) => {
     fecthBlog();
   }, [])
 
+  console.log(pages);
+
 
   return (
-    <Layout loading={loading} title="Home" page={'home'}>
+    <Layout loading={loading} title={pages ? pages?.title : "Home" } page={'home'}>
+      {
+        !!pages && (
+          <Head>
+            <meta name="description" content={pages.description || ''} />
+            <meta name="keywords" content={pages.keyword || ''} />
+
+            <meta property="og:type" content="website" /> 
+            <meta property="og:title" content={pages.title || ''} /> 
+            <meta property="og:description" content={pages.description || ''} /> 
+            <meta property="og:image" content={pages.image} /> 
+            <meta property="og:url" content={`https://www.cruiseko.com`} /> 
+            <meta property="og:site_name" content="Cruiseko" /> 
+
+            <meta name="twitter:image" content={pages.image} /> 
+            <meta name="twitter:title" content={pages.title || ''} /> 
+            <meta name="twitter:description" content={pages.description || ''} /> 
+            <meta name="twitter:site" content="Cruiseko" /> 
+            <meta name="twitter:creator" content="Cruiseko" /> 
+          </Head>
+        )
+      }
       <aside className="main-content">
 				<main>
 					<div>
-            <Banner data={true} />
+            <Banner data={pages ? pages : null} />
 					</div>
 					<div className="container">
             <div className="wrapper-grid">
@@ -60,6 +86,15 @@ const Home = (props) => {
               </div>
             </div>
           </div>
+
+          {
+            pages && (pages.pages_widgets && pages.pages_widgets.length > 0) ? (
+              <div className="container show-widget">
+                <MainWidget data={pages.pages_widgets} />
+              </div>
+            ) :  null
+          }
+          
 
           {
             (blogs && blogs.count > 0) ? (
@@ -90,6 +125,13 @@ const Home = (props) => {
       <div className="end-content"></div>
     </Layout>
   )
+}
+Home.getInitialProps = async ({query}) => {
+  const [pages_res] = await Promise.all([
+    api.getPageOne('home'),
+  ])
+  const pages = pages_res.data
+  return {query,pages}
 }
 export default Home
 

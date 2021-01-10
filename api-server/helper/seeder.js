@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {Admin,Permission,BoatCategory} = require('../db')
+const {Admin,Permission,BoatCategory,Page} = require('../db')
 
 
 
@@ -36,6 +36,7 @@ exports.initPermission = async() =>{
       {name : 'Package Location' , key : 'package_location'},
       {name : 'Boat' , key : 'boat' },
       {name : 'Boat Category' , key : 'boat_category'},
+      {name : 'Pages' , key : 'pages' },
       {name : 'Blog' , key : 'blog' },
       {name : 'Blog Category' , key : 'blog_category'},
       {name : 'Users' , key : 'users' },
@@ -77,11 +78,29 @@ exports.initBoatActivities = async() =>{
   }
 }
 
+exports.initPages = async() =>{
+  try{
+    const data = [
+      {title : 'home' , description : 'home',keyword :'home',path :'home' },
+    ]
+
+    await Page.sync({force : true})
+    
+
+    await Page.bulkCreate(data)
+    console.log('Create pages successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
 exports.initDefault = async() =>{
   try{
     await this.initAdmin()
     await this.initPermission();
     await this.initBoatActivities();
+    await this.initPages();
     console.log('seeded successfully!')
   }
   catch(err){

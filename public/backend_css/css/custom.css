@@ -248,6 +248,10 @@ span.nav-link-text {
   margin: 0 4px;
   cursor: pointer;
   min-width: 68px;
+  width: auto;
+}
+.w-100px {
+  width: 100px !important;
 }
 .a-manage.warning {
   border-color: #ffc107;
@@ -262,6 +266,11 @@ span.nav-link-text {
 .a-manage.success {
   border-color: #28a745;
   background-color: #28a745;
+  color: #FFF !important;
+}
+.a-manage.info {
+  border-color: #17a2b8;
+  background-color: #17a2b8;
   color: #FFF !important;
 }
 .badge.badge-pill.badge-danger {
@@ -502,6 +511,43 @@ span.nav-link-text {
 }
 .slick-next:before, .slick-prev:before {
   color: #000;
+}
+.mw-200px {
+  min-width: 200px !important;
+}
+.a-click {
+  color: #333;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+.img-box-full {
+  width: 100%;
+  height: 300px;
+}
+.box-img.circle .img-box-full:hover .dropbox, .img-box-full:hover .dropbox {
+  display: block;
+  width: 100% !important;
+  height: 300px !important;
+}
+.sum-text {
+  display: flex;
+  justify-content: space-between;
+}
+.sum-text span.total {
+  font-weight: 500;
+  font-size: 18px;
+}
+.sum-text span {
+  font-weight: 400;
+  font-size: 16px;
+}
+.sum-text span.addon {
+  font-weight: 500;
+  font-size: 16px;
+}
+.detail p span {
+  font-weight: 500;
 }
 @media (min-width: 992px) {
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {

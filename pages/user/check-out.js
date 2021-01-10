@@ -82,7 +82,7 @@ const Payment = (props) => {
                 <div className="col-lg-8">
                   <div className="box_cart">
                     <Address packages={true} />
-                    <PaymentMethod packages={true} />
+                    {/* <PaymentMethod packages={true} /> */}
                     <BillingAddress packages={true} />
                     <CancellationPolicy packages={true} />
                     

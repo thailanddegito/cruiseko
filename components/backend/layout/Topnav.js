@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link'
 
 const Topnav = (props) => {
-  const {children, page_name, sub_page, main_link, no_class, headerScroll } = props;
+  const {children, page_name, sub_page, main_link, no_class, headerScroll, chliden_page, sub_link } = props;
   const [scroll, setScroll] = useState(0);
   const [pageHeight, setPageHeight] = useState(0);
   
@@ -55,8 +55,19 @@ const Topnav = (props) => {
               </li>
             )}
             {sub_page && (
-              <li className={`breadcrumb-item ${sub_page && 'active'}`}>{sub_page}</li>
+              <li className={`breadcrumb-item ${(sub_page && !chliden_page) && 'active'}`}>
+                {
+                  chliden_page ? (
+                    <a className="a-click" onClick={() => sub_link()}>{sub_page}</a>
+                  ) : <a>{sub_page}</a>
+                }
+              </li>
             )}
+            {
+              chliden_page && (
+                <li className={`breadcrumb-item ${chliden_page && 'active'}`}>{chliden_page}</li>
+              )
+            }
           </ol>
           <div className={`${!no_class ? 'content' : ''}`}>
             {children}

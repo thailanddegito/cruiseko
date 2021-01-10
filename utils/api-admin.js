@@ -1,6 +1,6 @@
 import axios from 'axios'
 import AuthService from './AdminAuthService'
-const BASE = `${process.env.HOST}/api`; 
+const BASE = `${process.env.URL}/api`; 
 const service = axios.create({baseURL : '/api' })
 
 // axios.interceptors.response.use((response) => {
@@ -135,4 +135,19 @@ export default {
      updateLocation : (data, id) => service.put(`/location/${id}`,data),
      delLocation : (id) => service.delete(`/location/${id}`),
  
+
+     //Page
+    getPage : (params) => service.get(`/pages`, {params}),
+    getPageOne : (id) => service.get(`/pages/${id}`),
+    insertPage : (data) => service.post(`/pages`,data),
+    updatePage : (id, data) => service.put(`/pages/${id}`,data) ,
+
+    //Page Widget
+    getPageWidget : (params) => service.get(`/pages/widgets`, {params}),
+    getPageWidgetOne : (id) => service.get(`/pages/widgets/${id}`),
+    insertPageWidget : (data) => service.post(`/pages/widgets`,data),
+    updatePageWidget : (id, data) => service.put(`/pages/widgets/${id}`,data) ,
+    delPageWidget : (id) => service.delete(`/pages/widgets/${id}`),
+
+
 }

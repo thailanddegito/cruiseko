@@ -1,6 +1,6 @@
 const { Product,sequelize,PriceDate,
   CompanyType,ProductBoat,Booking,BookingDetail,
-  BookingBoat,BookingAddress,User,
+  BookingBoat,BookingAddress,User,ProductAddon,BookingAddon,
   PriceCompanyType,PriceDateDetail, Boat, BoatCategory} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
@@ -12,7 +12,7 @@ const {calPackagePrice,calDuration} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25} = req.query
+  var {page=1,limit=25,orderby ,op} = req.query
   try{
     var where = {}
     var options = {where/* ,logging:console.log */}
@@ -42,9 +42,14 @@ exports.getOne = async(req,res,next)=>{
     const boat_inc = [
       {model : Boat ,include : [BoatCategory]}
     ]
+    const addon_inc = [
+      {model : ProductAddon ,as :'addon'}
+    ]
     const include = [
       {model : BookingDetail ,include : detail_inc},
-      {model : BookingBoat ,include : boat_inc}
+      {model : BookingBoat ,include : boat_inc},
+      {model : BookingAddon ,include : addon_inc},
+      {model : User}
     ]
 
     const booking = await Booking.findOne({where : {id},include})
@@ -58,7 +63,7 @@ exports.getOne = async(req,res,next)=>{
 exports.create = async(req,res,next)=>{
   var data = req.body;
   var {product_id,adult,children,date} = data;
-  var {user_firstname,user_lastname,user_email,user_phone} = data;
+  var {user_firstname,user_lastname,user_email,user_phone,addons} = data;
   var {address,district,city,province,country,post_code} = data;
   var {start_time,end_time} = data;
   const _user = req.user;
@@ -139,15 +144,27 @@ exports.create = async(req,res,next)=>{
       throw new DefaultError(errors.INVALID_INPUT);
     }
 
+
+    var total_price_addons = 0;
+    var addons_dt ;
+    if(addons && addons.length){
+      addons_dt = await ProductAddon.findAll({where : {id : addons.map(val => val.id) },raw:true})
+      total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*(adult+children)  , 0)
+      
+    }
     
+    
+    var net_price = price + total_price_addons;
 
     // const boats = await Boat.findAll({where : {boat_id : products_boats.map(val=> val.boat_id) }})
 
     
+    const booking_id = await tools.genBookingId()
 
     transaction = await sequelize.transaction()
 
     var booking_data = {
+      id : booking_id,
       adult,
       children,
       total_person : parseInt(adult) + parseInt(children),
@@ -157,7 +174,8 @@ exports.create = async(req,res,next)=>{
       user_lastname,
       user_email,
       user_phone,
-      net_price : price,
+      net_price ,
+      addon_price : total_price_addons,
       payment_status : 1,
       start_date : rental_start,
       end_date : rental_end,
@@ -186,7 +204,22 @@ exports.create = async(req,res,next)=>{
       amount : boat_amt
 
     }
+    var booking_addons;
+    
+
+
     await BookingDetail.create(booking_detail,{transaction})
+    if(addons_dt.length){
+      var booking_addons = addons_dt.map(val => {
+        return {...val,id : null,product_id,booking_id : booking.id,addon_id : val.id}
+      })
+      // console.log('booking_addons',booking_addons)
+      await BookingAddon.bulkCreate(booking_addons,{transaction})
+
+    }
+
+    // throw new Error()
+    
 
     await transaction.commit()
     res.json({success : true,booking : {...booking.toJSON(),name : product.name}})

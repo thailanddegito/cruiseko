@@ -44,13 +44,19 @@ const models = {
     BookingDetail : require('./booking/booking_detail.model')(sequelize,Sequelize),
     BookingAddress : require('./booking/booking_address.model')(sequelize,Sequelize),
     BookingBoat : require('./booking/booking_boat.model')(sequelize,Sequelize),
+    BookingAddon : require('./booking/booking_addon.model')(sequelize,Sequelize),
 
     Location : require('./location/location.model')(sequelize,Sequelize),
+
+    ProductAddon : require('./products/products_addon.model')(sequelize,Sequelize),
 
     PaypalHist :require('./booking/paypal_hist.model')(sequelize,Sequelize),
 
     BlogCategory : require('./blog/blog_category.model')(sequelize,Sequelize),
     Blog : require('./blog/blog.model')(sequelize,Sequelize),
+
+    Page : require('./pages/pages.model')(sequelize,Sequelize),
+    PageWidget : require('./pages/pages_widgets.model')(sequelize,Sequelize),
     
 }
 

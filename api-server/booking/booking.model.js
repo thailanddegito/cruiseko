@@ -1,9 +1,9 @@
 module.exports = (sequelize, type) => {
   var Booking  = sequelize.define('booking', {
     id : {
-      type: type.INTEGER,
+      type: type.STRING,
       primaryKey: true,
-      autoIncrement: true
+      // autoIncrement: true
     },
     // product_id : {
     //   type: type.INTEGER,
@@ -40,6 +40,11 @@ module.exports = (sequelize, type) => {
       allowNull : false,
       defaultValue : 0
     },
+    addon_price : {
+      type : type.DECIMAL(18,2),
+      allowNull : false,
+      defaultValue : 0
+    },
     duration : {
       type : type.INTEGER,
       allowNull : false,
@@ -62,6 +67,7 @@ module.exports = (sequelize, type) => {
   Booking.associate = function(models) {
     Booking.hasMany(models.BookingBoat,{foreignKey : 'booking_id',constraints: false})
     Booking.hasMany(models.BookingDetail,{foreignKey : 'booking_id',constraints: false})
+    Booking.hasMany(models.BookingAddon,{foreignKey : 'booking_id',constraints: false})
     Booking.hasOne(models.BookingAddress,{foreignKey : 'booking_id',constraints: false})
     Booking.belongsTo(models.User,{foreignKey : 'user_id',constraints: false})
   };

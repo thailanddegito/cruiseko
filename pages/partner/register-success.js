@@ -7,13 +7,20 @@ const RegisterSuccess = (props) => {
   return (
     <Layout loading={loading} title="Register Success" page={'partner_register_success'} banner={false}>
       <div className="container start-content">
-        <div className="row">
-          <div className="col-12">
-            <div className="text-center">
-              <h4>Register Success</h4>
+        <aside className="main-content border-r8px">
+          <div className="row py-5">
+            <div className="col-12">
+              <div className="text-center">
+                <img src="/icon/success.svg" style={{'width': '64px'}} />
+              </div>
+            </div>
+            <div className="col-12 mt-3">
+              <div className="text-center">
+                <h4>Register Success</h4>
+              </div>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
       <div className="end-content"></div>
     </Layout>
