@@ -44,7 +44,7 @@ const Home = (props) => {
     fecthBlog();
   }, [])
 
-  console.log(pages);
+  console.log(props);
 
 
   return (
@@ -127,11 +127,18 @@ const Home = (props) => {
   )
 }
 Home.getInitialProps = async ({query}) => {
-  const [pages_res] = await Promise.all([
-    api.getPageOne('home'),
-  ])
-  const pages = pages_res.data
-  return {query,pages}
+  var pages ,error ;
+  try{
+    const [pages_res] = await Promise.all([
+      api.getPageOne('home'),
+    ])
+    pages = pages_res.data
+  }
+  catch(err){
+    error = err;
+  }
+  
+  return {query,pages,error}
 }
 export default Home
 
