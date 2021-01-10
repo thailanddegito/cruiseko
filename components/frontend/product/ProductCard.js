@@ -1,5 +1,5 @@
 
-import React,{useContext} from 'react';
+import React,{useContext, useEffect} from 'react';
 import Link from 'next/link';
 import UserContext from '../../../contexts/UserContext';
 import {calPackagePriceCard} from '../../../utils/packageHelper'
@@ -11,9 +11,49 @@ const ProductCard = (props) => {
   // console.log('pkg',packages)
   // console.log('price',calPackagePriceCard(packages,user))
   
-  const {price,unit} = calPackagePriceCard(packages,user)
+  const {price,unit} = calPackagePriceCard(packages,user);
 
-  // console.log(packages);
+  console.log(packages);
+
+  const calculate = (startTime, endTime) => {
+    var total_time = '';
+    var time1 = startTime.split(':'), 
+    time2 = endTime.split(':');
+    var hours1 = parseInt(time1[0], 10),
+    hours2 = parseInt(time2[0], 10),
+    
+    mins1 = parseInt(time1[1], 10),
+    mins2 = parseInt(time2[1], 10);
+    var hours = hours2 - hours1, mins = 0;
+    if (hours < 0) hours = 24 + hours;
+    if (mins2 >= mins1) {
+        mins = mins2 - mins1;
+    }
+    else {
+        mins = (mins2 + 60) - mins1;
+        hours--;
+    }
+
+    console.log('hours', hours);
+    console.log('mins', mins);
+    mins = mins / 60; // take percentage in 60
+    hours += mins;
+    hours = hours.toFixed(2);
+    total_time = hours;
+    return total_time;
+  }
+
+  var totalHours = '';
+
+  if(packages){
+    var startTime = packages.start_time;
+    var endTime = packages.end_time;
+    totalHours = calculate(startTime, endTime);
+  }
+ 
+
+  console.log(totalHours);
+
   return (
     packages ? (
       <>
