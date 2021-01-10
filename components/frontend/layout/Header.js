@@ -9,11 +9,13 @@ const Header = (props) => {
   const {loading, banner = true} = props;
   const { user, fetchUser } = useContext(UserContext);
   const [showLogin, setShowLogin] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   const handleLogout = () => {
     AuthService.logout();
     window.location = "/";
   }
+  
 
   return (
     <>
@@ -24,23 +26,12 @@ const Header = (props) => {
             <a>
               <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_normal" />
               <img src="/icon/logo.svg" width="150" height="36" alt="" className="logo_sticky" />
-              {/* <img src="/template/img/logo.svg" width="150" height="36" alt="" className="logo_normal" />
-              <img src="/template/img/logo_sticky.svg" width="150" height="36" alt="" className="logo_sticky" /> */}
             </a>
           </Link>
         </div>
-        <ul id="top_menu">
-          {
-            !user ? (
-              <>
-              {/* <li><a href="#" className="cart-menu-btn d-none" title="Cart"><strong>4</strong></a></li>
-              <li><a href="#" className="login" title="Sign In" onClick={() => setShowLogin(true)}>Sign In</a></li> */}
-              </>
-            ) : null 
-          }
-        </ul>
-        <a href="#menu" className="btn_mobile">
-          <div className="hamburger hamburger--spin" id="hamburger">
+        
+        <a className="btn_mobile" onClick={() => setToggle(!toggle)}>
+          <div className="hamburger hamburger--spin">
             <div className="hamburger-box">
               <div className="hamburger-inner"></div>
             </div>
@@ -48,7 +39,6 @@ const Header = (props) => {
         </a>
         <nav id="menu" className="main-menu">
           <ul>
-            <li className="d-block d-lg-none"><span><Link href="/"><a>Home</a></Link></span></li>
             {
               !!!user ? (
                 <>
@@ -67,6 +57,36 @@ const Header = (props) => {
           </ul>
         </nav>
 
+        {
+          !!toggle && (
+            <div className="nav-mobile">
+              <div className="nav-menu">
+                <div className="mm-navbar"><a className="mm-title">MENU</a></div>
+              </div>
+              <ul className="mm-listview">
+                <li><span><Link href="/"><a>Home</a></Link></span></li>
+                {
+                  !!!user ? (
+                    <>
+                      <li><span><Link href="/partner/login"><a>Pathner Login</a></Link></span></li>
+                      <li><span><a className="a-click" onClick={() => setShowLogin(true)}>Login</a></span></li>
+                    </>
+                  ) : (
+                    <>
+                      <li><span><a href="#" onClick={() => handleLogout()}>Logout</a></span></li>
+                    </>
+                  ) 
+                }
+              </ul>
+              <div className={`hamburger hamburger--spin is-active`} onClick={() => setToggle(!toggle)}>
+                <div className="hamburger-box">
+                  <div className="hamburger-inner"></div>
+                </div>
+              </div>
+            </div>
+          )
+        }
+        
         <LoginModal show={showLogin}
           size="md" onHide={() => setShowLogin(false)}/>
         

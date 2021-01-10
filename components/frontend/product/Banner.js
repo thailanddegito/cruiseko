@@ -14,6 +14,14 @@ const Banner = (props) => {
             </div>
           </div>
         </section>
+        <style jsx>
+          {`
+            .hero_single.version_2:before {
+              background: url(${data.banner ? data.banner : '../img/home_section_1.jpg'}) center center no-repeat;
+              background-size: cover;
+            }
+          `}
+        </style>
       </>
     ) : null
   )

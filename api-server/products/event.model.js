@@ -12,7 +12,7 @@ module.exports = (sequelize, type) => {
     time_title : type.STRING,
     time : type.STRING,
     title : type.STRING,
-    description : type.STRING,
+    description : type.TEXT,
     image : type.STRING,
     boat_id : type.INTEGER,
     

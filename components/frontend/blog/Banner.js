@@ -13,6 +13,17 @@ const Banner = (props) => {
             </div>
           </div>
         </section>
+        <style jsx>
+          {`
+            .hero_in.general:before {
+              background: url(${data.banner ? data.banner : '../img/hero_in_bg_2.jpg'}) center center no-repeat;
+              -webkit-background-size: cover;
+              -moz-background-size: cover;
+              -o-background-size: cover;
+              background-size: cover;
+            }
+          `}
+        </style>
       </>
     ) : null
   )

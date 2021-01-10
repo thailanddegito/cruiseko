@@ -8,8 +8,12 @@ import ProductCardLandscape from '../components/frontend/product/ProductCardLand
 import SearchPackage from '../components/frontend/product/SearchPackage';
 import { toDateISO } from '../utils/tools';
 import Router, {useRouter } from 'next/router';
+import Link from 'next/link'
+import Head from 'next/head'
+import MainWidget from '../components/frontend/page/MainWidget'
 
-const SearchPackageIndex = ({query}) => {
+
+const SearchPackageIndex = ({query, pages}) => {
   const [loading, setLodding] = useState(false);
   const [packages, setPackage] = useState();
   const [showGrid, setShowGrid] = useState(1);
@@ -84,11 +88,32 @@ const SearchPackageIndex = ({query}) => {
   // console.log(packages);
 
   return (
-    <Layout loading={loading} title="Search Package" page={'search_package'}>
+    <Layout loading={loading} title={pages ? pages?.title : "Search Package" } page={'search_package'}>
+      {
+        !!pages && (
+          <Head>
+            <meta name="description" content={pages.description || ''} />
+            <meta name="keywords" content={pages.keyword || ''} />
+
+            <meta property="og:type" content="website" /> 
+            <meta property="og:title" content={pages.title || ''} /> 
+            <meta property="og:description" content={pages.description || ''} /> 
+            <meta property="og:image" content={pages.image} /> 
+            <meta property="og:url" content={`https://www.cruiseko.com`} /> 
+            <meta property="og:site_name" content="Cruiseko" /> 
+
+            <meta name="twitter:image" content={pages.image} /> 
+            <meta name="twitter:title" content={pages.title || ''} /> 
+            <meta name="twitter:description" content={pages.description || ''} /> 
+            <meta name="twitter:site" content="Cruiseko" /> 
+            <meta name="twitter:creator" content="Cruiseko" /> 
+          </Head>
+        )
+      }
       <aside className="main-content">
 				<main>
 					<div>
-            <Banner data={true} />
+            <Banner data={pages ? pages : null} />
 					</div>
           <div>
             <ProductFilter setShowGrid={setShowGrid} showGrid={showGrid} />
@@ -128,6 +153,14 @@ const SearchPackageIndex = ({query}) => {
               )
             }
           </div>
+          {
+            pages && (pages.pages_widgets && pages.pages_widgets.length > 0) ? (
+              <div className="container show-widget">
+                <MainWidget data={pages.pages_widgets} />
+              </div>
+            ) :  null
+          }
+          
 				</main>
 			</aside>
       <div className="end-content"></div>
@@ -135,7 +168,18 @@ const SearchPackageIndex = ({query}) => {
   )
 }
 
-SearchPackageIndex.getInitialProps = ({query}) => {
-  return {query}; //has to be like an object
+SearchPackageIndex.getInitialProps = async ({query}) => {
+  var pages ,error ;
+  try{
+    const [pages_res] = await Promise.all([
+      api.getPageOne('package'),
+    ])
+    pages = pages_res.data
+  }
+  catch(err){
+    error = err;
+  }
+  
+  return {query,pages,error}
 }
 export default SearchPackageIndex
