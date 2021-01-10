@@ -6,8 +6,12 @@ import Layout from '../components/frontend/layout/Layout';
 import api from '../utils/api';
 import Router from 'next/router';
 import Paginate from 'react-paginate';
+import Link from 'next/link'
+import Head from 'next/head'
+import MainWidget from '../components/frontend/page/MainWidget'
 
-const Blog = ({query}) => {
+
+const Blog = ({query, pages}) => {
   const [loading, setLodding] = useState(false);
   const [blogs, setBlog] = useState();
   const [news, setNews] = useState();
@@ -71,11 +75,32 @@ const Blog = ({query}) => {
 
 
   return (
-    <Layout loading={loading} title="Home" page={'home'}>
+    <Layout loading={loading} title={pages ? pages?.title : "Blog" } page={'Blog'}>
+      {
+        !!pages && (
+          <Head>
+            <meta name="description" content={pages.description || ''} />
+            <meta name="keywords" content={pages.keyword || ''} />
+
+            <meta property="og:type" content="website" /> 
+            <meta property="og:title" content={pages.title || ''} /> 
+            <meta property="og:description" content={pages.description || ''} /> 
+            <meta property="og:image" content={pages.image} /> 
+            <meta property="og:url" content={`https://www.cruiseko.com`} /> 
+            <meta property="og:site_name" content="Cruiseko" /> 
+
+            <meta name="twitter:image" content={pages.image} /> 
+            <meta name="twitter:title" content={pages.title || ''} /> 
+            <meta name="twitter:description" content={pages.description || ''} /> 
+            <meta name="twitter:site" content="Cruiseko" /> 
+            <meta name="twitter:creator" content="Cruiseko" /> 
+          </Head>
+        )
+      }
       <aside className="main-content">
 				<main>
 					<div>
-            <Banner data={true} />
+            <Banner data={pages ? pages : null} />
 					</div>
 
          
@@ -116,6 +141,14 @@ const Blog = ({query}) => {
             </div>
           </div>
 
+          {
+            pages && (pages.pages_widgets && pages.pages_widgets.length > 0) ? (
+              <div className="container show-widget">
+                <MainWidget data={pages.pages_widgets} />
+              </div>
+            ) :  null
+          }
+
 
 				</main>
 			</aside>
@@ -124,8 +157,19 @@ const Blog = ({query}) => {
   )
 }
 
-Blog.getInitialProps = ({query}) => {
-  return {query}; //has to be like an object
+
+Blog.getInitialProps = async ({query}) => {
+  var pages ,error ;
+  try{
+    const [pages_res] = await Promise.all([
+      api.getPageOne('blog'),
+    ])
+    pages = pages_res.data
+  }
+  catch(err){
+    error = err;
+  }
+  
+  return {query,pages,error}
 }
 export default Blog
-
