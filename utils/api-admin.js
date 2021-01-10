@@ -107,7 +107,7 @@ export default {
     delPackage : (id) => service.delete(`/products/${id}`),
    
     //Duplicate Package
-    dupPackage : (data) => service.post(`/products/duplicate`),
+    dupPackage : (data) => service.post(`/products/duplicate`, data),
 
 
     //Bookings
