@@ -282,11 +282,13 @@ exports.update = async(req,res,next)=>{
         ...data,
         equal_draft : 1,
         publish_status : 1,
+        id : null
       }
       data.equal_draft = 1;
       // data.publish_status = 1;
       if(!pkg_live){
-        pkg_live = await createProduct({isDraft:false,prep,price_date_list,transaction,draft_ref:id})
+        pkg_live = await createProduct({isDraft:false,data : prep,price_date_list,transaction,draft_ref:id})
+        // console.log('prep',prep)
       }
       else {
         // console.log('ttttt')
@@ -317,6 +319,8 @@ exports.update = async(req,res,next)=>{
 
     await Product.update(data,{where : {id},transaction})
     await transaction.commit()
+
+    // throw new Error();
     res.json({success:true})
   }
   catch(err){
