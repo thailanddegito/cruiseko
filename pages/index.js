@@ -77,7 +77,12 @@ const Home = (props) => {
 					<div>
             <Banner data={pages ? pages : null} />
 					</div>
-					<div className="container">
+					<div className="container margin_80_55">
+            <div className="main_title_2">
+              <span><em></em></span>
+              <h3>Our Popular Tours</h3>
+              <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            </div>
             <div className="wrapper-grid">
               <div className="row">
                 {
