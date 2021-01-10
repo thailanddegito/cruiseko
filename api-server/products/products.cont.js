@@ -379,6 +379,26 @@ exports.delete = async(req,res,next)=>{
   }
 }
 
+
+
+exports.duplicateProduct = async(req,res,next)=>{
+  var {product_id} = req.body;
+  var transaction;
+  try{
+    if(!product_id){
+      throw new DefaultError(errors.FILEDS_INCOMPLETE);
+    }
+    transaction = await sequelize.transaction()
+    await copyProduct({draft_id:product_id,isNew:true,transaction})
+    await transaction.commit()
+    res.json({success:true})
+  }
+  catch(err){
+    next(err);
+    if(transaction) await transaction.rollback()
+  }
+}
+
 async function handleProductImages (files){
   var images_urls = []
   if(files.images){
@@ -564,7 +584,7 @@ async function copyPriceProduct(product_id,price_dates,transaction){
 }
 
 
-async function copyProduct({draft_id,transaction}){
+async function copyProduct({draft_id,isNew=false,transaction}){
   const draft = await getOneProduct(draft_id,transaction)
   const {products_images,price_dates,products_boats} = draft;
   var {events,products_addons} = draft
@@ -573,7 +593,17 @@ async function copyProduct({draft_id,transaction}){
   var boat_id = products_boats.map(val => val.boat_id)
   var data = {...draft.toJSON(),id:null,draft_ref : draft_id,equal_draft:1,boat_id}
 
-  const new_product =  await createProduct({isDraft:false,data,transaction,draft_ref:draft_id})
+  if(isNew){
+    data.name = '(COPY) '+data.name;
+    data.draft_ref = null;
+    data.duplicate_ref = draft_id;
+    data.equal_draft = 0;
+    data.publish_status = 0;
+    data.createdAt = null;
+    data.updatedAt = null;
+  }
+
+  const new_product =  await createProduct({isDraft:isNew,data,transaction,draft_ref: !isNew ? draft_id : null})
   const product_id = new_product.id
   var task = [];
   if(products_images.length)
@@ -582,14 +612,16 @@ async function copyProduct({draft_id,transaction}){
   await Promise.all(task)
   await copyPriceProduct(product_id,price_dates,transaction)
   await createEvents(events,product_id,null,transaction)
+  await createAddons(products_addons,product_id,transaction)
 }
 
 async function equalizeProduct({draft_id,live_id,transaction}){
   const product_id = live_id;
   const draft = await getOneProduct(draft_id,transaction)
   const {products_images,price_dates} = draft;
-  var {events,products_boats} = draft
+  var {events,products_boats,products_addons} = draft
   events = events.map(val => val.toJSON())
+  products_addons = products_addons.map(val => val.toJSON())
   products_boats = products_boats.map(val => ({...val.toJSON(),product_id}))
   var draft_images = products_images.map(val => ({...val.toJSON(),product_id : live_id,id:null}) )
   // console.log(price_dates)
@@ -610,6 +642,7 @@ async function equalizeProduct({draft_id,live_id,transaction}){
   await Promise.all(task)
   await copyPriceProduct(product_id,price_dates,transaction)
   await createEvents(events,live_id,null,transaction)
+  await createAddons(products_addons,product_id,transaction)
   await ProductBoat.bulkCreate(products_boats,{transaction})
 }
 exports.getOneProduct = getOneProduct;

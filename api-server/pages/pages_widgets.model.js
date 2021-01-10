@@ -14,6 +14,8 @@ module.exports = (sequelize, type) => {
       image2 : type.STRING,
       alt1 : type.STRING,
       alt2 : type.STRING,
+      link1 : type.STRING,
+      link2 : type.STRING,
       order : type.INTEGER,
     //   price : type.DECIMAL(18,2)
     },
