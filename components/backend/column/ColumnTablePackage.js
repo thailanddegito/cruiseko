@@ -5,7 +5,7 @@ import {toDateISO} from '../../../utils/tools'
 import Switch from '../../widget/Switch'
 
 const ColumsBody = (props) => {
-  const {delData, handleFunction, dupData} = props;
+  const {delData, handleFunction, duplicateData} = props;
 
   const columns = [
     {
@@ -65,7 +65,7 @@ const ColumsBody = (props) => {
         <span>
           <ul className="buttons manage">
             <li>
-              <button className="a-manage info w-100px" onClick={() => dupData(row.id)}><i className="fa fa-fw fa-copy"></i> <span>Duplicate</span></button>
+              <button className="a-manage info w-100px" onClick={() => duplicateData(row.id)}><i className="fa fa-fw fa-copy"></i> <span>Duplicate</span></button>
             </li>
             <li>
               <Link href="/backend/package/edit/[id]" as={`/backend/package/edit/${row.id}`}>

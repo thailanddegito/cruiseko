@@ -3,7 +3,7 @@ import Link from 'next/link'
 import api from '../../../utils/api-admin'
 import ModalConfirmDialog from '../../widget/ModalConfirmDialog';
 import SuccessDialog from '../../../components/widget/ModalSuccessDialog';
-import ModalDup from '../../widget/ModalConfirmDialog';
+import ModalDuplicate from '../../widget/ModalConfirmDialog';
 
 import DataTable from 'react-data-table-component'
 import SubHeaderComponent from './SubHeaderComponent'
@@ -12,7 +12,7 @@ import ColumnTable from '../column/ColumnTablePackage'
 
 const TablePackage = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
-  const [modalDup, setModalDup] = useState(false);
+  const [modalDuplicate, setModalDuplicate] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const [packages, setPackage] = useState();
@@ -39,9 +39,9 @@ const TablePackage = (props) => {
     setModalConfirm(true);
   }
 
-  const dupData = (id) => {
+  const duplicateData = (id) => {
     setrefID(id);
-    setModalDup(true);
+    setModalDuplicate(true);
   }
 
   const onConfirm = ()=>{
@@ -59,11 +59,12 @@ const TablePackage = (props) => {
 
   const onConfirmDuplicate = ()=>{
     if(!ref_id) return;
-    api.dupPackage(ref_id)
+    var data = {product_id : ref_id}
+    api.dupPackage(data)
     .then(res=>{
       const data = res.data;
       fecthPackage();
-      setModalDup(false);
+      setModalDuplicate(false);
     })
     .catch(err => {
       console.log(err.response);
@@ -91,7 +92,7 @@ const TablePackage = (props) => {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const filteredItems = packages ? packages.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
-  const columns = ColumnTable({delData, handleFunction, dupData});
+  const columns = ColumnTable({delData, handleFunction, duplicateData});
 
 
   return (
@@ -121,13 +122,13 @@ const TablePackage = (props) => {
           ref_id={ref_id}
           onHide={() => setModalConfirm(false)} />
 
-      <ModalDup show={modalDup}
+      <ModalDuplicate show={modalDuplicate}
         text={`Do you confirm to duplicate this ?`}
         size="md" 
         cancel_btn={true}
         onConfirm={() => onConfirmDuplicate()}
         ref_id={ref_id}
-        onHide={() => setModalDup(false)} />
+        onHide={() => setModalDuplicate(false)} />
 
       <SuccessDialog show={modalSuccess}
         text="Successfully saved data !!!"
