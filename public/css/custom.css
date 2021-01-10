@@ -532,6 +532,12 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   height: 110px !important;
   object-fit: cover !important; 
 }
+.cbp_tmtimeline > li .cbp_tmicon {
+  line-height: 45px !important;
+}
+.magnific-gallery {
+  text-align: left !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;
