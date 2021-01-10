@@ -25,22 +25,22 @@ const BillingAddress = (props) => {
             </div>
             <div className="col-sm-6">
               <div className="form-group">
-                <label>Street</label>
-                <input type="text" id="street" name="street" className="form-control" />
+                <label>Sub District</label>
+                <input type="text" id="sub_district" name="sub_district" className="form-control" />
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-6 col-sm-12">
               <div className="form-group">
-                <label>City</label>
-                <input type="text" id="city_booking" name="city_booking" className="form-control" />
+                <label>District</label>
+                <input type="text" id="district" name="district" className="form-control" />
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="form-group">
-                <label>State</label>
-                <input type="text" id="state_booking" name="state_booking" className="form-control" />
+                <label>Province</label>
+                <input type="text" id="province" name="province" className="form-control" />
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
