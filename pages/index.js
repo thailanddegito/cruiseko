@@ -45,6 +45,7 @@ const Home = (props) => {
   }, [])
 
   console.log(props);
+  console.log('url',process.env.URL)
 
 
   return (
