@@ -1,7 +1,7 @@
 const fs = require('fs')
 const DB = require('../db')
 const { Op ,QueryTypes} = require('sequelize');
-const base_domain = process.env.HOST
+const base_domain = process.env.URL
 
 
 module.exports = {

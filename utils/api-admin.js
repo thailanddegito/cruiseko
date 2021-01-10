@@ -1,6 +1,6 @@
 import axios from 'axios'
 import AuthService from './AdminAuthService'
-const BASE = `${process.env.HOST}/api`; 
+const BASE = `${process.env.URL}/api`; 
 const service = axios.create({baseURL : '/api' })
 
 // axios.interceptors.response.use((response) => {
