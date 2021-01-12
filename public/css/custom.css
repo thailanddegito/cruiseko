@@ -556,6 +556,17 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   color: #fff !important;
   line-height: 38px !important;
 }
+a.btn_1, .btn_1 {
+  background-color: #1B75BB !important;
+  color: #fff !important;
+}
+a.btn_1:hover, .btn_1:hover {
+  background-color: #114B78 !important;
+  color: #fff !important;
+}
+.main_title_2 span em {
+  background-color: #1B75BB !important;
+}
 @media only screen and (min-width: 992px) {
   header .main-menu {
     top: 8px;

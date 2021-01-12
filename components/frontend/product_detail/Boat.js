@@ -20,7 +20,8 @@ const Boat = (props) => {
       <div className="pb-4">
         <h2>Boat</h2>
         <div><strong>Boat Name : </strong>{data.boat.name}</div>
-        <div><strong>Description : </strong>{data.boat.description}</div>
+        <div><strong>Description : </strong></div>
+        <div className="" dangerouslySetInnerHTML={{ __html: ((!data.boat.description || data.boat.description == 'undefined') ? '' : data.boat.description) }} /><div></div>
         <div className="grid mt-3">
 				  <ul className="magnific-gallery">
             <li onClick={() => closeLightbox(data.picture)}>
