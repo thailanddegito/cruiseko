@@ -35,6 +35,9 @@
   font-size: 36px;
   margin-left: 50px;
 }
+.nice-select .list {
+  z-index: 99;
+}
 @media (max-width : 991px) {
   header {
     padding: 15px 15px 5px 15px !important;

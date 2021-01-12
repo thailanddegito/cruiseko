@@ -120,13 +120,13 @@ const SearchPackage = (props) => {
         setOptionVal={setOptionVal} option_val={option_val}
         setOpen={setOpen} open={open}
         setType={setType} />
-        <div className={charter ? "col-lg-12 col-select": "col-lg-3"}>
+        <div className={`mb-lg-0 mb-3 ${charter ? "col-lg-12 col-select": "col-lg-3"}`}>
           <div className="form-group mb-0">
             <input className="form-control mb-0" type="text" name="dates" defaultValue={date_show} placeholder="When.." autoComplete="off" required />
             <i className="icon_calendar"></i>
           </div>
         </div>
-        <div className={charter ? "col-lg-12 col-select": "col-lg-3"}>
+        <div className={`mb-lg-0 mb-3 ${charter ? "col-lg-12 col-select": "col-lg-3"}`}>
           <SelectAmount active={active} setActive={setActive} handleButton={handleButton} state={state} />
         </div>
         <div className={charter ? "col-lg-12": "col-lg-3"}>
