@@ -34,7 +34,7 @@ const ProductDetail = (props) => {
   }, [props.query.id])
   
 	
-	console.log(packages);
+	console.log('packages', packages);
   
   return (
     <Layout loading={loading} title={packages && packages.meta_title ? packages.meta_title : packages.name} page={'product_details'}>
