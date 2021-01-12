@@ -7,6 +7,7 @@ import MainEvent from './MainEvent';
 import Review from './Review';
 import Price from './Price';
 import Remark from './Remark';
+import Boat from './Boat';
 import {toDateISO} from '../../../utils/tools'
 import {calPackagePrice,calDuration} from '../../../utils/packageHelper'
 import UserContext from '../../../contexts/UserContext';
@@ -102,6 +103,12 @@ const Detail = (props) => {
 
                 <ImageGallery packages={packages} />
                 <MainEvent packages={packages} />
+                {
+                  packages ? (
+                    <Boat data={packages.products_boats[0]} />
+                  ) : null
+                }
+
                 <Remark data={packages?.remark} />
               </section>
               {/* <section id="reviews">

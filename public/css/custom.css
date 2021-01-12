@@ -534,6 +534,7 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 }
 .cbp_tmtimeline > li .cbp_tmicon {
   line-height: 45px !important;
+  color: #1B75BB !important;
 }
 .magnific-gallery {
   text-align: left !important;
@@ -541,6 +542,19 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
 .font-24px {
   font-size: 24px;
   font-weight: 500;
+}
+.custom-search-input-2 input[type='submit'] {
+  background-color: #1B75BB !important;
+  color: #fff !important;
+}
+.custom-search-input-2 input[type='submit']:hover {
+  background-color: #114B78 !important;
+  color: #fff !important;
+}
+.form_title h3 strong {
+  background-color: #1B75BB !important;
+  color: #fff !important;
+  line-height: 38px !important;
 }
 @media only screen and (min-width: 992px) {
   header .main-menu {
