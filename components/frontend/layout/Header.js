@@ -24,8 +24,8 @@ const Header = (props) => {
         <div id="logo">
           <Link href="/">
             <a>
-              <img src="/icon/logo_n_w.png" width="150" height="48" alt="" className="logo_normal" />
-              <img src="/icon/logo_n.png" width="150" height="48" alt="" className="logo_sticky" />
+              <img src="/icon/logo_n_w.png" height="48" alt="" className="logo_normal" />
+              <img src="/icon/logo_n.png" height="48" alt="" className="logo_sticky" />
             </a>
           </Link>
         </div>

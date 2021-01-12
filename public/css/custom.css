@@ -583,4 +583,7 @@ button.social_bt.facebook:before, a.social_bt.google:before, a.social_bt.linkedi
   .container, .container-sm {
     max-width: 100%;
   }
+  img.img-fluid {
+    width: 100%;
+  }
 }

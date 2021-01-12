@@ -33,7 +33,7 @@ const SelectStyle = (props) => {
             )) : null
           }
         </select>
-        <div className={`nice-select wide ${open ? 'open' : ''} mb-0`} tabIndex="0">
+        <div className={`nice-select wide ${open ? 'open' : ''} mb-lg-0 mb-3`} tabIndex="0">
           <span className="current">{textOptions}</span>
           <ul className="list">
             {
