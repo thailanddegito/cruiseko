@@ -314,8 +314,9 @@ button.ril-prev-button.ril__navButtons.ril__navButtonPrev:hover, button.ril-next
   max-width: 185px;
   max-height: 120px;
 }
-figure:hover .caption-content i, figure:hover .caption-content  p{
+figure:hover .caption-content i, figure:hover .caption-content p {
   color: #FFF;
+  margin-top: 16px;
 }
 .hero_single.version_2 {
   height: calc(100vh - 112px);

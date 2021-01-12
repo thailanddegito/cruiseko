@@ -31,7 +31,7 @@ const ImageGallery = (props) => {
                     <div className="caption-content">
                       <a title="Photo title" data-effect="mfp-zoom-in">
                         <i className="pe-7s-albums"></i>
-                        <p>Your caption</p>
+                        {/* <p>Your caption</p> */}
                       </a>
                     </div>
                   </figcaption>
