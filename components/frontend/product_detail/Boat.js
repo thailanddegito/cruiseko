@@ -24,9 +24,9 @@ const Boat = (props) => {
         <div className="" dangerouslySetInnerHTML={{ __html: ((!data.boat.description || data.boat.description == 'undefined') ? '' : data.boat.description) }} /><div></div>
         <div className="grid mt-3">
 				  <ul className="magnific-gallery">
-            <li onClick={() => closeLightbox(data.picture)}>
+            <li onClick={() => closeLightbox(data.boat.picture)}>
               <figure>
-                <img src={data.picture ? data.picture : "/template/img/gallery/large/pic_1.jpg"} alt="" />
+                <img src={data.boat.picture ? data.boat.picture : "/template/img/gallery/large/pic_1.jpg"} alt="" />
                 <figcaption>
                   <div className="caption-content">
                     <a title="Photo title" data-effect="mfp-zoom-in">
