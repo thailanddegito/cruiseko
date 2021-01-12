@@ -19,8 +19,8 @@ const Boat = (props) => {
       <>
       <div className="pb-4">
         <h2>Boat</h2>
-        <div>Boat Name : {data.boat.name}</div>
-        <div>Description : {data.boat.description}</div>
+        <div><strong>Boat Name : </strong>{data.boat.name}</div>
+        <div><strong>Description : </strong>{data.boat.description}</div>
         <div className="grid mt-3">
 				  <ul className="magnific-gallery">
             <li onClick={() => closeLightbox(data.picture)}>
