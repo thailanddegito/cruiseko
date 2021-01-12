@@ -565,3 +565,14 @@ span.nav-link-text {
 
   }
 }
+@media (max-width: 767px) {
+  #login aside, #register aside {
+    width: 100% !important;
+    padding: 30px !important;
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

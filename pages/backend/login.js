@@ -41,6 +41,9 @@ const Login = ({ t }) => {
       <Layout title="Login" page_name="Login" >
         <div className="container h-100" id="login">
           <aside className="main-content">
+            <div className="text-center mb-3">
+              <img src="/icon/logo_n.png" height="48" alt="" className="logo_sticky" />
+            </div>
             <form id="login-form" onSubmit={login}>
               <FormLogin error={error} />
             </form>
