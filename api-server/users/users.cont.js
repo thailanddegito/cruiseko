@@ -61,7 +61,12 @@ exports.getOne = async(req,res,next)=>{
     var {with_around} = req.query;
     try{
         // var options = {attributes: {exclude: ['password']}}
-        const user = await User.findOne({where :{id},attributes: {exclude: ['password']} })
+
+        const include = [
+            {model : CompanyType}
+        ]
+
+        const user = await User.findOne({where :{id},attributes: {exclude: ['password']},include })
 
         if(!user){
             throw new DefaultError(errors.NOT_FOUND);

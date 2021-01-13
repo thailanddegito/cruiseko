@@ -9,11 +9,13 @@ const mw = require('../middlewares/auth')
 router.get('/available-boat',booking.checkAvailableBoat)
 router.post('/paypal-apr',payment.paypalApprove)
 
-const protect_method_admin = ['get','delete']
-protect_method_admin.forEach(val => router[val]('/*',mw.jwt('admin')))
+router.use('/*',mw.jwt(['user','admin']))
 
-const protect_method = ['post']
-protect_method.forEach(val => router[val]('/*',mw.jwt('user')))
+// const protect_method_admin = ['get','delete']
+// protect_method_admin.forEach(val => router[val]('/*',mw.jwt('admin')))
+
+// const protect_method = ['post']
+// protect_method.forEach(val => router[val]('/*',mw.jwt('user')))
 
 
 

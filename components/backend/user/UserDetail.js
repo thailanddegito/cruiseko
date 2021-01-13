@@ -28,7 +28,12 @@ const UserDetail = (props) => {
       </div>
       <div className="row align-items-center mt-4">
         <div className="col-md-6 col-12">
-          <div><p className="mb-0"><span className="font-weight-bold">Compay Type :</span> {users.company_type == "agent" ? "Agents" : "Hotels"}</p></div>
+          <div><p className="mb-0"><span className="font-weight-bold">User ID :</span> {users.id}</p></div>
+        </div>
+      </div>
+      <div className="row align-items-center mt-2">
+        <div className="col-md-6 col-12">
+          <div><p className="mb-0"><span className="font-weight-bold">Compay Type :</span> {users.company_type?.name}</p></div>
         </div>
         <div className="col-md-6 col-12">
           <div><p className="mb-0"><span className="font-weight-bold">License NO. :</span> {users.license_no}</p></div>

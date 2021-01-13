@@ -587,6 +587,9 @@ a.btn_1:hover, .btn_1:hover {
     -webkit-line-clamp: unset;
     -webkit-box-orient: vertical;
   }
+  .custom-search-input-2 .select {
+    border-right: unset !important;
+  }
 }
 @media (max-width: 767px) {
   .main-layout {

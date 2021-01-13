@@ -62,6 +62,10 @@ function MyApp({ Component, pageProps }) {
     })
     .catch(err => {
       setAdmin({...admin,fetching: false})
+      if(err.response?.data.error === 'UnauthorizedError'){
+        AdminAuthService.logout()
+        window.location = '/backend/login'
+      }
       console.log(err)
       console.log(err.response)
     })

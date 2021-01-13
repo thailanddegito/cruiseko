@@ -57,6 +57,8 @@ const models = {
 
     Page : require('./pages/pages.model')(sequelize,Sequelize),
     PageWidget : require('./pages/pages_widgets.model')(sequelize,Sequelize),
+
+    Review : require('./review/review.model')(sequelize,Sequelize),
     
 }
 

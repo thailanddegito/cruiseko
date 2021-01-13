@@ -313,7 +313,7 @@ exports.delPermission = async(req,res,next)=>{
 
 function generateToken(user){
     // console.log('generating token user  :'+user.id);
-    return jwt.sign({ id: user.id, email: user.email,username : user.username,type:'admin'}, process.env.ADMIN_SECRET_KEY );
+    return jwt.sign({ id: user.id, email: user.email,username : user.username,type:'admin'}, process.env.USER_SECRET_KEY );
     //return token = jwt.sign({ id: user.id, email: user.email}, config.SECRET_KEY, { expiresIn: config.token_expire });
 }
 
