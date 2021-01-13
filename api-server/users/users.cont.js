@@ -66,7 +66,7 @@ exports.getOne = async(req,res,next)=>{
             {model : CompanyType}
         ]
 
-        const user = await User.findOne({where :{id},attributes: {exclude: ['password'],include} })
+        const user = await User.findOne({where :{id},attributes: {exclude: ['password']},include })
 
         if(!user){
             throw new DefaultError(errors.NOT_FOUND);
