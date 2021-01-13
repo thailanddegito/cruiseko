@@ -9,17 +9,20 @@ module.exports = (sequelize, type) => {
       type: type.STRING,
       allowNull : false
     },
+    user_id : {
+      type: type.STRING,
+      allowNull : false
+    },
     address : type.STRING,
+    sub_district : type.STRING,
     district : type.STRING,
-    city : type.STRING,
     province : type.STRING,
-    country : type.STRING,
-    post_code : type.STRING(20),
+    postal_code : type.STRING(20),
     
     
   },
   {
-      timestamps: false,
+      timestamps: true,
       freezeTableName: true
   })
 

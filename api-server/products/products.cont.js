@@ -1,10 +1,12 @@
 const { Product,ProductImage,sequelize,PriceDate,
   CompanyType,ProductBoat,Event,Location,
-  PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory,ProductAddon} = require('../db')
+  PriceCompanyType,PriceDateDetail, Boat, BoatCategory, ProductCategory,ProductAddon,Review} = require('../db')
 const tools = require('../helper/tools')
 const errors = require('../errors')
 const {DefaultError} = errors
 const {Op} = require('sequelize')
+
+const review_sql = '(select avg(rating) as rating from review where product_id = products.id and deleted = 0 and status = 1)'
 
 exports.getAll = async(req,res,next)=>{
   var {page,limit,is_draft=1,publish_status,is_boat,price_today=1} = req.query
@@ -85,6 +87,8 @@ exports.getAll = async(req,res,next)=>{
     const boat_include = [
       {model : Boat,required:true ,where : where_boat,/*  include : [{model : BoatCategory ,attributes :['cate_id'],where:where_cate,required:true}] */}
     ]
+
+    
     const include = [
       {model : PriceDate ,include :price_include,where : where_date,required:required_price },
       // {model : ProductImage , attributes:['id','image','type','order']},
@@ -92,16 +96,20 @@ exports.getAll = async(req,res,next)=>{
       {model : ProductBoat, include : boat_include,required:true },
       {model : ProductCategory},
       {model : Location , as :'pickup' },
-      
+      // {model : Review ,separate: true, attributes :  [[sequelize.fn('AVG', sequelize.col('rating')),'rating']]}
     ]
 
     // if(cate_id){
     //   include.push({model : ProductBoat, include : boat_include,required:true })
     // }
 
-    const attributes = {exclude : ['meta_title','meta_description','meta_keyword','meta_image']}
+    // console.log(Object.keys(Product.rawAttributes))
+    const attributes = {
+      include : [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating']],
+      exclude : ['meta_title','meta_description','meta_keyword','meta_image']
+    }
 
-    const products = await Product.findAndCountAll({...options,include,attributes,distinct:true})
+    const products = await Product.findAndCountAll({...options,include,attributes,distinct:true/* ,logging:console.log */})
     res.json(products)
   }
   catch(err){
@@ -127,12 +135,14 @@ exports.getOne = async(req,res,next)=>{
       {model : ProductCategory},
       {model : Location , as :'pickup' },
     ]
+
     var where = {id,deleted : 0}
     var order =  [
       [ProductImage, 'order', 'asc'],
       [PriceDate ,'start_date','asc']
     ]
-    const product = await Product.findOne({where,include,order})
+    const attributes = [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating']]
+    const product = await Product.findOne({where,include,order,attributes})
     res.json(product)
   }
   catch(err){

@@ -71,6 +71,7 @@ module.exports = (sequelize, type) => {
         Product.hasMany(models.Event,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.ProductBoat,{foreignKey : 'product_id',constraints: false})
         Product.hasMany(models.ProductAddon,{foreignKey : 'product_id',constraints: false})
+        Product.hasMany(models.Review,{foreignKey : 'product_id',constraints: false})
     };
     return Product
   }

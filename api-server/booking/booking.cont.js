@@ -12,10 +12,25 @@ const {calPackagePrice,calDuration} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25,orderby ,op} = req.query
+  var {page=1,limit=25,orderby ,op,user_id} = req.query
+  const user = req.user
   try{
     var where = {}
+
+
+    if(user_id){
+      if(user.id !== user_id ){
+        throw new DefaultError(errors.PERMISSION_ERROR);
+      }
+
+      where.user_id = user_id;
+    }
+
     var options = {where/* ,logging:console.log */}
+
+    
+
+
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
       
@@ -49,7 +64,8 @@ exports.getOne = async(req,res,next)=>{
       {model : BookingDetail ,include : detail_inc},
       {model : BookingBoat ,include : boat_inc},
       {model : BookingAddon ,include : addon_inc},
-      {model : User}
+      {model : User},
+      {model : BookingAddress}
     ]
 
     const booking = await Booking.findOne({where : {id},include})
@@ -64,7 +80,7 @@ exports.create = async(req,res,next)=>{
   var data = req.body;
   var {product_id,adult,children,date} = data;
   var {user_firstname,user_lastname,user_email,user_phone,addons} = data;
-  var {address,district,city,province,country,post_code} = data;
+  var {address,sub_district,district,province,postal_code} = data;
   var {start_time,end_time} = data;
   const _user = req.user;
   var transaction;
@@ -217,6 +233,17 @@ exports.create = async(req,res,next)=>{
       await BookingAddon.bulkCreate(booking_addons,{transaction})
 
     }
+    var address_data = {
+      booking_id : booking.id,
+      user_id : user.id,
+      address,
+      sub_district,
+      district,
+      province,
+      postal_code
+    }
+
+    await BookingAddress.create(address_data,{transaction})
 
     // throw new Error()
     

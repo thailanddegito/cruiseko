@@ -1,6 +1,8 @@
 const exjwt = require('express-jwt');
 var passport = require('passport');
 const FacebookTokenStrategy = require('passport-facebook-token');
+const errors = require('../errors')
+const {DefaultError} = errors
 
 passport.use(new FacebookTokenStrategy({
     clientID: process.env['FACEBOOK_CLIENT_ID'],
@@ -29,24 +31,31 @@ function tokenAdminFromHeader (req) {
 
 }
 
-exports.jwt = (user_type) =>{
-    switch (user_type) {
-        case 'user':
-            return exjwt({
-                secret: process.env.USER_SECRET_KEY,
-                getToken: tokenUserFromHeader,
-                algorithms: ['HS256']
-            });
-        case 'admin':
-            return exjwt({
-                secret: process.env.ADMIN_SECRET_KEY,
-                getToken: tokenUserFromHeader,
-                algorithms: ['HS256']
-            });
-    
-        default:
-            throw new Error('Invalid user type')
+exports.jwt = (roles) =>{
+    const m1=  exjwt({
+        secret: process.env.USER_SECRET_KEY,
+        getToken: tokenUserFromHeader,
+        algorithms: ['HS256']
+    })
+    const m2 = (req,res,next)=>{
+        if(!roles) return next();
+        let err = new DefaultError(errors.PERMISSION_ERROR);
+        // console.log(req.user.type,roles)
+        if(Array.isArray(roles)){
+            
+            if(!roles.includes(req.user.type)){
+                
+                return res.status(403).json(err).end(); 
+            }
+            
+        }
+        else if(req.user.type != roles){
+            // console.log(4,req.user.type,roles)
+            return res.status(403).json(err).end(); 
+        }
+        next();
     }
+    return [m1,m2];
 }
 
 exports.facebook = (req,res,next)=>{
