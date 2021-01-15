@@ -127,7 +127,7 @@ exports.checkCanReview = async(req,res,next)=>{
 async function checkCanReview({user_id,booking_id}){
   // const booking = await Booking.findOne({where : {user_id,booking_id}})
   const [booking,review] = await Promise.all([
-    Booking.findOne({where : {user_id,booking_id,payment_status : 2}}),
+    Booking.findOne({where : {user_id,id : booking_id,payment_status : 2}}),
     Review.findOne({where : {user_id,booking_id}})
   ])
   if(!booking || review) return false;
