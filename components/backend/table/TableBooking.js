@@ -9,7 +9,6 @@ import SubHeaderComponent from './SubHeaderComponent';
 const TableBooking = memo((props) => {
   const [bookings, setBooking] = useState();
   const [loading, setLoading] = useState(false);
-  // const [isFirstLoadDone,setFirstLoadDone] = useState(false)
   const [limit,setLimit] = useState(10);
   const [pageNumber,setPageNumber] = useState(1)
   const [sorting,setSorting] = useState({})
