@@ -21,7 +21,7 @@ const Review = (props) => {
       </div>
    
       
-      <AddReview />
+      {/* <AddReview /> */}
     </>
   )
 }

@@ -35,8 +35,9 @@ const Index = (props) => {
           bookings ? (
             <>
               <div className="row justify-content-between align-items-center px-3">
-                <div className="">
+                <div className="d-flex align-items-center">
                   <h4>Booking Details</h4>
+                  <div className="ml-4">{bookings.payment_status == 1 ? <span className="text-warning">(Pending)</span> : <span className="text-success">(Success)</span>}</div>
                 </div>
                 <div className="">
                   <Print  data={bookings} />

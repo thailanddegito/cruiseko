@@ -1,6 +1,6 @@
 import React, { useEffect, useState,memo } from 'react';
 import DataTable from 'react-data-table-component';
-import api from '../../../utils/api-admin';
+import api from '../../../utils/api';
 import ColumnTable from '../column/ColumnTableBooking';
 import SubHeaderComponent from './SubHeaderComponent';
 

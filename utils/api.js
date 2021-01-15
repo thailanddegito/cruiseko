@@ -61,4 +61,11 @@ export default {
     //Page
     getPageOne : (path) => service.get(`/pages/${path}`),
 
+    //Bookings
+    getBooking : (params) => service.get(`/booking`, {params}),
+    getBookingOne : (id) => service.get(`/booking/${id}`),
+
+    //Review
+    checkRevuew : (data) => service.post(`/review/can-review`,data),
+
 }

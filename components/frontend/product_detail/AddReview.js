@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddReview = (props) => {
-  const {error} = props;
+  const {data} = props;
 
   return (
     <>
@@ -11,11 +11,11 @@ const AddReview = (props) => {
           <div className="row">
             <div className="form-group col-md-6">
               <label>Name and Lastname *</label>
-              <input type="text" name="name_review" id="name_review" placeholder="" defaultValue="" className="form-control" />
+              <input type="text" name="name_review" id="name_review" placeholder="" defaultValue={`${data.user_firstname} ${data.user_lastname}`} className="form-control" />
             </div>
             <div className="form-group col-md-6">
               <label>Email *</label>
-              <input type="email" name="email_review" id="email_review" defaultValue="" className="form-control" />
+              <input type="email" name="email_review" id="email_review" defaultValue={data.user_email} className="form-control" />
             </div>
             {/* <div className="form-group col-md-6">
               <label>Rating </label>
