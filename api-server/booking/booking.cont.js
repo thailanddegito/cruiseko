@@ -162,7 +162,7 @@ exports.create = async(req,res,next)=>{
 
 
     var total_price_addons = 0;
-    var addons_dt ;
+    var addons_dt = [] ;
     if(addons && addons.length){
       addons_dt = await ProductAddon.findAll({where : {id : addons.map(val => val.id) },raw:true})
       total_price_addons = addons_dt.reduce((total,current) => total+ parseInt(current.price)*(adult+children)  , 0)
