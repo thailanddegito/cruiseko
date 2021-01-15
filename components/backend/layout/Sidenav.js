@@ -94,7 +94,7 @@ const Sidenav = (props) => {
                           <i className="fa fa-fw fa-calendar-check-o"></i>
                           <span className="nav-link-text">
                             Bookings 
-                            {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null}
+                            {/* {counts.partner_pending ? <span className="badge badge-pill badge-primary ml-1">{counts.partner_pending} New</span> : null} */}
                           </span>
                         </a>
                       </Link>
