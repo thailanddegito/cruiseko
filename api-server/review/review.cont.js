@@ -73,6 +73,8 @@ exports.create = async(req,res,next)=>{
       data.image = tools.genFileUrl(fileName,'images')
     }
 
+    data.user_id = user.id
+
     await Review.create(data)
     res.json({success:true})
   }

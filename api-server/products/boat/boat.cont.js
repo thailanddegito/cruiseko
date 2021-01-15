@@ -6,12 +6,15 @@ const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
   var {page=1,limit=25} = req.query;
+  var {orderby='createdAt' ,op='desc'} = req.query;
   try{
       const include = [
         {model : BoatImage , attributes : ['id','image']},
         {model : BoatCategory}
       ]
       var where = {deleted : 0}
+
+      var order = [[orderby,op]];
       var options = {where,include}
 
       if(!isNaN(page) && page > 1){
