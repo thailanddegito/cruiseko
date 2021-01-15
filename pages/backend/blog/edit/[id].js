@@ -149,10 +149,16 @@ const EditRole = ({query}) => {
                 </div>
 
                 <div className="row justify-content-start">
-                  <div className="col-lg-6 col-12">
+                  <div className="col-lg-4 col-12">
                     <div className="form-group">
-                      <label>Picture : </label>
-                      <ImageBoxBackend _text="Picture" _img={blogs.picture} _name="picture" _id="picture" required={true} />
+                      <label>Thumbnail (400px X 267px) : </label>
+                      <ImageBoxBackend _text="Thumbnail" _img={blogs.picture} _name="picture" _id="picture" required={true} classBox={'img-box-full'} />
+                    </div>
+                  </div>
+                  <div className="col-lg-4 col-12">
+                    <div className="form-group">
+                      <label>Banner (1600px X 1067px) : </label>
+                      <ImageBoxBackend _text="Banner" _img={blogs.banner} _name="banner" _id="banner" required={true} classBox={'img-box-full'} />
                     </div>
                   </div>
                 </div>   
