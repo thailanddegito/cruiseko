@@ -5,14 +5,27 @@ const {createProduct} = require('../products.cont')
 const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
+  var {page=1,limit=25} = req.query;
+  var {orderby='createdAt' ,op='desc'} = req.query;
   try{
       const include = [
         {model : BoatImage , attributes : ['id','image']},
         {model : BoatCategory}
       ]
       var where = {deleted : 0}
-      var options = {where,include}
-      const cates = await Boat.findAll(options);
+
+      var order = [[orderby,op]];
+      var options = {where,include,order}
+
+      if(!isNaN(page) && page > 1){
+        options.offset = (page-1)*limit;
+        
+        options.limit = limit;
+      }
+      if(!isNaN(limit)){
+          options.limit = parseInt(limit);
+      }
+      const cates = await Boat.findAndCountAll(options);
       res.json(cates)
   }
   catch(err){

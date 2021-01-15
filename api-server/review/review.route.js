@@ -11,6 +11,8 @@ router.get('/:id',review.getOne)
 
 router.use('/*',mw.jwt(['user','admin']))
 
+router.post('/can-review',review.checkCanReview)
+
 router.post('/',review.create)
 router.put('/:id',review.update)
 router.delete('/:id',review.delete)

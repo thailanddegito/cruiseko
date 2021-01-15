@@ -55,6 +55,11 @@ exports.create = async (req,res,next)=>{
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
     }
+    if(files.banner && files.banner){
+      let file = files.banner;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.banner = tools.genFileUrl(fileName,'images')
+    }
     await Blog.create(data)
     res.json({success : true})
   }
@@ -71,6 +76,11 @@ exports.update = async (req,res,next)=>{
       let file = files.picture;
       let fileName = await tools.moveFileWithPath(file,'images')
       data.picture = tools.genFileUrl(fileName,'images')
+    }
+    if(files.banner && files.banner){
+      let file = files.banner;
+      let fileName = await tools.moveFileWithPath(file,'images')
+      data.banner = tools.genFileUrl(fileName,'images')
     }
     await Blog.update(data,{where : {id : id}})
     res.json({success : true})

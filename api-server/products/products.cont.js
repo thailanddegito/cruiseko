@@ -7,12 +7,14 @@ const {DefaultError} = errors
 const {Op} = require('sequelize')
 
 const review_sql = '(select avg(rating) as rating from review where product_id = products.id and deleted = 0 and status = 1)'
+const review_count_sql = '(select count(product_id) as rating from review where product_id = products.id and deleted = 0 and status = 1)'
 
 exports.getAll = async(req,res,next)=>{
-  var {page,limit,is_draft=1,publish_status,is_boat,price_today=1} = req.query
+  var {page=1,limit=25,is_draft=1,publish_status,is_boat,price_today=1} = req.query
   var {price_start_date,price_end_date,total_person,active} = req.query
   var {cate_id,search} = req.query
 
+  var {orderby='createdAt' ,op='desc'} = req.query;
   try{
 
     var where = {deleted : 0}
@@ -36,9 +38,10 @@ exports.getAll = async(req,res,next)=>{
       where.name = {[Op.like] : `%${search}%` }
     }
 
+    var order = [[orderby,op]];
 
 
-    var options = {where/* ,logging:console.log */}
+    var options = {where,order/* ,logging:console.log */}
     if(!isNaN(page) && page > 1){
       options.offset = (page-1)*limit;
       
@@ -93,7 +96,7 @@ exports.getAll = async(req,res,next)=>{
       {model : PriceDate ,include :price_include,where : where_date,required:required_price },
       // {model : ProductImage , attributes:['id','image','type','order']},
       // {model : Event},
-      {model : ProductBoat, include : boat_include,required:true },
+      {model : ProductBoat, include : boat_include/* ,required:true */ },
       {model : ProductCategory},
       {model : Location , as :'pickup' },
       // {model : Review ,separate: true, attributes :  [[sequelize.fn('AVG', sequelize.col('rating')),'rating']]}
@@ -105,7 +108,7 @@ exports.getAll = async(req,res,next)=>{
 
     // console.log(Object.keys(Product.rawAttributes))
     const attributes = {
-      include : [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating']],
+      include : [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating'],[sequelize.literal(review_count_sql),'review_count']],
       exclude : ['meta_title','meta_description','meta_keyword','meta_image']
     }
 
@@ -141,7 +144,7 @@ exports.getOne = async(req,res,next)=>{
       [ProductImage, 'order', 'asc'],
       [PriceDate ,'start_date','asc']
     ]
-    const attributes = [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating']]
+    const attributes = [...Object.keys(Product.rawAttributes),[sequelize.literal(review_sql),'rating'],[sequelize.literal(review_count_sql),'review_count']]
     const product = await Product.findOne({where,include,order,attributes})
     res.json(product)
   }

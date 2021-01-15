@@ -54,7 +54,7 @@ const BlogDetail = (props) => {
 			<aside className="main-content">
 				<main>
 					<div>
-						<Banner data={true} />
+						<Banner data={blogs} />
 					</div>
 					<div>
             <Maindetail blogs={blogs} news={news} />

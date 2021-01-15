@@ -18,6 +18,7 @@ module.exports = (sequelize, type) => {
     description : type.TEXT,
     publish_date : type.DATE,
     picture : type.STRING,
+    banner : type.STRING,
     // deleted : {
     //   type : type.INTEGER,
     //   defaultValue :0,

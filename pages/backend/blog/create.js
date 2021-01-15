@@ -118,10 +118,16 @@ const Create = (props) => {
           </div>
 
           <div className="row justify-content-start">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-4 col-12">
               <div className="form-group">
-                <label>Picture  </label>
-                <ImageBoxBackend _text="Picture" _name="picture" _id="picture" chkImg={chkImg} required={true} />
+                <label>Thumbnail (400px X 267px)  </label>
+                <ImageBoxBackend _text="Thumbnail" _name="picture" _id="picture" chkImg={chkImg} required={true} classBox={'img-box-full'} />
+              </div>
+            </div>
+            <div className="col-lg-4 col-12">
+              <div className="form-group">
+                <label>Banner (1600px X 1067px)  </label>
+                <ImageBoxBackend _text="Banner" _name="banner" _id="banner" chkImg={chkImg} required={true} classBox={'img-box-full'} />
               </div>
             </div>
           </div>

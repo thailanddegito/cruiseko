@@ -48,6 +48,7 @@ const Header = (props) => {
               ) : (
                 <li><span><a href="#0">{user.firstname} {user.lastname}</a></span>
                   <ul>
+                    <li><span><Link href="/user/my_booking"><a>My Booking</a></Link></span></li>
                     <li><a href="#" onClick={() => handleLogout()}>Logout</a></li>
                   </ul>
                 </li>
@@ -73,7 +74,8 @@ const Header = (props) => {
                     </>
                   ) : (
                     <>
-                      <li><span><a href="#" onClick={() => handleLogout()}>Logout</a></span></li>
+                      <li><span><Link href="/user/my_booking"><a>My Booking</a></Link></span></li>
+                      <li><a href="#" onClick={() => handleLogout()}>Logout</a></li>
                     </>
                   ) 
                 }

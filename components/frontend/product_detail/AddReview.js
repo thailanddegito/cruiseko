@@ -1,24 +1,29 @@
 import React from 'react';
+import SelectLabel from '../../widget/SelectLabel';
 
 const AddReview = (props) => {
-  const {error} = props;
+  const {data, handleSave} = props;
 
+  const options = [{val : '1', name : '1'}, {val : '2', name : '2'}, {val : '3', name : '3'}, {val : '4', name : '4'}, {val : '5', name : '5'}];
+
+
+  console.log(data);
   return (
     <>
       <div className="add-review">
         <h5>Leave a Review</h5>
-        <form>
+        <form onSubmit={handleSave}>
+          <input type="hidden" name="booking_id" defaultValue={data.booking_details[0]?.booking_id} />
+          <input type="hidden" name="product_id" defaultValue={data.booking_details[0]?.product_id} />
           <div className="row">
-            <div className="form-group col-md-6">
-              <label>Name and Lastname *</label>
-              <input type="text" name="name_review" id="name_review" placeholder="" defaultValue="" className="form-control" />
-            </div>
-            <div className="form-group col-md-6">
-              <label>Email *</label>
-              <input type="email" name="email_review" id="email_review" defaultValue="" className="form-control" />
-            </div>
-            {/* <div className="form-group col-md-6">
-              <label>Rating </label>
+            <div className="col-md-6">
+              <SelectLabel 
+                inputProps={{ 
+                  className:'form-control', 
+                  name : 'rating', required : true,
+                }} 
+                labelName="Rating" icon={false} options={options} />
+              {/* <label>Rating </label>
               <div className="custom-select-form">
               <select name="rating_review" id="rating_review" defaultValue="1" className="wide">
                 <option value="1">1 (lowest)</option>
@@ -32,11 +37,11 @@ const AddReview = (props) => {
                 <option value="9">9</option>
                 <option value="10">10 (highest)</option>
               </select>
-              </div>
-            </div> */}
+              </div> */}
+            </div>
             <div className="form-group col-md-12">
               <label>Your Review</label>
-              <textarea name="review_text" id="review_text" className="form-control" style={{height : '130px'}}></textarea>
+              <textarea name="description" id="description" className="form-control" style={{height : '130px'}}></textarea>
             </div>
             <div className="form-group col-md-12 add_top_20">
               <input type="submit" value="Submit" className="btn_1" id="submit-review" />

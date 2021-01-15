@@ -16,22 +16,49 @@ const TablePackage = (props) => {
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const [packages, setPackage] = useState();
+  const [loading, setLoading] = useState(false);
+  const [limit,setLimit] = useState(10);
+  const [pageNumber,setPageNumber] = useState(1)
+  const [sorting,setSorting] = useState({})
 
-  const fecthPackage = () => {
-    api.getPackage({is_draft : 1})
+  const fecthPackage = (params={}) => {
+    params.is_draft = 1;
+    params.page = pageNumber;
+    params.limit = limit;
+    if(sorting.orderby) params.orderby = sorting.orderby
+    if(sorting.op) params.op = sorting.op
+
+    setLoading(true);
+    api.getPackage(params)
     .then(res=>{
       const data = res.data;
       console.log('data',data)
       setPackage(data);
+      setLoading(false);
     })
     .catch(err => {
       console.log(err.response);
+      setLoading(false);
     })
   }
+
+  const handlePageChange = page => {
+    setPageNumber(page)
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    setLimit(newPerPage)
+    // setPageNumber(1)
+  };
+
+  const handleSort = (column, sortDirection) => {
+    setSorting({orderby : column.selector,op : sortDirection})
+    // console.log(column,sortDirection)
+  };
   
   useEffect(() => {
     fecthPackage();
-  },[]);
+  },[limit,pageNumber,sorting]);
   
   const [ref_id, setrefID] = useState();
   const delData = (id) => {
@@ -104,6 +131,13 @@ const TablePackage = (props) => {
         data={filteredItems}
         pagination
         paginationResetDefaultPage={resetPaginationToggle}
+        paginationServer
+        paginationTotalRows={packages?.count || 0}
+        onChangeRowsPerPage={handlePerRowsChange}
+        onChangePage={handlePageChange}
+        onSort={handleSort}
+        sortServer
+        progressPending={loading}
         noHeader
         subHeader
         subHeaderComponent={

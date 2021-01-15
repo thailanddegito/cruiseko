@@ -11,21 +11,49 @@ import ColumnTable from '../column/ColumnTableBoat'
 const TableBoat = (props) => {
   const [modalConfirm, setModalConfirm] = useState(false);
   const [boats, setBoat] = useState();
+  const [loading, setLoading] = useState(false);
+  const [limit,setLimit] = useState(10);
+  const [pageNumber,setPageNumber] = useState(1)
+  const [sorting,setSorting] = useState({})
 
-  const fecthBoat = () => {
-    api.getBoat()
+  const fecthBoat = (params={}) => {
+    params.page = pageNumber;
+    params.limit = limit;
+
+    if(sorting.orderby) params.orderby = sorting.orderby
+    if(sorting.op) params.op = sorting.op
+
+    setLoading(true);
+    api.getBoat(params)
     .then(res=>{
       const data = res.data;
       setBoat(data);
+      setLoading(false);
     })
     .catch(err => {
       console.log(err.response);
+      setLoading(false);
     })
   }
   
   useEffect(() => {
     fecthBoat();
-  },[]);
+  },[limit,pageNumber,sorting]);
+
+  const handlePageChange = page => {
+    setPageNumber(page)
+  };
+
+  const handlePerRowsChange = async (newPerPage, page) => {
+    setLimit(newPerPage)
+    // setPageNumber(1)
+  };
+
+  const handleSort = (column, sortDirection) => {
+    setSorting({orderby : column.selector,op : sortDirection})
+    // console.log(column,sortDirection)
+  };
+  
   
   const [ref_id, setrefID] = useState();
   const delData = (id) => {
@@ -48,7 +76,7 @@ const TableBoat = (props) => {
 
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const filteredItems = boats ? boats.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
+  const filteredItems = boats ? boats.rows.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase())) : [];
   
   const columns = ColumnTable({delData});
 
@@ -61,6 +89,13 @@ const TableBoat = (props) => {
         data={filteredItems}
         pagination
         paginationResetDefaultPage={resetPaginationToggle}
+        paginationServer
+        paginationTotalRows={boats?.count || 0}
+        onChangeRowsPerPage={handlePerRowsChange}
+        onChangePage={handlePageChange}
+        onSort={handleSort}
+        sortServer
+        progressPending={loading}
         noHeader
         subHeader
         subHeaderComponent={
