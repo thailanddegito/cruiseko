@@ -59,7 +59,7 @@ const Layout = (props) => {
           no_class={no_class} admin={admin && admin.data} headerScroll={headerScroll} sub_link={sub_link} />
         ) : (
           <div className='main-layout'>
-            
+            {children}
           </div>
         )
        
