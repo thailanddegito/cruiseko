@@ -1,4 +1,4 @@
-const {Review,Booking,User} = require('../db')
+const {Review,Booking,User,sequelize} = require('../db')
 const tools = require('../helper/tools')
 const {Op} = require('sequelize');
 const { DefaultError } = require('../errors');
@@ -35,10 +35,26 @@ exports.getAll = async(req,res,next)=>{
     }
 
     
+    
+
+    let task = [Review.findAndCountAll(options)]
+    if(product_id){
+      
+      let ff = Review.findAll({
+        attributes: ['rating', [sequelize.fn('count', sequelize.col('id')), 'cnt']],
+        group: ['rating'],
+        where : {deleted : 0,status : 1,product_id},
+        raw: true
+      })
+      task.push(ff)
+    }
+
+    
 
 
-    const reviews = await Review.findAndCountAll(options);
-    res.json(reviews)
+    const [reviews,detail] = await Promise.all(task);
+    // console.log(detail)
+    res.json({...reviews,review_detail :detail })
   }
   catch(err){
       next(err);
