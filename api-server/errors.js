@@ -23,4 +23,5 @@ module.exports = {
     PENDING_APPROVE : 'PendingApproveError',
     NOT_APPROVE : 'NotApproveError',
     NOT_PUBLISHED : 'NotPublishedError',
+    ALREADY_REVIEW : 'AlreadyReviewError',
 }

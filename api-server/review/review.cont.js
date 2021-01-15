@@ -1,6 +1,8 @@
 const {Review,Booking,User} = require('../db')
 const tools = require('../helper/tools')
-const {Op} = require('sequelize')
+const {Op} = require('sequelize');
+const { DefaultError } = require('../errors');
+const errors = require('../errors');
 
 exports.getAll = async(req,res,next)=>{
   var {page=1,limit=25,no_limit,booking_id,product_id,user_id} = req.query;
@@ -54,7 +56,15 @@ exports.getOne = async(req,res,next)=>{
 exports.create = async(req,res,next)=>{
   var data = req.body;
   var files = req.files || {}
+  const user = req.user;
+  const {booking_id} = data;
   try{
+
+    const can_review = await checkCanReview({user_id : user.id , booking_id})
+
+    if(!can_review){
+      throw new DefaultError(errors.ALREADY_REVIEW)
+    }
 
     if(files.image && files.image.name){
       //console.log(req.files);
@@ -102,3 +112,31 @@ exports.delete = async(req,res,next)=>{
   }
 }
 
+exports.checkCanReview = async(req,res,next)=>{
+  const {booking_id} = req.body;
+  const user = req.user
+  try{
+    const can_review = await checkCanReview({user_id : user.id,booking_id})
+    res.json({success:true,can_review})
+  }
+  catch(err){
+    next(err);
+  }
+}
+
+async function checkCanReview({user_id,booking_id}){
+  // const booking = await Booking.findOne({where : {user_id,booking_id}})
+  const [booking,review] = await Promise.all([
+    Booking.findOne({where : {user_id,booking_id,payment_status : 2}}),
+    Review.findOne({where : {user_id,booking_id}})
+  ])
+  if(!booking || review) return false;
+
+  const now = new Date();
+  if(now < new Date(booking.end_date)){
+    return false;
+  }
+  return true;
+
+  
+}
