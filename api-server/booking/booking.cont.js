@@ -12,7 +12,7 @@ const {calPackagePrice,calDuration} = require('../helper/packageHelper')
 
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25,orderby='createdAt' ,op='desc',user_id} = req.query
+  var {page=1,limit=25,orderby='createdAt' ,op='desc',user_id,payment_status} = req.query
   const user = req.user
   try{
     var where = {}
@@ -25,6 +25,7 @@ exports.getAll = async(req,res,next)=>{
 
       where.user_id = user_id;
     }
+    if(payment_status) where.payment_status = payment_status;
 
 
     var order = [[orderby,op]];
