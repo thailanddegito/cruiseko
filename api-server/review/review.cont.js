@@ -14,7 +14,11 @@ exports.getAll = async(req,res,next)=>{
     if(booking_id) where.booking_id = booking_id;
     if(user_id) where.user_id = user_id;
 
-    var options = {where,order : [['createdAt','desc']] /* ,logging:console.log */}
+    const include = [
+      {model : User}
+    ]
+
+    var options = {where,order : [['createdAt','desc']] ,include}
 
 
     if(!isNaN(page) && page > 1){
@@ -29,6 +33,10 @@ exports.getAll = async(req,res,next)=>{
     if(no_limit == 1){
       delete options.limit;
     }
+
+    
+
+
     const reviews = await Review.findAndCountAll(options);
     res.json(reviews)
   }
