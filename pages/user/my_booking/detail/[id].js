@@ -8,14 +8,16 @@ import Detail from '../../../../components/backend/booking/Detail';
 import UserBooking from '../../../../components/backend/booking/UserBooking';
 import Link from 'next/link';
 import AddReview from '../../../../components/frontend/product_detail/AddReview';
+import SuccessDialog from '../../../../components/widget/ModalSuccessDialog';
 
 const Index = (props) => {
   const [bookings, setBooking] = useState();
+  const [check, setCheck] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const router = useRouter()
   const {id} = router.query;
 
-  useEffect(() => {
-    if(!id) return;
+  const fetchBookOne = () => {
     api.getBookingOne(id)
     .then(res => {
       setBooking(res.data)
@@ -24,6 +26,11 @@ const Index = (props) => {
     .catch(err=>{
       console.log(err.response || err)
     })
+  }
+
+  useEffect(() => {
+    if(!id) return;
+    fetchBookOne();
     fetchPackage();
   }, [id]);
 
@@ -34,13 +41,30 @@ const Index = (props) => {
     .then(res => {
       const data= res.data;
       console.log('fetched data',data)
+      setCheck(data);
     })
     .catch(err=>{
       console.log(err.response || err)
     })
   }
 
-  // console.log(bookings);
+  const handleSave = (event) => {
+    event.preventDefault()
+    const data = new FormData(event.target)
+    api.insertReview(data)
+    .then(res=>{
+      const data = res.data;
+      setModalSuccess(true);
+      fetchBookOne();
+      fetchPackage();
+    })
+    .catch(err => {
+      console.log(err.response);
+    })
+  }
+
+
+  // console.log(check);
 
 
   return (
@@ -77,16 +101,27 @@ const Index = (props) => {
                     <Summary data={bookings} />
                   </div>
                 </div>
-                <div className="divider"></div>
-                <section className="mt-4" id="reviews">
-                  <AddReview data={bookings} />
-                </section>
+                {
+                  check.can_review ? (
+                    <>
+                      <div className="divider"></div>
+                      <section className="mt-4" id="reviews">
+                        <AddReview data={bookings} handleSave={handleSave} />
+                      </section>
+                    </>
+                  ) : null
+                }
+                
               </>
             ) : null
           }
           </aside>
         </div>
         <div className="end-content"></div>
+        <SuccessDialog show={modalSuccess}
+          text="Successfully saved data !!!"
+          size="md" onHide={() => setModalSuccess(false)}
+           />
       </Layout>
     </>
   )
