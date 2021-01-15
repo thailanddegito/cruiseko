@@ -13,9 +13,9 @@ const AddReview = (props) => {
 
   return (
     <>
-      <div className="review-box clearfix">
-        <figure className="rev-thumb"><img src="/template/img/avatar1.jpg" alt=""/>
-        </figure>
+      <div className="review-box clearfix pl-0">
+        {/* <figure className="rev-thumb"><img src="/template/img/avatar1.jpg" alt=""/>
+        </figure> */}
         <div className="rev-content">
           <div className="rating">
             {star}
