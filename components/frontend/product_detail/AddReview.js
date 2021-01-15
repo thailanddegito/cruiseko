@@ -4,16 +4,17 @@ import SelectLabel from '../../widget/SelectLabel';
 const AddReview = (props) => {
   const {data, handleSave} = props;
 
-  const options = [{val : '1', name : '1 (lowest)'}, {val : '2', name : '2'}, {val : '3', name : '3'}, {val : '4', name : '4'}, {val : '5', name : '5 (medium)'}
-  , {val : '6', name : '6'}, {val : '7', name : '7'}, {val : '8', name : '8'}, {val : '9', name : '9'}, {val : '10', name : '10 (highest)'}];
+  const options = [{val : '1', name : '1'}, {val : '2', name : '2'}, {val : '3', name : '3'}, {val : '4', name : '4'}, {val : '5', name : '5'}];
 
 
+  console.log(data);
   return (
     <>
       <div className="add-review">
         <h5>Leave a Review</h5>
         <form onSubmit={handleSave}>
           <input type="hidden" name="booking_id" defaultValue={data.booking_details[0]?.booking_id} />
+          <input type="hidden" name="product_id" defaultValue={data.booking_details[0]?.product_id} />
           <div className="row">
             <div className="col-md-6">
               <SelectLabel 

@@ -68,5 +68,7 @@ export default {
     //Review
     checkRevuew : (data) => service.post(`/review/can-review`,data),
     insertReview : (data) => service.post('/review',data) ,
+    getReviewPackage : (params) => service.get(`/review`, {params}),
+
 
 }

@@ -33,6 +33,8 @@ const ProductCard = (props) => {
 		}
   }
 
+  console.log('card', packages);
+
   return (
     packages ? (
       <>
@@ -65,7 +67,7 @@ const ProductCard = (props) => {
             </div>
             <ul>
               <li>{text_time ? (<><i className="icon_clock_alt"></i> {text_time}</>) : ''}</li>
-              <li><div className="score"><span>Superb<em>350 Reviews</em></span><strong>5.0</strong></div></li>
+              <li><div className="score"><span><em>{packages.review_count} Reviews</em></span><strong>{packages.rating ? parseFloat(packages.rating).toFixed(1) : '0.0'}</strong></div></li>
             </ul>
           </div>
         </div>

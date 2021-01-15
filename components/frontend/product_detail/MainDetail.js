@@ -16,6 +16,7 @@ import api from '../../../utils/api'
 
 const Detail = (props) => {
   const {packages} = props;
+  const [reviews, setReview] = useState(false);
   const [state,setState] = useState({
     date : toDateISO(new Date()),
     adult : 1,
@@ -74,11 +75,26 @@ const Detail = (props) => {
     .catch(err=>{
       console.log(err.response)
     })
-
   },[packages,state.date,state.end_time,state.start_time])
 
-  console.log('state',state)
-  console.log('priceData',priceData)
+  useEffect(() => {
+    if(!packages) return;
+    fetchReview();
+  }, [packages])
+
+  // console.log('packages', packages);
+  const fetchReview = ()=>{
+    if(!packages) return;
+    var params = {'product_id' : packages.id}
+    api.getReviewPackage(params)
+    .then(res => {
+      const data= res.data;
+      setReview(data);
+    })
+    .catch(err=>{
+      console.log(err.response || err)
+    })
+  }
   
   return (
     <>
@@ -111,17 +127,25 @@ const Detail = (props) => {
 
                 <Remark data={packages?.remark} />
               </section>
-              {/* <section id="reviews">
-                <Review />
-              </section>
-              <hr /> */}
+              {
+                reviews && reviews.count > 0 ? (
+                  <>
+                    <section id="reviews">
+                      <Review reviews={reviews} packages={packages} />
+                    </section>
+                    <hr />
+                  </>
+                ) : null
+              }
+              
                 
             </div>
             <aside className="col-lg-4" id="sidebar">
               <Price state={state} setState={setState} 
               priceData={priceData} checkout={checkout} 
               total_price_addons={total_price_addons}
-              addons={packages?.products_addons ?? []} is_boat={packages?.is_boat} />
+              addons={packages?.products_addons ?? []} is_boat={packages?.is_boat}
+              packages={packages} />
             </aside>
           </div>
         </div>

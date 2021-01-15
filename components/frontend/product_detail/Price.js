@@ -9,7 +9,7 @@ import AuthService from '../../../utils/AuthService';
 import LoginModal from '../../../components/frontend/login/Modal';
 
 const Price = (props) => {
-  const {error,state,setState,checkout, is_boat,addons=[],total_price_addons} = props;
+  const {error,state,setState,checkout, is_boat,addons=[],total_price_addons, packages} = props;
   const [active, setActive] = useState(false);
   const [activeFrom, setActiveFrom] = useState(false);
   const [activeTo, setActiveTo] = useState(false);
@@ -113,7 +113,7 @@ const Price = (props) => {
       <div className="box_detail booking">
         <div className="price">
           {price !== -1 && <span> {price} ฿ <small>{unit}</small> </span>}
-          <div className="score"><span>Good<em>350 Reviews</em></span><strong>7.0</strong></div>
+          <div className="score"><span><em>{packages.review_count} Reviews</em></span><strong>{packages.rating ? parseFloat(packages.rating).toFixed(1) : '0.0'}</strong></div>
         </div>
         {boat_amt && <div className="mb-2"> <span>Boat amount : </span>{boat_amt} </div> }
         

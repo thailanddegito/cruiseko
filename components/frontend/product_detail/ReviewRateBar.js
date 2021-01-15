@@ -2,7 +2,7 @@
 import React from 'react';
 
 const ReviewRateBar = (props) => {
-  const {error} = props;
+  const {reviews, packages} = props;
 
   return (
     <>
@@ -10,9 +10,9 @@ const ReviewRateBar = (props) => {
         <div className="row">
           <div className="col-lg-3">
             <div id="review_summary">
-              <strong>8.5</strong>
+              <strong>{packages.rating ? parseFloat(packages.rating).toFixed(1) : '0.0'}</strong>
               <em>Superb</em>
-              <small>Based on 4 reviews</small>
+              <small>Based on {reviews.count} reviews</small>
             </div>
           </div>
           <div className="col-lg-9">

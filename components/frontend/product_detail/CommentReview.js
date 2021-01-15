@@ -1,7 +1,15 @@
 import React from 'react';
+import tools from '../../../utils/tools'
 
 const AddReview = (props) => {
-  const {error} = props;
+  const {data} = props;
+  if(!data) return;
+
+  var star = [];
+  for (var i = 1; i <= data.rating; i++) {
+    star.push(<i className="icon_star voted"></i>);
+  }
+
 
   return (
     <>
@@ -10,14 +18,14 @@ const AddReview = (props) => {
         </figure>
         <div className="rev-content">
           <div className="rating">
-            <i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star"></i>
+            {star}
           </div>
           <div className="rev-info">
-            Admin – April 03, 2016:
+            {data.user.firstname}  {data.user.lastname} – {data.createdAt ? tools.formatDate(data.createdAt,false,false) : null}:
           </div>
           <div className="rev-text">
             <p>
-              Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
+              {data.description}
             </p>
           </div>
         </div>
