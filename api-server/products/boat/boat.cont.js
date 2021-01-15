@@ -15,7 +15,7 @@ exports.getAll = async(req,res,next)=>{
       var where = {deleted : 0}
 
       var order = [[orderby,op]];
-      var options = {where,include}
+      var options = {where,include,order}
 
       if(!isNaN(page) && page > 1){
         options.offset = (page-1)*limit;
