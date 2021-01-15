@@ -21,6 +21,9 @@ const ReviewRateBar = (props) => {
     if (val.rating == 1) {
       rateavg.a1 = (val.cnt / reviews.count) * 100;
     }
+  });
+
+  console.log(rateavg);
 
 
   return (
