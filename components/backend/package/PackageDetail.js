@@ -45,20 +45,22 @@ const PackageDetail = memo((props) => {
     })
   }
   const fecthBoat = () => {
-    api.getBoat()
+    api.getBoat({no_limit : 1})
     .then(res=>{
       const data = res.data;
-      var temp = data.map(val => ({label : val.name,value : val.boat_id})  )
-      console.log(temp)
+      // console.log('boat',data)
+      var temp = data.rows.map(val => ({label : val.name,value : val.boat_id})  )
+      
       setBoat(temp);
     })
     .catch(err => {
-      console.log(err.response);
+      
+      console.log(err || err.response);
     })
   }
 
   const handleSelectChange = (key,item)=>{
-    console.log(item)
+    // console.log(item)
     setSelectData({...selectData,[key] : item})
   }
 
@@ -78,7 +80,7 @@ const PackageDetail = memo((props) => {
     const pickup_location_id = locations.find(val => val.value === pkg.pickup_location_id )
 
     // console.log('boat',boat)
-    // console.log('cate',cate)
+    
     setSelectData({cate,boat_id,pickup_location_id})
   }, [pkg,types,boats,locations]);
   useEffect(() => {
