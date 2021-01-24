@@ -1,11 +1,11 @@
 const {Boat,BoatCategory,BoatImage,sequelize} = require('../../db')
 const tools = require('../../helper/tools')
 const errors = require('../../errors')
-const {createProduct} = require('../products.cont')
+const {createProduct, delete} = require('../products.cont')
 const {DefaultError} = errors
 
 exports.getAll = async(req,res,next)=>{
-  var {page=1,limit=25} = req.query;
+  var {page=1,limit=25,no_limit} = req.query;
   var {orderby='createdAt' ,op='desc'} = req.query;
   try{
       const include = [
@@ -24,6 +24,10 @@ exports.getAll = async(req,res,next)=>{
       }
       if(!isNaN(limit)){
           options.limit = parseInt(limit);
+      }
+
+      if(no_limit == 1){
+        delete options.no_limit
       }
       const cates = await Boat.findAndCountAll(options);
       res.json(cates)
