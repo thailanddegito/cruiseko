@@ -19,7 +19,7 @@ module.exports = (sequelize, type) => {
   })
 
   RecommendProduct.associate = function(models) {
-    // RecommendCate.hasMany(models.User,{foreignKey : 'user_id',constraints: false})
+    RecommendProduct.belongsTo(models.Product,{foreignKey : 'product_id',constraints: false})
   };
   return RecommendProduct
 }

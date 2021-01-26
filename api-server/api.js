@@ -27,6 +27,7 @@ app.use('/blog',require('./blog/blog.route'))
 app.use('/location',require('./location/location.route'))
 app.use('/pages',require('./pages/pages.route'))
 app.use('/review',require('./review/review.route'))
+app.use('/recommend',require('./products/recommend.route'))
 
 app.get('/test',(req,res) => res.send('test'))
 
