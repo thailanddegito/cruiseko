@@ -1,5 +1,5 @@
 require('dotenv').config()
-const {Admin,Permission,BoatCategory,Page} = require('../db')
+const {Admin,Permission,BoatCategory,Page,RecommendCate} = require('../db')
 
 
 
@@ -108,6 +108,23 @@ exports.initDefault = async() =>{
   }
 }
 
+exports.initRecommend = async()=>{
+  try{
+    const data = [
+      {key : 'popular' , name : 'Popular' },
+    ]
+
+    await RecommendCate.sync({force : true})
+    
+
+    await RecommendCate.bulkCreate(data)
+    console.log('Create rec successfully!')
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
 var [,,method,arg1] = process.argv;
 
 if(method === 'admin'){
@@ -119,7 +136,10 @@ else if(method === 'per'){
 else if(method === 'all'){
   this.initDefault().then(() => process.exit(0))
 }
+else if(method === 'rec'){
+  this.initRecommend().then(() => process.exit(0))
+}
 else {
-  var methods = ['admin','per','all']
+  var methods = ['admin','per','all','rec']
   console.log('method required ',methods)
 }
